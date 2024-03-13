@@ -45,9 +45,9 @@ import ProjectHeadProfile from "./pages/projecthead/ProjectHeadProfile";
 import AssignedProject from "./pages/projecthead/AssignedProject";
 import Carousel from "./components/Carousel";
 import LandingPage from "./components/LandingPage";
-import AllBanner from "./pages/admin/AllBanner";
-import AddBanner from "./pages/admin/AddBanner";
-import DeleteBanner from "./pages/admin/DeleteBanner";
+import AllBanner from "./pages/admin/Banner/AllBanner";
+import AddBanner from "./pages/admin/Banner/AddBanner";
+import DeleteBanner from "./pages/admin/Banner/DeleteBanner";
 
 const App = () => {
   const [userRole, setuserRole] = useState(sessionStorage.getItem("roles"));
