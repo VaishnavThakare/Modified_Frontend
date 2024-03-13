@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.menuSidebar{
+ margin: 0;
+}
+
+.menuItems{
+    height: 3.8rem;
+}
+
+.searchFilter{
+    text-align: right;
+    margin: 4px;
+}
+
+form{
+    border: 1.8px solid #0000ff; 
+    border-radius: 4px; 
+    padding: 4rem ;
+}
+
+fieldset {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+}
