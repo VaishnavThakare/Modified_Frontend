@@ -23,7 +23,7 @@ function LandingPage() {
     <div className="block items-start justify-start h-screen relative">
       {showLogin && <LoginModal onClose={handleCloseLogin} />}
 
-      <div id="navbar" className="grid grid-cols-2 w-full   p-[5px]">
+      <div id="navbar" className="grid grid-cols-2 w-full p-[0.5px]">
         <div>
           <img className="w-[250px] h-[50px]" src={`${process.env.PUBLIC_URL}/sciqus.png`} alt="logo" />
         </div>
@@ -33,7 +33,7 @@ function LandingPage() {
         </div>
       </div> 
 
-      <div className="w-full grid grid-rows-2 px-20 lg:px-40 " style={{ backgroundImage: backgroundImageUrl }}>
+      <div className="w-full grid grid-rows-2 px-20 lg:px-40 bg-cover bg-center" style={{backgroundImage: `url(${backgroundImageUrl})`}}>
         <div className="h-[5px] grid grid-cols-2 row-span-1 w-full p-[10px]">
           <div id="col1" className="w-[145%]  ">
             <Carousel></Carousel>
@@ -44,16 +44,16 @@ function LandingPage() {
           </div>
         </div>
 
-        <div className="grid grid-cols-3 w-full mt-10">
-          <div id="col1" className=" mr-[85px] ml-[85px] w-[75%] ">
+        <div className="grid grid-cols-3 w-full mt-[57px]">
+          <div id="col1" className=" mr-[70px] w-[80%] ">
             {/* Policies with scrollbar */}
             <Policies />
           </div>
-          <div id="col1" className=" mr-[85px] ml-[85px] w-[75%]  ">
+          <div id="col1" className=" mr-[70px]  w-[80%]  ">
             {/* News image side arrow with content */}
             <News />
           </div>
-          <div id="col1" className="mr-[90px] ml-[90px] w-[75%] ">
+          <div id="col1" className=" ml-[70px] w-[80%] ">
             {/* Events with content */}
             <Event />
           </div>
