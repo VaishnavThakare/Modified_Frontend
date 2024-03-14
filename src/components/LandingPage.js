@@ -23,9 +23,9 @@ function LandingPage() {
     <div className="block items-start justify-start h-screen relative">
       {showLogin && <LoginModal onClose={handleCloseLogin} />}
 
-      <div id="navbar" className="grid grid-cols-2 w-full p-[5px] bg -white shadow-2xl">
+      <div id="navbar" className="grid grid-cols-2 w-full p-[10px] bg -white shadow-2xl">
         <div>
-          <img className="w-[150px] h-[40px] ml-[30px]" src={`${process.env.PUBLIC_URL}/sciqus.png`} alt="logo" />
+          <img className="w-[80px] h-[30px]  ml-[30px]" src={`${process.env.PUBLIC_URL}/sciqus.png`} alt="logo" />
         </div>
         <div className="flex items-end justify-end mr-[80px]">
           <button className="font-poppins  font-normal text-center mr-[15px]" onClick={handleLoginClick}>LogIn</button>
@@ -55,19 +55,19 @@ function LandingPage() {
           <div className="grid grid-cols-3 w-full mt-[15px]">
             <div id="col1" className="mx-[10px]">
               {/* Policies with scrollbar */}
-              <div className="text-black ml-[10px] font-semibold ">POLICIES</div>
+              <div className="text-black  font-semibold mb-[20px] ">POLICIES</div>
               <Policies />
             </div>
 
             <div id="col1" className="mx-[10px]">
               {/* News image side arrow with content */}
-              <div className="text-black ml-[10px] font-semibold ">NEWS</div>
+              <div className="text-black ml-[2px] font-semibold mb-[20px]">NEWS</div>
               <News />
             </div>
 
             <div id="col1" className="mx-[10px]">
               {/* Events with content */}
-              <div className="text-black ml-[10px] font-semibold ">EVENTS</div>
+              <div className="text-black ml-[2px] font-semibold mb-[20px]">EVENTS</div>
               <Event />
             </div>
           </div>

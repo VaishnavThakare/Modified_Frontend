@@ -66,10 +66,11 @@ const News = () => {
         {news[currentNewsIndex].content}
       </p>
       <div className="absolute top-1/2 transform -translate-y-1/2 left-0" style={{ width: '100%' }}>
-        <button className="absolute left-0 top-[0px] text-2xl text-white text-gray bg-stone-300 w-[22px] h-[35px] rounded" onClick={handleBackwardClick}>
+        <button className="absolute left-0 top-[0px] text-2xl text-black font-semibold text-gray w-[22px] h-[55px] rounded" onClick={handleBackwardClick}>
           &lt; 
         </button>
-        <button className="absolute right-0 top-[0px] text-2xl text-white text-gray bg-stone-300 w-[22px] h-[35px] rounded" onClick={handleForwardClick}>
+        <button className="absolute right-0 top-[0px] text-2xl text-black font-semibold text-gray  w-[22px] h-[55px] rounded" onClick={handleForwardClick}>
+        {/* bg-stone-300 */}
           &gt;
         </button>
       </div>

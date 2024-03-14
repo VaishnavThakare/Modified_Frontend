@@ -42,10 +42,10 @@ const Info = () => {
         {profileData[currentProfileIndex].description}
       </p>
       <div className="absolute top-1/2 transform -translate-y-1/2 left-0" style={{ width: '100%' }}>
-        <button className="absolute left-0 top-1/2 w-[20px] text-2xl px-[1px] py-1 text-white bg-cyan-300 rounded" onClick={handleBackwardClick}>
+        <button className="absolute left-0 top-1/2 w-[20px] text-2xl px-[1px] py-1 text-black font-semibold  rounded" onClick={handleBackwardClick}>
           &lt; 
         </button>
-        <button className="absolute right-0 top-1/2 w-[20px] text-2xl px-[1px] py-1 text-white bg-cyan-300 rounded" onClick={handleForwardClick}>
+        <button className="absolute right-0 top-1/2 w-[20px] text-2xl px-[1px] py-1 text-black font-semibold  rounded" onClick={handleForwardClick}>
           &gt;
         </button>
       </div>
