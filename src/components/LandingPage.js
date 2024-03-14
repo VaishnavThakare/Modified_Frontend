@@ -23,17 +23,17 @@ function LandingPage() {
     <div className="block items-start justify-start h-screen relative">
       {showLogin && <LoginModal onClose={handleCloseLogin} />}
 
-      <div id="navbar" className="grid grid-cols-2 w-full p-[0.5px]">
+      <div id="navbar" className="grid grid-cols-2 w-full p-[5px]">
         <div>
           <img className="w-[150px] h-[40px]" src={`${process.env.PUBLIC_URL}/sciqus.png`} alt="logo" />
         </div>
-        <div className="flex items-end justify-end mr-[20px]">
-          <button className="font-serif text-center mr-[15px]" onClick={handleLoginClick}>LogIn</button>
-          <button className="font-serif text-center">Contact</button>
+        <div className="flex items-end justify-end mr-[150px]">
+          <button className="font-poppins  font-normal text-center mr-[15px]" onClick={handleLoginClick}>LogIn</button>
+          <button className=" font-poppins  font-normal text-center">Contact: 90909090</button>
         </div>
       </div> 
 
-      <div className="w-full grid grid-rows-2 px-20 lg:px-40 bg-cover bg-center" style={{backgroundImage: `url(${backgroundImageUrl})`,backgroundRepeat: 'repeat', backgroundSize: '500px 700px' }}>
+      <div className="w-full grid grid-rows-2 px-20 lg:px-40 bg-cover bg-center" style={{backgroundImage: `url(${backgroundImageUrl})`}}>
         <div className=" grid grid-cols-2 row-span-1 w-full h-10 p-[10px]">
           <div id="col1" className="w-[145%] bg-white">
             <Carousel></Carousel>
@@ -43,29 +43,35 @@ function LandingPage() {
             <Info />
           </div>
         </div>
-        <div className="text-black  bg-white">
+        <div className="text-black">
+          Policies
+        
+        <div className=" text-black">
+          Policies
+        </div>
+        <div className="text-black">
+          Policies
+        </div>
       
 
         <div className="grid grid-cols-3 w-full mt-[57px]">
-          <div id="col1" className=" mr-[70px] w-[80%]  bg-white">
-          Policies
+          <div id="col1" className=" mr-[70px] w-[80%] ">
             {/* Policies with scrollbar */}
             <Policies />
           </div>
-          <div id="col1" className=" mr-[70px]  w-[80%]   bg-white">
-            News
+          <div id="col1" className=" mr-[70px]  w-[80%]  ">
             {/* News image side arrow with content */}
             <News />
           </div>
-          <div id="col1" className=" ml-[70px] w-[80%]  bg-white">
-            Event
+          <div id="col1" className=" ml-[70px] w-[80%] ">
             {/* Events with content */}
             <Event />
           </div>
         </div>
         </div>
+        </div>
       </div>
-    </div>
+    
   );
 }
 

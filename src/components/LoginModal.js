@@ -65,32 +65,42 @@ const LoginModal = ({ onClose }) => {
       <div className="bg-white p-8 rounded-md shadow-md w-96">
         <h2 className="text-2xl font-semibold mb-4">Login</h2>
         <form onSubmit={(e) => e.preventDefault()}>
-          <div className="mb-4">
-            <label htmlFor="username" className="block text-sm font-medium text-gray-700">
-              Username
-            </label>
-            <input
-              type="text"
-              id="username"
-              className="mt-1 p-2 border rounded-md w-full"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              required
-            />
-          </div>
-          <div className="mb-4">
-            <label htmlFor="password" className="block text-sm font-medium text-gray-700">
-              Password
-            </label>
-            <input
-              type="password"
-              id="password"
-              className="mt-1 p-2 border rounded-md w-full"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
-          </div>
+        <div className="mb-6 relative">
+  <input
+    type="text"
+    id="username"
+    name="username"
+    value={username}
+    onChange={(e) => setUsername(e.target.value)}
+    className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+    placeholder=" "
+    required
+  />
+  <label
+    htmlFor="username"
+    className="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"
+  >
+    Username
+  </label>
+</div>
+
+          <div className="mb-4 relative">
+  <input
+    type="password"
+    id="password"
+    className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+    value={password}
+    onChange={(e) => setPassword(e.target.value)}
+    required
+  />
+  <label
+    htmlFor="password"
+    className="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"
+  >
+    Password
+  </label>
+</div>
+
           <button
             type="button" // Change to "submit" if you have a form submission logic
             className="bg-blue-500 text-white px-4 py-2 rounded-md"
@@ -101,7 +111,7 @@ const LoginModal = ({ onClose }) => {
         </form>
         <button
           type="button"
-          className="mt-4 text-sm text-gray-500 hover:text-gray-700 cursor-pointer"
+          className="mt-4 text-sm text-gray-500 hover:text-gray-700 font-semibold cursor-pointer"
           onClick={onClose}
         >
           Close

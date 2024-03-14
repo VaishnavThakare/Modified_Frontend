@@ -9,7 +9,7 @@ const Event= () => {
     //     <h2 className="text-2xl font-bold mb-4">EVENTS</h2>
     //     <p className="text-xl mb-8">7 ANNIVERSARY HAPPY CELEBRATION Lets Celebrate 7th Anniversary</p>
     //   </div>
-    <div className="container mr-10 ">
+    <div className="container mr-10 w-full ">
       
         <img src={demo} alt="" className='w-full h-40 mx-auto' />
         <h1 className='text-center font-semibold'>Event Title</h1>

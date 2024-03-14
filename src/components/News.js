@@ -36,7 +36,7 @@ const News = () => {
   };
 
   return (
-    <div className="container mr-10 relative w-50">
+    <div className="container mr-10 relative  w-full">
       <img src={newsData[currentNewsIndex].image} alt="" className='w-full h-40 mx-auto' />
       <h1 className='text-center font-semibold'>{newsData[currentNewsIndex].title}</h1>
       <p className="text-1xl text-gray-800 mb-4 px-6 py-2">

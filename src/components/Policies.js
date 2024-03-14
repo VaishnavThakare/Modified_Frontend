@@ -14,7 +14,7 @@ function Policies() {
       }}
     >
        
-      <div className="flex flex-wrap justify-center">
+      <div className="flex flex-wrap justify-center w-full">
       
         {pdfs.map((pdf, index) => (
           <div key={index} className="p-4 max-w-sm mx-2 my-0.5 bg-white rounded-xl shadow-md flex items-center h-20">
