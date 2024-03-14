@@ -138,16 +138,7 @@ export default function AdminDashboard() {
       bgColor: "bg-cyan-950", 
     },
 
-    {
-      text: "Dummy Item 4",
-      icon: "ri-file-copy-2-line",
-      link: "#",
-      subItems: [
-        { text: "All RFP", link: "rfp" },
-        { text: "Create RFP", link: "create-rfp" },
-      ],
-      bgColor: "bg-cyan-950", 
-    },
+   
     /////////////
   ];
 

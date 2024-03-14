@@ -67,9 +67,9 @@ const App = () => {
   return (
     <Router>
       <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route path="/test1" element={<Carousel/>} />
-        <Route path="/test" element={<LandingPage/>} />
+        {/* <Route path="/login" element={<Login />} />
+        <Route path="/test1" element={<Carousel/>} /> */}
+        <Route path="/" element={<LandingPage/>} />
 
        
 
@@ -123,7 +123,7 @@ const App = () => {
           <Route path="assigned-project" element={<AssignedProject />} />
         </Route>
 
-        <Route path="/" element={<Navigate to="/login" />} />
+        {/* <Route path="/" element={<Navigate to="/login" />} /> */}
       </Routes>
     </Router>
   );
