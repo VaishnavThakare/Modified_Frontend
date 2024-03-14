@@ -27,7 +27,7 @@ const News = () => {
       title: 'News Title 3',
       imagePath: demo3,
       content: 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
-    },
+    }
   ]);
 
 
@@ -59,17 +59,17 @@ const News = () => {
   },[]);
 
   return (
-    <div className="container mr-10 relative  w-full">
+    <div className="container mr-10 relative  w-full h-[280px] shadow-2xl">
       <img src={news[currentNewsIndex].imagePath} alt="" className='w-full h-40 mx-auto' />
       <h1 className='text-center font-semibold'>{news[currentNewsIndex].title}</h1>
       <p className="text-1xl text-gray-800 mb-4 px-6 py-2">
         {news[currentNewsIndex].content}
       </p>
       <div className="absolute top-1/2 transform -translate-y-1/2 left-0" style={{ width: '100%' }}>
-        <button className="absolute left-0 top-[0px] text-2xl text-gray bg-white w-[22px] h-[35px] rounded" onClick={handleBackwardClick}>
+        <button className="absolute left-0 top-[0px] text-2xl text-white text-gray bg-stone-300 w-[22px] h-[35px] rounded" onClick={handleBackwardClick}>
           &lt; 
         </button>
-        <button className="absolute right-0 top-[0px] text-2xl text-gray bg-white w-[22px] h-[35px] rounded" onClick={handleForwardClick}>
+        <button className="absolute right-0 top-[0px] text-2xl text-white text-gray bg-stone-300 w-[22px] h-[35px] rounded" onClick={handleForwardClick}>
           &gt;
         </button>
       </div>

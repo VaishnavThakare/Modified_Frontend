@@ -23,9 +23,9 @@ function LandingPage() {
     <div className="block items-start justify-start h-screen relative">
       {showLogin && <LoginModal onClose={handleCloseLogin} />}
 
-      <div id="navbar" className="grid grid-cols-2 w-full p-[5px]">
+      <div id="navbar" className="grid grid-cols-2 w-full p-[5px] bg -white shadow-2xl">
         <div>
-          <img className="w-[150px] h-[40px]" src={`${process.env.PUBLIC_URL}/sciqus.png`} alt="logo" />
+          <img className="w-[150px] h-[40px] ml-[30px]" src={`${process.env.PUBLIC_URL}/sciqus.png`} alt="logo" />
         </div>
         <div className="flex items-end justify-end mr-[150px]">
           <button className="font-poppins  font-normal text-center mr-[15px]" onClick={handleLoginClick}>LogIn</button>
@@ -46,29 +46,35 @@ function LandingPage() {
         </div>
         
       <div>
-        <div className="mt-[35px] flex font-semibold ">
-  <div className="text-black ml-[10px]">POLICIES</div>
-  <div className="text-black ml-[307px]">NEWS</div>
-  <div className="text-black ml-[395px]">EVENTS</div>
-</div>
+      {/* <div className="mt-[35px] flex font-semibold ">
+        <div className="text-black ml-[10px]">POLICIES</div>
+        <div className="text-black ml-[307px]">NEWS</div>
+        <div className="text-black ml-[395px]">EVENTS</div>
+     </div> */}
 
-        <div className="grid grid-cols-3 w-full mt-[20px]">
-          <div id="col1" className=" ml-[0px] w-[85%] ">
-            {/* Policies with scrollbar */}
-            <Policies />
+          <div className="grid grid-cols-3 w-full mt-[15px]">
+            <div id="col1" className="mx-[10px]">
+              {/* Policies with scrollbar */}
+              <div className="text-black ml-[10px] font-semibold ">POLICIES</div>
+              <Policies />
+            </div>
+
+            <div id="col1" className="mx-[10px]">
+              {/* News image side arrow with content */}
+              <div className="text-black ml-[10px] font-semibold ">NEWS</div>
+              <News />
+            </div>
+
+            <div id="col1" className="mx-[10px]">
+              {/* Events with content */}
+              <div className="text-black ml-[10px] font-semibold ">EVENTS</div>
+              <Event />
+            </div>
           </div>
-          <div id="col1" className=" mr-[60px]  w-[85%]  ">
-            {/* News image side arrow with content */}
-            <News />
-          </div>
-          <div id="col1" className=" ml-[50px] w-[85%] ">
-            {/* Events with content */}
-            <Event />
-          </div>
-        </div>
-        </div>
+          
         </div>
       </div>
+    </div>
     
   );
 }

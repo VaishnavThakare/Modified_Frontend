@@ -36,8 +36,8 @@ const Info = () => {
   };
 
   return (
-    <div className="container  relative">
-      <img src={profileData[currentProfileIndex].image} alt="" className='w-[200px] mt-5 h-40 mx-auto' />
+    <div className="container  relative h-[280px]">
+      <img src={profileData[currentProfileIndex].image} alt="" className='w-[150px] mt-5 h-[100px] mx-auto' />
       <p className="text-1xl text-center text-gray-800 mt-6 mb-4 px-2 lg:px-5 font-poppins font-normal italic "  >
         {profileData[currentProfileIndex].description}
       </p>
