@@ -31,7 +31,7 @@ import VendorVerification from "./pages/admin/VendorVerification";
 import DocumentDetails from "./pages/admin/DocumentDetails";
 import ProductCategory from "./pages/admin/ProductCategory";
 import AddDocument from "./pages/admin/AddDocument";
-import Documents from "./pages/admin/Documents"
+import Documents from "./pages/admin/Documents";
 
 //Vendor
 import VendorDash from "./pages/vendor/VendorDash";
@@ -47,11 +47,9 @@ import Carousel from "./components/Carousel";
 import LandingPage from "./components/LandingPage";
 import AllBanner from "./pages/admin/Banner/AllBanner";
 import AddBanner from "./pages/admin/Banner/AddBanner";
-import DeleteBanner from "./pages/admin/Banner/DeleteBanner";
 import DeleteNews from "./pages/admin/News/DeleteNews";
 import AddNews from "./pages/admin/News/AddNews";
 import AllNews from "./pages/admin/News/AllNews";
-import UpdateBanner from "./pages/admin/Banner/UpdateBanner";
 import UpdateNews from "./pages/admin/News/UpdateNews";
 import UpdateEvent from "./pages/admin/Event/UpdateEvent";
 import DeleteEvent from "./pages/admin/Event/DeleteEvent";
@@ -67,11 +65,9 @@ const App = () => {
   return (
     <Router>
       <Routes>
-        {/* <Route path="/login" element={<Login />} />
-        <Route path="/test1" element={<Carousel/>} /> */}
-        <Route path="/" element={<LandingPage/>} />
-
-       
+        <Route path="/login" element={<Login />} />
+        <Route path="/test1" element={<Carousel />} />
+        <Route path="/test" element={<LandingPage />} />
 
         <Route path="/admin" element={<AdminDashboard />}>
           <Route index element={<AdminDash />} />
@@ -81,44 +77,45 @@ const App = () => {
           <Route path="create-project-head" element={<AddProjectHead />} />
           <Route path="add-vendor-category" element={<AddVendorCategory />} />
           <Route path="vendor-category" element={<VendorCategory />} />
-          <Route path="document" element={<Documents/>}/>
-          <Route path="add-document" element={<AddDocument/>}/>
+          <Route path="document" element={<Documents />} />
+          <Route path="add-document" element={<AddDocument />} />
           <Route path="projects" element={<Project />} />
           <Route path="create-project" element={<AddProject />} />
           <Route path="rfp" element={<RFPA />} />
           <Route path="create-rfp" element={<AddRFP />} />
-          <Route path="profile" element={<AdminProfile/>}/>
-          <Route path="products" element={<Product/>}/>
-          <Route path="create-product" element={<AddProduct/>}/>
-          <Route path="add-product-category" element={<AddProductCategory/>}/>
-          <Route path="product-category" element={<ProductCategory/>}/>
-          <Route path="vendor-verfication" element={<VendorVerification/>}/>
-          <Route path="document-verification/:id" element={<DocumentDetails/>} />
-          <Route path="allBanners" element={<AllBanner/>}></Route>
-          <Route path="addBanner" element={<AddBanner/>}></Route>
-          <Route path="deleteBanner" element={<DeleteBanner/>}></Route>
-          <Route path="updateBanner" element={<UpdateBanner/>}></Route>
-          <Route path="allNews" element={<AllNews/>}></Route>
-          <Route path="addNews" element={<AddNews/>}></Route>
-          <Route path="deleteNews" element={<DeleteNews/>}></Route>    
-          <Route path="updateNews" element={<UpdateNews/>}></Route>      
-          <Route path="allEvents" element={<AllEvent/>}></Route>
-          <Route path="addEvent" element={<AddEvent/>}></Route>
-          <Route path="deleteEvent" element={<DeleteEvent/>}></Route>    
-          <Route path="updateEvent" element={<UpdateEvent/>}></Route>  
+          <Route path="profile" element={<AdminProfile />} />
+          <Route path="products" element={<Product />} />
+          <Route path="create-product" element={<AddProduct />} />
+          <Route path="add-product-category" element={<AddProductCategory />} />
+          <Route path="product-category" element={<ProductCategory />} />
+          <Route path="vendor-verfication" element={<VendorVerification />} />
+          <Route
+            path="document-verification/:id"
+            element={<DocumentDetails />}
+          />
+          <Route path="allBanners" element={<AllBanner />}></Route>
+          <Route path="addBanner" element={<AddBanner />}></Route>
+          <Route path="allNews" element={<AllNews />}></Route>
+          <Route path="addNews" element={<AddNews />}></Route>
+          <Route path="deleteNews" element={<DeleteNews />}></Route>
+          <Route path="updateNews" element={<UpdateNews />}></Route>
+          <Route path="allEvents" element={<AllEvent />}></Route>
+          <Route path="addEvent" element={<AddEvent />}></Route>
+          <Route path="deleteEvent" element={<DeleteEvent />}></Route>
+          <Route path="updateEvent" element={<UpdateEvent />}></Route>
         </Route>
 
         <Route path="/vendor" element={<VendorDashboard />}>
           <Route index element={<VendorDash />} />
-          <Route path="dashboard"  element={<VendorDash />} />
+          <Route path="dashboard" element={<VendorDash />} />
           <Route path="profile" element={<VendorProfile />} />
-          <Route path="rfp"  element={<RFP />} />
-          <Route path="upload-document"  element={<UploadDocument />} />
+          <Route path="rfp" element={<RFP />} />
+          <Route path="upload-document" element={<UploadDocument />} />
         </Route>
 
         <Route path="/projecthead" element={<ProjectHeadDashboard />}>
           <Route index element={<ProjectHeadDash />} />
-          <Route path="dashboard"  element={<ProjectHeadDash />} />
+          <Route path="dashboard" element={<ProjectHeadDash />} />
           <Route path="profile" element={<ProjectHeadProfile />} />
           <Route path="assigned-project" element={<AssignedProject />} />
         </Route>

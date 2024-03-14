@@ -12,6 +12,7 @@
 /build
 
 # misc
+.env
 .DS_Store
 .env.local
 .env.development.local
@@ -20,6 +21,10 @@
 
 npm-debug.log*
 yarn-debug.log*
+<<<<<<< HEAD
 yarn-error.log*
 src/components/LandingPage.js
 src/App.js
+=======
+yarn-error.log*
+>>>>>>> e9cc2ba7bf5b32ba1bd8b1d86f2442778bd3acc9
