@@ -49,8 +49,7 @@ import AllBanner from "./pages/admin/Banner/AllBanner";
 import AddBanner from "./pages/admin/Banner/AddBanner";
 import AddNews from "./pages/admin/News/AddNews";
 import AllNews from "./pages/admin/News/AllNews";
-import UpdateEvent from "./pages/admin/Event/UpdateEvent";
-import DeleteEvent from "./pages/admin/Event/DeleteEvent";
+
 import AddEvent from "./pages/admin/Event/AddEvent";
 import AllEvent from "./pages/admin/Event/AllEvent";
 
@@ -98,8 +97,7 @@ const App = () => {
 
           <Route path="allEvents" element={<AllEvent />}></Route>
           <Route path="addEvent" element={<AddEvent />}></Route>
-          <Route path="deleteEvent" element={<DeleteEvent />}></Route>
-          <Route path="updateEvent" element={<UpdateEvent />}></Route>
+
         </Route>
 
         <Route path="/vendor" element={<VendorDashboard />}>

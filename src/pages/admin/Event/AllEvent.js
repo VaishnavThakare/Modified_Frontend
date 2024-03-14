@@ -6,6 +6,19 @@ export default function AllEvent() {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(3);
   const [modal, setmodal] = useState();
+  const [file, setFile] = useState();
+  const [showEditModal, setShowEditModal] = useState(false);
+
+
+
+  const [event, setevent] = useState({
+    id:"",
+    title: "",
+    image: "",
+    isActive: "",
+    content:"",
+    eventDateTime:""
+  });
 
   const getAllEvents = async () => {
     try {
@@ -23,7 +36,18 @@ export default function AllEvent() {
     }
   };
 
-  const handleChange =()=>{};
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setevent((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const handleFile = (event) => {
+    setFile(event.target.files[0]);
+    event.image = event.target.files[0];
+  };
 
   const handleDelete = async (id, index) => {
     
@@ -32,7 +56,7 @@ export default function AllEvent() {
         // console.log(eventId);
         const response = await axios.delete(`${process.env.REACT_APP_API_URL}/Event/${id}`);
         if (response.status === 200) 
-            alert("Banner Deleted");
+        alert("Banner Deleted");
         getAllEvents();
 
     } catch (error) {
@@ -40,9 +64,42 @@ export default function AllEvent() {
     }
   };
 
-  const handleEdit =()=>{};
+  const handleEdit =async (e)=>{
+    e.preventDefault();
+    try {
+        console.log(event);
+        const formDataToSend = new FormData();
+        formDataToSend.append("Title",event.title);
+        formDataToSend.append("Image",file);
+        formDataToSend.append("IsActive",event.isActive);
+        formDataToSend.append("Content",event.content);
+        formDataToSend.append("EventDateTime",event.eventDateTime);
+        console.log(formDataToSend);
+
+      const response = await axios.put(`${process.env.REACT_APP_API_URL}/Event/${event.id}`,formDataToSend);
+      //if (response.status === 200) 
+      alert("Event Updated");
+        getAllEvents();
+        setevent({
+          id:"",
+          title: "",
+          image: "",
+          isActive: "",
+          content:"",
+          eventDateTime:""
+        });
+
+      toggleEditModal();
+      setFile();
+      document.getElementById('file').value="";
+    } catch (error) {
+      console.error("Error :", error.message);
+    }
+  };
   
-  const toggleEditModal =()=>{};
+  const toggleEditModal =()=>{
+    setShowEditModal(!showEditModal);
+  };
 
 
   useEffect(() => {
@@ -113,7 +170,7 @@ export default function AllEvent() {
                   <button
                     onClick={() => {
                       toggleEditModal();
-                      setmodal(event);
+                      setevent(event);
                     }}
                     className="bg-blue-500 hover:bg-blue-700 text-white font-bold rounded ml-4 p-1"
                   >
@@ -140,91 +197,6 @@ export default function AllEvent() {
       </div>
 
     {/*  */}
-      {/* <div className="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 pr-10 lg:px-8 mb-8">
-        <div className="align-middle inline-block min-w-full shadow overflow-hidden bg-white shadow-dashboard px-8 pt-3 rounded-bl-lg rounded-br-lg">
-          <div className="flex text-2xl font-bold text-gray-500 mb-4 justify-center items-center">
-            <h2>Events</h2>
-          </div>
-          <table className="min-w-full">
-            <thead>
-              <tr>
-                <th className="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-blue-500 tracking-wider">
-                  Sr.No
-                </th>
-                <th className="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-blue-500 tracking-wider">
-                  Title
-                </th>
-                <th className="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-blue-500 tracking-wider">
-                  Content
-                </th>                
-                <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-blue-500 tracking-wider">
-                  Event Image
-                </th>
-                <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-blue-500 tracking-wider">
-                  Is_Active
-                </th>
-                <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-blue-500 tracking-wider">
-                  Event Date
-                </th>                
-                <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-blue-500 tracking-wider">
-                  Created On
-                </th>
-                <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-blue-500 tracking-wider">
-                  Modified On
-                </th>
-              </tr>
-            </thead>
-            <tbody className="bg-white">
-              {currentItems.map((proj, index) => (
-                <tr key={proj.id}>
-                  <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
-                    <div className="text-sm leading-5 text-blue-900">
-                      {index + 1}
-                    </div>
-                  </td>
-                  <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
-                    <div className="text-sm leading-5 text-blue-900">
-                      {proj.title}
-                    </div>
-                  </td>
-                  <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
-                    <div className="text-sm leading-5 text-blue-900">
-                      {proj.content}
-                    </div>
-                  </td>
-                  <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
-                    <div className="text-sm leading-5 text-blue-900">
-                      <a href={proj.imagePath} target="_blank">View Event</a>
-                    </div>
-                  </td>
-                  <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
-                    <div className="text-sm leading-5 text-blue-900">
-                        <span className="bg-blue-100 text-blue-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded">
-                            {proj.isActive?"True":"False"}
-                      </span>
-                    </div>
-                  </td>
-                  <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
-                    <div className="text-sm leading-5 text-blue-900">
-                        {new Date(proj.eventDateTime).toLocaleDateString("es-CL")}
-                    </div>
-                  </td>                  
-                  <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
-                    <div className="text-sm leading-5 text-blue-900">
-                    {new Date(proj.createdOn).toLocaleDateString("es-CL")}
-                    </div>
-                  </td>
-                  <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
-                    <div className="text-sm leading-5 text-blue-900">
-                      {new Date(proj.lastModifiedOn).toLocaleDateString("es-CL")}
-                    </div>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </div> */}
       <div className="flex justify-center mt-4">
         {Array.from({ length: Math.ceil(events.length / itemsPerPage) }).map(
           (_, index) => (
@@ -240,6 +212,126 @@ export default function AllEvent() {
           )
         )}
       </div>
+
+      {showEditModal && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+          <div className="bg-white p-2 max-w-md rounded-lg shadow-md">
+            <form onSubmit={handleEdit}>
+              <div className="flex text-2xl font-bold text-gray-500 mb-2">
+                <h2>Update Event</h2>
+              </div>
+
+              <div class="mb-6">
+                <label
+                  for="title"
+                  class="block mb-2 text-sm font-medium text-gray-900"
+                >
+                  Title
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  name="title"
+                  value={event.title}
+                  onChange={handleChange}
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                  required
+                />
+              </div>
+
+              <div class="mb-6">
+                <label
+                  for="content"
+                  class="block mb-2 text-sm font-medium text-gray-900"
+                >
+                  Content
+                </label>
+                <textarea
+                  type="text"
+                  id="name"
+                  name="content"
+                  value={event.content}
+                  onChange={handleChange}
+                  class="resize-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                  rows="4"
+                  placeholder="Enter your text here..."
+                  required
+                />
+              </div>
+
+              <div class="mb-6">
+                <label
+                  for="title"
+                  class="block mb-2 text-sm font-medium text-gray-900"
+                >
+                  Date & Time
+                </label>
+                <input
+                  type="date"
+                  id="name"
+                  name="eventDateTime"
+                  value={event.eventDateTime}
+                  onChange={handleChange}
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                  required
+                />
+              </div>
+
+              <div class="mb-6">
+                <label
+                  for="isActive"
+                  class="block mb-2 text-sm font-medium text-gray-900"
+                >
+                  IsActive
+                </label>
+                <select
+                  id="isActive"
+                  name="isActive"
+                  value={event.isActive}
+                  onChange={handleChange}
+                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                >
+                  <option value="" disabled>
+                    Choose Status
+                  </option>
+                  <option value={true}> True </option>
+                  <option value={false}> False </option>
+                </select>
+              </div>
+
+              <div class="mb-6">
+                <label
+                  for="file"
+                  class="block mb-2 text-sm font-medium text-gray-900"
+                >
+                  Event Image
+                </label>
+                <input
+                  type="file"
+                  id="file"
+                  name="Image"
+                  onChange={handleFile}
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                />
+              </div>
+
+              <button
+                type="submit"
+                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+              >
+                Update Event
+              </button>
+              <button
+                onClick={toggleEditModal}
+                className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded ml-2"
+              >
+                Close
+              </button>
+            </form>
+          </div>
+        </div>
+      )}
+
     </>
   );
 }
