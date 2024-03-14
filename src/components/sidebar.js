@@ -8,24 +8,6 @@ export default function Sidebar({
   menuItems,
 }) {
   const [openMenus, setOpenMenus] = useState([]);
-  const [verifyVendor,setVerify] = useState(false);
-
-  const getVendor = async()=>{
-    const id = sessionStorage.getItem('sid');
-    console.log(id)
-;
-    try{
-      const response = await axios.get(
-        `${process.env.REACT_APP_API_URL}/Vendor/${id}`
-      );
-      console.log(response.data);
-      setVerify(response.data.isVerified);
-    }
-    catch(error){
-      console.log(error);
-    }
-  }
-
 
   const toggleMenu = (index) => {
     setSelectedItem(index);
@@ -38,10 +20,6 @@ export default function Sidebar({
 
   const [selectedItem, setSelectedItem] = useState(null);
 
-  useEffect(()=>{
-    getVendor();
-  },[]);
-
   return (
     <div>
       <div
@@ -53,11 +31,11 @@ export default function Sidebar({
           href="#"
           className="flex items-center justify-center pb-4 border-b border-b-gray-800"
         >
-
-        
           <h2 className="font-bold text-2xl mt-4">
             VENDOR
-            <span className="bg-[#f84525] text-white px-2 rounded-md">PORTAL</span>
+            <span className="bg-[#f84525] text-white px-2 rounded-md">
+              PORTAL
+            </span>
             <button
               className="float-end pt-1 ml-2 md:hidden"
               onClick={handleMenuVisible}
@@ -75,7 +53,7 @@ export default function Sidebar({
                 className="feather feather-x"
               >
                 <line x1="18" y1="6" x2="6" y2="18"></line>
-                <line x1="6" y1="6" x2="18" y2="18"></line>   
+                <line x1="6" y1="6" x2="18" y2="18"></line>
               </svg>
             </button>
           </h2>
@@ -83,15 +61,11 @@ export default function Sidebar({
         <ul className="mt-4  ">
           <span className="text-gray-400 font-bold ml-4">Menus</span>
           {menuItems.map((menuItem, index) => (
-            <li
-              key={index}
-              className={`group menuSidebar `} 
-            >
-             <Link
+            <li key={index} className={`group menuSidebar `}>
+              <Link
                 to={menuItem.link}
                 className={`menuItems flex font-semibold items-center py-2 px-4 ${menuItem.bgColor}  text-white  sidebar-dropdown-toggle`}
-                
-                onClick={() => toggleMenu(index) }
+                onClick={() => toggleMenu(index)}
                 style={{
                   cursor: "pointer",
                   color: selectedItem === index ? "white" : "inherit",
@@ -110,30 +84,14 @@ export default function Sidebar({
               {menuItem.subItems && openMenus[index] && (
                 <ul className="pl-7 mt-2">
                   {menuItem.subItems.map((subItem, subIndex) => (
-                    (sessionStorage.getItem("roles")!="Vendor"|| (sessionStorage.getItem("roles")=="Vendor" && verifyVendor))? <>
-                      <li key={subIndex} className="mb-4">
-                        <Link
-                          to={subItem.link}
-                          className="text-gray-900 text-sm flex items-center hover:text-[#f84525] before:contents-[''] before:w-1 before:h-1 before:rounded-full before:bg-gray-300 before:mr-3"
-                        >
-                          {subItem.text}
-                        </Link>
-                      </li>
-                    </>:
-                    subItem.text == "Upload Documents"?
-                    <>
-                      <li key={subIndex} className="mb-4">
-                          <Link
-                            to={subItem.link}
-                            className="text-gray-900 text-sm flex items-center hover:text-[#f84525] before:contents-[''] before:w-1 before:h-1 before:rounded-full before:bg-gray-300 before:mr-3"
-                          >
-                            {subItem.text}
-                          </Link>
-                        </li>                      
-                    </>
-                    :
-                    <></>
-
+                    <li key={subIndex} className="mb-4">
+                      <Link
+                        to={subItem.link}
+                        className="text-gray-900 text-sm flex items-center hover:text-[#f84525] before:contents-[''] before:w-1 before:h-1 before:rounded-full before:bg-gray-300 before:mr-3"
+                      >
+                        {subItem.text}
+                      </Link>
+                    </li>
                   ))}
                 </ul>
               )}

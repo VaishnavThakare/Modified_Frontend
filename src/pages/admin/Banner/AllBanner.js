@@ -3,56 +3,74 @@ import axios from "axios";
 
 export default function AllBanner() {
   const [banners, setbanners] = useState([]);
+  const [modal, setmodal] = useState();
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(3);
+
+  const [file, setFile] = useState();
+  const [showEditModal, setShowEditModal] = useState(false);
+
+  const toggleEditModal = () => {
+    setShowEditModal(!showEditModal);
+  };
 
   const getAllBanners = async () => {
     try {
       let res = await axios.get(`${process.env.REACT_APP_API_URL}/Banner/All`);
-      console.log(res.data);
       let data = [];
-        if(res.status == 200 && res.data != null){
-            data = res.data;
-        }
-        // else{
-        //     data = [
-        //       {
-        //           id:1,
-        //           isActive:true,
-        //           createdOn:new Date(),
-        //           lastModifiedOn:new Date(),
-        //           imagePath:`${process.env.PUBLIC_URL}/Banners/1.jpg`,
-        //           title:"Banner 1"
-        //       },
-        //       {
-        //           id:2,
-        //           isActive:true,
-        //           createdOn:new Date(),
-        //           lastModifiedOn:new Date(),
-        //           imagePath:`${process.env.PUBLIC_URL}/Banners/2.jpg`,
-        //           title:"Banner 2"
-        //       },
-        //       {
-        //           id:3,
-        //           isActive:true,
-        //           createdOn:new Date(),
-        //           lastModifiedOn:new Date(),
-        //           imagePath:`${process.env.PUBLIC_URL}/Banners/3.jpg`,
-        //           title:"Banner 3"
-        //       }
-        //   ] ;
-        // }
-        console.log(data);
-        setbanners(data);    
+      if (res.status == 200 && res.data != null) {
+        data = res.data;
+      }
 
+      setbanners(data);
     } catch (error) {
-      console.error("Error fetching Project data:", error);
+      console.error("Error fetching Banner data:", error);
     }
   };
 
+  const handleFile = (event) => {
+    setFile(event.target.files[0]);
+  };
+
+  const handleDelete = async (id, index) => {
+    try {
+      await axios.delete(`${process.env.REACT_APP_API_URL}/Banner/${id}`);
+      getAllBanners();
+    } catch (error) {
+      console.error("Error deleting item:", error);
+    }
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setmodal((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const handleEdit = async (e) => {
+    e.preventDefault();
+    try {
+      const formDataToSend = new FormData();
+      formDataToSend.append("Title", modal.title);
+      formDataToSend.append("Image", file);
+      formDataToSend.append("IsActive", modal.isActive);
+      const response = await axios.put(
+        `${process.env.REACT_APP_API_URL}/Banner/${modal.id}`,
+        formDataToSend
+      );
+      if (response.status === 200) alert("Banner Updated");
+
+      toggleEditModal();
+      getAllBanners();
+      setFile();
+    } catch (error) {
+      console.error("Error update Banner:", error.message);
+    }
+  };
 
   useEffect(() => {
-    // Fetch project data when the component mounts
     getAllBanners();
   }, []);
 
@@ -69,68 +87,67 @@ export default function AllBanner() {
           <div className="flex text-2xl font-bold text-gray-500 mb-4 justify-center items-center">
             <h2>Banners</h2>
           </div>
-          <table className="min-w-full">
-            <thead>
-              <tr>
-                <th className="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-blue-500 tracking-wider">
-                  Sr.No
-                </th>
-                <th className="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-blue-500 tracking-wider">
-                  Title
-                </th>
-                <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-blue-500 tracking-wider">
-                  Banner Image
-                </th>
-                <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-blue-500 tracking-wider">
-                  Is_Active
-                </th>
-                <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-blue-500 tracking-wider">
-                  Created On
-                </th>
-                <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-blue-500 tracking-wider">
-                  Modified On
-                </th>
-              </tr>
-            </thead>
-            <tbody className="bg-white">
-              {currentItems.map((proj, index) => (
-                <tr key={proj.id}>
-                  <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
-                    <div className="text-sm leading-5 text-blue-900">
-                      {index + 1}
-                    </div>
-                  </td>
-                  <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
-                    <div className="text-sm leading-5 text-blue-900">
-                      {proj.title}
-                    </div>
-                  </td>
-                  <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
-                    <div className="text-sm leading-5 text-blue-900">
-                      <a href={proj.imagePath} target="_blank">View Banner</a>
-                    </div>
-                  </td>
-                  <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
-                    <div className="text-sm leading-5 text-blue-900">
-                        <span className="bg-blue-100 text-blue-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded">
-                            {proj.isActive?"True":"False"}
-                      </span>
-                    </div>
-                  </td>
-                  <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
-                    <div className="text-sm leading-5 text-blue-900">
-                    {new Date(proj.createdOn).toLocaleDateString("es-CL")}
-                    </div>
-                  </td>
-                  <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
-                    <div className="text-sm leading-5 text-blue-900">
-                      {new Date(proj.lastModifiedOn).toLocaleDateString("es-CL")}
-                    </div>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+          <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {currentItems.map((banner, index) => (
+              <div
+                key={banner.id}
+                className="max-w-sm bg-white border border-gray-200 rounded-lg shadow my-6"
+              >
+                <img className="rounded-t-lg" src={banner.imagePath} alt="" />
+                <div className="p-5">
+                  <h5 className="mb-2 text-lg font-bold tracking-tight">
+                    {banner.title}
+                  </h5>
+                  <p className="mb-2">
+                    Status: {banner.isActive ? "Active" : "Inactive"}
+                  </p>
+                  <button
+                    onClick={() => handleDelete(banner.id, index)}
+                    className="bg-red-500 hover:bg-red-700 text-white font-bold rounded p-1"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="#ffffff"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <polyline points="3 6 5 6 21 6"></polyline>
+                      <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                      <line x1="10" y1="11" x2="10" y2="17"></line>
+                      <line x1="14" y1="11" x2="14" y2="17"></line>
+                    </svg>
+                  </button>
+                  <button
+                    onClick={() => {
+                      toggleEditModal();
+                      setmodal(banner);
+                    }}
+                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold rounded ml-4 p-1"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="#ffffff"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="M20 14.66V20a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h5.34"></path>
+                      <polygon points="18 2 22 6 12 16 8 16 8 12 18 2"></polygon>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
       <div className="flex justify-center mt-4">
@@ -139,7 +156,9 @@ export default function AllBanner() {
             <button
               key={index}
               className={`mx-1 px-4 py-2 ${
-                currentPage === index + 1 ? "bg-blue-500 text-white" : "bg-gray-300"
+                currentPage === index + 1
+                  ? "bg-blue-500 text-white"
+                  : "bg-gray-300"
               }`}
               onClick={() => paginate(index + 1)}
             >
@@ -148,6 +167,87 @@ export default function AllBanner() {
           )
         )}
       </div>
+
+      {showEditModal && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+          <div className="bg-white p-2 max-w-md rounded-lg shadow-md">
+            <form onSubmit={handleEdit}>
+              <div className="flex text-2xl font-bold text-gray-500 mb-2">
+                <h2>Update Banner</h2>
+              </div>
+
+              <div class="mb-6">
+                <label
+                  for="name"
+                  class="block mb-2 text-sm font-medium text-gray-900"
+                >
+                  Title
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  name="title"
+                  value={modal.title}
+                  onChange={handleChange}
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                  required
+                />
+              </div>
+
+              <div class="mb-6">
+                <label
+                  for="isActive"
+                  class="block mb-2 text-sm font-medium text-gray-900"
+                >
+                  IsActive
+                </label>
+                <select
+                  id="isActive"
+                  name="isActive"
+                  value={modal.isActive}
+                  onChange={handleChange}
+                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                >
+                  <option value="" disabled>
+                    Choose Status
+                  </option>
+                  <option value={true}> True </option>
+                  <option value={false}> False </option>
+                </select>
+              </div>
+
+              <div class="mb-6">
+                <label
+                  for="file"
+                  class="block mb-2 text-sm font-medium text-gray-900"
+                >
+                  Banner Image
+                </label>
+                <input
+                  type="file"
+                  id="file"
+                  name="Image"
+                  onChange={handleFile}
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                />
+              </div>
+
+              <button
+                type="submit"
+                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+              >
+                Update Banner
+              </button>
+              <button
+                onClick={toggleEditModal}
+                className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded ml-2"
+              >
+                Close
+              </button>
+            </form>
+          </div>
+        </div>
+      )}
     </>
   );
 }
