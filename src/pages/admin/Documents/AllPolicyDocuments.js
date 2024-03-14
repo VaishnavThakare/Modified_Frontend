@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import pdf from './pdf.png';
 
 export default function AllPolicyDocuments() {
-  const [events, setevents] = useState([]);
+  const [documents, setdocuments] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(3);
   const [modal, setmodal] = useState();
@@ -11,25 +12,23 @@ export default function AllPolicyDocuments() {
 
 
 
-  const [event, setevent] = useState({
+  const [pdocument, setdocument] = useState({
     id:"",
-    title: "",
+    name: "",
     image: "",
-    isActive: "",
-    content:"",
-    eventDateTime:""
+    isActive: ""
   });
 
-  const getAllEvents = async () => {
+  const getAllDocuments = async () => {
     try {
-      let res = await axios.get(`${process.env.REACT_APP_API_URL}/Event/All`);
+      let res = await axios.get(`${process.env.REACT_APP_API_URL}/PolicyDocument/All`);
       console.log(res.data);
       let data = [];
       if(res.status == 200 && res.data!=null){
         data = res.data;
       }
       console.log(data);
-      setevents(data);    
+      setdocuments(data);    
 
     } catch (error) {
       console.error("Error fetching Project data:", error);
@@ -38,7 +37,7 @@ export default function AllPolicyDocuments() {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setevent((prevData) => ({
+    setdocument((prevData) => ({
       ...prevData,
       [name]: value,
     }));
@@ -46,7 +45,7 @@ export default function AllPolicyDocuments() {
 
   const handleFile = (event) => {
     setFile(event.target.files[0]);
-    event.image = event.target.files[0];
+    pdocument.image = event.target.files[0];
   };
 
   const handleDelete = async (id, index) => {
@@ -54,10 +53,13 @@ export default function AllPolicyDocuments() {
     try {
         // console.log(events);
         // console.log(eventId);
-        const response = await axios.delete(`${process.env.REACT_APP_API_URL}/Event/${id}`);
-        if (response.status === 200) 
-        alert("Banner Deleted");
-        getAllEvents();
+        if(window.confirm("Do youwant to delete this document ? ")){
+          const response = await axios.delete(`${process.env.REACT_APP_API_URL}/PolicyDocument/${id}`);
+      
+          alert("Document Deleted");
+        }
+
+        getAllDocuments();
 
     } catch (error) {
       console.error("Error :", error.message);
@@ -67,26 +69,22 @@ export default function AllPolicyDocuments() {
   const handleEdit =async (e)=>{
     e.preventDefault();
     try {
-        console.log(event);
+        console.log(pdocument);
         const formDataToSend = new FormData();
-        formDataToSend.append("Title",event.title);
-        formDataToSend.append("Image",file);
-        formDataToSend.append("IsActive",event.isActive);
-        formDataToSend.append("Content",event.content);
-        formDataToSend.append("EventDateTime",event.eventDateTime);
+        formDataToSend.append("Name",pdocument.name);
+        formDataToSend.append("Document",file);
+        formDataToSend.append("IsActive",pdocument.isActive);
         console.log(formDataToSend);
 
-      const response = await axios.put(`${process.env.REACT_APP_API_URL}/Event/${event.id}`,formDataToSend);
+      const response = await axios.put(`${process.env.REACT_APP_API_URL}/PolicyDocument/${pdocument.id}`,formDataToSend);
       //if (response.status === 200) 
-      alert("Event Updated");
-        getAllEvents();
-        setevent({
+      alert("Document Updated");
+        getAllDocuments();
+        setdocument({
           id:"",
-          title: "",
+          name: "",
           image: "",
-          isActive: "",
-          content:"",
-          eventDateTime:""
+          isActive: ""
         });
 
       toggleEditModal();
@@ -104,12 +102,12 @@ export default function AllPolicyDocuments() {
 
   useEffect(() => {
     // Fetch project data when the component mounts
-    getAllEvents();
+    getAllDocuments();
   }, []);
 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = events.slice(indexOfFirstItem, indexOfLastItem);
+  const currentItems = documents.slice(indexOfFirstItem, indexOfLastItem);
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
@@ -119,7 +117,7 @@ export default function AllPolicyDocuments() {
 <div className="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 pr-10 lg:px-8 mb-8">
         <div className="align-middle inline-block min-w-full shadow overflow-hidden bg-white shadow-dashboard px-8 pt-3 rounded-bl-lg rounded-br-lg">
           <div className="flex text-2xl font-bold text-gray-500 mb-4 justify-center items-center">
-            <h2>Events </h2>
+            <h2>Policy Documents </h2>
           </div>
 
           {currentItems.map((event, index) => (
@@ -128,7 +126,8 @@ export default function AllPolicyDocuments() {
               class="relative flex flex-col md:flex-row md:space-x-5 space-y-3 md:space-y-0 rounded-xl shadow-lg p-3 max-w-xs md:max-w-xl mx-auto border border-gray-400 bg-white mb-4"
             >
               <div class="w-full md:w-1/3 grid place-items-center">
-                <img src={event.imagePath} alt={event.title} class="rounded-xl" />
+                <img src={pdf} alt={event.name} class="rounded-xl"/>
+                <a href={event.documentPath} target="_blank">{event.name}</a>
               </div>
               <div class="w-full md:w-2/3 flex flex-col space-y-2 p-3">
                 <div class="flex justify-between item-center">
@@ -137,14 +136,11 @@ export default function AllPolicyDocuments() {
                   </div>
                 </div>
                 <h3 class="font-black text-gray-800 md:text-lg text-lg">
-                  {event.title}
+                  {event.name}
                 </h3>
                 <h3 class="font-black text-gray-800 md:text-sm text-md">
-                  {event.eventDateTime}
+                  {event.createdOn}
                 </h3>
-                <div className="line-clamp-4">
-                  <p class="md:text-sm text-gray-500 text-sm">{event.content}</p>
-                </div>
                 <div>
                   <button
                     onClick={() => handleDelete(event.id, index)}
@@ -170,7 +166,7 @@ export default function AllPolicyDocuments() {
                   <button
                     onClick={() => {
                       toggleEditModal();
-                      setevent(event);
+                      setdocument(event);
                     }}
                     className="bg-blue-500 hover:bg-blue-700 text-white font-bold rounded ml-4 p-1"
                   >
@@ -198,7 +194,7 @@ export default function AllPolicyDocuments() {
 
     {/*  */}
       <div className="flex justify-center mt-4">
-        {Array.from({ length: Math.ceil(events.length / itemsPerPage) }).map(
+        {Array.from({ length: Math.ceil(documents.length / itemsPerPage) }).map(
           (_, index) => (
             <button
               key={index}
@@ -218,7 +214,7 @@ export default function AllPolicyDocuments() {
           <div className="bg-white p-2 max-w-md rounded-lg shadow-md">
             <form onSubmit={handleEdit}>
               <div className="flex text-2xl font-bold text-gray-500 mb-2">
-                <h2>Update Event</h2>
+                <h2>Update Document</h2>
               </div>
 
               <div class="mb-6">
@@ -231,51 +227,13 @@ export default function AllPolicyDocuments() {
                 <input
                   type="text"
                   id="name"
-                  name="title"
-                  value={event.title}
+                  name="name"
+                  value={pdocument.title}
                   onChange={handleChange}
                   class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                   required
                 />
-              </div>
-
-              <div class="mb-6">
-                <label
-                  for="content"
-                  class="block mb-2 text-sm font-medium text-gray-900"
-                >
-                  Content
-                </label>
-                <textarea
-                  type="text"
-                  id="name"
-                  name="content"
-                  value={event.content}
-                  onChange={handleChange}
-                  class="resize-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                  rows="4"
-                  placeholder="Enter your text here..."
-                  required
-                />
-              </div>
-
-              <div class="mb-6">
-                <label
-                  for="title"
-                  class="block mb-2 text-sm font-medium text-gray-900"
-                >
-                  Date & Time
-                </label>
-                <input
-                  type="date"
-                  id="name"
-                  name="eventDateTime"
-                  value={event.eventDateTime}
-                  onChange={handleChange}
-                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                  required
-                />
-              </div>
+              </div>        
 
               <div class="mb-6">
                 <label
@@ -287,7 +245,7 @@ export default function AllPolicyDocuments() {
                 <select
                   id="isActive"
                   name="isActive"
-                  value={event.isActive}
+                  value={pdocument.isActive}
                   onChange={handleChange}
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 >
@@ -304,12 +262,12 @@ export default function AllPolicyDocuments() {
                   for="file"
                   class="block mb-2 text-sm font-medium text-gray-900"
                 >
-                  Event Image
+                  Document File
                 </label>
                 <input
                   type="file"
                   id="file"
-                  name="Image"
+                  name="image"
                   onChange={handleFile}
                   class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 />
@@ -319,7 +277,7 @@ export default function AllPolicyDocuments() {
                 type="submit"
                 className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
               >
-                Update Event
+                Update Document
               </button>
               <button
                 onClick={toggleEditModal}
