@@ -11,7 +11,7 @@ const carouselData = [
   },
   {
     id: 2,
-    image: `${process.env.PUBLIC_URL}/sbanner2.jpg`,
+    image: `${process.env.PUBLIC_URL}/sbanner2.jpg` ,
     description: 'Slide 2 Description',
   },
   {
@@ -30,12 +30,17 @@ const Carousel = () => {
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 2000,
+    appendDots: (dots) => (
+      <div style={{ position: 'absolute', bottom: '10px', width: '100%', textAlign: 'center' }}>
+        <ul style={{ margin: '0' }}> {dots} </ul>
+      </div>
+    ),
   };
 
   return (
     <Slider {...settings}>
       {carouselData.map((slide) => (
-        <div key={slide.id} className='max-h-320'>
+        <div key={slide.id} className='relative'>
           <img src={slide.image} alt={slide.description} className="w-full h-[370px]" />
         </div>
       ))}

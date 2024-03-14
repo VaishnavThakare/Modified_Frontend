@@ -17,7 +17,7 @@ function LandingPage() {
     setShowLogin(false);
   };
 
-  const backgroundImageUrl = `${process.env.PUBLIC_URL}/bgImage.png`;
+  const backgroundImageUrl =`  ${process.env.PUBLIC_URL}/bgImage.png` ;
 
   return (
     <div className="block items-start justify-start h-screen relative">
@@ -44,16 +44,16 @@ function LandingPage() {
           </div>
         </div>
 
-        <div className="grid grid-cols-3 w-full ml-10 mt-10">
-          <div id="col1" className=" mr-[10px] w-[70%] ">
+        <div className="grid grid-cols-3 w-full mt-10">
+          <div id="col1" className=" mr-[85px] ml-[85px] w-[75%] ">
             {/* Policies with scrollbar */}
             <Policies />
           </div>
-          <div id="col1" className=" mr-[10px] w-[70%]  ">
+          <div id="col1" className=" mr-[85px] ml-[85px] w-[75%]  ">
             {/* News image side arrow with content */}
             <News />
           </div>
-          <div id="col1" className=" w-[70%] ">
+          <div id="col1" className="mr-[90px] ml-[90px] w-[75%] ">
             {/* Events with content */}
             <Event />
           </div>

@@ -16,7 +16,7 @@ const Event= () => {
 
         <p className="text-1xl text-gray-800 mb-4 px-6 py-2">
 
-         Lorem ipsum dolor sit ametrepudiandae nesciunt labore nesciunt labore accusamus suscipit fuga ad recusandae. Consectetur 
+         Lorem ipsum dolor sit ametrepudiandae nesciunt labore us suscipit fuga ad recusandae. Consectetur 
         </p>
        
       
