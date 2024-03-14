@@ -11,21 +11,20 @@ export default function AdminDashboard() {
       text: "Dashboard",
       icon: "ri-home-2-line",
       link: "dashboard",
-      bgColor: "bg-cyan-100", 
-     
+      bgColor: "bg-cyan-100",
     },
     {
       text: "Users",
       icon: "bx bx-user",
       link: "#",
       subItems: [{ text: "All", link: "allusers" }],
-      bgColor: "bg-cyan-200", 
+      bgColor: "bg-cyan-200",
     },
     {
       text: "Vendor",
       icon: "bx bx-category",
       link: "#",
-      bgColor: "bg-cyan-300", 
+      bgColor: "bg-cyan-300",
       subItems: [
         { text: "Create Vendor", link: "create-vendor" },
         { text: "All Vendor Category", link: "vendor-category" },
@@ -33,7 +32,6 @@ export default function AdminDashboard() {
         { text: "Document List", link: "document" },
         { text: "Add Document", link: "add-document" },
       ],
-
     },
     {
       text: "Project Head",
@@ -41,7 +39,6 @@ export default function AdminDashboard() {
       link: "#",
       subItems: [{ text: "Create Project Head", link: "create-project-head" }],
       bgColor: "bg-cyan-400",
-      
     },
     {
       text: "Project",
@@ -51,10 +48,9 @@ export default function AdminDashboard() {
         { text: "All Project", link: "projects" },
         { text: "Create Project", link: "create-project" },
       ],
-      bgColor: "bg-cyan-500", 
+      bgColor: "bg-cyan-500",
     },
 
-    
     {
       text: "Products",
       icon: "ri ri-product-hunt-line  ",
@@ -64,7 +60,7 @@ export default function AdminDashboard() {
         { text: "Create Product", link: "create-product" },
         { text: "Create Product Category", link: "add-product-category" },
       ],
-      bgColor: "bg-cyan-600", 
+      bgColor: "bg-cyan-600",
     },
 
     {
@@ -75,7 +71,7 @@ export default function AdminDashboard() {
         { text: "All RFP", link: "rfp" },
         { text: "Create RFP", link: "create-rfp" },
       ],
-      bgColor: "bg-cyan-700", 
+      bgColor: "bg-cyan-700",
     },
     ///////////
 
@@ -83,10 +79,8 @@ export default function AdminDashboard() {
       text: "Vendor Verification",
       icon: "ri ri-verified-badge-fill",
       link: "#",
-      subItems: [
-        { text: "Vendor", link: "vendor-verfication" },
-      ],
-      bgColor: "bg-cyan-800", 
+      subItems: [{ text: "Vendor", link: "vendor-verfication" }],
+      bgColor: "bg-cyan-800",
     },
 
     {
@@ -94,11 +88,10 @@ export default function AdminDashboard() {
       icon: "ri-file-copy-2-line",
       link: "#",
       subItems: [
-        { text: "All Banner", link: "allBanners"  },
+        { text: "All Banner", link: "allBanners" },
         { text: "Add Banner", link: "addBanner" },
-        { text: "Delete Banner", link: "deleteBanner" },
       ],
-      bgColor: "bg-cyan-900", 
+      bgColor: "bg-cyan-900",
     },
     {
       text: "News",
@@ -107,10 +100,8 @@ export default function AdminDashboard() {
       subItems: [
         { text: "All News", link: "allNews" },
         { text: "Add News", link: "addNews" },
-        { text: "Delete News", link: "deleteNews" },
-        { text: "Update News", link: "updateNews" },
       ],
-      bgColor: "bg-cyan-950", 
+      bgColor: "bg-cyan-950",
     },
     {
       text: "Event",
@@ -122,7 +113,7 @@ export default function AdminDashboard() {
         { text: "Delete Event", link: "deleteEvent" },
         { text: "Update Event", link: "updateEvent" },
       ],
-      bgColor: "bg-cyan-900", 
+      bgColor: "bg-cyan-900",
     },
     ,
     {
@@ -135,14 +126,11 @@ export default function AdminDashboard() {
         { text: "Delete Document", link: "deleteDocument" },
         { text: "Update Document", link: "updateDocument" },
       ],
-      bgColor: "bg-cyan-950", 
+      bgColor: "bg-cyan-950",
     },
 
-   
     /////////////
   ];
-
- 
 
   const handleMenuVisible = () => {
     setMenuVisible(!isMenuVisible);
