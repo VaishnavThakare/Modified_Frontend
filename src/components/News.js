@@ -59,10 +59,10 @@ const News = () => {
   },[]);
 
   return (
-    <div className="container mr-10 relative  w-full h-[280px] shadow-2xl">
+    <div className="container mr-10 relative  w-full h-[280px] shadow-2xl overflow-hidden">
       <img src={news[currentNewsIndex].imagePath} alt="" className='w-full h-40 mx-auto' />
       <h1 className='text-center font-semibold'>{news[currentNewsIndex].title}</h1>
-      <p className="text-1xl text-gray-800 mb-4 px-6 py-2">
+      <p className="text-1xl  text-gray-800 mb-4 px-6 py-2 text-wrap overflow-hidden">
         {news[currentNewsIndex].content}
       </p>
       <div className="absolute top-1/2 transform -translate-y-1/2 left-0" style={{ width: '100%' }}>
