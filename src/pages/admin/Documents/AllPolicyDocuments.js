@@ -53,7 +53,7 @@ export default function AllPolicyDocuments() {
     try {
         // console.log(events);
         // console.log(eventId);
-        if(window.confirm("Do youwant to delete this document ? ")){
+        if(window.confirm("Do you want to delete this document ? ")){
           const response = await axios.delete(`${process.env.REACT_APP_API_URL}/PolicyDocument/${id}`);
       
           alert("Document Deleted");
