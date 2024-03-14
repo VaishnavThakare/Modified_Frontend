@@ -10,6 +10,7 @@ export default function Sidebar({
   const [openMenus, setOpenMenus] = useState([]);
   const [verifyVendor, setVerify] = useState(false);
 
+<<<<<<< HEAD
   const getVendor = async () => {
     const id = sessionStorage.getItem("sid");
     console.log(id);
@@ -21,6 +22,22 @@ export default function Sidebar({
       setVerify(response.data.isVerified);
     } catch (error) {
       console.log(error);
+=======
+  const getVendor = async()=>{
+    const id = sessionStorage.getItem('sid');
+    if(sessionStorage.getItem("roles") =="Vendor"){
+      console.log(id);
+      try{
+        const response = await axios.get(
+          `${process.env.REACT_APP_API_URL}/Vendor/${id}`
+        );
+        console.log(response.data);
+        setVerify(response.data.isVerified);
+      }
+      catch(error){
+        console.log(error);
+      }
+>>>>>>> a9a8a38fa1afadda369aa31d237316379a43fa51
     }
   };
 

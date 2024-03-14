@@ -33,9 +33,9 @@ function LandingPage() {
         </div>
       </div> 
 
-      <div className="w-full grid grid-rows-2 px-20 lg:px-40 bg-cover bg-center" style={{backgroundImage: `url(${backgroundImageUrl})`}}>
+      <div className="w-full grid grid-rows-2 px-20 lg:px-40 bg-cover bg-center" style={{backgroundImage: `url(${backgroundImageUrl})`,backgroundRepeat: 'repeat', backgroundSize: '500px 700px' }}>
         <div className=" grid grid-cols-2 row-span-1 w-full h-10 p-[10px]">
-          <div id="col1" className="w-[145%]  ">
+          <div id="col1" className="w-[145%] bg-white">
             <Carousel></Carousel>
           </div>
           <div id="col1" className="ml-[50%] w-[50%] bg-cyan-100 ">
@@ -43,27 +43,27 @@ function LandingPage() {
             <Info />
           </div>
         </div>
-        <div className="text-black">
+        <div className="text-black  bg-white">
           Policies
         
-        <div className=" text-black">
+        <div className=" text-black  bg-white">
           Policies
         </div>
-        <div className="text-black">
+        <div className="text-black  bg-white">
           Policies
         </div>
       
 
         <div className="grid grid-cols-3 w-full mt-[57px]">
-          <div id="col1" className=" mr-[70px] w-[80%] ">
+          <div id="col1" className=" mr-[70px] w-[80%]  bg-white">
             {/* Policies with scrollbar */}
             <Policies />
           </div>
-          <div id="col1" className=" mr-[70px]  w-[80%]  ">
+          <div id="col1" className=" mr-[70px]  w-[80%]   bg-white">
             {/* News image side arrow with content */}
             <News />
           </div>
-          <div id="col1" className=" ml-[70px] w-[80%] ">
+          <div id="col1" className=" ml-[70px] w-[80%]  bg-white">
             {/* Events with content */}
             <Event />
           </div>
