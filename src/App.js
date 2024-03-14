@@ -65,9 +65,9 @@ const App = () => {
   return (
     <Router>
       <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route path="/test1" element={<Carousel />} />
-        <Route path="/test" element={<LandingPage />} />
+        {/* <Route path="/login" element={<Login />} />
+        <Route path="/test1" element={<Carousel />} /> */}
+        <Route path="/" element={<LandingPage />} />
 
         <Route path="/admin" element={<AdminDashboard />}>
           <Route index element={<AdminDash />} />
