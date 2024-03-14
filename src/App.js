@@ -45,9 +45,18 @@ import ProjectHeadProfile from "./pages/projecthead/ProjectHeadProfile";
 import AssignedProject from "./pages/projecthead/AssignedProject";
 import Carousel from "./components/Carousel";
 import LandingPage from "./components/LandingPage";
-import AllBanner from "./pages/admin/AllBanner";
-import AddBanner from "./pages/admin/AddBanner";
-import DeleteBanner from "./pages/admin/DeleteBanner";
+import AllBanner from "./pages/admin/Banner/AllBanner";
+import AddBanner from "./pages/admin/Banner/AddBanner";
+import DeleteBanner from "./pages/admin/Banner/DeleteBanner";
+import DeleteNews from "./pages/admin/News/DeleteNews";
+import AddNews from "./pages/admin/News/AddNews";
+import AllNews from "./pages/admin/News/AllNews";
+import UpdateBanner from "./pages/admin/Banner/UpdateBanner";
+import UpdateNews from "./pages/admin/News/UpdateNews";
+import UpdateEvent from "./pages/admin/Event/UpdateEvent";
+import DeleteEvent from "./pages/admin/Event/DeleteEvent";
+import AddEvent from "./pages/admin/Event/AddEvent";
+import AllEvent from "./pages/admin/Event/AllEvent";
 
 const App = () => {
   const [userRole, setuserRole] = useState(sessionStorage.getItem("roles"));
@@ -88,6 +97,15 @@ const App = () => {
           <Route path="allBanners" element={<AllBanner/>}></Route>
           <Route path="addBanner" element={<AddBanner/>}></Route>
           <Route path="deleteBanner" element={<DeleteBanner/>}></Route>
+          <Route path="updateBanner" element={<UpdateBanner/>}></Route>
+          <Route path="allNews" element={<AllNews/>}></Route>
+          <Route path="addNews" element={<AddNews/>}></Route>
+          <Route path="deleteNews" element={<DeleteNews/>}></Route>    
+          <Route path="updateNews" element={<UpdateNews/>}></Route>      
+          <Route path="allEvents" element={<AllEvent/>}></Route>
+          <Route path="addEvent" element={<AddEvent/>}></Route>
+          <Route path="deleteEvent" element={<DeleteEvent/>}></Route>    
+          <Route path="updateEvent" element={<UpdateEvent/>}></Route>  
         </Route>
 
         <Route path="/vendor" element={<VendorDashboard />}>
