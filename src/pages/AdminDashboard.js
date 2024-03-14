@@ -100,6 +100,43 @@ export default function AdminDashboard() {
       ],
       bgColor: "bg-cyan-900", 
     },
+    {
+      text: "News",
+      icon: "ri-file-copy-2-line",
+      link: "#",
+      subItems: [
+        { text: "All News", link: "allNews" },
+        { text: "Add News", link: "addNews" },
+        { text: "Delete News", link: "deleteNews" },
+        { text: "Update News", link: "updateNews" },
+      ],
+      bgColor: "bg-cyan-950", 
+    },
+    {
+      text: "Event",
+      icon: "ri-file-copy-2-line",
+      link: "#",
+      subItems: [
+        { text: "All Event", link: "allEvents" },
+        { text: "Add Event", link: "addEvent" },
+        { text: "Delete Event", link: "deleteEvent" },
+        { text: "Update Event", link: "updateEvent" },
+      ],
+      bgColor: "bg-cyan-900", 
+    },
+    ,
+    {
+      text: "Document",
+      icon: "ri-file-copy-2-line",
+      link: "#",
+      subItems: [
+        { text: "All Document", link: "allDocuments" },
+        { text: "Add Document", link: "addDocument" },
+        { text: "Delete Document", link: "deleteDocument" },
+        { text: "Update Document", link: "updateDocument" },
+      ],
+      bgColor: "bg-cyan-950", 
+    },
 
     {
       text: "Dummy Item 4",
