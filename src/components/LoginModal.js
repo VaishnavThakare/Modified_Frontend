@@ -1,15 +1,63 @@
 // LoginModal.js
 import React, { useState } from 'react';
+import { jwtDecode } from "jwt-decode";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const LoginModal = ({ onClose }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
 
-  const handleLogin = () => {
+  const handleLogin = async () => {
     // Implement your login logic here
     console.log('Logging in with:', username, password);
     // For simplicity, let's just close the modal after login attempt
-    onClose();
+      try {
+        const response = await axios.post(
+          `${process.env.REACT_APP_API_URL}/Login`,
+          { username, password }
+        );
+
+        if (response.data) {
+          const authToken = response.data.jwtToken;
+          const decodeToken = jwtDecode(authToken);
+          const roles =
+            decodeToken[
+              "http://schemas.microsoft.com/ws/2008/06/identity/claims/role"
+            ];
+          const sid =
+            decodeToken[
+              "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/sid"
+            ];
+          sessionStorage.setItem("sid", sid);
+          sessionStorage.setItem("authToken", authToken);
+          sessionStorage.setItem("roles", roles);
+
+          switch (roles) {
+            case "Vendor":
+              navigate("/vendor");
+              break;
+            case "Admin":
+              navigate("/admin");
+              break;
+            case "ProjectHead":
+              navigate("/projecthead");
+              break;
+            default:
+              break;
+          }
+        } else {
+          setError("Login failed. Please provide valid credentials.");
+        }
+      } catch (error) {
+        console.error("Error during login:", error);
+        setError("An unexpected error occurred. Please try again.");
+      }
+      finally{
+        onClose();
+      }
   };
 
   return (

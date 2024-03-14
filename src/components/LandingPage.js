@@ -34,7 +34,7 @@ function LandingPage() {
       </div> 
 
       <div className="w-full grid grid-rows-2 px-20 lg:px-40 bg-cover bg-center" style={{backgroundImage: `url(${backgroundImageUrl})`}}>
-        <div className="h-[5px] grid grid-cols-2 row-span-1 w-full p-[10px]">
+        <div className=" grid grid-cols-2 row-span-1 w-full h-10 p-[10px]">
           <div id="col1" className="w-[145%]  ">
             <Carousel></Carousel>
           </div>
@@ -43,6 +43,16 @@ function LandingPage() {
             <Info />
           </div>
         </div>
+        <div className="text-black">
+          Policies
+        
+        <div className=" text-black">
+          Policies
+        </div>
+        <div className="text-black">
+          Policies
+        </div>
+      
 
         <div className="grid grid-cols-3 w-full mt-[57px]">
           <div id="col1" className=" mr-[70px] w-[80%] ">
@@ -57,6 +67,7 @@ function LandingPage() {
             {/* Events with content */}
             <Event />
           </div>
+        </div>
         </div>
       </div>
     </div>

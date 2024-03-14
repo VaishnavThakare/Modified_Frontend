@@ -120,7 +120,7 @@ const App = () => {
           <Route path="assigned-project" element={<AssignedProject />} />
         </Route>
 
-        <Route path="/" element={<Navigate to="/login" />} />
+        {/* <Route path="/" element={<Navigate to="/login" />} /> */}
       </Routes>
     </Router>
   );
