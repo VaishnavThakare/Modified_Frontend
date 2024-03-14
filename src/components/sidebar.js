@@ -12,17 +12,18 @@ export default function Sidebar({
 
   const getVendor = async()=>{
     const id = sessionStorage.getItem('sid');
-    console.log(id)
-;
-    try{
-      const response = await axios.get(
-        `${process.env.REACT_APP_API_URL}/Vendor/${id}`
-      );
-      console.log(response.data);
-      setVerify(response.data.isVerified);
-    }
-    catch(error){
-      console.log(error);
+    if(sessionStorage.getItem("roles") =="Vendor"){
+      console.log(id);
+      try{
+        const response = await axios.get(
+          `${process.env.REACT_APP_API_URL}/Vendor/${id}`
+        );
+        console.log(response.data);
+        setVerify(response.data.isVerified);
+      }
+      catch(error){
+        console.log(error);
+      }
     }
   }
 

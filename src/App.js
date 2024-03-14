@@ -76,7 +76,7 @@ const App = () => {
         <Route path="/admin" element={<AdminDashboard />}>
           <Route index element={<AdminDash />} />
           <Route path="dashboard" index element={<AdminDash />} />
-          <Route path="all-users" element={<Users />} />
+          <Route path="allusers" element={<Users />} />
           <Route path="create-vendor" element={<AddVendor />} />
           <Route path="create-project-head" element={<AddProjectHead />} />
           <Route path="add-vendor-category" element={<AddVendorCategory />} />
