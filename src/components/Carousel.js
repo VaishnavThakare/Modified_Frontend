@@ -65,7 +65,7 @@ const Carousel = () => {
     <Slider {...settings}>
       {
         banners.map((slide) => (
-        <div key={slide.id} className='relative h-[300px]'>
+        <div key={slide.id} className='relative h-[300px] border border-b-black'>
           <img src={slide.imagePath} alt={slide.id} className="w-full h-[370px]" />
           <p className='absolute'>
             {slide.title}

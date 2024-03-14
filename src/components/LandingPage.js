@@ -27,7 +27,7 @@ function LandingPage() {
         <div>
           <img className="w-[150px] h-[40px] ml-[30px]" src={`${process.env.PUBLIC_URL}/sciqus.png`} alt="logo" />
         </div>
-        <div className="flex items-end justify-end mr-[150px]">
+        <div className="flex items-end justify-end mr-[80px]">
           <button className="font-poppins  font-normal text-center mr-[15px]" onClick={handleLoginClick}>LogIn</button>
           <button className=" font-poppins  font-normal text-center">Contact: 90909090</button>
         </div>
@@ -36,10 +36,10 @@ function LandingPage() {
      <div className="w-full grid grid-rows-2 pt-[20px] pb-[40px] lg:px-40 bg-cover bg-center" style={{backgroundImage: `url(${backgroundImageUrl})`, backgroundRepeat: 'repeat'}}>
 
         <div className=" grid grid-cols-2 row-span-1 w-full h-10 p-[10px]">
-          <div id="col1" className="w-[145%] bg-white">
+          <div id="col1" className="w-[135%] bg-white">
             <Carousel></Carousel>
           </div>
-          <div id="col1" className="ml-[50%] w-[50%] bg-cyan-100 ">
+          <div id="col1" className="ml-[40%] w-[60%] bg-cyan-100 ">
             {/* Info image with side arrow and content */}
             <Info />
           </div>
