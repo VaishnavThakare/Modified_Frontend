@@ -83,11 +83,11 @@ export default function AllBanner() {
   return (
     <>
       <div className="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 pr-10 lg:px-8 mb-8">
-        <div className="align-middle inline-block min-w-full shadow overflow-hidden bg-white shadow-dashboard px-8 pt-3 rounded-bl-lg rounded-br-lg">
-          <div className="flex text-2xl font-bold text-gray-500 mb-4 justify-center items-center">
+        <div className="align-middle inline-block min-w-full shadow overflow-hidden bg-white shadow-dashboard px-8 pt-3 rounded-bl-lg rounded-br-lg ">
+          <div className="flex text-2xl font-bold text-gray-500 mb-4 justify-center items-center ">
             <h2>Banners</h2>
           </div>
-          <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4   ">
             {currentItems.map((banner, index) => (
               <div
                 key={banner.id}
