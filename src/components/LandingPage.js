@@ -25,7 +25,7 @@ function LandingPage() {
 
       <div id="navbar" className="grid grid-cols-2 w-full p-[0.5px]">
         <div>
-          <img className="w-[250px] h-[50px]" src={`${process.env.PUBLIC_URL}/sciqus.png`} alt="logo" />
+          <img className="w-[150px] h-[40px]" src={`${process.env.PUBLIC_URL}/sciqus.png`} alt="logo" />
         </div>
         <div className="flex items-end justify-end mr-[20px]">
           <button className="font-serif text-center mr-[15px]" onClick={handleLoginClick}>LogIn</button>
