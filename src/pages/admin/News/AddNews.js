@@ -2,25 +2,22 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 export default function AddNews() {
-
   const [news, setnews] = useState({
     Title: "",
     Image: "",
     IsActive: "",
-    Content : ""
+    Content: "",
   });
 
-  const [file,setFile]= useState([]);
+  const [file, setFile] = useState([]);
 
-  const handleFile = (event)=>{
+  const handleFile = (event) => {
     console.log(event.target.files[0]);
     setFile(event.target.files[0]);
     news.Image = event.target.files[0];
-  }
+  };
 
-  useEffect(() => {
-
-  }, []);
+  useEffect(() => {}, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -33,23 +30,25 @@ export default function AddNews() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-        console.log(news);
-        const formDataToSend = new FormData();
-        formDataToSend.append("Title",news.Title);
-        formDataToSend.append("Image",file);
-        formDataToSend.append("IsActive",news.IsActive);
-        formDataToSend.append("Content",news.Content);
-        console.log(formDataToSend);
+      console.log(news);
+      const formDataToSend = new FormData();
+      formDataToSend.append("Title", news.Title);
+      formDataToSend.append("Image", file);
+      formDataToSend.append("IsActive", news.IsActive);
+      formDataToSend.append("Content", news.Content);
+      console.log(formDataToSend);
 
-      const response = await axios.post(`${process.env.REACT_APP_API_URL}/News/Add`,formDataToSend);
-      if (response.status === 200) 
-        alert("News Added");
+      const response = await axios.post(
+        `${process.env.REACT_APP_API_URL}/News/Add`,
+        formDataToSend
+      );
+      if (response.status === 200) alert("News Added");
 
       setnews({
         Title: "",
         Image: "",
         IsActive: "",
-        Content:""
+        Content: "",
       });
     } catch (error) {
       console.error("Error adding VendorCategory:", error.message);
@@ -58,14 +57,11 @@ export default function AddNews() {
   return (
     <>
       <div class="align-middle inline-block min-w-full shadow overflow-hidden bg-white shadow-dashboard px-8 py-3 pb-8 rounded-bl-lg rounded-br-lg">
-        
-        
         <form onSubmit={handleSubmit} className="max-w-sm mx-auto mt-8">
-  
           <div className="flex text-2xl font-bold text-gray-500 mb-5">
             <h2>Create News</h2>
           </div>
-          
+
           <div class="mb-6">
             <label
               for="name"
@@ -86,7 +82,7 @@ export default function AddNews() {
 
           <div class="mb-6">
             <label
-              for="name"
+              for="content"
               class="block mb-2 text-sm font-medium text-gray-900"
             >
               Content
@@ -103,20 +99,32 @@ export default function AddNews() {
 
           <div class="mb-6">
             <label
-              for="projectHeadId"
+              for="isActive"
               class="block mb-2 text-sm font-medium text-gray-900"
             >
               IsActive
             </label>
-            <select  id="projectHeadId"   name="IsActive" value={news.IsActive}   onChange={handleChange} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"   >
-                <option value="" disabled> Choose Status </option>
-                <option  value={true}> True </option>
-                <option  value={false}> False </option>                
+            <select
+              id="isActive"
+              name="IsActive"
+              value={news.IsActive}
+              onChange={handleChange}
+              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+            >
+              <option value="" disabled>
+                {" "}
+                Choose Status{" "}
+              </option>
+              <option value={true}> True </option>
+              <option value={false}> False </option>
             </select>
           </div>
 
           <div class="mb-6">
-            <label    for="description"    class="block mb-2 text-sm font-medium text-gray-900"      >
+            <label
+              for="description"
+              class="block mb-2 text-sm font-medium text-gray-900"
+            >
               News Image
             </label>
             <input
