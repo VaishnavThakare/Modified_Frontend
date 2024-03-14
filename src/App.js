@@ -52,6 +52,9 @@ import AllNews from "./pages/admin/News/AllNews";
 
 import AddEvent from "./pages/admin/Event/AddEvent";
 import AllEvent from "./pages/admin/Event/AllEvent";
+import AddPolicyDocument from "./pages/admin/Documents/AddPolicyDocument";
+import AllPolicyDocuments from "./pages/admin/Documents/AllPolicyDocuments";
+
 
 const App = () => {
   const [userRole, setuserRole] = useState(sessionStorage.getItem("roles"));
@@ -97,7 +100,8 @@ const App = () => {
 
           <Route path="allEvents" element={<AllEvent />}></Route>
           <Route path="addEvent" element={<AddEvent />}></Route>
-
+          <Route path="addDocument" element={<AddPolicyDocument />}></Route>
+          <Route path="allDocuments" element={<AllPolicyDocuments />}></Route>
         </Route>
 
         <Route path="/vendor" element={<VendorDashboard />}>
