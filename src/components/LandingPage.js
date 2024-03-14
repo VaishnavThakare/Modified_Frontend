@@ -44,26 +44,21 @@ function LandingPage() {
           </div>
         </div>
         <div className="text-black  bg-white">
-          Policies
-        
-        <div className=" text-black  bg-white">
-          Policies
-        </div>
-        <div className="text-black  bg-white">
-          Policies
-        </div>
       
 
         <div className="grid grid-cols-3 w-full mt-[57px]">
           <div id="col1" className=" mr-[70px] w-[80%]  bg-white">
+          Policies
             {/* Policies with scrollbar */}
             <Policies />
           </div>
           <div id="col1" className=" mr-[70px]  w-[80%]   bg-white">
+            News
             {/* News image side arrow with content */}
             <News />
           </div>
           <div id="col1" className=" ml-[70px] w-[80%]  bg-white">
+            Event
             {/* Events with content */}
             <Event />
           </div>
