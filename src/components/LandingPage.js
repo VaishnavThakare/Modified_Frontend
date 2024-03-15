@@ -35,7 +35,7 @@ function LandingPage() {
 
      <div className="w-full grid grid-rows-2 pt-[20px] pb-[40px] lg:px-40 bg-cover bg-center" style={{backgroundImage: `url(${backgroundImageUrl})`, backgroundRepeat: 'repeat'}}>
 
-        <div className=" grid grid-cols-2 row-span-1 w-full h-10 p-[10px]">
+        <div className=" grid grid-cols-2 row-span-1 w-full h-10 p-[10px] bg-cover bg-center" style={{backgroundImage: `url(${backgroundImageUrl})`, backgroundRepeat: 'repeat'}} >
           <div id="col1" className="w-[135%] bg-white">
             <Carousel></Carousel>
           </div>
@@ -52,20 +52,20 @@ function LandingPage() {
         <div className="text-black ml-[395px]">EVENTS</div>
      </div> */}
 
-          <div className="grid grid-cols-3 w-full mt-[15px]">
+          <div className="grid grid-cols-3 w-full mt-[15px]  "  >
             <div id="col1" className="mx-[10px]">
               {/* Policies with scrollbar */}
               <div className="text-black  font-semibold mb-[20px] ">POLICIES</div>
               <Policies />
             </div>
 
-            <div id="col1" className="mx-[10px]">
+            <div id="col1" className="mx-[10px]  " >
               {/* News image side arrow with content */}
               <div className="text-black ml-[2px] font-semibold mb-[20px]">NEWS</div>
               <News />
             </div>
 
-            <div id="col1" className="mx-[10px]">
+            <div id="col1" className="mx-[10px] bg-cover bg-center"  style={{backgroundImage: `url(${backgroundImageUrl})`,backgroundPosition: 'right center'}}>
               {/* Events with content */}
               <div className="text-black ml-[2px] font-semibold mb-[20px]">EVENTS</div>
               <Event />
