@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function AddRFP() {
   const [rfpData, setRFPData] = useState({
@@ -63,7 +65,12 @@ export default function AddRFP() {
         `${process.env.REACT_APP_API_URL}/RFP/Add`,
         formData
       );
-      if (response.status === 200) alert("RFP Added");
+      if (response.status === 200){
+        toast.success("RFP Added",{
+          position:"top-right"
+        });
+      } 
+      
       setRFPData({
         title: "",
         projectId: "",
@@ -199,6 +206,7 @@ export default function AddRFP() {
           </button>
         </form>
       </div>
+      <ToastContainer/>
     </>
   );
 }

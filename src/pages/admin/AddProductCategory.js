@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function AddProductCategory() {
   const [productCategoryData, setProductCategoryData] = useState({
@@ -25,7 +27,11 @@ export default function AddProductCategory() {
         `${process.env.REACT_APP_API_URL}/ProductCategory/Add`,
         productCategoryData
       );
-      if (response.status === 200) alert("Product Category Added");
+      if (response.status === 200){
+        toast.success("Product Category Added",{
+          position:"top-right"
+        });
+      } 
       setProductCategoryData({
         name: "",
         isRoot: false,
@@ -146,6 +152,7 @@ export default function AddProductCategory() {
           </button>
         </form>
       </div>
+      <ToastContainer/>
     </>
   );
 }

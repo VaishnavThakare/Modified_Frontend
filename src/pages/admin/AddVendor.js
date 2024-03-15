@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function AddVendor() {
   const [vendorData, setVendorData] = useState({
@@ -46,7 +48,11 @@ export default function AddVendor() {
         `${process.env.REACT_APP_API_URL}/Vendor/Register`,
         vendorData
       );
-      alert(response.data);
+      if(response.status === 200){
+        toast.success("Vendor Added",{
+          position:"top-right"
+        });
+      }
       setVendorData({
         name: "",
         organizationName: "", // Reset organizationName field
@@ -257,6 +263,7 @@ export default function AddVendor() {
           </button>
         </form>
       </div>
+      <ToastContainer/>
     </>
   );
 }

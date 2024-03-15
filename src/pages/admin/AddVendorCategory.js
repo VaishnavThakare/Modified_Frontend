@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function AddVendorCategory() {
   const [vendorCategoryData, setVendorCategoryData] = useState({
@@ -60,7 +62,12 @@ export default function AddVendorCategory() {
         `${process.env.REACT_APP_API_URL}/VendorCategory/Add`,
         vendorCategoryData
       );
-      if (response.status === 200) alert("Vendor Category Added");
+      if (response.status === 200){
+        toast.success("Vendor Category Added",{
+          position:"top-right"
+        });
+      } 
+      
       setVendorCategoryData({
         name: "",
         description: "",
@@ -148,6 +155,7 @@ export default function AddVendorCategory() {
           </button>
         </form>
       </div>
+      <ToastContainer/>
     </>
   );
 }

@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function AddProject() {
   const [projectData, setProjectData] = useState({
@@ -41,7 +43,11 @@ export default function AddProject() {
         `${process.env.REACT_APP_API_URL}/Project/Create`,
         projectData
       );
-      if (response.status === 200) alert("Project Added");
+      if (response.status === 200){
+        toast.success("Project Added",{
+          position:"top-right"
+        });
+      } 
       setProjectData({
         name: "",
         projectHeadId: "",
@@ -188,6 +194,7 @@ export default function AddProject() {
           </button>
         </form>
       </div>
+      <ToastContainer/>
     </>
   );
 }
