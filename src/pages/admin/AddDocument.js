@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function AddDocument() {
   const [documentData, setDocumentData] = useState({
@@ -22,7 +24,11 @@ export default function AddDocument() {
         `${process.env.REACT_APP_API_URL}/Document/Add`,
         documentData
       );
-      if (response.status === 200) alert("Document Added");
+      if (response.status === 200) {
+        toast.success("Document Added",{
+          position:"top-right"
+        });
+      }
       setDocumentData({
         name: "",
         description: "",
@@ -86,6 +92,7 @@ export default function AddDocument() {
           </button>
         </form>
       </div>
+      <ToastContainer/>
     </>
   );
 }
