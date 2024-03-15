@@ -59,7 +59,7 @@ function LandingPage() {
               <Policies />
             </div>
 
-            <div id="col1" className="mx-[10px]  " >
+            <div id="col1" className="mx-[10px] " >
               {/* News image side arrow with content */}
               <div className="text-black ml-[2px] font-semibold mb-[20px]">NEWS</div>
               <News />

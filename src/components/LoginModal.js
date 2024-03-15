@@ -77,7 +77,7 @@ const LoginModal = ({ onClose }) => {
   return (
     <>
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-      <div className="bg-white p-8 rounded-md shadow-md w-96">
+      <div className="bg-white p-8 rounded-md shadow-md w-96" style={{ border: '3px solid cyan' }}>
         <h2 className="text-2xl font-semibold mb-4">Login</h2>
         <form onSubmit={(e) => e.preventDefault()}>
         <div className="mb-6 relative">
@@ -95,7 +95,7 @@ const LoginModal = ({ onClose }) => {
     htmlFor="username"
     className="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"
   >
-    Username
+    User Id
   </label>
 </div>
 
@@ -103,6 +103,7 @@ const LoginModal = ({ onClose }) => {
   <input
     type="password"
     id="password"
+    placeholder=" "
     className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
     value={password}
     onChange={(e) => setPassword(e.target.value)}
@@ -118,7 +119,7 @@ const LoginModal = ({ onClose }) => {
 
           <button
             type="button" // Change to "submit" if you have a form submission logic
-            className="bg-blue-500 text-white px-4 py-2 rounded-md"
+            className="bg-cyan-400 text-white px-6 py-2 rounded-md"
             onClick={handleLogin}
           >
             Login

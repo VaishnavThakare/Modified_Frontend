@@ -124,6 +124,16 @@ export default function AdminDashboard() {
       ],
       bgColor: "bg-cyan-950",
     },
+    {
+      text: "Profile",
+      icon: "ri-file-copy-2-line",
+      link: "#",
+      subItems: [
+        { text: "All Profile", link: "allProfile" },
+        { text: "Add Profile", link: "addProfile" },
+      ],
+      bgColor: "bg-cyan-950",
+    },
 
     /////////////
   ];

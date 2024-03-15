@@ -54,6 +54,8 @@ import AddEvent from "./pages/admin/Event/AddEvent";
 import AllEvent from "./pages/admin/Event/AllEvent";
 import AddPolicyDocument from "./pages/admin/Documents/AddPolicyDocument";
 import AllPolicyDocuments from "./pages/admin/Documents/AllPolicyDocuments";
+import AddProfile from "./pages/admin/Profile/AddProfile";
+import AllProfile from "./pages/admin/Profile/AllProfile";
 
 
 const App = () => {
@@ -102,6 +104,9 @@ const App = () => {
           <Route path="addEvent" element={<AddEvent />}></Route>
           <Route path="addDocument" element={<AddPolicyDocument />}></Route>
           <Route path="allDocuments" element={<AllPolicyDocuments />}></Route>
+
+          <Route path="addProfile" element={<AddProfile />}></Route>
+          <Route path="allProfile" element={<AllProfile />}></Route>
         </Route>
 
         <Route path="/vendor" element={<VendorDashboard />}>
