@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
+import {ToastContainer,toast} from 'react-toastify';
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -11,7 +12,7 @@ const Login = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-
+    toast("Logged In");
     try {
       const response = await axios.post(
         `${process.env.REACT_APP_API_URL}/Login`,
@@ -33,6 +34,8 @@ const Login = () => {
         sessionStorage.setItem("authToken", authToken);
         sessionStorage.setItem("roles", roles);
 
+        toast.success("logged in ...");
+        alert("logged in ...");
         switch (roles) {
           case "Vendor":
             navigate("/vendor");
@@ -47,9 +50,12 @@ const Login = () => {
             break;
         }
       } else {
+        alert("Login failed. Please provide valid credentials.");
+        toast.error("Login failed. Please provide valid credentials.");
         setError("Login failed. Please provide valid credentials.");
       }
     } catch (error) {
+      toast.error(error.message);
       console.error("Error during login:", error);
       setError("An unexpected error occurred. Please try again.");
     }
@@ -69,6 +75,7 @@ const Login = () => {
   }
 
   return (
+    <>
     <div>
 
         <div class="py-2 px-6 bg-cyan-200 flex items-center justify-center shadow-md shadow-black/5 sticky top-0 left-0 z-30">
@@ -140,11 +147,10 @@ const Login = () => {
             )}
           </div>
         </div>
-
-
     </div>
 
-      
+      <ToastContainer></ToastContainer>
+    </>
   );
 };
 

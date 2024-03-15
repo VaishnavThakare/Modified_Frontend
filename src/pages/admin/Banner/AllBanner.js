@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function AllBanner() {
   const [banners, setbanners] = useState([]);
@@ -19,11 +21,16 @@ export default function AllBanner() {
       let res = await axios.get(`${process.env.REACT_APP_API_URL}/Banner/All`);
       let data = [];
       if (res.status == 200 && res.data != null) {
-        data = res.data;
+        data = res.data; 
       }
-
-      setbanners(data);
+      setbanners(data); 
+      toast.success("All Banners Loaded",{
+        position:"top-right"
+      });
     } catch (error) {
+      toast.error("Error to load Banners",{
+        position:"top-right"
+      }); 
       console.error("Error fetching Banner data:", error);
     }
   };
@@ -34,8 +41,13 @@ export default function AllBanner() {
 
   const handleDelete = async (id, index) => {
     try {
-      await axios.delete(`${process.env.REACT_APP_API_URL}/Banner/${id}`);
-      getAllBanners();
+      if(window.confirm("Are you sure, that you want to delete this Banner ? ")){
+        await axios.delete(`${process.env.REACT_APP_API_URL}/Banner/${id}`);
+        toast.success("Banner is Deleted",{
+          position:"top-right"
+        });
+        getAllBanners();
+      }
     } catch (error) {
       console.error("Error deleting item:", error);
     }
@@ -60,8 +72,11 @@ export default function AllBanner() {
         `${process.env.REACT_APP_API_URL}/Banner/${modal.id}`,
         formDataToSend
       );
-      if (response.status === 200) alert("Banner Updated");
-
+      if (response.status === 200) {
+        toast.success("Banner is updated",{
+          position:"top-right"
+        });
+      }
       toggleEditModal();
       getAllBanners();
       setFile();
@@ -248,6 +263,7 @@ export default function AllBanner() {
           </div>
         </div>
       )}
+      <ToastContainer/>
     </>
   );
 }

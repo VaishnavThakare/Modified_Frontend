@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import pdf from './pdf.png';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function AllPolicyDocuments() {
   const [documents, setdocuments] = useState([]);
@@ -26,6 +28,9 @@ export default function AllPolicyDocuments() {
       let data = [];
       if(res.status == 200 && res.data!=null){
         data = res.data;
+        toast.success("All Document Loaded",{
+          position:"top-right"
+        });
       }
       console.log(data);
       setdocuments(data);    
@@ -51,12 +56,11 @@ export default function AllPolicyDocuments() {
   const handleDelete = async (id, index) => {
     
     try {
-        // console.log(events);
-        // console.log(eventId);
         if(window.confirm("Do you want to delete this document ? ")){
           const response = await axios.delete(`${process.env.REACT_APP_API_URL}/PolicyDocument/${id}`);
-      
-          alert("Document Deleted");
+          toast.success("Document Deleted",{
+            position:"top-right"
+          });
         }
 
         getAllDocuments();
@@ -77,8 +81,10 @@ export default function AllPolicyDocuments() {
         console.log(formDataToSend);
 
       const response = await axios.put(`${process.env.REACT_APP_API_URL}/PolicyDocument/${pdocument.id}`,formDataToSend);
-      //if (response.status === 200) 
-      alert("Document Updated");
+      if (response.status === 200) 
+        toast.success("Document Updated",{
+          position:"top-right"
+        });
         getAllDocuments();
         setdocument({
           id:"",
@@ -289,7 +295,7 @@ export default function AllPolicyDocuments() {
           </div>
         </div>
       )}
-
+      <ToastContainer/>
     </>
   );
 }

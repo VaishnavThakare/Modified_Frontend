@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import { jwtDecode } from "jwt-decode";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const LoginModal = ({ onClose }) => {
   const [username, setUsername] = useState('');
@@ -35,6 +37,11 @@ const LoginModal = ({ onClose }) => {
           sessionStorage.setItem("authToken", authToken);
           sessionStorage.setItem("roles", roles);
 
+          toast.success("Logged In",{
+            position:"top-right"
+          });  
+
+
           switch (roles) {
             case "Vendor":
               navigate("/vendor");
@@ -48,10 +55,17 @@ const LoginModal = ({ onClose }) => {
             default:
               break;
           }
+          
         } else {
+          toast.error("Login failed. Please provide valid credentials.",{
+            position:"top-right"
+          });
           setError("Login failed. Please provide valid credentials.");
         }
       } catch (error) {
+        toast.error("An unexpected error occurred. Please try again.",{
+          position:"top-right"
+        });
         console.error("Error during login:", error);
         setError("An unexpected error occurred. Please try again.");
       }
@@ -61,6 +75,7 @@ const LoginModal = ({ onClose }) => {
   };
 
   return (
+    <>
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
       <div className="bg-white p-8 rounded-md shadow-md w-96">
         <h2 className="text-2xl font-semibold mb-4">Login</h2>
@@ -118,6 +133,8 @@ const LoginModal = ({ onClose }) => {
         </button>
       </div>
     </div>
+    <ToastContainer/>
+    </>
   );
 };
 

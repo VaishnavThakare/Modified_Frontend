@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function AllEvent() {
   const [events, setevents] = useState([]);
@@ -21,12 +23,16 @@ export default function AllEvent() {
   });
 
   const getAllEvents = async () => {
+    console.log("called");
     try {
       let res = await axios.get(`${process.env.REACT_APP_API_URL}/Event/All`);
       console.log(res.data);
       let data = [];
       if(res.status == 200 && res.data!=null){
         data = res.data;
+        toast.success("All Event Loaded",{
+          position:"top-right"
+        });
       }
       console.log(data);
       setevents(data);    
@@ -52,11 +58,11 @@ export default function AllEvent() {
   const handleDelete = async (id, index) => {
     
     try {
-        // console.log(events);
-        // console.log(eventId);
         const response = await axios.delete(`${process.env.REACT_APP_API_URL}/Event/${id}`);
         if (response.status === 200) 
-        alert("Banner Deleted");
+        toast.success("Event Deleted",{
+          position:"top-right"
+        });
         getAllEvents();
 
     } catch (error) {
@@ -77,8 +83,11 @@ export default function AllEvent() {
         console.log(formDataToSend);
 
       const response = await axios.put(`${process.env.REACT_APP_API_URL}/Event/${event.id}`,formDataToSend);
-      //if (response.status === 200) 
-      alert("Event Updated");
+      if (response.status === 200){
+        toast.success("Event Updated",{
+          position:"top-right"
+        });
+      }
         getAllEvents();
         setevent({
           id:"",
@@ -331,7 +340,7 @@ export default function AllEvent() {
           </div>
         </div>
       )}
-
+      <ToastContainer/>
     </>
   );
 }

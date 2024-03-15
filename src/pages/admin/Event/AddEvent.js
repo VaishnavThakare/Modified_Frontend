@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function AddEvent() {
 
@@ -44,9 +46,12 @@ export default function AddEvent() {
         console.log(formDataToSend);
 
       const response = await axios.post(`${process.env.REACT_APP_API_URL}/Event/Add`,formDataToSend);
+      
       if (response.status === 200) 
-        alert("Event Added");
-      alert("Event Added");
+        toast.success("Event Added",{
+          position:"top-right"
+        });
+
       setevent({
         Title: "",
         Image: "",
@@ -158,6 +163,7 @@ export default function AddEvent() {
           </button>
         </form>
       </div>
+      <ToastContainer/>
     </>
   );
 }

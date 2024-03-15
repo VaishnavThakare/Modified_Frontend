@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function AddBanner() {
   const [banner, setbanner] = useState({
@@ -40,7 +42,11 @@ export default function AddBanner() {
         `${process.env.REACT_APP_API_URL}/Banner/Add`,
         formDataToSend
       );
-      if (response.status === 200) alert("Banner Added");
+      if (response.status === 200){
+        toast.success("Banner is added",{
+          position:"top-right"
+        });
+      }
 
       setbanner({
         Title: "",
@@ -127,6 +133,7 @@ export default function AddBanner() {
           </button>
         </form>
       </div>
+      <ToastContainer/>
     </>
   );
 }

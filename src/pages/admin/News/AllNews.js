@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function AllNews() {
   const [news, setnews] = useState([]);
@@ -21,6 +23,9 @@ export default function AllNews() {
       let data = [];
       if (res.status == 200 && res.data != null) {
         data = res.data;
+        toast.success("All News Loaded",{
+          position:"top-right"
+        });
       }
 
       setnews(data);
@@ -35,6 +40,9 @@ export default function AllNews() {
   const handleDelete = async (id, index) => {
     try {
       await axios.delete(`${process.env.REACT_APP_API_URL}/News/${id}`);
+      toast.success("News Deleted",{
+        position:"top-right"
+      });
       getAllNews();
     } catch (error) {
       console.error("Error deleting item:", error);
@@ -61,7 +69,11 @@ export default function AllNews() {
         `${process.env.REACT_APP_API_URL}/News/${modal.id}`,
         formDataToSend
       );
-      if (response.status === 200) alert("News Updated");
+      if (response.status === 200){
+        toast.success("News Updated",{
+          position:"top-right"
+        });
+      }
 
       toggleEditModal();
       getAllNews();
@@ -278,6 +290,7 @@ export default function AllNews() {
           </div>
         </div>
       )}
+      <ToastContainer/>
     </>
   );
 }

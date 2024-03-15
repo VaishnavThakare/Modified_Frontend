@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function AddNews() {
   const [news, setnews] = useState({
@@ -42,7 +44,11 @@ export default function AddNews() {
         `${process.env.REACT_APP_API_URL}/News/Add`,
         formDataToSend
       );
-      if (response.status === 200) alert("News Added");
+      if (response.status === 200){
+        toast.success("News Added",{
+          position:"top-right"
+        });
+      }
 
       setnews({
         Title: "",
@@ -145,6 +151,7 @@ export default function AddNews() {
           </button>
         </form>
       </div>
+      <ToastContainer/>
     </>
   );
 }

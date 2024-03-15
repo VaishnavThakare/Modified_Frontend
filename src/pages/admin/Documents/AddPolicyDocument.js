@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function AddPolicyDocument() {
 
@@ -41,9 +43,10 @@ export default function AddPolicyDocument() {
         console.log(formDataToSend);
 
       const response = await axios.post(`${process.env.REACT_APP_API_URL}/PolicyDocument/Add`,formDataToSend);
-    //   if (response.status === 200) 
-    //     alert("Document Added");
-      alert("Document Added");
+      if (response.status === 200) 
+      toast.success("Document Added",{
+        position:"top-right"
+      });
       setdocument({
         Name: "",
         Document: "",
@@ -118,6 +121,7 @@ export default function AddPolicyDocument() {
           </button>
         </form>
       </div>
+      <ToastContainer/>
     </>
   );
 }
