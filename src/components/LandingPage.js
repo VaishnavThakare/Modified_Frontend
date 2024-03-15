@@ -28,7 +28,7 @@ function LandingPage() {
           <img className="w-[80px] h-[30px]  ml-[30px]" src={`${process.env.PUBLIC_URL}/sciqus.png`} alt="logo" />
         </div>
         <div className="flex items-end justify-end mr-[80px]">
-          <button className="font-poppins  font-normal text-center mr-[15px]" onClick={handleLoginClick}>LogIn</button>
+          <button className="font-poppins  font-normal text-center mr-[15px] hover:font-bold" onClick={handleLoginClick}>LogIn</button>
           <button className=" font-poppins  font-normal text-center">Contact: 90909090</button>
         </div>
       </div> 
@@ -65,7 +65,7 @@ function LandingPage() {
               <News />
             </div>
 
-            <div id="col1" className="mx-[10px] bg-cover bg-center"  style={{backgroundImage: `url(${backgroundImageUrl})`,backgroundPosition: 'right center'}}>
+            <div id="col1" className="mx-[10px] bg-cover bg-right"  style={{backgroundImage: `url(${backgroundImageUrl})`,backgroundPosition: 'right '}}>
               {/* Events with content */}
               <div className="text-black ml-[2px] font-semibold mb-[20px]">EVENTS</div>
               <Event />
