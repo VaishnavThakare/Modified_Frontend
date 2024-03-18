@@ -4,7 +4,7 @@ import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { NavLink, useLocation } from "react-router-dom";
 import axios from "axios";
 
-const Header= ()=>{
+const PHeadHeader= ()=>{
 
     const left={
         left:'20%'
@@ -64,22 +64,7 @@ const Header= ()=>{
                         </NavLink>
                     </h3>
                     <div className="grid grid-cols-2  place-self-end mr-4 ">
-                        {
-                            sessionStorage.getItem("role")==="Admin" &&
-                            <>
-                                <NavLink to="/admin">
-                                    <img className="w-[18px] h-[19px]  place-self-start mb-[3px] cursor cursor-pointer" src={`${process.env.PUBLIC_URL}/house-solid.svg`} alt="logo" /> 
-                                </NavLink>
-                            </>
-                        }
-                        {
-                            sessionStorage.getItem("role")==="Vendor" &&
-                            <>
-                                <NavLink to="/vendor">
-                                    <img className="w-[18px] h-[19px]  place-self-start mb-[3px] cursor cursor-pointer" src={`${process.env.PUBLIC_URL}/house-solid.svg`} alt="logo" /> 
-                                </NavLink>
-                            </>
-                        }
+                        
                         {
                             sessionStorage.getItem("role")==="ProjectHead" &&
                             <>
@@ -112,4 +97,4 @@ const Header= ()=>{
     );
 }
 
-export default Header;
+export default PHeadHeader;
