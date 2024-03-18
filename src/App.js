@@ -34,7 +34,8 @@ import AddDocument from "./pages/admin/AddDocument";
 import Documents from "./pages/admin/Documents";
 import PoDetailsA from "./pages/Purchase Orders/PoDetailsA";
 import PurchaseOrderForm from "./pages/Purchase Orders/PurchaseOrderForm";
-import EditPurchaseOrderPage from "./pages/Purchase Orders/EditPurchaseOrderPage"
+import EditPurchaseOrderPage from "./pages/Purchase Orders/EditPurchaseOrderPage";
+
 
 //Vendor
 import VendorDash from "./pages/vendor/VendorDash";
@@ -95,7 +96,10 @@ const App = () => {
           <Route path="add-product-category" element={<AddProductCategory />} />
           <Route path="product-category" element={<ProductCategory />} />
           <Route path="vendor-verfication" element={<VendorVerification />} />
-          <Route path="document-verification/:id" element={<DocumentDetails />} />
+          <Route
+            path="document-verification/:id"
+            element={<DocumentDetails />}
+          />
           <Route path="allBanners" element={<AllBanner />}></Route>
           <Route path="addBanner" element={<AddBanner />}></Route>
           <Route path="allNews" element={<AllNews />}></Route>
@@ -108,10 +112,13 @@ const App = () => {
 
           <Route path="addProfile" element={<AddProfile />}></Route>
           <Route path="allProfile" element={<AllProfile />}></Route>
-          <Route path="purchase-OrderForm" element={<PurchaseOrderForm />}></Route>
+          <Route
+            path="purchase-OrderForm"
+            element={<PurchaseOrderForm />}
+          ></Route>
           <Route path="purchase-order-list" element={<PoDetailsA />}></Route>
           <Route path="edit/:poNo" element={<EditPurchaseOrderPage />}></Route>
-          </Route>
+        </Route>
 
         <Route path="/vendor" element={<VendorDashboard />}>
           <Route index element={<VendorDash />} />

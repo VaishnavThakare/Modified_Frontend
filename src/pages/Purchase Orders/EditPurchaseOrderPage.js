@@ -1,7 +1,3 @@
-
-
-
-// EditPurchaseOrderPage.jsx
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
@@ -14,6 +10,7 @@ const EditPurchaseOrderPage = ({ items }) => {
     expectedDeliveryDate: "",
     uploadDocument: "",
     poAmount: "",
+    isActive: true, // Assuming IsActive should default to true
   });
 
   useEffect(() => {
@@ -35,13 +32,27 @@ const EditPurchaseOrderPage = ({ items }) => {
     }));
   };
 
-  const handleSave = () => {
-    const updatedItems = items.map((item) =>
-      item.poNo === poNo ? editedData : item
-    );
-    // Call a function to update state or API to save data
-    console.log("Updated items:", updatedItems);
-    navigate("/admin");
+  const handleSave = async () => {
+    try {
+      const response = await fetch(`https://localhost:7254/api/PurchaseOrder/${editedData.id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(editedData),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to update purchase order");
+      }
+
+      // Call a function to update state or API to save data
+      console.log("Purchase Order updated successfully");
+      navigate("/admin");
+    } catch (error) {
+      console.error("Error updating purchase order:", error.message);
+      // Handle error, show message to user, etc.
+    }
   };
 
   const handleCancel = () => {
@@ -52,7 +63,7 @@ const EditPurchaseOrderPage = ({ items }) => {
     <div className="max-w-md mx-auto mt-8 p-6 bg-white shadow-md rounded-md">
       <h2 className="text-xl font-semibold mb-4">Edit Purchase Order</h2>
       <form>
-      <div className="mb-4">
+        <div className="mb-4">
           <label className="block text-sm font-medium text-gray-700">
             Purchase Order No.
           </label>
@@ -109,6 +120,23 @@ const EditPurchaseOrderPage = ({ items }) => {
             name="poAmount"
             value={editedData.poAmount}
             onChange={handleInputChange}
+            className="mt-1 p-2 border border-gray-300 rounded-md w-full"
+          />
+        </div>
+        <div className="mb-4">
+          <label className="block text-sm font-medium text-gray-700">
+            IsActive
+          </label>
+          <input
+            type="checkbox"
+            name="isActive"
+            checked={editedData.isActive}
+            onChange={() =>
+              setEditedData((prevData) => ({
+                ...prevData,
+                isActive: !prevData.isActive,
+              }))
+            }
             className="mt-1 p-2 border border-gray-300 rounded-md w-full"
           />
         </div>
