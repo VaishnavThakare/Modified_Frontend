@@ -188,47 +188,52 @@ const PoDetailsA = () => {
 
   return (
     <div className="relative">
-      <div className="overflow-x-auto mt-8">
-        <table className="table-auto w-full border-collapse">
+      <div className="overflow-x-auto mt-8 ml-2 mr-2 border rounded border-gray-300">
+        <table className="table-auto w-full rounded-md border-2 border-cyan-400 ">
           <thead>
             <tr className="bg-gray-200">
-              <th className="px-4 py-2 text-left">Sr. No.</th>
-              <th className="px-4 py-2 text-left">Purchase Order No.</th>
-              <th className="px-4 py-2 text-left">Vendor Name</th>
-              <th className="px-4 py-2 text-left">Released On</th>
-              <th className="px-4 py-2 text-left">Accepted On</th>
-              <th className="px-4 py-2 text-left">PO Amount</th>
-              <th className="px-4 py-2 text-left">Status</th>
-              <th className="px-4 py-2 text-left">Total GRN against PO</th>
-              <th className="px-4 py-2 text-left">
+              <th className="px-4 py-2 text-left border">Sr. No.</th>
+              <th className="px-4 py-2 text-left border">Purchase Order No.</th>
+              <th className="px-4 py-2 text-left border">Vendor Name</th>
+              <th className="px-4 py-2 text-left border">Released On</th>
+              <th className="px-4 py-2 text-left border">Accepted On</th>
+              <th className="px-4 py-2 text-left border">PO Amount</th>
+              <th className="px-4 py-2 text-left border">Status</th>
+              <th className="px-4 py-2 text-left border">
+                Total GRN against PO
+              </th>
+              <th className="px-4 py-2 text-left border">
                 Paid Invoice / Pending Invoices
               </th>
-              <th className="px-4 py-2 text-left">Actions</th>
+              <th className="px-4 py-2 text-left border">Actions</th>
             </tr>
           </thead>
           <tbody>
             {currentItems.map((item, index) => (
-              <tr key={indexOfFirstItem + index + 1}>
-                <td className="px-4 py-2">{indexOfFirstItem + index + 1}</td>
-                <td className="px-4 py-2">{item.poNo}</td>
-                <td className="px-4 py-2">{item.vendorName}</td>
-                <td className="px-4 py-2">{item.releasedOn}</td>
-                <td className="px-4 py-2">{item.acceptedOn}</td>
-                <td className="px-4 py-2">{item.poAmount}</td>
-                <td className="px-4 py-2">
+              <tr key={indexOfFirstItem + index + 1} className="bg-white">
+                <td className="px-4 py-2 border">
+                  {indexOfFirstItem + index + 1}
+                </td>
+                <td className="px-4 py-2 border">{item.poNo}</td>
+                <td className="px-4 py-2 border">{item.vendorName}</td>
+                <td className="px-4 py-2 border">{item.releasedOn}</td>
+                <td className="px-4 py-2 border">{item.acceptedOn}</td>
+                <td className="px-4 py-2 border">{item.poAmount}</td>
+                <td className="px-4 py-2 border">
                   <button
                     className={`py-1 px-2 rounded ${
                       item.status === "Active"
                         ? "bg-cyan-100 text-cyan-400"
                         : "bg-red-100 text-red-600"
                     }`}
+                    style={{ minWidth: "6rem" }}
                   >
                     {item.status === "Active" ? "Active" : "Inactive"}
                   </button>
                 </td>
-                <td className="px-4 py-2">{item.totalGrn}</td>
-                <td className="px-4 py-2">{item.invoices}</td>
-                <td className="px-4 py-2">
+                <td className="px-4 py-2 border">{item.totalGrn}</td>
+                <td className="px-4 py-2 border">{item.invoices}</td>
+                <td className="px-4 py-2 border">
                   <button
                     onClick={() => handleEdit(item.poNo)}
                     className="mr-2"
@@ -244,21 +249,40 @@ const PoDetailsA = () => {
           </tbody>
         </table>
       </div>
-      <div className="absolute right-0 top-0 mt-8 flex">
-        <button
-          onClick={handlePrevPage}
-          className="bg-gray-200 rounded-md px-3 py-1 mr-2 text-gray-600"
-        >
-          <FontAwesomeIcon icon={faArrowLeft} className="mr-1" />
-          Previous
-        </button>
-        <button
-          onClick={handleNextPage}
-          className="bg-gray-200 rounded-md px-3 py-1 text-gray-600"
-        >
-          Next
-          <FontAwesomeIcon icon={faArrowRight} className="ml-1" />
-        </button>
+
+      <div className="flex justify-end mt-2 ml-2 mr-2 ">
+        <table className="table-auto border-collapse rounded border-blue-500">
+          <tbody>
+            <tr className="bg-white">
+              <td className="px-4 py-2 border" colSpan="10">
+                <button
+                  onClick={handlePrevPage}
+                  className="pagination-button"
+                  disabled={currentPage === 1}
+                >
+                  <FontAwesomeIcon
+                    icon={faArrowLeft}
+                    className="pagination-icon"
+                  />
+                  Previous
+                </button>
+                <button
+                  onClick={handleNextPage}
+                  className="pagination-button ml-2"
+                  disabled={
+                    currentPage === Math.ceil(dummyData.length / itemsPerPage)
+                  }
+                >
+                  Next
+                  <FontAwesomeIcon
+                    icon={faArrowRight}
+                    className="pagination-icon"
+                  />
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   );
