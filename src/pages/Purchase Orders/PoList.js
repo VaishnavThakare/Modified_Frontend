@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faEdit,
   faEye,
   faArrowLeft,
   faArrowRight,
@@ -90,7 +89,6 @@ const PoList = () => {
       totalGrn: 1,
       invoices: "0 Paid / 1 Pending",
     },
-
   ];
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -98,10 +96,6 @@ const PoList = () => {
   const indexOfFirstItem = (currentPage - 1) * itemsPerPage;
   const indexOfLastItem = currentPage * itemsPerPage;
   const currentItems = dummyData.slice(indexOfFirstItem, indexOfLastItem);
-
-  const handleEdit = (poNo) => {
-    console.log("Editing PO:", poNo);
-  };
 
   const handleView = (poNo) => {
     console.log("Viewing details of PO:", poNo);
@@ -165,14 +159,11 @@ const PoList = () => {
                 <td className="px-4 py-2 border">{item.totalGrn}</td>
                 <td className="px-4 py-2 border">{item.invoices}</td>
                 <td className="px-4 py-2 border">
-                  <button
-                    onClick={() => handleEdit(item.poNo)}
-                    className="mr-2"
-                  >
-                    <FontAwesomeIcon icon={faEdit} className="text-blue-500" />
-                  </button>
                   <button onClick={() => handleView(item.poNo)}>
-                    <FontAwesomeIcon icon={faEye} className="text-blue-500" />
+                    <FontAwesomeIcon
+                      icon={faEye}
+                      className="px-4 py-2 text-blue-500"
+                    />
                   </button>
                 </td>
               </tr>

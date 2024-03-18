@@ -32,6 +32,8 @@ import DocumentDetails from "./pages/admin/DocumentDetails";
 import ProductCategory from "./pages/admin/ProductCategory";
 import AddDocument from "./pages/admin/AddDocument";
 import Documents from "./pages/admin/Documents";
+import PoDetailsA from "./pages/Purchase Orders/PoDetailsA";
+import PurchaseOrderForm from "./pages/Purchase Orders/PurchaseOrderForm";
 
 //Vendor
 import VendorDash from "./pages/vendor/VendorDash";
@@ -108,6 +110,11 @@ const App = () => {
 
           <Route path="addProfile" element={<AddProfile />}></Route>
           <Route path="allProfile" element={<AllProfile />}></Route>
+          <Route
+            path="purchase-OrderForm"
+            element={<PurchaseOrderForm />}
+          ></Route>
+          <Route path="purchase-order-list" element={<PoDetailsA />}></Route>
         </Route>
 
         <Route path="/vendor" element={<VendorDashboard />}>
