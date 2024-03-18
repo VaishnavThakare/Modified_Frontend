@@ -220,7 +220,7 @@ const PoDetailsA = () => {
               <th className="px-4 py-2 text-left border">PO Amount</th>
               <th className="px-4 py-2 text-left border">Status</th>
               <th className="px-4 py-2 text-left border">Comments</th>{" "}
-              {/* New column */}
+              
               <th className="px-4 py-2 text-left border">Actions</th>
             </tr>
           </thead>

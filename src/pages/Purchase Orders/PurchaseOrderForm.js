@@ -1,17 +1,31 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from 'axios';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const PurchaseOrderForm = () => {
   const [formData, setFormData] = useState({
     purchaseOrderNo: "",
-    vendorName: "",
+    vendorId: "", // Change state key to store vendorId instead of vendorName
     poAmount: "",
     expectedDeliveryDate: "",
-    status: "Active", // Set default status
     uploadDocument: null,
   });
-  // https://localhost:7254/api/PurchaseOrder/Add   add purchase order
-  //https://localhost:7254/api/Vendor/All           get all  vendors name display 
+  const [vendors, setVendors] = useState([]); // Rename vendorNames to vendors
+
+  useEffect(() => {
+    const fetchVendors = async () => {
+      try {
+        const response = await axios.get("https://localhost:7254/api/Vendor/All");
+        setVendors(response.data); // Store entire vendor objects
+      } catch (error) {
+        console.error("Error fetching vendors:", error);
+      }
+    };
+
+    fetchVendors();
+  }, []);
+
   const handleChange = (event) => {
     if (event.target.name === "uploadDocument") {
       setFormData({
@@ -28,49 +42,39 @@ const PurchaseOrderForm = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
-    // Prepare form data (you can modify this based on your backend requirements)
+  
     const formDataToSend = new FormData();
     formDataToSend.append("purchaseOrderNo", formData.purchaseOrderNo);
-    formDataToSend.append("vendorName", formData.vendorName);
+    formDataToSend.append("vendorId", formData.vendorId);
     formDataToSend.append("poAmount", formData.poAmount);
-    formDataToSend.append(
-      "expectedDeliveryDate",
-      formData.expectedDeliveryDate
-    );
-    formDataToSend.append("status", formData.status);
-    formDataToSend.append("uploadDocument", formData.uploadDocument);
-
-    // Send the form data to your backend using fetch or axios
+    formDataToSend.append("expectedDeliveryDate", formData.expectedDeliveryDate);
+    formDataToSend.append("Document", formData.uploadDocument); // Append the Document field with the file
+  
     try {
-      const response = await fetch("/api/purchase-orders", {
-        method: "POST",
-        body: formDataToSend,
-      });
-
-      if (response.ok) {
-        console.log("Purchase order created successfully!");
-        // Clear the form or redirect to a success page
+      const response = await axios.post("https://localhost:7254/api/PurchaseOrder/Add", formDataToSend);
+      
+      if (response.status === 200) {
+        toast.success("Purchase order created successfully!");
         setFormData({
           purchaseOrderNo: "",
-          vendorName: "",
+          vendorId: "",
           poAmount: "",
           expectedDeliveryDate: "",
-          status: "Active", // Set default status
           uploadDocument: null,
         });
       } else {
-        console.error("Error creating purchase order:", response.statusText);
+        toast.error("Error creating purchase order");
       }
     } catch (error) {
+      toast.error("Error creating purchase order");
       console.error("Error creating purchase order:", error);
     }
   };
-
+  
   return (
     <div className="py-10 flex justify-center items-center bg-gray-100 font-poppins">
       <div className="bg-white border-2 border-cyan-400 rounded-lg shadow-lg p-8 w-full max-w-lg mt">
-        <formmm onSubmit={handleSubmit}>
+        <form  onSubmit={handleSubmit}>
           <div className="grid grid-cols-1 gap-4">
             <div>
               <label
@@ -80,7 +84,7 @@ const PurchaseOrderForm = () => {
                 Purchase Order No
               </label>
               <input
-                 type="datetime-local"
+                type="text"
                 name="purchaseOrderNo"
                 id="purchaseOrderNo"
                 className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
@@ -90,19 +94,23 @@ const PurchaseOrderForm = () => {
             </div>
             <div>
               <label
-                htmlFor="vendorName"
+                htmlFor="vendorId" // Change htmlFor to vendorId
                 className="block text-sm font-medium text-gray-700"
               >
-                Select Vendor Name
+                Select Vendor
               </label>
-              <input
-                type="text"
-                name="vendorName"
-                id="vendorName"
+              <select
+                name="vendorId" // Change name to vendorId
+                id="vendorId"
                 className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                value={formData.vendorName}
+                value={formData.vendorId}
                 onChange={handleChange}
-              />
+              >
+                <option value="">-- Select Vendor --</option>
+                {vendors.map((vendor, index) => (
+                  <option key={index} value={vendor.id}>{vendor.name}</option> // Use vendor.id as value
+                ))}
+              </select>
             </div>
 
             <div>
@@ -113,7 +121,7 @@ const PurchaseOrderForm = () => {
                 Expected Delivery Date
               </label>
               <input
-                type="date"
+                type="datetime-local"
                 name="expectedDeliveryDate"
                 id="expectedDeliveryDate"
                 className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
@@ -161,7 +169,8 @@ const PurchaseOrderForm = () => {
               </button>
             </div>
           </div>
-        </formmm>
+        </form>
+        <ToastContainer />
       </div>
     </div>
   );
