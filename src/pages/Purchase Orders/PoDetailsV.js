@@ -1,171 +1,33 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faArrowLeft,
-  faArrowRight,
-} from "@fortawesome/free-solid-svg-icons";
+import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import axios from "axios";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const PoDetailsV = () => {
-  // Dummy data (9 rows)
-  const dummyData = [
-    {
-      poNo: "PO001",
-      vendorName: "Vendor A",
-      releasedOn: "2024-01-15",
-      acceptedOn: "2024-01-20",
-      poAmount: "$5000",
-      status: "Active",
-      totalGrn: 3,
-      invoices: "2 Paid / 1 Pending",
-    },
-    {
-      poNo: "PO002",
-      vendorName: "Vendor B",
-      releasedOn: "2024-02-10",
-      acceptedOn: "2024-02-15",
-      poAmount: "$7000",
-      status: "Inactive",
-      totalGrn: 1,
-      invoices: "0 Paid / 1 Pending",
-    },
-    {
-      poNo: "PO003",
-      vendorName: "Vendor C",
-      releasedOn: "2024-03-05",
-      acceptedOn: "-",
-      poAmount: "$3000",
-      status: "Active",
-      totalGrn: 0,
-      invoices: "0 Paid / 0 Pending",
-    },
-    {
-      poNo: "PO001",
-      vendorName: "Vendor A",
-      releasedOn: "2024-01-15",
-      acceptedOn: "2024-01-20",
-      poAmount: "$5000",
-      status: "Active",
-      totalGrn: 3,
-      invoices: "2 Paid / 1 Pending",
-    },
-    {
-      poNo: "PO002",
-      vendorName: "Vendor B",
-      releasedOn: "2024-02-10",
-      acceptedOn: "2024-02-15",
-      poAmount: "$7000",
-      status: "Inactive",
-      totalGrn: 1,
-      invoices: "0 Paid / 1 Pending",
-    },
-    {
-      poNo: "PO003",
-      vendorName: "Vendor C",
-      releasedOn: "2024-03-05",
-      acceptedOn: "-",
-      poAmount: "$3000",
-      status: "Active",
-      totalGrn: 0,
-      invoices: "0 Paid / 0 Pending",
-    },
-    {
-      poNo: "PO001",
-      vendorName: "Vendor A",
-      releasedOn: "2024-01-15",
-      acceptedOn: "2024-01-20",
-      poAmount: "$5000",
-      status: "Active",
-      totalGrn: 3,
-      invoices: "2 Paid / 1 Pending",
-    },
-    {
-      poNo: "PO002",
-      vendorName: "Vendor B",
-      releasedOn: "2024-02-10",
-      acceptedOn: "2024-02-15",
-      poAmount: "$7000",
-      status: "Inactive",
-      totalGrn: 1,
-      invoices: "0 Paid / 1 Pending",
-    },
-    {
-      poNo: "PO003",
-      vendorName: "Vendor C",
-      releasedOn: "2024-03-05",
-      acceptedOn: "-",
-      poAmount: "$3000",
-      status: "Active",
-      totalGrn: 0,
-      invoices: "0 Paid / 0 Pending",
-    },
-    {
-      poNo: "PO001",
-      vendorName: "Vendor A",
-      releasedOn: "2024-01-15",
-      acceptedOn: "2024-01-20",
-      poAmount: "$5000",
-      status: "Active",
-      totalGrn: 3,
-      invoices: "2 Paid / 1 Pending",
-    },
-    {
-      poNo: "PO002",
-      vendorName: "Vendor B",
-      releasedOn: "2024-02-10",
-      acceptedOn: "2024-02-15",
-      poAmount: "$7000",
-      status: "Inactive",
-      totalGrn: 1,
-      invoices: "0 Paid / 1 Pending",
-    },
-    {
-      poNo: "PO003",
-      vendorName: "Vendor C",
-      releasedOn: "2024-03-05",
-      acceptedOn: "-",
-      poAmount: "$3000",
-      status: "Active",
-      totalGrn: 0,
-      invoices: "0 Paid / 0 Pending",
-    },
-    {
-      poNo: "PO001",
-      vendorName: "Vendor A",
-      releasedOn: "2024-01-15",
-      acceptedOn: "2024-01-20",
-      poAmount: "$5000",
-      status: "Active",
-      totalGrn: 3,
-      invoices: "2 Paid / 1 Pending",
-    },
-    {
-      poNo: "PO002",
-      vendorName: "Vendor B",
-      releasedOn: "2024-02-10",
-      acceptedOn: "2024-02-15",
-      poAmount: "$7000",
-      status: "Inactive",
-      totalGrn: 1,
-      invoices: "0 Paid / 1 Pending",
-    },
-    {
-      poNo: "PO003",
-      vendorName: "Vendor C",
-      releasedOn: "2024-03-05",
-      acceptedOn: "-",
-      poAmount: "$3000",
-      status: "Active",
-      totalGrn: 0,
-      invoices: "0 Paid / 0 Pending",
-    },
-  ];
-
+  const [purchaseOrders, setPurchaseOrders] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 5;
+
+  useEffect(() => {
+    const fetchPurchaseOrders = async () => {
+      try {
+        const response = await axios.get(
+          "https://localhost:7254/api/PurchaseOrder/All"
+        );
+        setPurchaseOrders(response.data);
+      } catch (error) {
+        console.error("Error fetching purchase orders:", error);
+      }
+    };
+
+    fetchPurchaseOrders();
+  }, []);
+
   const indexOfFirstItem = (currentPage - 1) * itemsPerPage;
   const indexOfLastItem = currentPage * itemsPerPage;
-  const currentItems = dummyData.slice(indexOfFirstItem, indexOfLastItem);
-
+  const currentItems = purchaseOrders.slice(indexOfFirstItem, indexOfLastItem);
 
   const handlePrevPage = () => {
     setCurrentPage((prevPage) => Math.max(prevPage - 1, 1));
@@ -173,28 +35,63 @@ const PoDetailsV = () => {
 
   const handleNextPage = () => {
     setCurrentPage((prevPage) =>
-      Math.min(prevPage + 1, Math.ceil(dummyData.length / itemsPerPage))
+      Math.min(prevPage + 1, Math.ceil(purchaseOrders.length / itemsPerPage))
     );
   };
 
-  const handleAccept = (poNo) => {
-    console.log("Accepting PO:", poNo);
-    // Add logic here to handle acceptance
+  const handleAccept = async (orderId, comment) => {
+    try {
+      await axios.post(
+        `https://localhost:7254/api/PurchaseOrder/AcceptReject`,
+        {
+          id: orderId,
+          isAccepted: true,
+          comment: comment,
+        }
+      );
+      // Assuming the API call was successful, update the UI
+      setPurchaseOrders((prevOrders) =>
+        prevOrders.map((order) =>
+          order.id === orderId ? { ...order, isAccepted: true } : order
+        )
+      );
+      toast.success("Purchase order accepted successfully!");
+    } catch (error) {
+      console.error("Error accepting purchase order:", error);
+      toast.error("Failed to accept purchase order.");
+    }
   };
 
-  const handleReject = (poNo) => {
-    console.log("Rejecting PO:", poNo);
-    // Add logic here to handle rejection
+  const handleReject = async (orderId, comment) => {
+    try {
+      await axios.post(
+        `https://localhost:7254/api/PurchaseOrder/AcceptReject`,
+        {
+          id: orderId,
+          isAccepted: false,
+          comment: comment,
+        }
+      );
+      // Assuming the API call was successful, update the UI
+      setPurchaseOrders((prevOrders) =>
+        prevOrders.map((order) =>
+          order.id === orderId ? { ...order, isAccepted: false } : order
+        )
+      );
+      toast.success("Purchase order rejected successfully!");
+    } catch (error) {
+      console.error("Error rejecting purchase order:", error);
+      toast.error("Failed to reject purchase order.");
+    }
   };
 
-  const [comments, setComments] = useState({});
-
-  const handleCommentChange = (event, poNo) => {
+  const handleCommentChange = (event, orderId) => {
     const { value } = event.target;
-    setComments((prevComments) => ({
-      ...prevComments,
-      [poNo]: value,
-    }));
+    setPurchaseOrders((prevOrders) =>
+      prevOrders.map((order) =>
+        order.id === orderId ? { ...order, comment: value } : order
+      )
+    );
   };
 
   return (
@@ -213,25 +110,25 @@ const PoDetailsV = () => {
             </tr>
           </thead>
           <tbody>
-            {currentItems.map((item, index) => (
-              <tr key={indexOfFirstItem + index + 1} className="bg-white">
+            {currentItems.map((order, index) => (
+              <tr key={index} className="bg-white">
                 <td className="px-4 py-2 border">
                   {indexOfFirstItem + index + 1}
                 </td>
-                <td className="px-4 py-2 border">{item.poNo}</td>
-                <td className="px-4 py-2 border">{item.vendorName}</td>
-                <td className="px-4 py-2 border">{item.releasedOn}</td>
-                <td className="px-4 py-2 border">{item.poAmount}</td>
+                <td className="px-4 py-2 border">{order.orderNo}</td>
+                <td className="px-4 py-2 border">{order.vendorId}</td>
+                <td className="px-4 py-2 border">{order.releaseDate}</td>
+                <td className="px-4 py-2 border">{order.orderAmount}</td>
                 <td className="px-4 py-2 border">
                   <div className="flex">
                     <button
-                      onClick={() => handleAccept(item.poNo)}
+                      onClick={() => handleAccept(order.id, order.comment)}
                       className="px-4 py-2 mr-2 bg-green-500 text-white rounded hover:bg-green-600"
                     >
                       Accept
                     </button>
                     <button
-                      onClick={() => handleReject(item.poNo)}
+                      onClick={() => handleReject(order.id, order.comment)}
                       className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
                     >
                       Reject
@@ -242,8 +139,8 @@ const PoDetailsV = () => {
                   <textarea
                     rows="2"
                     cols="25"
-                    value={comments[item.poNo] || ""}
-                    onChange={(e) => handleCommentChange(e, item.poNo)}
+                    value={order.comment || ""}
+                    onChange={(e) => handleCommentChange(e, order.id)}
                     className="border rounded px-2 py-1 w-full focus:outline-none focus:ring focus:border-blue-300"
                     placeholder="Add comments..."
                   />
@@ -274,7 +171,8 @@ const PoDetailsV = () => {
                   onClick={handleNextPage}
                   className="pagination-button ml-2"
                   disabled={
-                    currentPage === Math.ceil(dummyData.length / itemsPerPage)
+                    currentPage ===
+                    Math.ceil(purchaseOrders.length / itemsPerPage)
                   }
                 >
                   Next
@@ -288,6 +186,8 @@ const PoDetailsV = () => {
           </tbody>
         </table>
       </div>
+
+      <ToastContainer />
     </div>
   );
 };
