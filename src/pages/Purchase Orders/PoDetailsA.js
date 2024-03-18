@@ -8,7 +8,15 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 const PoDetailsA = () => {
-  // Dummy data (9 rows)
+  const [currentPage, setCurrentPage] = useState(1);
+  const [editModalOpen, setEditModalOpen] = useState(false);
+  const [selectedItem, setSelectedItem] = useState(null);
+  const [editedData, setEditedData] = useState({
+    poNo: "",
+    vendorName: "",
+    poAmount: "",
+  });
+  const itemsPerPage = 5;
   const dummyData = [
     {
       poNo: "PO001",
@@ -16,19 +24,17 @@ const PoDetailsA = () => {
       releasedOn: "2024-01-15",
       acceptedOn: "2024-01-20",
       poAmount: "$5000",
-      status: "Active",
-      totalGrn: 3,
-      invoices: "2 Paid / 1 Pending",
+      status: "Accepted",
+      comments: "Nice Deal", // Updated status to Accepted
     },
     {
       poNo: "PO002",
       vendorName: "Vendor B",
       releasedOn: "2024-02-10",
-      acceptedOn: "2024-02-15",
+      acceptedOn: "-",
       poAmount: "$7000",
-      status: "Inactive",
-      totalGrn: 1,
-      invoices: "0 Paid / 1 Pending",
+      status: "Rejected",
+      comments: "Price is too low",
     },
     {
       poNo: "PO003",
@@ -36,144 +42,89 @@ const PoDetailsA = () => {
       releasedOn: "2024-03-05",
       acceptedOn: "-",
       poAmount: "$3000",
-      status: "Active",
-      totalGrn: 0,
-      invoices: "0 Paid / 0 Pending",
+      status: "Rejected",
+      comments: "Not Good Deal",
     },
     {
-      poNo: "PO001",
+      poNo: "PO004",
       vendorName: "Vendor A",
       releasedOn: "2024-01-15",
       acceptedOn: "2024-01-20",
       poAmount: "$5000",
-      status: "Active",
-      totalGrn: 3,
-      invoices: "2 Paid / 1 Pending",
+      status: "Accepted",
     },
     {
-      poNo: "PO002",
+      poNo: "PO005",
       vendorName: "Vendor B",
       releasedOn: "2024-02-10",
-      acceptedOn: "2024-02-15",
+      acceptedOn: "-",
       poAmount: "$7000",
-      status: "Inactive",
-      totalGrn: 1,
-      invoices: "0 Paid / 1 Pending",
+      status: "Rejected",
     },
     {
-      poNo: "PO003",
+      poNo: "PO006",
       vendorName: "Vendor C",
       releasedOn: "2024-03-05",
-      acceptedOn: "-",
+      acceptedOn: "2024-01-20",
       poAmount: "$3000",
-      status: "Active",
-      totalGrn: 0,
-      invoices: "0 Paid / 0 Pending",
+      status: "Accepted",
     },
     {
-      poNo: "PO001",
+      poNo: "PO007",
       vendorName: "Vendor A",
       releasedOn: "2024-01-15",
       acceptedOn: "2024-01-20",
       poAmount: "$5000",
-      status: "Active",
-      totalGrn: 3,
-      invoices: "2 Paid / 1 Pending",
+      status: "Accepted",
     },
     {
-      poNo: "PO002",
+      poNo: "PO008",
       vendorName: "Vendor B",
       releasedOn: "2024-02-10",
-      acceptedOn: "2024-02-15",
+      acceptedOn: "-",
       poAmount: "$7000",
-      status: "Inactive",
-      totalGrn: 1,
-      invoices: "0 Paid / 1 Pending",
+      status: "Rejected",
     },
     {
-      poNo: "PO003",
+      poNo: "PO009",
       vendorName: "Vendor C",
       releasedOn: "2024-03-05",
-      acceptedOn: "-",
+      acceptedOn: "2024-01-20",
       poAmount: "$3000",
-      status: "Active",
-      totalGrn: 0,
-      invoices: "0 Paid / 0 Pending",
+      status: "Accepted",
     },
     {
-      poNo: "PO001",
+      poNo: "PO010",
       vendorName: "Vendor A",
       releasedOn: "2024-01-15",
       acceptedOn: "2024-01-20",
       poAmount: "$5000",
-      status: "Active",
-      totalGrn: 3,
-      invoices: "2 Paid / 1 Pending",
-    },
-    {
-      poNo: "PO002",
-      vendorName: "Vendor B",
-      releasedOn: "2024-02-10",
-      acceptedOn: "2024-02-15",
-      poAmount: "$7000",
-      status: "Inactive",
-      totalGrn: 1,
-      invoices: "0 Paid / 1 Pending",
-    },
-    {
-      poNo: "PO003",
-      vendorName: "Vendor C",
-      releasedOn: "2024-03-05",
-      acceptedOn: "-",
-      poAmount: "$3000",
-      status: "Active",
-      totalGrn: 0,
-      invoices: "0 Paid / 0 Pending",
-    },
-    {
-      poNo: "PO001",
-      vendorName: "Vendor A",
-      releasedOn: "2024-01-15",
-      acceptedOn: "2024-01-20",
-      poAmount: "$5000",
-      status: "Active",
-      totalGrn: 3,
-      invoices: "2 Paid / 1 Pending",
-    },
-    {
-      poNo: "PO002",
-      vendorName: "Vendor B",
-      releasedOn: "2024-02-10",
-      acceptedOn: "2024-02-15",
-      poAmount: "$7000",
-      status: "Inactive",
-      totalGrn: 1,
-      invoices: "0 Paid / 1 Pending",
-    },
-    {
-      poNo: "PO003",
-      vendorName: "Vendor C",
-      releasedOn: "2024-03-05",
-      acceptedOn: "-",
-      poAmount: "$3000",
-      status: "Active",
-      totalGrn: 0,
-      invoices: "0 Paid / 0 Pending",
+      status: "Accepted",
     },
   ];
 
-  const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 5;
   const indexOfFirstItem = (currentPage - 1) * itemsPerPage;
   const indexOfLastItem = currentPage * itemsPerPage;
   const currentItems = dummyData.slice(indexOfFirstItem, indexOfLastItem);
 
-  const handleEdit = (poNo) => {
-    console.log("Editing PO:", poNo);
+  const handleEdit = (item) => {
+    setSelectedItem(item);
+    setEditedData({
+      poNo: item.poNo,
+      vendorName: item.vendorName,
+      poAmount: item.poAmount,
+    });
+    setEditModalOpen(true);
   };
 
-  const handleView = (poNo) => {
-    console.log("Viewing details of PO:", poNo);
+  const handleSaveEdit = () => {
+    // Save edited data here
+    console.log("Saving edited data:", editedData);
+    setEditModalOpen(false);
+  };
+
+  const handleCancelEdit = () => {
+    setEditModalOpen(false);
   };
 
   const handlePrevPage = () => {
@@ -186,12 +137,81 @@ const PoDetailsA = () => {
     );
   };
 
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setEditedData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
   return (
     <div className="relative">
+      {editModalOpen && (
+        <div className="fixed top-0 left-0 w-full h-full bg-gray-900 bg-opacity-50 flex justify-center items-center">
+          <div className="bg-gray-300 p-8 rounded-lg">
+            <h2 className="text-xl font-semibold mb-4">Edit Purchase Order</h2>
+            <formm>
+              <div className="mb-4">
+                <label className="block text-sm font-medium text-gray-700">
+                  Purchase Order No.
+                </label>
+                <input
+                  type="text"
+                  name="poNo"
+                  value={editedData.poNo}
+                  onChange={handleInputChange}
+                  className="mt-1 p-2 border border-gray-300 rounded-md w-full"
+                />
+              </div>
+              <div className="mb-4">
+                <label className="block text-sm font-medium text-gray-700">
+                  Vendor Name
+                </label>
+                <input
+                  type="text"
+                  name="vendorName"
+                  value={editedData.vendorName}
+                  onChange={handleInputChange}
+                  className="mt-1 p-2 border border-gray-300 rounded-md w-full"
+                />
+              </div>
+              <div className="mb-4">
+                <label className="block text-sm font-medium text-gray-700">
+                  PO Amount
+                </label>
+                <input
+                  type="text"
+                  name="poAmount"
+                  value={editedData.poAmount}
+                  onChange={handleInputChange}
+                  className="mt-1 p-2 border border-gray-300 rounded-md w-full"
+                />
+              </div>
+              <div className="flex justify-end">
+                <button
+                  type="button"
+                  onClick={handleSaveEdit}
+                  className="bg-blue-500 text-white px-4 py-2 rounded-md mr-2"
+                >
+                  Save
+                </button>
+                <button
+                  type="button"
+                  onClick={handleCancelEdit}
+                  className="bg-gray-300 text-gray-700 px-4 py-2 rounded-md"
+                >
+                  Cancel
+                </button>
+              </div>
+            </formm>
+          </div>
+        </div>
+      )}
       <div className="overflow-x-auto mt-8 ml-2 mr-2 border rounded border-gray-300">
-        <table className="table-auto w-full rounded-md border-2 border-cyan-400 ">
+        <table className="table-auto w-full rounded-md border-2 border-cyan-400 shadow-md">
           <thead>
-            <tr className="bg-gray-200">
+            <tr className="bg-gray-300 text-gray-600">
               <th className="px-4 py-2 text-left border">Sr. No.</th>
               <th className="px-4 py-2 text-left border">Purchase Order No.</th>
               <th className="px-4 py-2 text-left border">Vendor Name</th>
@@ -199,18 +219,14 @@ const PoDetailsA = () => {
               <th className="px-4 py-2 text-left border">Accepted On</th>
               <th className="px-4 py-2 text-left border">PO Amount</th>
               <th className="px-4 py-2 text-left border">Status</th>
-              <th className="px-4 py-2 text-left border">
-                Total GRN against PO
-              </th>
-              <th className="px-4 py-2 text-left border">
-                Paid Invoice / Pending Invoices
-              </th>
+              <th className="px-4 py-2 text-left border">Comments</th>{" "}
+              {/* New column */}
               <th className="px-4 py-2 text-left border">Actions</th>
             </tr>
           </thead>
           <tbody>
             {currentItems.map((item, index) => (
-              <tr key={indexOfFirstItem + index + 1} className="bg-white">
+              <tr key={indexOfFirstItem + index + 1} className="bg-gray-200">
                 <td className="px-4 py-2 border">
                   {indexOfFirstItem + index + 1}
                 </td>
@@ -222,26 +238,31 @@ const PoDetailsA = () => {
                 <td className="px-4 py-2 border">
                   <button
                     className={`py-1 px-2 rounded ${
-                      item.status === "Active"
-                        ? "bg-cyan-100 text-cyan-400"
-                        : "bg-red-100 text-red-600"
+                      item.status === "Accepted"
+                        ? "bg-green-200 text-green-700"
+                        : "bg-red-200 text-red-600"
                     }`}
                     style={{ minWidth: "6rem" }}
                   >
-                    {item.status === "Active" ? "Active" : "Inactive"}
+                    {item.status}
                   </button>
                 </td>
-                <td className="px-4 py-2 border">{item.totalGrn}</td>
-                <td className="px-4 py-2 border">{item.invoices}</td>
+                <td className="px-4 py-2 border">{item.comments}</td>{" "}
+                {/* Display comments */}
                 <td className="px-4 py-2 border">
                   <button
-                    onClick={() => handleEdit(item.poNo)}
-                    className="mr-2"
+                    onClick={() => handleEdit(item)}
+                    className={`mr-2 ${
+                      item.status === "Accepted" ? "disabled-button" : ""
+                    }`}
+                    disabled={item.status === "Accepted"}
                   >
-                    <FontAwesomeIcon icon={faEdit} className="text-blue-500" />
-                  </button>
-                  <button onClick={() => handleView(item.poNo)}>
-                    <FontAwesomeIcon icon={faEye} className="text-blue-500" />
+                    <FontAwesomeIcon
+                      icon={faEdit}
+                      className={`text-blue-500 ${
+                        item.status === "Accepted" ? "text-gray-500" : ""
+                      }`}
+                    />
                   </button>
                 </td>
               </tr>
@@ -250,7 +271,7 @@ const PoDetailsA = () => {
         </table>
       </div>
 
-      <div className="flex justify-end mt-2 ml-2 mr-2 ">
+      <div className="flex justify-end mt-2 ml-2 mr-2">
         <table className="table-auto border-collapse rounded border-blue-500">
           <tbody>
             <tr className="bg-white">

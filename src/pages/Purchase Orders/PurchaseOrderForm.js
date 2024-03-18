@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "axios";
 
 const PurchaseOrderForm = () => {
   const [formData, setFormData] = useState({
@@ -10,6 +11,18 @@ const PurchaseOrderForm = () => {
     uploadDocument: null,
   });
 
+  const fetchVendors = () => {
+    axios
+      .get("https://localhost:7254/api/Vendor/All")
+      .then((response) => {
+        setVendors(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching vendor:", error);
+      });
+  };
+  // https://localhost:7254/api/PurchaseOrder/Add   add purchase order
+  // https://localhost:7254/api/Vendor/All           get all  vendors name display
   const handleChange = (event) => {
     if (event.target.name === "uploadDocument") {
       setFormData({
@@ -66,9 +79,9 @@ const PurchaseOrderForm = () => {
   };
 
   return (
-    <div className="min-h-screen flex justify-center items-center bg-gray-100 font-poppins">
-      <div className="bg-white border-4 border-cyan-400 rounded-lg shadow-lg p-8 w-full max-w-lg">
-        <form onSubmit={handleSubmit}>
+    <div className="py-10 flex justify-center items-center bg-gray-100 font-poppins">
+      <div className="bg-white border-2 border-cyan-400 rounded-lg shadow-lg p-8 w-full max-w-lg mt">
+        <formmm onSubmit={handleSubmit}>
           <div className="grid grid-cols-1 gap-4">
             <div>
               <label
@@ -86,24 +99,33 @@ const PurchaseOrderForm = () => {
                 onChange={handleChange}
               />
             </div>
-            <div>
+            <div className="mb-4">
               <label
-                htmlFor="vendorName"
-                className="block text-sm font-medium text-gray-700"
+                htmlFor="categorySelect"
+                className="block text-gray-700 text-sm font-bold mb-2"
               >
-                Vendor Name
+                Select a category:
               </label>
-              <input
-                type="text"
-                name="vendorName"
-                id="vendorName"
-                className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                value={formData.vendorName}
+              <select
+                required
+                id="categorySelect"
+                name="vendorCategoryId"
+                value={formData.vendorCategoryId}
                 onChange={handleChange}
-              />
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              >
+                <option value="">Select an option</option>
+                {categories.map((category) => (
+                  <option key={category.id} value={category.id}>
+                    {category.name}
+                  </option>
+                ))}
+              </select>
             </div>
 
             <div>
+          
+ 
               <label
                 htmlFor="expectedDeliveryDate"
                 className="block text-sm font-medium text-gray-700"
@@ -111,7 +133,7 @@ const PurchaseOrderForm = () => {
                 Expected Delivery Date
               </label>
               <input
-                type="date"
+                type="datetime-local"
                 name="expectedDeliveryDate"
                 id="expectedDeliveryDate"
                 className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
@@ -139,7 +161,7 @@ const PurchaseOrderForm = () => {
                 htmlFor="poAmount"
                 className="block text-sm font-medium text-gray-700"
               >
-                Order Amount
+                PO Amount
               </label>
               <input
                 type="number"
@@ -159,7 +181,7 @@ const PurchaseOrderForm = () => {
               </button>
             </div>
           </div>
-        </form>
+        </formmm>
       </div>
     </div>
   );
