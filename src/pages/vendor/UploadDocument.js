@@ -1,6 +1,8 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 function UploadDocument(){
@@ -34,7 +36,9 @@ function UploadDocument(){
         var did = event.target.getAttribute('data-key');
         console.log(did);
         if(File.length==0){
-            alert("select file to upload");
+            toast.error("elect file to upload",{
+                position:"top-center"
+              });
         }
         else{
             console.log("submited");
@@ -60,7 +64,9 @@ function UploadDocument(){
                   });
                 console.log(res.data);
                 if(res.status==200){
-                    alert("Uploaded");
+                    toast.success("Document Uploaded",{
+                        position:"top-right"
+                      });
                 }
             }
             catch(error){
@@ -118,6 +124,7 @@ function UploadDocument(){
                 </table>
             </div>
         </div>
+        <ToastContainer/>
     </>
     );
 }
