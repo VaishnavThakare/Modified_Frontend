@@ -1,10 +1,68 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function RFP() {
   const [rfps, setRFPs] = useState([]);
   const navigate = useNavigate();
+  const [showEditModal, setShowEditModal] = useState(false);
+
+  const [rfp,setRFP] = useState({
+    RFPId:"",
+    VendorId:"",
+    Document:"",
+    Comment:""
+  });
+  const [file, setFile] = useState();
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setRFP((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const handleFile = (event) => {
+    setFile(event.target.files[0]);
+    rfp.Document = event.target.files[0];
+  };
+
+  const applyRFP = async (e) =>{
+    e.preventDefault();
+    try{
+      rfp.VendorId = sessionStorage.getItem("sid");
+      console.log(rfp);
+      const formDataToSend = new FormData();
+      formDataToSend.append("RFPId", rfp.RFPId);
+      formDataToSend.append("Document", file);
+      formDataToSend.append("VendorId",rfp.VendorId);
+      formDataToSend.append("Comment",rfp.Comment);
+      const res = await axios.post(`${process.env.REACT_APP_API_URL}/RFPApplication/Add`,formDataToSend);
+      if(res.status === 200){
+        toast.success("Application Submitted",{
+          position:"top-right"
+        });
+        toggleEditModal();
+        setRFP({
+          RFPId:"",
+          VendorId:"",
+          Document:"",
+          Comment:""
+        });
+      }
+    }
+    catch(error){
+      console.log(error);
+    }
+  }
+
+  const toggleEditModal = (e) => {
+    setShowEditModal(!showEditModal);
+    rfp.RFPId = e.target.getAttribute("data-key");
+  };
 
   useEffect(() => {
     const fetchRFPData = async () => {
@@ -54,6 +112,9 @@ export default function RFP() {
                 <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-blue-500 tracking-wider">
                   End On
                 </th>
+                <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-blue-500 tracking-wider">
+                  Action
+                </th>                
               </tr>
             </thead>
             <tbody className="bg-white">
@@ -84,12 +145,82 @@ export default function RFP() {
                       {new Date(rfp.endDate).toLocaleDateString("es-CL")}
                     </div>
                   </td>
+                  <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
+                    <button onClick={toggleEditModal} data-key={rfp.id} className="text-sm leading-5 bg-green-400 py-[3px] px-[5px] text-white font-serif rounded">
+                      APPLY
+                    </button>
+                  </td>                  
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
       </div>
+
+
+      {
+        showEditModal && <>
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+          <div className="bg-white p-2 max-w-md rounded-lg shadow-md">
+            <form onSubmit={applyRFP}>
+              <div className="flex text-2xl font-bold text-gray-500 mb-2">
+                <h2>Apply for RFP</h2>
+              </div>
+
+              <div class="mb-6">
+                <label
+                  for="name"
+                  class="block mb-2 text-sm font-medium text-gray-900"
+                >
+                  Comment
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  name="Comment"
+                  value={rfp.Comment}
+                  onChange={handleChange}
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                  required
+                />
+              </div>
+
+              <div class="mb-6">
+                <label
+                  for="file"
+                  class="block mb-2 text-sm font-medium text-gray-900"
+                >
+                  Upload Document
+                </label>
+                <input
+                  type="file"
+                  id="file"
+                  name="Document"
+                  onChange={handleFile}
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                />
+              </div>
+
+              <button
+                type="submit"
+                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                onClick={applyRFP}
+              >
+                Apply For RFP
+              </button>
+              <button
+               onClick={toggleEditModal}
+                className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded ml-2"
+              >
+                Close
+              </button>
+            </form>
+          </div>
+        </div>
+        </>
+
+      }
+      <ToastContainer/>
     </>
   );
 }
