@@ -41,7 +41,7 @@ import RFP from "./pages/vendor/RFP";
 import VendorProfile from "./pages/vendor/VendorProfile";
 import UploadDocument from "./pages/vendor/UploadDocument";
 import PoList from "./pages/Purchase Orders/PoList";
-import PurchaseOrderTable from "./pages/Purchase Orders/PoDetailsV";
+import PoDetailsV from "./pages/Purchase Orders/PoDetailsV";
 
 //ProjectHead
 import ProjectHeadDash from "./pages/projecthead/ProjectHeadDash";
@@ -118,7 +118,7 @@ const App = () => {
           <Route path="rfp" element={<RFP />} />
           <Route path="upload-document" element={<UploadDocument />} />
           <Route path="purchase-order-list" element={<PoList />} />
-          <Route path="purchase-order-details" element={<PurchaseOrderTable />} />
+          <Route path="po-check" element={<PoDetailsV />} />
         </Route>
 
         <Route path="/projecthead" element={<ProjectHeadDashboard />}>

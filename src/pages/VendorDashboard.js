@@ -35,6 +35,7 @@ export default function VendorDashboard() {
       subItems: [
         // { text: "Purchase Order Details", link: "purchase-order-details" },
         { text: "Purchase Order List", link: "purchase-order-list" },
+        { text: "Purchase Order", link: "po-check" },
       ],
     },
   ];
