@@ -38,6 +38,8 @@ import VendorDash from "./pages/vendor/VendorDash";
 import RFP from "./pages/vendor/RFP";
 import VendorProfile from "./pages/vendor/VendorProfile";
 import UploadDocument from "./pages/vendor/UploadDocument";
+import PoList from "./pages/Purchase Orders/PoList";
+import PurchaseOrderTable from "./pages/Purchase Orders/PoDetailsV";
 
 //ProjectHead
 import ProjectHeadDash from "./pages/projecthead/ProjectHeadDash";
@@ -56,7 +58,6 @@ import AddPolicyDocument from "./pages/admin/Documents/AddPolicyDocument";
 import AllPolicyDocuments from "./pages/admin/Documents/AllPolicyDocuments";
 import AddProfile from "./pages/admin/Profile/AddProfile";
 import AllProfile from "./pages/admin/Profile/AllProfile";
-
 
 const App = () => {
   const [userRole, setuserRole] = useState(sessionStorage.getItem("roles"));
@@ -115,6 +116,11 @@ const App = () => {
           <Route path="profile" element={<VendorProfile />} />
           <Route path="rfp" element={<RFP />} />
           <Route path="upload-document" element={<UploadDocument />} />
+          <Route path="purchase-order-list" element={<PoList />} />
+          <Route
+            path="purchase-order-details"
+            element={<PurchaseOrderTable />}
+          />
         </Route>
 
         <Route path="/projecthead" element={<ProjectHeadDashboard />}>

@@ -27,6 +27,16 @@ export default function VendorDashboard() {
       bgColor: "bg-cyan-500",
       subItems: [{ text: "Upload Documents", link: "upload-document" }],
     },
+    {
+      text: "Purchase Order",
+      icon: "ri ri-archive-2-line",
+      link: "#",
+      bgColor: "bg-cyan-600",
+      subItems: [
+        // { text: "Purchase Order Details", link: "purchase-order-details" },
+        { text: "Purchase Order List", link: "purchase-order-list" },
+      ],
+    },
   ];
 
   const handleMenuVisible = () => {
