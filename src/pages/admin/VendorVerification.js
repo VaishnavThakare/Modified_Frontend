@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link , Route, Router, Routes} from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function VendorVerification() {
   const [vendors, setVendors] = useState([]);
@@ -97,6 +99,7 @@ export default function VendorVerification() {
           )
         )}
       </div>
+      <ToastContainer/>
     </>
   );
 }

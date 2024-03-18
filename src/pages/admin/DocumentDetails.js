@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const DocumentDetails = () => {
   const [vendorDetails, setVendorDetails] = useState(null);
@@ -9,18 +11,18 @@ const DocumentDetails = () => {
   const [rComment,setComment] = useState("");
   const { id } = useParams();
 
-  useEffect(() => {
-    const fetchVendorDetails = async () => {
-      try {
-        const response = await axios.get(
-          `${process.env.REACT_APP_API_URL}/Vendor/${id}`
-        );
-        setVendorDetails(response.data);
-      } catch (error) {
-        console.error("Error fetching vendor details:", error);
-      }
-    };
+  const fetchVendorDetails = async () => {
+    try {
+      const response = await axios.get(
+        `${process.env.REACT_APP_API_URL}/Vendor/${id}`
+      );
+      setVendorDetails(response.data);
+    } catch (error) {
+      console.error("Error fetching vendor details:", error);
+    }
+  };
 
+  useEffect(() => {
     fetchVendorDetails();
     setDisplay("none");
   }, [id]);
@@ -36,8 +38,11 @@ const DocumentDetails = () => {
         documentVerified:true,
         comment:'Approved'
       });
+      fetchVendorDetails();
       if(res.status == 200){
-        alert("Document Approve!!");
+        toast.success("Document Approved",{
+          position:"top-right"
+        });
       }
     }
     catch(error){
@@ -48,9 +53,7 @@ const DocumentDetails = () => {
   const handleReject = (event)=>{
     const id = event.target.getAttribute('data-key');
     // alert(id)
-;    
-    setRejectId(id)
-;
+    setRejectId(id);
     setDisplay("grid");
   }
 
@@ -58,17 +61,18 @@ const DocumentDetails = () => {
     setDisplay("none");
   }
 
-  const rejectComment = async (event)=>{
-    alert(rejectId);   
-    console.log(rComment);
+  const rejectComment = async (event)=>{ 
     try{
       const res = await axios.post(`${process.env.REACT_APP_API_URL}/Vendor/DocVerify`,{
         'id':rejectId,
         documentVerified:false,
         comment:rComment
       });
+      fetchVendorDetails();
       if(res.status == 200){
-        alert("Document Rejected !!");
+        toast.error("Document Rejected",{
+          position:"top-right"
+        });
       }
     }
     catch(error){
@@ -141,7 +145,7 @@ const DocumentDetails = () => {
                           document.documentPath==null ?
                           "not uploaded the document"
                           :
-                          <a href={document.documentPath}>{document.documentName}</a>
+                          <a href={document.documentPath} target="_blank">{document.documentName}</a>
                         }
                       </td>
                       <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
@@ -175,7 +179,7 @@ const DocumentDetails = () => {
         <button onClick={rejectCancel} className=" bg-red-400 w-[180px] h-[30px] ml-[5px] rounded-[10px] border border-solid border-black">Cancel</button>
         </div>
       </div>
-
+      <ToastContainer/>
     </>
 
   );
