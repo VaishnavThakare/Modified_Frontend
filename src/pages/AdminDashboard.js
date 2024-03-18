@@ -80,6 +80,7 @@ export default function AdminDashboard() {
       subItems: [
         { text: "All RFP", link: "rfp" },
         { text: "Create RFP", link: "create-rfp" },
+        { text: "Application ", link: "all-application" },
       ],
       bgColor: "bg-cyan-700",
     },
