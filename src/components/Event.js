@@ -39,7 +39,7 @@ const Event= () => {
         setevents(res.data);   
       }
     } catch (error) {
-      console.error("Error fetching Project data:", error);
+      console.error("Error fetching Project data:", error); 
     }
     finally{
       console.log(events);
