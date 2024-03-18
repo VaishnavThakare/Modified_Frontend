@@ -97,9 +97,9 @@ const PoDetailsV = () => {
   return (
     <div className="relative">
       <div className="overflow-x-auto mt-8 ml-2 mr-2 border rounded border-gray-300">
-        <table className="table-auto w-full rounded-md border-2 border-cyan-400">
+        <table className="table-auto w-full rounded-md border-2 border-cyan-400 ">
           <thead>
-            <tr className="bg-gray-200">
+            <tr className="bg-gray-300 text-gray-600">
               <th className="px-4 py-2 text-left border">Sr. No.</th>
               <th className="px-4 py-2 text-left border">Purchase Order No.</th>
               <th className="px-4 py-2 text-left border">Vendor Name</th>
@@ -111,7 +111,7 @@ const PoDetailsV = () => {
           </thead>
           <tbody>
             {currentItems.map((order, index) => (
-              <tr key={index} className="bg-white">
+              <tr key={index} className="bg-gray-200">
                 <td className="px-4 py-2 border">
                   {indexOfFirstItem + index + 1}
                 </td>
