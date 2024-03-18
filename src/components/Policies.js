@@ -32,14 +32,17 @@ function Policies() {
   const getAllDocuments = async () => {
     try {
       let res = await axios.get(`${process.env.REACT_APP_API_URL}/PolicyDocument/All`);
-      console.log(res.data);
+     // console.log(res.data);
       let data = [];
-      if(res.status == 200 && res.data!=null){
+      if(res.status == 200 && res.data!=null && res.data.length > 0 ){
         setdocument(res.data);
       }
-      console.log(data);
+     // console.log(pdocument);
     } catch (error) {
       console.error("Error fetching Project data:", error);
+    }
+    finally{
+      console.log(pdocument);
     }
   };
 

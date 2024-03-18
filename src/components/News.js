@@ -36,8 +36,9 @@ const News = () => {
   const getAllNews = async () => {
     try {
       let res = await axios.get(`${process.env.REACT_APP_API_URL}/News/All`);
-      if (res.status == 200 && res.data != null) {
+      if (res.status == 200 && res.data != null && res.data.length > 0) {
         setnews(res.data);
+        console.log(res.data);
       }
     } 
     catch (error) {

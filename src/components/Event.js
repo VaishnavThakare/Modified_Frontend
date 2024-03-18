@@ -34,12 +34,15 @@ const Event= () => {
   const getAllEvents = async () => {
     try {
       let res = await axios.get(`${process.env.REACT_APP_API_URL}/Event/All`);
-      console.log(res.data);
-      if(res.status == 200 && res.data!=null){
+      //console.log(res.data);
+      if(res.status == 200 && res.data != null && res.data.length > 0){
         setevents(res.data);   
       }
     } catch (error) {
       console.error("Error fetching Project data:", error);
+    }
+    finally{
+      console.log(events);
     }
   };
 

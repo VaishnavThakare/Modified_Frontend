@@ -34,7 +34,7 @@ const Carousel = () => {
   const getAllBanners = async () => {
     try {
       let res = await axios.get(`${process.env.REACT_APP_API_URL}/Banner/All`);
-      if (res.status == 200 && res.data != null) {
+      if (res.status == 200 && res.data != null && res.data.length > 0) {
         setbanners(res.data);
       }
     } catch (error) {
