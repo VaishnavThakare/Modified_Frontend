@@ -1,21 +1,16 @@
+
+
+
+// PoDetailsA.jsx
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faEdit,
-  faEye,
-  faArrowLeft,
-  faArrowRight,
-} from "@fortawesome/free-solid-svg-icons";
+import { faEdit, faEye, faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 
 const PoDetailsA = () => {
   const [currentPage, setCurrentPage] = useState(1);
-  const [editModalOpen, setEditModalOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
-  const [editedData, setEditedData] = useState({
-    poNo: "",
-    vendorName: "",
-    poAmount: "",
-  });
+  const navigate = useNavigate(); 
   const itemsPerPage = 5;
   const dummyData = [
     {
@@ -109,22 +104,11 @@ const PoDetailsA = () => {
 
   const handleEdit = (item) => {
     setSelectedItem(item);
-    setEditedData({
-      poNo: item.poNo,
-      vendorName: item.vendorName,
-      poAmount: item.poAmount,
-    });
-    setEditModalOpen(true);
+    navigate(`/admin/edit/${item.poNo}`);
   };
 
-  const handleSaveEdit = () => {
-    // Save edited data here
-    console.log("Saving edited data:", editedData);
-    setEditModalOpen(false);
-  };
-
-  const handleCancelEdit = () => {
-    setEditModalOpen(false);
+  const handleView = (item) => {
+    console.log("Viewing item:", item);
   };
 
   const handlePrevPage = () => {
@@ -137,80 +121,11 @@ const PoDetailsA = () => {
     );
   };
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setEditedData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-  };
-
   return (
     <div className="relative">
-      {editModalOpen && (
-        <div className="fixed top-0 left-0 w-full h-full bg-gray-900 bg-opacity-50 flex justify-center items-center">
-          <div className="bg-gray-300 p-8 rounded-lg">
-            <h2 className="text-xl font-semibold mb-4">Edit Purchase Order</h2>
-            <formm>
-              <div className="mb-4">
-                <label className="block text-sm font-medium text-gray-700">
-                  Purchase Order No.
-                </label>
-                <input
-                  type="text"
-                  name="poNo"
-                  value={editedData.poNo}
-                  onChange={handleInputChange}
-                  className="mt-1 p-2 border border-gray-300 rounded-md w-full"
-                />
-              </div>
-              <div className="mb-4">
-                <label className="block text-sm font-medium text-gray-700">
-                  Vendor Name
-                </label>
-                <input
-                  type="text"
-                  name="vendorName"
-                  value={editedData.vendorName}
-                  onChange={handleInputChange}
-                  className="mt-1 p-2 border border-gray-300 rounded-md w-full"
-                />
-              </div>
-              <div className="mb-4">
-                <label className="block text-sm font-medium text-gray-700">
-                  PO Amount
-                </label>
-                <input
-                  type="text"
-                  name="poAmount"
-                  value={editedData.poAmount}
-                  onChange={handleInputChange}
-                  className="mt-1 p-2 border border-gray-300 rounded-md w-full"
-                />
-              </div>
-              <div className="flex justify-end">
-                <button
-                  type="button"
-                  onClick={handleSaveEdit}
-                  className="bg-blue-500 text-white px-4 py-2 rounded-md mr-2"
-                >
-                  Save
-                </button>
-                <button
-                  type="button"
-                  onClick={handleCancelEdit}
-                  className="bg-gray-300 text-gray-700 px-4 py-2 rounded-md"
-                >
-                  Cancel
-                </button>
-              </div>
-            </formm>
-          </div>
-        </div>
-      )}
       <div className="overflow-x-auto mt-8 ml-2 mr-2 border rounded border-gray-300">
         <table className="table-auto w-full rounded-md border-2 border-cyan-400 shadow-md">
-          <thead>
+        <thead>
             <tr className="bg-gray-300 text-gray-600">
               <th className="px-4 py-2 text-left border">Sr. No.</th>
               <th className="px-4 py-2 text-left border">Purchase Order No.</th>
@@ -219,8 +134,7 @@ const PoDetailsA = () => {
               <th className="px-4 py-2 text-left border">Accepted On</th>
               <th className="px-4 py-2 text-left border">PO Amount</th>
               <th className="px-4 py-2 text-left border">Status</th>
-              <th className="px-4 py-2 text-left border">Comments</th>{" "}
-              
+              <th className="px-4 py-2 text-left border">Comments</th>
               <th className="px-4 py-2 text-left border">Actions</th>
             </tr>
           </thead>
@@ -247,22 +161,19 @@ const PoDetailsA = () => {
                     {item.status}
                   </button>
                 </td>
-                <td className="px-4 py-2 border">{item.comments}</td>{" "}
-                {/* Display comments */}
+                <td className="px-4 py-2 border">{item.comments}</td>
                 <td className="px-4 py-2 border">
                   <button
                     onClick={() => handleEdit(item)}
-                    className={`mr-2 ${
-                      item.status === "Accepted" ? "disabled-button" : ""
-                    }`}
-                    disabled={item.status === "Accepted"}
+                    className={`mr-2`}
                   >
-                    <FontAwesomeIcon
-                      icon={faEdit}
-                      className={`text-blue-500 ${
-                        item.status === "Accepted" ? "text-gray-500" : ""
-                      }`}
-                    />
+                    <FontAwesomeIcon icon={faEdit} className={`text-blue-500`} />
+                  </button>
+                  <button
+                    onClick={() => handleView(item)}
+                    className={`mr-2`}
+                  >
+                    <FontAwesomeIcon icon={faEye} className={`text-blue-500`} />
                   </button>
                 </td>
               </tr>
@@ -273,8 +184,8 @@ const PoDetailsA = () => {
 
       <div className="flex justify-end mt-2 ml-2 mr-2">
         <table className="table-auto border-collapse rounded border-blue-500">
-          <tbody>
-            <tr className="bg-white">
+        <tbody>
+            <tr className="bg-gray-200">
               <td className="px-4 py-2 border" colSpan="10">
                 <button
                   onClick={handlePrevPage}

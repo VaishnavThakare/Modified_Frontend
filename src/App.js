@@ -34,6 +34,7 @@ import AddDocument from "./pages/admin/AddDocument";
 import Documents from "./pages/admin/Documents";
 import PoDetailsA from "./pages/Purchase Orders/PoDetailsA";
 import PurchaseOrderForm from "./pages/Purchase Orders/PurchaseOrderForm";
+import EditPurchaseOrderPage from "./pages/Purchase Orders/EditPurchaseOrderPage"
 
 //Vendor
 import VendorDash from "./pages/vendor/VendorDash";
@@ -41,7 +42,7 @@ import RFP from "./pages/vendor/RFP";
 import VendorProfile from "./pages/vendor/VendorProfile";
 import UploadDocument from "./pages/vendor/UploadDocument";
 import PoList from "./pages/Purchase Orders/PoList";
-import PoDetailsV from "./pages/Purchase Orders/PurchaseOrder";
+import PoDetailsV from "./pages/Purchase Orders/PoDetailsV";
 
 //ProjectHead
 import ProjectHeadDash from "./pages/projecthead/ProjectHeadDash";
@@ -60,7 +61,6 @@ import AddPolicyDocument from "./pages/admin/Documents/AddPolicyDocument";
 import AllPolicyDocuments from "./pages/admin/Documents/AllPolicyDocuments";
 import AddProfile from "./pages/admin/Profile/AddProfile";
 import AllProfile from "./pages/admin/Profile/AllProfile";
-import Application from "./pages/admin/Application";
 
 const App = () => {
   const [userRole, setuserRole] = useState(sessionStorage.getItem("roles"));
@@ -95,16 +95,11 @@ const App = () => {
           <Route path="add-product-category" element={<AddProductCategory />} />
           <Route path="product-category" element={<ProductCategory />} />
           <Route path="vendor-verfication" element={<VendorVerification />} />
-          <Route
-            path="document-verification/:id"
-            element={<DocumentDetails />}
-          />
+          <Route path="document-verification/:id" element={<DocumentDetails />} />
           <Route path="allBanners" element={<AllBanner />}></Route>
           <Route path="addBanner" element={<AddBanner />}></Route>
           <Route path="allNews" element={<AllNews />}></Route>
           <Route path="addNews" element={<AddNews />}></Route>
-
-          <Route path="all-application" element={<Application />}></Route>
 
           <Route path="allEvents" element={<AllEvent />}></Route>
           <Route path="addEvent" element={<AddEvent />}></Route>
@@ -113,12 +108,10 @@ const App = () => {
 
           <Route path="addProfile" element={<AddProfile />}></Route>
           <Route path="allProfile" element={<AllProfile />}></Route>
-          <Route
-            path="purchase-OrderForm"
-            element={<PurchaseOrderForm />}
-          ></Route>
+          <Route path="purchase-OrderForm" element={<PurchaseOrderForm />}></Route>
           <Route path="purchase-order-list" element={<PoDetailsA />}></Route>
-        </Route>
+          <Route path="edit/:poNo" element={<EditPurchaseOrderPage />}></Route>
+          </Route>
 
         <Route path="/vendor" element={<VendorDashboard />}>
           <Route index element={<VendorDash />} />
