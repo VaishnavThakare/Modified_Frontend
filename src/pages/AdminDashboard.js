@@ -38,7 +38,10 @@ export default function AdminDashboard() {
       icon: "bx bx-category",
       link: "#",
       bgColor: "bg-cyan-300",
-      subItems: [{ text: "Purchase Order Form", link: "purchase-OrderForm" }],
+      subItems: [
+        { text: "Purchase Order Form", link: "purchase-OrderForm" },
+        { text: "Purchase Order View", link: "purchase-order-list" }],
+
     },
     {
       text: "Project Head",
