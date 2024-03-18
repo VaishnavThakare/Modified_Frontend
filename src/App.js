@@ -41,7 +41,7 @@ import RFP from "./pages/vendor/RFP";
 import VendorProfile from "./pages/vendor/VendorProfile";
 import UploadDocument from "./pages/vendor/UploadDocument";
 import PoList from "./pages/Purchase Orders/PoList";
-import PoDetailsV from "./pages/Purchase Orders/PoDetailsV";
+import PoDetailsV from "./pages/Purchase Orders/PurchaseOrder";
 
 //ProjectHead
 import ProjectHeadDash from "./pages/projecthead/ProjectHeadDash";
@@ -94,7 +94,10 @@ const App = () => {
           <Route path="add-product-category" element={<AddProductCategory />} />
           <Route path="product-category" element={<ProductCategory />} />
           <Route path="vendor-verfication" element={<VendorVerification />} />
-          <Route path="document-verification/:id" element={<DocumentDetails />} />
+          <Route
+            path="document-verification/:id"
+            element={<DocumentDetails />}
+          />
           <Route path="allBanners" element={<AllBanner />}></Route>
           <Route path="addBanner" element={<AddBanner />}></Route>
           <Route path="allNews" element={<AllNews />}></Route>
@@ -107,7 +110,10 @@ const App = () => {
 
           <Route path="addProfile" element={<AddProfile />}></Route>
           <Route path="allProfile" element={<AllProfile />}></Route>
-          <Route path="purchase-OrderForm" element={<PurchaseOrderForm />}></Route>
+          <Route
+            path="purchase-OrderForm"
+            element={<PurchaseOrderForm />}
+          ></Route>
           <Route path="purchase-order-list" element={<PoDetailsA />}></Route>
         </Route>
 
