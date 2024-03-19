@@ -183,7 +183,7 @@ const PurchaseOrderForm = () => {
             <div className="flex justify-center mt-4">
               <button
                 type="submit"
-                className="bg-cyan-500 text-white px-4 py-2 rounded-full hover:bg-indigo-600 focus:outline-none focus:bg-indigo-600"
+                className=" text-white px-4 py-2 rounded-full bg-cyan-500 hover:bg-cyan-700 focus:outline-none focus:bg-cyan-700"
               >
                 Send Purchase Order
               </button>

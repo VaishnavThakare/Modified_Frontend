@@ -80,45 +80,45 @@ export default function Users() {
   return (
     <>
       <div className="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 pr-10 lg:px-8 mb-8">
-        <div className="align-middle inline-block min-w-full shadow overflow-hidden bg-white shadow-dashboard px-8 pt-3 rounded-bl-lg rounded-br-lg ">
+        <div className="align-middle inline-block min-w-full shadow overflow-hidden bg-zinc-50 shadow-dashboard px-8 pt-3 rounded-bl-lg rounded-br-lg ">
           <div className="flex text-2xl font-bold text-gray-500 mb-4 justify-center items-center ">
             <h2>Vendors</h2>
           </div>
 
-          <table className="min-w-full border-2 border-cyan-600 mb-5">
+          <table className="min-w-full border-2 border-cyan-500 rounded-lg mb-5 bg-white">
           <thead>
               <tr>
-                <th className="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-blue-500 tracking-wider">
+                <th className="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-gray-600 tracking-wider">
                   Sr. No.
                 </th>
-                <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-blue-500 tracking-wider">
+                <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-gray-600 tracking-wider">
                   Name
                 </th>
-                <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-blue-500 tracking-wider">
+                <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-gray-600 tracking-wider">
                   Organization Name
                 </th>
-                <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-blue-500 tracking-wider">
+                <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-gray-600 tracking-wider">
                   Email
                 </th>
-                <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-blue-500 tracking-wider">
+                <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-gray-600 tracking-wider">
                   Phone Number
                 </th>
-                <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-blue-500 tracking-wider">
+                <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-gray-600 tracking-wider">
                   State
                 </th>
-                <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-blue-500 tracking-wider">
+                <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-gray-600 tracking-wider">
                   City
                 </th>
-                <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-blue-500 tracking-wider">
+                <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-gray-600 tracking-wider">
                   Address
                 </th>
-                <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-blue-500 tracking-wider">
+                <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-gray-600 tracking-wider">
                   Pincode
                 </th>
-                <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-blue-500 tracking-wider">
+                <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-gray-600 tracking-wider">
                   Category
                 </th>
-                <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-blue-500 tracking-wider">
+                <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-gray-600 tracking-wider">
                   Document List
                 </th>
               </tr>
@@ -127,58 +127,58 @@ export default function Users() {
               {currentVendors.map((vendor, index) => (
                 <tr key={vendor.id}>
                   <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
-                <div className="text-sm leading-5 text-blue-900">
+                <div className="text-sm leading-5 text-gray-500">
                   {renderSerialNumber(index)}
                 </div>
               </td>
               <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
-                    <div class="text-sm leading-5 text-blue-900">
+                    <div class="text-sm leading-5 text-gray-500">
                       {vendor.name}
                     </div>
                   </td>
               <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
-                    <div class="text-sm leading-5 text-blue-900">
+                    <div class="text-sm leading-5 text-gray-500">
                       {vendor.organizationName}
                     </div>
                   </td>
                   <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
-                    <div class="text-sm leading-5 text-blue-900">
+                    <div class="text-sm leading-5 text-gray-500">
                       {vendor.email}
                     </div>
                   </td>
                   <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
-                    <div class="text-sm leading-5 text-blue-900">
+                    <div class="text-sm leading-5 text-gray-500">
                       {vendor.phoneNumber}
                     </div>
                   </td>
                   <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
-                    <div class="text-sm leading-5 text-blue-900">
+                    <div class="text-sm leading-5 text-gray-500">
                       {vendor.state}
                     </div>
                   </td>
                   <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
-                    <div class="text-sm leading-5 text-blue-900">
+                    <div class="text-sm leading-5 text-gray-500">
                       {vendor.city}
                     </div>
                   </td>
 
                   <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
-                    <div class="text-sm leading-5 text-blue-900">
+                    <div class="text-sm leading-5 text-gray-500">
                       {vendor.address}
                     </div>
                   </td>
                   <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
-                    <div class="text-sm leading-5 text-blue-900">
+                    <div class="text-sm leading-5 text-gray-500">
                       {vendor.pincode}
                     </div>
                   </td>
                   <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
-                    <div class="text-sm leading-5 text-blue-900">
+                    <div class="text-sm leading-5 text-gray-500">
                       {vendor.vendorCategory.name}
                     </div>
                   </td>
                   <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
-                    <div class="text-sm leading-5 text-blue-900">
+                    <div class="text-sm leading-5 text-gray-500">
                       {vendor.documentsUploadList
                         .map((item, index) =>
                             <p key={index}>
@@ -207,16 +207,16 @@ export default function Users() {
           <table className="min-w-full  border-2 border-cyan-600 mb-5">
           <thead>
               <tr>
-              <th className="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-blue-500 tracking-wider">
+              <th className="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-gray-600 tracking-wider">
                   Sr. No.
                 </th>
-                <th className="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-blue-500 tracking-wider">
+                <th className="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-gray-600 tracking-wider">
                   Name
                 </th>
-                <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-blue-500 tracking-wider">
+                <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-gray-600 tracking-wider">
                   Email
                 </th>
-                <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-blue-500 tracking-wider">
+                <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-gray-600 tracking-wider">
                   Phone Number
                 </th>
               </tr>
@@ -225,23 +225,23 @@ export default function Users() {
               {currentProjectHeads.map((head, index) => (
                 <tr key={head.id}>
                   <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
-                <div className="text-sm leading-5 text-blue-900">
+                <div className="text-sm leading-5 text-gray-500">
                   {renderSerialNumber(index)}
                 </div>
               </td>
               <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
-                    <div className="text-sm leading-5 text-blue-900">
+                    <div className="text-sm leading-5 text-gray-500">
                       {head.name}
                     </div>
                   </td>
               
                   <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
-                    <div className="text-sm leading-5 text-blue-900">
+                    <div className="text-sm leading-5 text-gray-500">
                       {head.email}
                     </div>
                   </td>
                   <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
-                    <div className="text-sm leading-5 text-blue-900">
+                    <div className="text-sm leading-5 text-gray-500">
                       {head.phoneNumber}
                     </div>
                   </td>
