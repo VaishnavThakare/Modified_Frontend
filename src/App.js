@@ -119,7 +119,7 @@ const App = () => {
             element={<PurchaseOrderForm />}
           ></Route>
           <Route path="purchase-order-list" element={<PoDetailsA />}></Route>
-          <Route path="edit/:poNo" element={<EditPurchaseOrderPage />}></Route>
+          <Route path="edit/:orderNo" element={<EditPurchaseOrderPage />}></Route>
         </Route>
 
         <Route path="/vendor" element={<VendorDashboard />}>

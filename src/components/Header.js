@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faTimes } from "@fortawesome/free-solid-svg-icons";
+import { faUser, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { NavLink, useLocation } from "react-router-dom";
 import axios from "axios";
 import notiIcon from "../components/noti.png";
@@ -57,6 +58,17 @@ const Header = () => {
   useEffect(() => {
     fetchData();
   }, []);
+
+  const handleDeleteNotification = async (notificationId) => {
+    try {
+      const sid = sessionStorage.getItem("sid");
+      await axios.delete(`${process.env.REACT_APP_API_URL}/Notification/${sid}/${notificationId}`);
+      // After deleting the notification, you can fetch the updated list of notifications
+      fetchData();
+    } catch (error) {
+      console.error("Error deleting notification:", error);
+    }
+  };
 
   const getPageName = () => {
     // Extract the page name from the current URL path
@@ -120,11 +132,7 @@ const Header = () => {
                 </NavLink>
               </>
             )}
-            <button
-              type="button"
-              className="w-3 h-3"
-              onClick={handleNotiButton}
-            >
+            <button type="button" className="w-6 h-6 relative" onClick={handleNotiButton}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="16"
@@ -138,23 +146,31 @@ const Header = () => {
               >
                 <path d="M22 17H2a3 3 0 0 0 3-3V9a7 7 0 0 1 14 0v5a3 3 0 0 0 3 3zm-8.27 4a2 2 0 0 1-3.46 0"></path>
               </svg>
+              {notificationData.length > 0 && (
+                <span className="absolute -top-1 -right-1 bg-red-500 text-white rounded-full px-0.5 py-0.2 text-xs">
+                  {notificationData.length}
+                </span>
+              )}
             </button>
 
+
+
+
             {isNotiVisible && (
-              <div class="dropdown-menu absolute right-2 md:right-10 top-24 shadow-md shadow-black/5 z-30 max-w-xs w-full bg-white rounded-md border border-gray-100">
-                <div class="flex items-center px-4 pt-4 border-b border-b-gray-100 notification-tab">
+              <div className="dropdown-menu absolute right-2 md:right-10 top-24 shadow-md shadow-black/5 z-30 max-w-xs w-full bg-white rounded-md border border-gray-100">
+                <div className="flex items-center px-4 pt-4 border-b border-b-gray-100 notification-tab">
                   <button
                     type="button"
                     data-tab="notification"
                     data-tab-page="notifications"
-                    class="text-gray-600 font-medium text-[13px] hover:text-gray-600 border-b-2 border-b-transparent mr-4 pb-1 active"
+                    className="text-gray-600 font-medium text-[13px] hover:text-gray-600 border-b-2 border-b-transparent mr-4 pb-1 active"
                   >
                     Notifications
                   </button>
                 </div>
-                <div class="my-2">
+                <div className="my-2 relative">
                   <ul
-                    class="max-h-64 overflow-y-auto"
+                    className="max-h-64 overflow-y-auto"
                     data-tab-for="notification"
                     data-page="notifications"
                   >
@@ -165,18 +181,18 @@ const Header = () => {
                           <li key={index}>
                             <a
                               href="#"
-                              class="py-2 px-4 flex items-center hover:bg-gray-50 group"
+                              className="py-2 px-4 flex items-center hover:bg-gray-50 group"
                             >
                               <img
                                 src={notiIcon}
                                 alt=""
-                                class="w-8 h-8 rounded block object-cover align-middle"
+                                className="w-8 h-8 rounded block object-cover align-middle"
                               />
-                              <div class="ml-2">
-                                <div class="text-[13px] text-gray-600 font-medium group-hover:text-blue-500">
+                              <div className="ml-2 pr-14">
+                                <div className="text-[13px] text-gray-600 font-medium group-hover:text-blue-500">
                                   {noti.content}
                                 </div>
-                                <div class="text-[11px] text-gray-400">
+                                <div className="text-[11px] text-gray-400">
                                   {dateTime.toLocaleString()}
                                 </div>
                               </div>
@@ -189,8 +205,8 @@ const Header = () => {
                         );
                       })
                     ) : (
-                      <div class="ml-4">
-                        <div class="text-[13px] text-gray-600 font-medium group-hover:text-blue-500">
+                      <div className="ml-4">
+                        <div className="text-[13px] text-gray-600 font-medium group-hover:text-blue-500">
                           No Messages
                         </div>
                       </div>

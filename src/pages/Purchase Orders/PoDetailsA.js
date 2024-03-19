@@ -33,7 +33,7 @@ const PoDetailsA = () => {
 
   const handleEdit = (item) => {
     setSelectedItem(item);
-    navigate(`/admin/edit/${item.orderNo}`);
+    navigate(`/admin/edit/${item.id}`);
   };
 
   const handleView = (item) => {
@@ -89,7 +89,8 @@ const PoDetailsA = () => {
                     {item.isAccepted ? "Accepted" : "Rejected"}
                   </button>
                 </td>
-                <td className="px-4 py-2 border">{item.purchaseOrderHistories.length > 0 ? item.purchaseOrderHistories[0].comment : "-"}</td>
+                <td className="px-4 py-2 border">{item.purchaseOrderHistories && item.purchaseOrderHistories.length > 0 ? item.purchaseOrderHistories[0].comment : "-"}</td>
+
                 <td className="px-4 py-2 border">
                   <button onClick={() => handleEdit(item)} className={`mr-2`}>
                     <FontAwesomeIcon icon={faEdit} className={`text-blue-500`} />

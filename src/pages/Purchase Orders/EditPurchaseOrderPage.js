@@ -1,28 +1,43 @@
+import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-const EditPurchaseOrderPage = ({ items }) => {
-  const { poNo } = useParams();
+const EditPurchaseOrderPage = ({ vendors }) => {
+  const { orderNo } = useParams();
   const navigate = useNavigate();
   const [editedData, setEditedData] = useState({
-    poNo: "",
-    vendorName: "",
-    expectedDeliveryDate: "",
-    uploadDocument: "",
-    poAmount: "",
-    isActive: true, // Assuming IsActive should default to true
+    orderNo: "",
+    vendorId: "", // Change state key to store vendorId instead of vendorName
+    orderAmount: "",
+    expectedDelivery: "",
+    document: null,
+    isActive: true // Assuming IsActive should default to true
   });
 
   useEffect(() => {
-    if (poNo && items) {
-      const selectedItem = items.find((item) => item.poNo === poNo);
-      if (selectedItem) {
-        setEditedData(selectedItem);
-      } else {
-        // Handle item not found
+    const fetchPurchaseOrderDetails = async () => {
+      try {
+        
+        const response = await fetch(`https://localhost:7254/api/PurchaseOrder/${orderNo}`);
+
+        if (!response.ok) {
+          throw new Error("Failed to fetch purchase order details");
+        }
+
+        const data = await response.json();
+        setEditedData(data);
+      } catch (error) {
+        console.error("Error fetching purchase order details:", error.message);
+        // Handle error, show message to user, etc.
       }
+    };
+
+    if (orderNo) {
+      fetchPurchaseOrderDetails();
     }
-  }, [poNo, items]);
+  }, [orderNo]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -34,23 +49,26 @@ const EditPurchaseOrderPage = ({ items }) => {
 
   const handleSave = async () => {
     try {
-      const response = await fetch(`https://localhost:7254/api/PurchaseOrder/${editedData.id}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(editedData),
-      });
+      console.log(editedData);
+      console.log(orderNo);
 
-      if (!response.ok) {
-        throw new Error("Failed to update purchase order");
-      }
-
+      var formData = new FormData();
+      formData.append("OrderNo",editedData.orderNo);
+      formData.append("VendorId",editedData.vendorId);
+      formData.append("ExpectedDelivery",editedData.expectedDelivery);
+      formData.append("OrderAmount",editedData.orderAmount);
+      formData.append("Document",editedData.document);
+      formData.append("IsActive",editedData.isActive);
+      const response = await axios.put(`https://localhost:7254/api/PurchaseOrder/${orderNo}`, 
+      formData);
+    
+     
+      alert("Edited PurchaseOrder Successfully!");
       // Call a function to update state or API to save data
       console.log("Purchase Order updated successfully");
-      navigate("/admin");
+      navigate("/admin/purchase-order-list");
     } catch (error) {
-      console.error("Error updating purchase order:", error.message);
+      console.log("Error updating purchase order:",error);
       // Handle error, show message to user, etc.
     }
   };
@@ -65,36 +83,37 @@ const EditPurchaseOrderPage = ({ items }) => {
       <form>
         <div className="mb-4">
           <label className="block text-sm font-medium text-gray-700">
-            Purchase Order No.
+            Order No
           </label>
           <input
             type="text"
-            name="poNo"
-            value={editedData.poNo}
+            name="orderNo"
+            value={editedData.orderNo}
+            onChange={handleInputChange}
+            className="mt-1 p-2 border border-gray-300 rounded-md w-full"
+            readOnly
+          />
+        </div>
+        <div className="mb-4">
+          <label className="block text-sm font-medium text-gray-700">
+           Vendor
+          </label>
+          <input
+          type="text"
+            name="vendorId"
+            value={editedData.vendorId}
             onChange={handleInputChange}
             className="mt-1 p-2 border border-gray-300 rounded-md w-full"
           />
         </div>
         <div className="mb-4">
           <label className="block text-sm font-medium text-gray-700">
-            Vendor Name
+            Expected Delivery
           </label>
           <input
-            type="text"
-            name="vendorName"
-            value={editedData.vendorName}
-            onChange={handleInputChange}
-            className="mt-1 p-2 border border-gray-300 rounded-md w-full"
-          />
-        </div>
-        <div className="mb-4">
-          <label className="block text-sm font-medium text-gray-700">
-            Expected Delivery Date
-          </label>
-          <input
-            type="date"
-            name="expectedDeliveryDate"
-            value={editedData.expectedDeliveryDate}
+            type="datetime-local"
+            name="expectedDelivery"
+            value={editedData.expectedDelivery}
             onChange={handleInputChange}
             className="mt-1 p-2 border border-gray-300 rounded-md w-full"
           />
@@ -105,8 +124,7 @@ const EditPurchaseOrderPage = ({ items }) => {
           </label>
           <input
             type="file"
-            name="uploadDocument"
-            value={editedData.uploadDocument}
+            name="document"
             onChange={handleInputChange}
             className="mt-1 p-2 border border-gray-300 rounded-md w-full"
           />
@@ -117,8 +135,8 @@ const EditPurchaseOrderPage = ({ items }) => {
           </label>
           <input
             type="text"
-            name="poAmount"
-            value={editedData.poAmount}
+            name="orderAmount"
+            value={editedData.orderAmount}
             onChange={handleInputChange}
             className="mt-1 p-2 border border-gray-300 rounded-md w-full"
           />
@@ -157,7 +175,9 @@ const EditPurchaseOrderPage = ({ items }) => {
           </button>
         </div>
       </form>
+      <ToastContainer/>
     </div>
+
   );
 };
 
