@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Sidebar from "../components/sidebar";
 import { Outlet } from "react-router-dom";
-import VendorHeader from "../components/VendorHeader";
+import Header from "../components/Header";
 import "./Css/VendorDashboard.css";
 
 export default function VendorDashboard() {
@@ -56,7 +56,7 @@ export default function VendorDashboard() {
         }))}
       />
       <main className="w-full md:w-[calc(100%-256px)] sm:ml-0 md:ml-64 bg-gray-200 min-h-screen transition-all main">
-        <VendorHeader handleMenuVisible={handleMenuVisible} />
+        <Header handleMenuVisible={handleMenuVisible} />
         <div className="p-6">
           <Outlet />
         </div>
