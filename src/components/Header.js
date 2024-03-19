@@ -165,7 +165,7 @@ const Header = () => {
                     Notifications
                   </button>
                 </div>
-                <div className="my-2">
+                <div className="my-2 relative">
                   <ul
                     className="max-h-64 overflow-y-auto"
                     data-tab-for="notification"
@@ -185,7 +185,7 @@ const Header = () => {
                                 alt=""
                                 className="w-8 h-8 rounded block object-cover align-middle"
                               />
-                              <div className="ml-2">
+                              <div className="ml-2 pr-14">
                                 <div className="text-[13px] text-gray-600 font-medium group-hover:text-blue-500">
                                   {noti.content}
                                 </div>
@@ -195,8 +195,10 @@ const Header = () => {
                               </div>
                               <FontAwesomeIcon
                                 icon={faTimes}
-                                className="cursor-pointer ml-14"
-                                onClick={() => handleDeleteNotification(noti.id)}
+                                className="absolute right-5  transform -translate-y-1/2 cursor-pointer"
+                                onClick={() =>
+                                  handleDeleteNotification(noti.id)
+                                }
                               />
                             </a>
                           </li>
