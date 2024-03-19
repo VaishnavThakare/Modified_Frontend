@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser } from "@fortawesome/free-solid-svg-icons";
+import { faUser,faTimes } from "@fortawesome/free-solid-svg-icons";
 import { NavLink, useLocation } from "react-router-dom";
 import axios from "axios";
 import notiIcon from "../components/noti.png";
@@ -182,6 +182,7 @@ const Header = () => {
                                   {dateTime.toLocaleString()}
                                 </div>
                               </div>
+                              <FontAwesomeIcon icon={faTimes} className="cursor-pointer ml-14"  />
                             </a>
                           </li>
                         );
