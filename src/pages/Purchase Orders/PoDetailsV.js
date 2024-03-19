@@ -6,6 +6,7 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const PoDetailsV = () => {
+  const [dummyData, setDummyData] = useState([]);
   const [purchaseOrders, setPurchaseOrders] = useState([]);
   const itemsPerPage = 5;
 
@@ -101,16 +102,31 @@ const PoDetailsV = () => {
   return (
     <div className="relative">
       <div className="overflow-x-auto mt-8 ml-2 mr-2 border rounded border-gray-300">
-        <table className="table-auto w-full rounded-md border-2 border-cyan-400">
+        <table className="table-auto w-full rounded-lg border-2 border-cyan-400 border-#FBFBFB">
           <thead>
-            <tr className="bg-gray-200">
-              <th className="px-4 py-2 text-left border">Sr. No.</th>
-              <th className="px-4 py-2 text-left border">Purchase Order No.</th>
-              <th className="px-4 py-2 text-left border">Vendor Name</th>
-              <th className="px-4 py-2 text-left border">Released On</th>
+            <tr className="bg-gray-200 text-gray-600">
+              <th className="px-4 py-2 text-left border">
+                Sr.<p></p> No.
+              </th>
+              <th className="px-4 py-2 text-left border">
+                Purchase <p></p>Order No.
+              </th>
+              <th className="px-4 py-2 text-left border">
+                Vendor<p></p>Name
+              </th>
+              <th className="px-4 py-2 text-left border">
+                Release<p></p> On
+              </th>
               <th className="px-4 py-2 text-left border">PO Amount</th>
-              <th className="px-4 py-2 text-left border">Action</th>
+              <th className="px-4 py-2 text-left border">
+                Action<p></p>(Accept/Reject)
+              </th>
               <th className="px-4 py-2 text-left border">Comments</th>
+            </tr>
+            <tr className="bg-gray-200 text-gray-600">
+              <td colSpan="7" className="border px-4 py-1">
+                <div style={{ borderTop: "1px solid black" }}></div>
+              </td>
             </tr>
           </thead>
           <tbody>
@@ -165,11 +181,11 @@ const PoDetailsV = () => {
       <div className="flex justify-end mt-2 ml-2 mr-2">
         <table className="table-auto border-collapse rounded border-blue-500">
           <tbody>
-            <tr className="bg-white">
+            <tr className="bg-gray-200">
               <td className="px-4 py-2 border" colSpan="10">
                 <button
                   onClick={handlePrevPage}
-                  className="pagination-button"
+                  className="pagination-button rounded-l-3xl"
                   disabled={currentPage === 1}
                 >
                   <FontAwesomeIcon
@@ -180,10 +196,9 @@ const PoDetailsV = () => {
                 </button>
                 <button
                   onClick={handleNextPage}
-                  className="pagination-button ml-2"
+                  className="pagination-button ml-2 rounded-r-3xl"
                   disabled={
-                    currentPage ===
-                    Math.ceil(purchaseOrders.length / itemsPerPage)
+                    currentPage === Math.ceil(dummyData.length / itemsPerPage)
                   }
                 >
                   Next
@@ -197,6 +212,7 @@ const PoDetailsV = () => {
           </tbody>
         </table>
       </div>
+
 
       <ToastContainer />
     </div>
