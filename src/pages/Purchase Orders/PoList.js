@@ -15,6 +15,8 @@ const PoList = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedOrderId, setSelectedOrderId] = useState(null);
   const [showDetailsModal, setShowDetailsModal] = useState(false);
+  const [documentPath, setDocumentPath] = useState("");
+  const [documentName, setDocumentName] = useState("");
   const itemsPerPage = 5;
 
   useEffect(() => {
@@ -37,8 +39,10 @@ const PoList = () => {
   const indexOfLastItem = currentPage * itemsPerPage;
   const currentItems = dummyData.slice(indexOfFirstItem, indexOfLastItem);
 
-  const handleView = (orderId) => {
+  const handleView = (orderId, documentPath, documentName) => {
     setSelectedOrderId(orderId);
+    setDocumentPath(documentPath);
+    setDocumentName(documentName);
     setShowDetailsModal(true);
   };
 
@@ -50,6 +54,13 @@ const PoList = () => {
       Math.min(prevPage + 1, Math.ceil(dummyData.length / itemsPerPage))
     );
   };
+
+  // Function to format the timestamp to a readable date and time
+  const formatDateTime = (timestamp) => {
+    const date = new Date(timestamp);
+    return date.toLocaleString(); // Adjust options as needed
+  };
+
   return (
     <div className="relative">
       <div className="overflow-x-auto mt-8 ml-2 mr-2 border rounded border-gray-300">
@@ -73,7 +84,9 @@ const PoList = () => {
                 </td>
                 <td className="px-4 py-2 border">{item.orderNo}</td>
                 <td className="px-4 py-2 border">{item.vendorId}</td>
-                <td className="px-4 py-2 border">{item.releaseDate}</td>
+                <td className="px-4 py-2 border">
+                  {formatDateTime(item.releaseDate)}
+                </td>
                 <td className="px-4 py-2 border">{item.orderAmount}</td>
                 <td className="px-4 py-2 border">
                   <button
@@ -88,7 +101,15 @@ const PoList = () => {
                   </button>
                 </td>
                 <td className="px-4 py-2 border">
-                  <button onClick={() => handleView(item.id)}>
+                  <button
+                    onClick={() =>
+                      handleView(
+                        item.id,
+                        item.documentPath,
+                        "Purchase Order Document"
+                      )
+                    }
+                  >
                     <FontAwesomeIcon
                       icon={faEye}
                       className="px-4 py-2 text-blue-500"
@@ -153,72 +174,92 @@ const PoList = () => {
                     </h3>
                     <div className="mt-2">
                       {selectedOrderId && (
-                        <table className="min-w-full divide-y divide-gray-200">
-                          <tbody>
-                            {dummyData
-                              .filter((item) => item.id === selectedOrderId)
-                              .map((item) => (
-                                <React.Fragment key={item.id}>
-                                  <tr>
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                                      Order No:
-                                    </td>
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                      {item.orderNo}
-                                    </td>
-                                  </tr>
-                                  <tr>
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                                      ID:
-                                    </td>
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                      {item.id}
-                                    </td>
-                                  </tr>
-                                  <tr>
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                                      Vendor ID:
-                                    </td>
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                      {item.vendorId}
-                                    </td>
-                                  </tr>
-                                  <tr>
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                                      Release Date:
-                                    </td>
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                      {item.releaseDate}
-                                    </td>
-                                  </tr>
-                                  <tr>
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                                      Expected Delivery:
-                                    </td>
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                      {item.expectedDelivery}
-                                    </td>
-                                  </tr>
-                                  <tr>
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                                      Order Amount:
-                                    </td>
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                      {item.orderAmount}
-                                    </td>
-                                  </tr>
-                                  <tr>
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                                      Created On:
-                                    </td>
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                      {item.createdOn}
-                                    </td>
-                                  </tr>
-                                </React.Fragment>
-                              ))}
-                          </tbody>
-                        </table>
+                        <React.Fragment>
+                          <table className="min-w-full divide-y divide-gray-200">
+                            <tbody>
+                              {dummyData
+                                .filter((item) => item.id === selectedOrderId)
+                                .map((item) => (
+                                  <React.Fragment key={item.id}>
+                                    <tr>
+                                      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                        Order No:
+                                      </td>
+                                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                        {item.orderNo}
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                        ID:
+                                      </td>
+                                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                        {item.id}
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                        Vendor ID:
+                                      </td>
+                                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                        {item.vendorId}
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                        Release Date:
+                                      </td>
+                                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                        {formatDateTime(item.releaseDate)}
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                        Expected Delivery:
+                                      </td>
+                                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                        {formatDateTime(item.expectedDelivery)}
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                        Order Amount:
+                                      </td>
+                                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                        {item.orderAmount}
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                        Created On:
+                                      </td>
+                                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                        {item.createdOn}
+                                      </td>
+                                    </tr>
+                                  </React.Fragment>
+                                ))}
+                            </tbody>
+                          </table>
+                          <div className="mt-2">
+                            <div className="mt-4 flex items-center justify-between">
+                              <div className="text-sm font-medium text-gray-900">
+                                View Document:
+                              </div>
+                              <div className="ml-2 flex items-center">
+                                <span className="mr-2">{documentName}</span>
+                                <button
+                                  onClick={() =>
+                                    window.open(documentPath, "_blank")
+                                  }
+                                  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                                >
+                                  View
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                        </React.Fragment>
                       )}
                     </div>
                   </div>

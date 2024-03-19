@@ -41,10 +41,9 @@ const PoDetailsV = () => {
 
   const handleAccept = async (orderId, comment) => {
     try {
-      await axios.post(
-        `https://localhost:7254/api/PurchaseOrder/AcceptReject`,
+      await axios.put(
+        `https://localhost:7254/api/PurchaseOrder/AcceptReject/${orderId}`,
         {
-          id: orderId,
           isAccepted: true,
           comment: comment,
         }
@@ -64,10 +63,9 @@ const PoDetailsV = () => {
 
   const handleReject = async (orderId, comment) => {
     try {
-      await axios.post(
-        `https://localhost:7254/api/PurchaseOrder/AcceptReject`,
+      await axios.put(
+        `https://localhost:7254/api/PurchaseOrder/AcceptReject/${orderId}`,
         {
-          id: orderId,
           isAccepted: false,
           comment: comment,
         }
@@ -94,6 +92,12 @@ const PoDetailsV = () => {
     );
   };
 
+  // Function to format the timestamp to a readable date and time
+  const formatDateTime = (timestamp) => {
+    const date = new Date(timestamp);
+    return date.toLocaleString(); // Adjust options as needed
+  };
+
   return (
     <div className="relative">
       <div className="overflow-x-auto mt-8 ml-2 mr-2 border rounded border-gray-300">
@@ -105,35 +109,43 @@ const PoDetailsV = () => {
               <th className="px-4 py-2 text-left border">Vendor Name</th>
               <th className="px-4 py-2 text-left border">Released On</th>
               <th className="px-4 py-2 text-left border">PO Amount</th>
-              <th className="px-4 py-2 text-left border">Status</th>
+              <th className="px-4 py-2 text-left border">Action</th>
               <th className="px-4 py-2 text-left border">Comments</th>
             </tr>
           </thead>
           <tbody>
             {currentItems.map((order, index) => (
-              <tr key={index} className="bg-white">
+              <tr key={index} className="bg-gray-200">
                 <td className="px-4 py-2 border">
                   {indexOfFirstItem + index + 1}
                 </td>
                 <td className="px-4 py-2 border">{order.orderNo}</td>
                 <td className="px-4 py-2 border">{order.vendorId}</td>
-                <td className="px-4 py-2 border">{order.releaseDate}</td>
+                <td className="px-4 py-2 border">
+                  {formatDateTime(order.releaseDate)}
+                </td>
                 <td className="px-4 py-2 border">{order.orderAmount}</td>
                 <td className="px-4 py-2 border">
-                  <div className="flex">
-                    <button
-                      onClick={() => handleAccept(order.id, order.comment)}
-                      className="px-4 py-2 mr-2 bg-green-500 text-white rounded hover:bg-green-600"
-                    >
-                      Accept
-                    </button>
-                    <button
-                      onClick={() => handleReject(order.id, order.comment)}
-                      className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
-                    >
-                      Reject
-                    </button>
-                  </div>
+                  {order.isAccepted ? (
+                    <span className="text-green-500">Already Accepted</span>
+                  ) : order.isAccepted === false ? (
+                    <span className="text-red-500">Already Rejected</span>
+                  ) : (
+                    <div className="flex">
+                      <button
+                        onClick={() => handleAccept(order.id, order.comment)}
+                        className="px-4 py-2 mr-2 bg-green-500 text-white rounded hover:bg-green-600"
+                      >
+                        Accept
+                      </button>
+                      <button
+                        onClick={() => handleReject(order.id, order.comment)}
+                        className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+                      >
+                        Reject
+                      </button>
+                    </div>
+                  )}
                 </td>
                 <td className="px-4 py-2 border">
                   <textarea
