@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faTimes } from "@fortawesome/free-solid-svg-icons";
-import { faUser, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { NavLink, useLocation } from "react-router-dom";
 import axios from "axios";
 import notiIcon from "../components/noti.png";
@@ -62,7 +61,9 @@ const Header = () => {
   const handleDeleteNotification = async (notificationId) => {
     try {
       const sid = sessionStorage.getItem("sid");
-      await axios.delete(`${process.env.REACT_APP_API_URL}/Notification/${sid}/${notificationId}`);
+      await axios.delete(
+        `${process.env.REACT_APP_API_URL}/Notification/${sid}/${notificationId}`
+      );
       // After deleting the notification, you can fetch the updated list of notifications
       fetchData();
     } catch (error) {
@@ -132,7 +133,11 @@ const Header = () => {
                 </NavLink>
               </>
             )}
-            <button type="button" className="w-6 h-6 relative" onClick={handleNotiButton}>
+            <button
+              type="button"
+              className="w-6 h-6 relative"
+              onClick={handleNotiButton}
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="16"
@@ -152,9 +157,6 @@ const Header = () => {
                 </span>
               )}
             </button>
-
-
-
 
             {isNotiVisible && (
               <div className="dropdown-menu absolute right-2 md:right-10 top-24 shadow-md shadow-black/5 z-30 max-w-xs w-full bg-white rounded-md border border-gray-100">
