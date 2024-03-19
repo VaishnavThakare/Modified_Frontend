@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Sidebar from "../components/sidebar";
 import { Outlet } from "react-router-dom";
-import PHeadHeader from "../components/PHeadHeader";
+import PHeadHeader from "../components/Header";
 
 export default function ProjectHeadDashboard() {
   const [isMenuVisible, setMenuVisible] = useState(false);

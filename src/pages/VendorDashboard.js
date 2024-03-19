@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Sidebar from "../components/sidebar";
 import { Outlet } from "react-router-dom";
-import VendorHeader from "../components/VendorHeader";
+import VendorHeader from "../components/Header";
 import "./Css/VendorDashboard.css";
 
 export default function VendorDashboard() {

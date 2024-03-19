@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Sidebar from "../components/sidebar";
 import { Outlet } from "react-router-dom";
-import AdminHeader from "../components/AdminHeader";
+import AdminHeader from "../components/Header";
 
 export default function AdminDashboard() {
   const [isMenuVisible, setMenuVisible] = useState(false);
