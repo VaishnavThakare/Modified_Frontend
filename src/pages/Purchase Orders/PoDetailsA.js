@@ -33,7 +33,7 @@ const PoDetailsA = () => {
 
   const handleEdit = (item) => {
     setSelectedItem(item);
-    navigate(`/admin/edit/${item.orderNo}`);
+    navigate(`/admin/edit/${item.id}`);
   };
 
   const handleView = (item) => {
