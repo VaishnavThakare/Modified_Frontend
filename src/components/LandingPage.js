@@ -5,6 +5,7 @@ import News from "./News";
 import Info from "./Info";
 import Policies from "./Policies";
 import LoginModal from "./LoginModal";
+import sciqusLogo from "./sciqus1.png"; // Import the image
 
 function LandingPage() {
   const [showLogin, setShowLogin] = useState(false);
@@ -18,6 +19,7 @@ function LandingPage() {
   };
 
   const backgroundImageUrl =`  ${process.env.PUBLIC_URL}/bgImage.png` ;
+  const logom=`./sciqus1.png`;
 
   return (
     <div className="block items-start justify-start h-screen relative">
@@ -25,10 +27,10 @@ function LandingPage() {
 
       <div id="navbar" className="grid grid-cols-2 w-full p-[10px] bg -white shadow-2xl">
         <div>
-          <img className="w-[80px] h-[30px]  ml-[30px]" src={`${process.env.PUBLIC_URL}/sciqus.png`} alt="logo" />
+          <img className="w-[80px] h-[35px]  ml-[30px]" src={sciqusLogo} alt="logo" />
         </div>
         <div className="flex items-end justify-end mr-[80px]">
-          <button className="font-poppins  font-normal text-center mr-[15px] hover:font-bold" onClick={handleLoginClick}>LogIn</button>
+          <button className="font-poppins  font-normal text-center mr-[15px] hover:font-bold " onClick={handleLoginClick}>LogIn</button>
           <button className=" font-poppins  font-normal text-center">Contact: 90909090</button>
         </div>
       </div> 

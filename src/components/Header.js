@@ -234,7 +234,7 @@ const Header = () => {
                   <NavLink to="profile">Profile</NavLink>
                 </li>
                 <li className="font-sans font-bold pl-4 text-left cursor cursor-pointer w-full hover:bg-blue-300">
-                  <NavLink to="http://localhost:3000/" onClick={logOut}>
+                  <NavLink to="/" onClick={logOut}>
                     Log Out
                   </NavLink>
                 </li>

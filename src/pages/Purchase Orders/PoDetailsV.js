@@ -185,7 +185,7 @@ const PoDetailsV = () => {
               <td className="px-4 py-2 border" colSpan="10">
                 <button
                   onClick={handlePrevPage}
-                  className="pagination-button rounded-l-3xl"
+                  className="pagination-button rounded-e-3xl"
                   disabled={currentPage === 1}
                 >
                   <FontAwesomeIcon
@@ -196,7 +196,7 @@ const PoDetailsV = () => {
                 </button>
                 <button
                   onClick={handleNextPage}
-                  className="pagination-button ml-2 rounded-r-3xl"
+                  className="pagination-button ml-2 rounded-e-3xl"
                   disabled={
                     currentPage === Math.ceil(dummyData.length / itemsPerPage)
                   }
