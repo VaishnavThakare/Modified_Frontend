@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-
-
 export default function Application() {
   const [rfps, setRFPs] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(3);
-  const [filterOption, setFilterOption] = useState('all');
-  const [searchQuery, setSearchQuery] = useState('');
+  const [filterOption, setFilterOption] = useState("all");
+  const [searchQuery, setSearchQuery] = useState("");
   const [vendorCategories, setVendorCategories] = useState([]);
 
   useEffect(() => {
@@ -21,8 +19,10 @@ export default function Application() {
 
         setRFPs(response.data);
 
-        const uniqueCategories = Array.from(new Set(response.data.map((rfp) => rfp.vendorCategory.name)));
-        setVendorCategories(['all', ...uniqueCategories]);
+        const uniqueCategories = Array.from(
+          new Set(response.data.map((rfp) => rfp.vendorCategory.name))
+        );
+        setVendorCategories(["all", ...uniqueCategories]);
       } catch (error) {
         // console.error("Error fetching RFP data:", error);
       }
@@ -64,42 +64,40 @@ export default function Application() {
           </div>
 
           <div className="mb-5 searchFilter">
-          <div>
-            {/* Select option for filtering */}
-            <div className="mt-4 align-content: flex-end;">
-              <label className="mr-2">Filter by Vendor Category:</label>
-              <select value={filterOption} onChange={handleFilterChange}>
-                {vendorCategories.map((category, index) => (
-                  <option key={index} value={category}>
-                    {category === 'all' ? 'All' : category}
-                  </option>
-                ))}
-              </select>
+            <div>
+              {/* Select option for filtering */}
+              <div className="mt-4 align-content: flex-end;">
+                <label className="mr-2">Filter by Vendor Category:</label>
+                <select value={filterOption} onChange={handleFilterChange}>
+                  {vendorCategories.map((category, index) => (
+                    <option key={index} value={category}>
+                      {category === "all" ? "All" : category}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
+
+            {/* Input field for additional filtering */}
+            <div className="mt-2">
+              <label className="mr-2 ml-10">Filter by Title:</label>
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={handleSearchChange}
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 inline w-50 p-2"
+              />
             </div>
           </div>
 
-          {/* Input field for additional filtering */}
-          <div className="mt-2">
-            <label className="mr-2 ml-10">Filter by Title:</label>
-            <input
-              type="text"
-              value={searchQuery}
-              onChange={handleSearchChange}
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 inline w-50 p-2"
-            />
-          </div>
-
-          </div>
-
-          
           <table className="min-w-full border-2 border-cyan-600">
             <thead>
               <tr>
                 <th className="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-blue-500 tracking-wider">
-                 RFP ID
+                  RFP ID
                 </th>
                 <th className="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-blue-500 tracking-wider">
-                  Vendor 
+                  Vendor
                 </th>
                 <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-blue-500 tracking-wider">
                   Document
@@ -120,7 +118,7 @@ export default function Application() {
                 <tr key={rfp.id}>
                   <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
                     <div className="text-sm leading-5 text-blue-900">
-                      {"RFP-"+ (currentPage - 1) * itemsPerPage + index + 1}
+                      {"RFP-" + (currentPage - 1) * itemsPerPage + index + 1}
                     </div>
                   </td>
                   <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
@@ -130,7 +128,9 @@ export default function Application() {
                   </td>
                   <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
                     <div className="text-sm leading-5 text-blue-900">
-                    <a href={rfp.documentPath} target="_blank" >Document</a>
+                      <a href={rfp.documentPath} target="_blank">
+                        Document
+                      </a>
                     </div>
                   </td>
                   <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
@@ -161,7 +161,9 @@ export default function Application() {
             <button
               key={index}
               className={`mx-1 px-4 py-2 ${
-                currentPage === index + 1 ? "bg-blue-500 text-white" : "bg-gray-300"
+                currentPage === index + 1
+                  ? "bg-blue-500 text-white"
+                  : "bg-gray-300"
               }`}
               onClick={() => paginate(index + 1)}
             >

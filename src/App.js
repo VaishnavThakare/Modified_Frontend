@@ -62,6 +62,7 @@ import AddPolicyDocument from "./pages/admin/Documents/AddPolicyDocument";
 import AllPolicyDocuments from "./pages/admin/Documents/AllPolicyDocuments";
 import AddProfile from "./pages/admin/Profile/AddProfile";
 import AllProfile from "./pages/admin/Profile/AllProfile";
+import Application from "./pages/admin/Application";
 
 const App = () => {
   const [userRole, setuserRole] = useState(sessionStorage.getItem("roles"));
@@ -112,6 +113,7 @@ const App = () => {
 
           <Route path="addProfile" element={<AddProfile />}></Route>
           <Route path="allProfile" element={<AllProfile />}></Route>
+          <Route path="all-application" element={<Application />}></Route>
           <Route
             path="purchase-OrderForm"
             element={<PurchaseOrderForm />}
