@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser,faTimes } from "@fortawesome/free-solid-svg-icons";
+import { faUser, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { NavLink, useLocation } from "react-router-dom";
 import axios from "axios";
 import notiIcon from "../components/noti.png";
@@ -74,9 +74,7 @@ const Header = () => {
         style={left}
       >
         <div className="mt-0 pb-0 pl-4  place-self-end w-full">
-          <h3 className=" py-2 px-6 font-sans font-bold text-2xl">
-            Vendor Portal
-          </h3>
+          <h3 className=" py-2 px-6 font-sans  text-2xl">Vendor Portal</h3>
         </div>
         <div className="grid grid-cols-2 gap-2  bg-stone-300 py-3 pl-4 w-full place-self-end">
           <h3 className="border-red-500 font-sans font-bold text-m">
@@ -182,7 +180,10 @@ const Header = () => {
                                   {dateTime.toLocaleString()}
                                 </div>
                               </div>
-                              <FontAwesomeIcon icon={faTimes} className="cursor-pointer ml-14"  />
+                              <FontAwesomeIcon
+                                icon={faTimes}
+                                className="cursor-pointer ml-14"
+                              />
                             </a>
                           </li>
                         );
