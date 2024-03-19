@@ -133,11 +133,7 @@ const Header = () => {
                 </NavLink>
               </>
             )}
-            <button
-              type="button"
-              className="w-3 h-3"
-              onClick={handleNotiButton}
-            >
+            <button type="button" className="w-6 h-6 relative" onClick={handleNotiButton}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="16"
@@ -151,7 +147,15 @@ const Header = () => {
               >
                 <path d="M22 17H2a3 3 0 0 0 3-3V9a7 7 0 0 1 14 0v5a3 3 0 0 0 3 3zm-8.27 4a2 2 0 0 1-3.46 0"></path>
               </svg>
+              {notificationData.length > 0 && (
+                <span className="absolute -top-1 -right-1 bg-red-500 text-white rounded-full px-0.5 py-0.2 text-xs">
+                  {notificationData.length}
+                </span>
+              )}
             </button>
+
+
+
 
             {isNotiVisible && (
               <div className="dropdown-menu absolute right-2 md:right-10 top-24 shadow-md shadow-black/5 z-30 max-w-xs w-full bg-white rounded-md border border-gray-100">
