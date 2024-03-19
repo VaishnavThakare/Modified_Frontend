@@ -147,7 +147,7 @@ const PoList = () => {
               <td className="px-4 py-2 border" colSpan="10">
                 <button
                   onClick={handlePrevPage}
-                  className="pagination-button rounded-l-3xl"
+                  className="pagination-button rounded-e-3xl"
                   disabled={currentPage === 1}
                 >
                   <FontAwesomeIcon
@@ -158,7 +158,7 @@ const PoList = () => {
                 </button>
                 <button
                   onClick={handleNextPage}
-                  className="pagination-button ml-2 rounded-r-3xl"
+                  className="pagination-button ml-2 rounded-e-3xl"
                   disabled={
                     currentPage === Math.ceil(dummyData.length / itemsPerPage)
                   }
@@ -178,13 +178,13 @@ const PoList = () => {
       {/* Purchase Order Details Modal */}
       {showDetailsModal && (
         <div className="fixed z-10 inset-0 overflow-y-auto">
-          <div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+          <div className="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
             <div className="fixed inset-0 transition-opacity">
-              <div className="absolute inset-0 bg-gray-500 opacity-75"></div>
+              <div className="absolute inset-0 bg-gray-900 opacity-75"></div>
             </div>
             <span className="hidden sm:inline-block sm:align-middle sm:h-screen"></span>
             &#8203;
-            <div className="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+            <div className="inline-block align-bottom bg-white rounded-3xl text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
               <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
                 <div className="sm:flex sm:items-start">
                   <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
@@ -201,58 +201,58 @@ const PoList = () => {
                                 .map((item) => (
                                   <React.Fragment key={item.id}>
                                     <tr>
-                                      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                      <td className="px-6 py-3 whitespace-nowrap text-sm font-medium text-gray-700">
                                         Order No:
                                       </td>
-                                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                      <td className="px-6 py-3 whitespace-nowrap text-sm text-gray-900">
                                         {item.orderNo}
                                       </td>
                                     </tr>
                                     <tr>
-                                      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                      <td className="px-6 py-3 whitespace-nowrap text-sm font-medium text-gray-700">
                                         ID:
                                       </td>
-                                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                      <td className="px-6 py-3 whitespace-nowrap text-sm text-gray-900">
                                         {item.id}
                                       </td>
                                     </tr>
                                     <tr>
-                                      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                      <td className="px-6 py-3 whitespace-nowrap text-sm font-medium text-gray-700">
                                         Vendor ID:
                                       </td>
-                                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                      <td className="px-6 py-3 whitespace-nowrap text-sm text-gray-900">
                                         {item.vendorId}
                                       </td>
                                     </tr>
                                     <tr>
-                                      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                      <td className="px-6 py-3 whitespace-nowrap text-sm font-medium text-gray-700">
                                         Release Date:
                                       </td>
-                                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                      <td className="px-6 py-3 whitespace-nowrap text-sm text-gray-900">
                                         {formatDateTime(item.releaseDate)}
                                       </td>
                                     </tr>
                                     <tr>
-                                      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                      <td className="px-6 py-3 whitespace-nowrap text-sm font-medium text-gray-700">
                                         Expected Delivery:
                                       </td>
-                                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                      <td className="px-6 py-3 whitespace-nowrap text-sm text-gray-900">
                                         {formatDateTime(item.expectedDelivery)}
                                       </td>
                                     </tr>
                                     <tr>
-                                      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                      <td className="px-6 py-3 whitespace-nowrap text-sm font-medium text-gray-700">
                                         Order Amount:
                                       </td>
-                                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                      <td className="px-6 py-3 whitespace-nowrap text-sm text-gray-900">
                                         {item.orderAmount}
                                       </td>
                                     </tr>
                                     <tr>
-                                      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                      <td className="px-6 py-3 whitespace-nowrap text-sm font-medium text-gray-700">
                                         Created On:
                                       </td>
-                                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                      <td className="px-6 py-3 whitespace-nowrap text-sm text-gray-900">
                                         {item.createdOn}
                                       </td>
                                     </tr>
@@ -260,22 +260,22 @@ const PoList = () => {
                                 ))}
                             </tbody>
                           </table>
-                          <div className="mt-2">
-                            <div className="mt-4 flex items-center justify-between">
-                              <div className="text-sm font-medium text-gray-900">
-                                View Document:
-                              </div>
-                              <div className="ml-2 flex items-center">
-                                <span className="mr-2">{documentName}</span>
-                                <button
-                                  onClick={() =>
-                                    window.open(documentPath, "_blank")
-                                  }
-                                  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                                >
-                                  View
-                                </button>
-                              </div>
+                          <div className="mt-4 flex items-center justify-between">
+                            <div className="text-sm font-medium text-gray-700">
+                              View Document:
+                            </div>
+                            <div className="ml-2 flex items-center">
+                              <span className="mr-2 text-gray-900">
+                                {documentName}
+                              </span>
+                              <button
+                                onClick={() =>
+                                  window.open(documentPath, "_blank")
+                                }
+                                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                              >
+                                View
+                              </button>
                             </div>
                           </div>
                         </React.Fragment>
