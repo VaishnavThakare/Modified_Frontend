@@ -5,11 +5,12 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const PurchaseOrderForm = () => {
   const [formData, setFormData] = useState({
-    purchaseOrderNo: "",
-    vendorId: "", // Change state key to store vendorId instead of vendorName
-    poAmount: "",
-    expectedDeliveryDate: "",
-    uploadDocument: null,
+    OrderNo: "",
+    VendorId: "", // Change state key to store vendorId instead of vendorName
+    OrderAmount: "",
+    ExpectedDelivery: "",
+    Document: null,
+    IsActive:true
   });
   const [vendors, setVendors] = useState([]); // Rename vendorNames to vendors
 
@@ -27,7 +28,7 @@ const PurchaseOrderForm = () => {
   }, []);
 
   const handleChange = (event) => {
-    if (event.target.name === "uploadDocument") {
+    if (event.target.name === "Document") {
       setFormData({
         ...formData,
         [event.target.name]: event.target.files[0],
@@ -35,7 +36,7 @@ const PurchaseOrderForm = () => {
     } else {
       setFormData({
         ...formData,
-        [event.target.name]: event.target.value,
+        [event.target.name]: event.target.type === "checkbox" ? event.target.checked :event.target.value,
       });
     }
   };
@@ -44,11 +45,12 @@ const PurchaseOrderForm = () => {
     event.preventDefault();
   
     const formDataToSend = new FormData();
-    formDataToSend.append("purchaseOrderNo", formData.purchaseOrderNo);
-    formDataToSend.append("vendorId", formData.vendorId);
-    formDataToSend.append("poAmount", formData.poAmount);
-    formDataToSend.append("expectedDeliveryDate", formData.expectedDeliveryDate);
-    formDataToSend.append("Document", formData.uploadDocument); // Append the Document field with the file
+    formDataToSend.append("OrderNo", formData.OrderNo);
+    formDataToSend.append("VendorId", formData.VendorId);
+    formDataToSend.append("OrderAmount", formData.OrderAmount);
+    formDataToSend.append("ExpectedDelivery", formData.ExpectedDelivery);
+    formDataToSend.append("Document", formData.Document);
+    formDataToSend.append("IsActive", formData.IsActive); // Append the Document field with the file
   
     try {
       const response = await axios.post("https://localhost:7254/api/PurchaseOrder/Add", formDataToSend);
@@ -56,11 +58,12 @@ const PurchaseOrderForm = () => {
       if (response.status === 200) {
         toast.success("Purchase order created successfully!");
         setFormData({
-          purchaseOrderNo: "",
-          vendorId: "",
-          poAmount: "",
-          expectedDeliveryDate: "",
-          uploadDocument: null,
+          OrderNo: "",
+          VendorId: "", // Change state key to store vendorId instead of vendorName
+          OrderAmount: "",
+          ExpectedDelivery: "",
+          Document: null,
+          IsActive:true
         });
       } else {
         toast.error("Error creating purchase order");
@@ -78,32 +81,32 @@ const PurchaseOrderForm = () => {
           <div className="grid grid-cols-1 gap-4">
             <div>
               <label
-                htmlFor="purchaseOrderNo"
+                htmlFor="OrderNo"
                 className="block text-sm font-medium text-gray-700"
               >
-                Purchase Order No
+              Order No
               </label>
               <input
                 type="text"
-                name="purchaseOrderNo"
-                id="purchaseOrderNo"
+                name="OrderNo"
+                id="OrderNo"
                 className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                value={formData.purchaseOrderNo}
+                value={formData.OrderNo}
                 onChange={handleChange}
               />
             </div>
             <div>
               <label
-                htmlFor="vendorId" // Change htmlFor to vendorId
+                htmlFor="VendorId" // Change htmlFor to vendorId
                 className="block text-sm font-medium text-gray-700"
               >
                 Select Vendor
               </label>
               <select
-                name="vendorId" // Change name to vendorId
-                id="vendorId"
+                name="VendorId" // Change name to vendorId
+                id="VendorId"
                 className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                value={formData.vendorId}
+                value={formData.VendorId}
                 onChange={handleChange}
               >
                 <option value="">-- Select Vendor --</option>
@@ -115,48 +118,65 @@ const PurchaseOrderForm = () => {
 
             <div>
               <label
-                htmlFor="expectedDeliveryDate"
+                htmlFor="ExpectedDelivery"
                 className="block text-sm font-medium text-gray-700"
               >
                 Expected Delivery Date
               </label>
               <input
                 type="datetime-local"
-                name="expectedDeliveryDate"
-                id="expectedDeliveryDate"
+                name="ExpectedDelivery"
+                id="ExpectedDelivery"
                 className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                value={formData.expectedDeliveryDate}
+                value={formData.ExpectedDelivery}
                 onChange={handleChange}
               />
             </div>
             <div>
               <label
-                htmlFor="uploadDocument"
+                htmlFor="Document"
                 className="block text-sm font-medium text-gray-700"
               >
                 Upload Document
               </label>
               <input
                 type="file"
-                name="uploadDocument"
-                id="uploadDocument"
+                name="Document"
+                id="Document"
                 className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                 onChange={handleChange}
               />
             </div>
             <div>
               <label
-                htmlFor="poAmount"
+                htmlFor="OrderAmount"
                 className="block text-sm font-medium text-gray-700"
               >
                 PO Amount
               </label>
               <input
                 type="number"
-                name="poAmount"
-                id="poAmount"
+                name="OrderAmount"
+                id="OrderAmount"
                 className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                value={formData.poAmount}
+                value={formData.OrderAmount}
+                onChange={handleChange}
+              />
+            </div>
+
+            <div>
+              <label
+                htmlFor="IsActive"
+                className="block mb-2 text-sm font-medium text-gray-900"
+              >
+                IsActive
+              </label>
+              <input
+                type="checkbox"
+                name="IsActive"
+                id="IsActive"
+                className="peer"
+                value={formData.IsActive}
                 onChange={handleChange}
               />
             </div>
