@@ -9,27 +9,27 @@ export default function VendorDashboard() {
 
   const menuItems = [
     {
-      text: "Dashboard",
+      text: "DASHBOARD",
       // icon: "ri-home-2-line",
       link: "dashboard",
       bgColor: "bg-cyan-300",
     },
     {
-      text: "Request for Proposal",
+      text: "REQUEST FOR PROPOSAL (RFP)",
       // icon: "ri ri-archive-2-line",
       link: "#",
       bgColor: "bg-cyan-400",
       subItems: [{ text: "For You", link: "rfp" }],
     },
     {
-      text: "Documents",
+      text: "DOCUMENTS",
       // icon: "ri ri-archive-2-line",
       link: "#",
       bgColor: "bg-cyan-500",
       subItems: [{ text: "Upload Documents", link: "upload-document" }],
     },
     {
-      text: "Purchase Order",
+      text: "PURCHASE ORDER",
       // icon: "ri ri-archive-2-line",
       link: "#",
       bgColor: "bg-cyan-600",
