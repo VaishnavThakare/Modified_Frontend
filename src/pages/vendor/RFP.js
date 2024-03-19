@@ -94,7 +94,7 @@ export default function RFP() {
           <div className="flex text-2xl font-bold text-gray-500 mb-4 justify-center items-center">
             <h2>Request for Proposal</h2>
           </div>
-          <table className="min-w-full">
+          <table className="min-w-full mb-5">
             <thead>
               <tr>
                 <th className="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-blue-500 tracking-wider">
@@ -162,7 +162,7 @@ export default function RFP() {
         showEditModal && <>
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
           <div className="bg-white p-2 max-w-md rounded-lg shadow-md">
-            <form onSubmit={applyRFP}>
+            <form onSubmit={applyRFP} className="appform">
               <div className="flex text-2xl font-bold text-gray-500 mb-2">
                 <h2>Apply for RFP</h2>
               </div>

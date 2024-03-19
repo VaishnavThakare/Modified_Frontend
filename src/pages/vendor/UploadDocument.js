@@ -146,7 +146,7 @@ function UploadDocument(){
             <>
                 <div className="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 pr-10 lg:px-8 mb-8">
                 <div className="align-middle inline-block min-w-full shadow overflow-hidden bg-white shadow-dashboard px-8 pt-3 rounded-bl-lg rounded-br-lg">
-                    <table class="my-[15px] ml-[150px] border-collapse  border border-slate-400">
+                    <table class="my-[15px] ml-[150px] border-collapse  border border-slate-400 mb-5">
                         <thead className="bg-blue-500">
                             <tr>
                                 <th colSpan={3} className="border border-blue-500 p-3 font-serif font-bold text-left">Upload Following Documents</th>
@@ -189,7 +189,7 @@ function UploadDocument(){
             <>
                 <div className="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 pr-10 lg:px-8 mb-8">
                 <div className="align-middle inline-block min-w-full shadow overflow-hidden bg-white shadow-dashboard px-8 pt-3 rounded-bl-lg rounded-br-lg">
-                    <table align="center" className="my-[50px] border-collapse  border border-slate-400">
+                    <table align="center" className="my-[50px] border-collapse  border border-slate-400 mb-5">
                         <tbody>
                             <tr>
                                 <td align="center">
@@ -215,7 +215,7 @@ function UploadDocument(){
             <>
                 <div className="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 pr-10 lg:px-8 mb-8">
                 <div className="align-middle inline-block min-w-full shadow overflow-hidden bg-white shadow-dashboard px-8 pt-3 rounded-bl-lg rounded-br-lg">
-                    <table align="center" className="my-[50px] border-collapse  border border-slate-400">
+                    <table align="center" className="my-[50px] border-collapse  border border-slate-400 mb-5">
                         <tbody>
                             <tr>
                                 <td align="center">

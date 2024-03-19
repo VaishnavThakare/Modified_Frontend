@@ -113,7 +113,7 @@ const DocumentDetails = () => {
 
         
           <h2 className="text-2xl font-bold mt-8 mb-4 underline text-cyan-600 ">Document Details</h2>
-          <table className="min-w-full border-2 border-blue-500 p-4 ">
+          <table className="min-w-full border-2 border-blue-500 p-4 mb-5">
             <thead>
               <tr>
                 <th className="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-blue-500 tracking-wider">

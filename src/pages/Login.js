@@ -95,7 +95,7 @@ const Login = () => {
                 Login
               </h2>
             </div>
-            <form className="mt-8 space-y-6" onSubmit={handleLogin}>
+            <form className="mt-8 space-y-6 appform" onSubmit={handleLogin}>
               <div className="rounded-md shadow-sm -space-y-px">
                 <div>
                   <label htmlFor="username" className="sr-only">
