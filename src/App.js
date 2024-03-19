@@ -36,13 +36,11 @@ import PoDetailsA from "./pages/Purchase Orders/PoDetailsA";
 import PurchaseOrderForm from "./pages/Purchase Orders/PurchaseOrderForm";
 import EditPurchaseOrderPage from "./pages/Purchase Orders/EditPurchaseOrderPage";
 
-
 //Vendor
 import VendorDash from "./pages/vendor/VendorDash";
 import RFP from "./pages/vendor/RFP";
 import VendorProfile from "./pages/vendor/VendorProfile";
 import UploadDocument from "./pages/vendor/UploadDocument";
-import PoList from "./pages/Purchase Orders/PoList";
 import PoDetailsV from "./pages/Purchase Orders/PoDetailsV";
 
 //ProjectHead
@@ -119,7 +117,10 @@ const App = () => {
             element={<PurchaseOrderForm />}
           ></Route>
           <Route path="purchase-order-list" element={<PoDetailsA />}></Route>
-          <Route path="edit/:orderNo" element={<EditPurchaseOrderPage />}></Route>
+          <Route
+            path="edit/:orderNo"
+            element={<EditPurchaseOrderPage />}
+          ></Route>
         </Route>
 
         <Route path="/vendor" element={<VendorDashboard />}>
@@ -128,7 +129,7 @@ const App = () => {
           <Route path="profile" element={<VendorProfile />} />
           <Route path="rfp" element={<RFP />} />
           <Route path="upload-document" element={<UploadDocument />} />
-          <Route path="purchase-order-list" element={<PoList />} />
+
           <Route path="po-check" element={<PoDetailsV />} />
         </Route>
 

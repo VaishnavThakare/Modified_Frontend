@@ -33,11 +33,7 @@ export default function VendorDashboard() {
       // icon: "ri ri-archive-2-line",
       link: "#",
       bgColor: "bg-cyan-600",
-      subItems: [
-        // { text: "Purchase Order Details", link: "purchase-order-details" },
-        { text: "Purchase Order List", link: "purchase-order-list" },
-        { text: "Purchase Order", link: "po-check" },
-      ],
+      subItems: [{ text: "Purchase Order", link: "po-check" }],
     },
   ];
 
