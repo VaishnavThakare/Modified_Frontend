@@ -40,8 +40,8 @@ export default function AdminDashboard() {
       bgColor: "bg-cyan-300",
       subItems: [
         { text: "Purchase Order Form", link: "purchase-OrderForm" },
-        { text: "Purchase Order View", link: "purchase-order-list" }],
-
+        { text: "Purchase Order View", link: "purchase-order-list" },
+      ],
     },
     {
       text: "Project Head",
@@ -84,7 +84,6 @@ export default function AdminDashboard() {
       ],
       bgColor: "bg-cyan-700",
     },
-    ///////////
 
     {
       text: "Vendor Verification",
@@ -124,7 +123,7 @@ export default function AdminDashboard() {
       ],
       bgColor: "bg-cyan-900",
     },
-    ,
+
     {
       text: "Document",
       icon: "ri-file-copy-2-line",

@@ -6,6 +6,7 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const PoDetailsV = () => {
+  const [dummyData, setDummyData] = useState([]);
   const [purchaseOrders, setPurchaseOrders] = useState([]);
   const itemsPerPage = 5;
 
@@ -41,10 +42,9 @@ const PoDetailsV = () => {
 
   const handleAccept = async (orderId, comment) => {
     try {
-      await axios.post(
-        `https://localhost:7254/api/PurchaseOrder/AcceptReject`,
+      await axios.put(
+        `https://localhost:7254/api/PurchaseOrder/AcceptReject/${orderId}`,
         {
-          id: orderId,
           isAccepted: true,
           comment: comment,
         }
@@ -64,10 +64,9 @@ const PoDetailsV = () => {
 
   const handleReject = async (orderId, comment) => {
     try {
-      await axios.post(
-        `https://localhost:7254/api/PurchaseOrder/AcceptReject`,
+      await axios.put(
+        `https://localhost:7254/api/PurchaseOrder/AcceptReject/${orderId}`,
         {
-          id: orderId,
           isAccepted: false,
           comment: comment,
         }
@@ -94,46 +93,75 @@ const PoDetailsV = () => {
     );
   };
 
+  // Function to format the timestamp to a readable date and time
+  const formatDateTime = (timestamp) => {
+    const date = new Date(timestamp);
+    return date.toLocaleString(); // Adjust options as needed
+  };
+
   return (
     <div className="relative">
       <div className="overflow-x-auto mt-8 ml-2 mr-2 border rounded border-gray-300">
-        <table className="table-auto w-full rounded-md border-2 border-cyan-400">
+        <table className="table-auto w-full rounded-lg border-2 border-cyan-400 border-#FBFBFB">
           <thead>
-            <tr className="bg-gray-200">
-              <th className="px-4 py-2 text-left border">Sr. No.</th>
-              <th className="px-4 py-2 text-left border">Purchase Order No.</th>
-              <th className="px-4 py-2 text-left border">Vendor Name</th>
-              <th className="px-4 py-2 text-left border">Released On</th>
+            <tr className="bg-gray-200 text-gray-600">
+              <th className="px-4 py-2 text-left border">
+                Sr.<p></p> No.
+              </th>
+              <th className="px-4 py-2 text-left border">
+                Purchase <p></p>Order No.
+              </th>
+              <th className="px-4 py-2 text-left border">
+                Vendor<p></p>Name
+              </th>
+              <th className="px-4 py-2 text-left border">
+                Release<p></p> On
+              </th>
               <th className="px-4 py-2 text-left border">PO Amount</th>
-              <th className="px-4 py-2 text-left border">Status</th>
+              <th className="px-4 py-2 text-left border">
+                Action<p></p>(Accept/Reject)
+              </th>
               <th className="px-4 py-2 text-left border">Comments</th>
+            </tr>
+            <tr className="bg-gray-200 text-gray-600">
+              <td colSpan="7" className="border px-4 py-1">
+                <div style={{ borderTop: "1px solid black" }}></div>
+              </td>
             </tr>
           </thead>
           <tbody>
             {currentItems.map((order, index) => (
-              <tr key={index} className="bg-white">
+              <tr key={index} className="bg-gray-200">
                 <td className="px-4 py-2 border">
                   {indexOfFirstItem + index + 1}
                 </td>
                 <td className="px-4 py-2 border">{order.orderNo}</td>
                 <td className="px-4 py-2 border">{order.vendorId}</td>
-                <td className="px-4 py-2 border">{order.releaseDate}</td>
+                <td className="px-4 py-2 border">
+                  {formatDateTime(order.releaseDate)}
+                </td>
                 <td className="px-4 py-2 border">{order.orderAmount}</td>
                 <td className="px-4 py-2 border">
-                  <div className="flex">
-                    <button
-                      onClick={() => handleAccept(order.id, order.comment)}
-                      className="px-4 py-2 mr-2 bg-green-500 text-white rounded hover:bg-green-600"
-                    >
-                      Accept
-                    </button>
-                    <button
-                      onClick={() => handleReject(order.id, order.comment)}
-                      className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
-                    >
-                      Reject
-                    </button>
-                  </div>
+                  {order.isAccepted ? (
+                    <span className="text-green-500">Already Accepted</span>
+                  ) : order.isAccepted === false ? (
+                    <span className="text-red-500">Already Rejected</span>
+                  ) : (
+                    <div className="flex">
+                      <button
+                        onClick={() => handleAccept(order.id, order.comment)}
+                        className="px-4 py-2 mr-2 bg-green-500 text-white rounded hover:bg-green-600"
+                      >
+                        Accept
+                      </button>
+                      <button
+                        onClick={() => handleReject(order.id, order.comment)}
+                        className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+                      >
+                        Reject
+                      </button>
+                    </div>
+                  )}
                 </td>
                 <td className="px-4 py-2 border">
                   <textarea
@@ -153,11 +181,11 @@ const PoDetailsV = () => {
       <div className="flex justify-end mt-2 ml-2 mr-2">
         <table className="table-auto border-collapse rounded border-blue-500">
           <tbody>
-            <tr className="bg-white">
+            <tr className="bg-gray-200">
               <td className="px-4 py-2 border" colSpan="10">
                 <button
                   onClick={handlePrevPage}
-                  className="pagination-button"
+                  className="pagination-button rounded-l-3xl"
                   disabled={currentPage === 1}
                 >
                   <FontAwesomeIcon
@@ -168,10 +196,9 @@ const PoDetailsV = () => {
                 </button>
                 <button
                   onClick={handleNextPage}
-                  className="pagination-button ml-2"
+                  className="pagination-button ml-2 rounded-r-3xl"
                   disabled={
-                    currentPage ===
-                    Math.ceil(purchaseOrders.length / itemsPerPage)
+                    currentPage === Math.ceil(dummyData.length / itemsPerPage)
                   }
                 >
                   Next
@@ -185,6 +212,7 @@ const PoDetailsV = () => {
           </tbody>
         </table>
       </div>
+
 
       <ToastContainer />
     </div>
