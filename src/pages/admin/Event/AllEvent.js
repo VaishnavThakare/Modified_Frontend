@@ -225,7 +225,7 @@ export default function AllEvent() {
       {showEditModal && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
           <div className="bg-white p-2 max-w-md rounded-lg shadow-md">
-            <form onSubmit={handleEdit}>
+            <form onSubmit={handleEdit} className="appform">
               <div className="flex text-2xl font-bold text-gray-500 mb-2">
                 <h2>Update Event</h2>
               </div>

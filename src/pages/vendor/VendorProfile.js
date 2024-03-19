@@ -172,7 +172,7 @@ export default function VendorProfile() {
             </div>
           </div>
           <div class="align-middle inline-block min-w-full overflow-hidden px-8 py-3 pb-8">
-            <form onSubmit={handleSubmit} className="max-w-sm mx-auto mt-8">
+            <form onSubmit={handleSubmit} className="max-w-sm mx-auto mt-8 appform">
               <div class="mb-6">
                 <label
                   for="name"

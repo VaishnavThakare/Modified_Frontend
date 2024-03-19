@@ -79,7 +79,7 @@ const LoginModal = ({ onClose }) => {
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
       <div className="bg-white p-8 rounded-md shadow-md w-96" style={{ border: '3px solid cyan' }}>
         <h2 className="text-2xl font-semibold mb-4">Login</h2>
-        <form onSubmit={(e) => e.preventDefault()}>
+        <form onSubmit={(e) => e.preventDefault()} className='appform'>
         <div className="mb-6 relative">
   <input
     type="text"

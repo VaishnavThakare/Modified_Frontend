@@ -192,7 +192,7 @@ export default function AllNews() {
 
       {showEditModal && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-          <div className="bg-white p-2 max-w-md rounded-lg shadow-md">
+          <div className="bg-white p-2 max-w-md rounded-lg shadow-md appform">
             <form onSubmit={handleEdit}>
               <div className="flex text-2xl font-bold text-gray-500 mb-2">
                 <h2>Update News</h2>

@@ -26,7 +26,7 @@ export default function AssignedProject() {
           <div className="flex text-2xl font-bold text-gray-500 mb-4 justify-center items-center">
             <h2>Projects</h2>
           </div>
-          <table className="min-w-full">
+          <table className="min-w-full mb-5">
             <thead>
               <tr>
                 <th className="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-blue-500 tracking-wider">

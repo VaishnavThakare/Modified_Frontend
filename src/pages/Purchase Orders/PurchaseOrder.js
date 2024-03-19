@@ -97,7 +97,7 @@ const PoDetailsV = () => {
   return (
     <div className="relative">
       <div className="overflow-x-auto mt-8 ml-2 mr-2 border rounded border-gray-300">
-        <table className="table-auto w-full rounded-md border-2 border-cyan-400 ">
+        <table className="table-auto w-full rounded-md border-2 border-cyan-400 mb-5 ">
           <thead>
             <tr className="bg-gray-300 text-gray-600">
               <th className="px-4 py-2 text-left border">Sr. No.</th>
@@ -152,7 +152,7 @@ const PoDetailsV = () => {
       </div>
 
       <div className="flex justify-end mt-2 ml-2 mr-2">
-        <table className="table-auto border-collapse rounded border-blue-500">
+        <table className="table-auto border-collapse rounded border-blue-500 mb-5">
           <tbody>
             <tr className="bg-white">
               <td className="px-4 py-2 border" colSpan="10">

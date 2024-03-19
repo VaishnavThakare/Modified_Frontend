@@ -53,31 +53,36 @@ const PoDetailsA = () => {
   return (
     <div className="relative">
       <ToastContainer />
-      <div className="overflow-x-auto mt-8 ml-2 mr-2 border rounded border-gray-300">
-        <table className="table-auto w-full rounded-md border-2 border-cyan-400 shadow-md">
+      <div className="overflow-x-auto mt-8 ml-2 mr-2 rounded">
+        <table className="table-auto w-full rounded-md border-2 border-cyan-400 bg-white">
           <thead>
-            <tr className="bg-gray-300 text-gray-600">
-              <th className="px-4 py-2 text-left border">Sr. No.</th>
-              <th className="px-4 py-2 text-left border">Purchase Order No.</th>
-              <th className="px-4 py-2 text-left border">Vendor Name</th>
-              <th className="px-4 py-2 text-left border">Released On</th>
-              <th className="px-4 py-2 text-left border">Accepted On</th>
-              <th className="px-4 py-2 text-left border">PO Amount</th>
-              <th className="px-4 py-2 text-left border">Status</th>
-              <th className="px-4 py-2 text-left border">Comments</th>
-              <th className="px-4 py-2 text-left border">Actions</th>
+            <tr className="text-gray-600">
+              <th className="px-4 py-2 text-left ">Purchase Order No.</th>
+              <th className="px-4 py-2 text-left ">Vendor Name</th>
+              <th className="px-4 py-2 text-left ">Released On</th>
+              <th className="px-4 py-2 text-left ">Accepted On</th>
+              <th className="px-4 py-2 text-left ">PO Amount</th>
+              <th className="px-4 py-2 text-left ">Status</th>
+              <th className="px-4 py-2 text-left ">Comments</th>
+              <th className="px-4 py-2 text-left ">Actions</th>
+              <th className="px-4 py-2 text-left ">Sr. No.</th>
+            </tr>
+            <tr className= " text-gray-600">
+              <td colSpan="9" className=" px-4 py-1">
+                <div style={{ borderTop: "2px solid gray" }}></div>
+              </td>
             </tr>
           </thead>
           <tbody>
             {currentItems.map((item, index) => (
-              <tr key={item.orderNo} className="bg-gray-200">
-                <td className="px-4 py-2 border">{indexOfFirstItem + index + 1}</td>
-                <td className="px-4 py-2 border">{item.orderNo}</td>
-                <td className="px-4 py-2 border">{item.vendorId}</td>
-                <td className="px-4 py-2 border">{item.releaseDate}</td>
-                <td className="px-4 py-2 border">{item.acceptedOn}</td>
-                <td className="px-4 py-2 border">{item.orderAmount}</td>
-                <td className="px-4 py-2 border">
+              <tr key={item.orderNo} className="bg-white">
+                <td className="px-4 py-2">{item.orderNo}</td>
+                <td className="px-4 py-2">{indexOfFirstItem + index + 1}</td>
+                <td className="px-4 py-2">{item.vendorId}</td>
+                <td className="px-4 py-2">{item.releaseDate}</td>
+                <td className="px-4 py-2">{item.acceptedOn}</td>
+                <td className="px-4 py-2">{item.orderAmount}</td>
+                <td className="px-4 py-2">
                   <button
                     className={`py-1 px-2 rounded ${
                       item.isAccepted
@@ -91,12 +96,12 @@ const PoDetailsA = () => {
                 </td>
                 <td className="px-4 py-2 border">{item.purchaseOrderHistories && item.purchaseOrderHistories.length > 0 ? item.purchaseOrderHistories[0].comment : "-"}</td>
 
-                <td className="px-4 py-2 border">
+                <td className="px-4 py-2 bg-zinc-50">
                   <button onClick={() => handleEdit(item)} className={`mr-2`}>
-                    <FontAwesomeIcon icon={faEdit} className={`text-blue-500`} />
+                    <FontAwesomeIcon icon={faEdit} className={`text-purple-600 text-xl`} />
                   </button>
                   <button onClick={() => handleView(item)} className={`mr-2`}>
-                    <FontAwesomeIcon icon={faEye} className={`text-blue-500`} />
+                    <FontAwesomeIcon icon={faEye} className={`text-purple-600 text-xl`} />
                   </button>
                 </td>
               </tr>
@@ -106,10 +111,10 @@ const PoDetailsA = () => {
       </div>
 
       <div className="flex justify-end mt-2 ml-2 mr-2">
-        <table className="table-auto border-collapse rounded border-blue-500">
+        <table className="table-auto border-collapse rounded border-blue-500 mb-5">
           <tbody>
-            <tr className="bg-gray-200">
-              <td className="px-4 py-2 border" colSpan="10">
+            <tr>
+              <td className="px-4 py-2" colSpan="10">
                 <button onClick={handlePrevPage} className="pagination-button" disabled={currentPage === 1}>
                   <FontAwesomeIcon icon={faArrowLeft} className="pagination-icon" />
                   Previous

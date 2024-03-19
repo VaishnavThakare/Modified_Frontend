@@ -59,7 +59,7 @@ export default function Sidebar({
           </h2>
         </a>
         <ul className="mt-4  ">
-          <span className="text-gray-400 font-bold ml-4">Menus</span>
+          <span className="text-gray font-bold ml-4">Menus</span>
           {menuItems.map((menuItem, index) => (
             <li key={index} className={`group menuSidebar `}>
               <Link
@@ -72,7 +72,7 @@ export default function Sidebar({
                 }}
               >
                 <i className={menuItem.icon + " mr-3 text-lg"}></i>
-                <span className="text-sm">{menuItem.text}</span>
+                <span className="text-sm text-white uppercase">{menuItem.text}</span>
                 {menuItem.subItems && (
                   <i
                     className={`ri-arrow-right-s-line ml-auto ${
