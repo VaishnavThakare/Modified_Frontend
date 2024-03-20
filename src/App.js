@@ -137,7 +137,9 @@ const App = () => {
           <Route path="profile" element={<VendorProfile />} />
           <Route path="rfp" element={<RFP />} />
           <Route path="upload-document" element={<UploadDocument />} />
-
+          <Route path="view-invoice" element={<ViewInvoiceVendor />} />
+          <Route path="create-invoice" element={<CreateInvoiceVendor />} />
+          <Route path="update-invoice/:id" element={<UpdateInvoiceVendor />} />
           <Route path="po-check" element={<PoDetailsV />} />
           <Route path="changePassword" element={<ChangePassword/>} />
         </Route>
@@ -147,6 +149,7 @@ const App = () => {
           <Route path="dashboard" element={<ProjectHeadDash />} />
           <Route path="profile" element={<ProjectHeadProfile />} />
           <Route path="assigned-project" element={<AssignedProject />} />
+          <Route path="grn-List" element={<GrnList/>} />
         </Route>
 
         {/* <Route path="/" element={<Navigate to="/login" />} /> */}
