@@ -120,7 +120,25 @@ export default function AdminDash() {
           </a>
         </div>
 
-        
+        <div class="bg-white rounded-md border border-gray-100 p-6 shadow-md shadow-black/5">
+          <div class="flex justify-between mb-4">
+            <div>
+              <div class="flex items-center mb-1">
+                <div class="text-2xl font-semibold">{projectHead}</div>
+                {/* <div class="p-1 rounded bg-emerald-500/10 text-emerald-500 text-[12px] font-semibold leading-none ml-2">
+                  +30%
+                </div> */}
+              </div>
+              <div class="text-sm font-medium text-gray-400">GRN</div>
+            </div>
+          </div>
+          <a
+            href="/admin/grn"
+            class="text-[#f84525] font-medium text-sm hover:text-red-800"
+          >
+            View
+          </a>
+        </div>
       </div>
 
       

@@ -190,7 +190,7 @@ const Header = () => {
                                 alt=""
                                 className="w-8 h-8 rounded block object-cover align-middle"
                               />
-                              <div className="ml-2 pr-14">
+                              <div className="ml-2 pr-4">
                                 <div className="text-[13px] text-gray-600 font-medium group-hover:text-blue-500">
                                   {noti.content}
                                 </div>
