@@ -35,6 +35,17 @@ export default function VendorDashboard() {
       bgColor: "bg-cyan-600",
       subItems: [{ text: "Purchase Order", link: "po-check" }],
     },
+    {
+      text: "INVOICE",
+      // icon: "ri ri-archive-2-line",
+      link: "#",
+      bgColor: "bg-cyan-600",
+      subItems: [
+        { text: "View", link: "view-invoice" },
+        { text: "Add", link: "create-invoice" },
+      ],
+
+    },
   ];
 
   const handleMenuVisible = () => {

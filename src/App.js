@@ -21,6 +21,7 @@ import AddVendorCategory from "./pages/admin/AddVendorCategory";
 import VendorCategory from "./pages/admin/VendorCategory";
 import AddProject from "./pages/admin/AddProject";
 import Project from "./pages/admin/Project";
+import GRN from "./pages/admin/grn";
 import RFPA from "./pages/admin/RFP";
 import AddRFP from "./pages/admin/AddRFP";
 import AdminProfile from "./pages/admin/AdminProfile";
@@ -42,6 +43,8 @@ import RFP from "./pages/vendor/RFP";
 import VendorProfile from "./pages/vendor/VendorProfile";
 import UploadDocument from "./pages/vendor/UploadDocument";
 import PoDetailsV from "./pages/Purchase Orders/PoDetailsV";
+import ViewInvoiceVendor from "./pages/vendor/ViewInvoiceVendor";
+import CreateInvoiceVendor from "./pages/vendor/CreateInvoiceVendor";
 
 //ProjectHead
 import ProjectHeadDash from "./pages/projecthead/ProjectHeadDash";
@@ -87,6 +90,7 @@ const App = () => {
           <Route path="document" element={<Documents />} />
           <Route path="add-document" element={<AddDocument />} />
           <Route path="projects" element={<Project />} />
+          <Route path="grn" element={<GRN />} />
           <Route path="create-project" element={<AddProject />} />
           <Route path="rfp" element={<RFPA />} />
           <Route path="create-rfp" element={<AddRFP />} />
@@ -130,6 +134,8 @@ const App = () => {
           <Route path="profile" element={<VendorProfile />} />
           <Route path="rfp" element={<RFP />} />
           <Route path="upload-document" element={<UploadDocument />} />
+          <Route path="view-invoice" element={<ViewInvoiceVendor />} />
+          <Route path="create-invoice" element={<CreateInvoiceVendor />} />
 
           <Route path="po-check" element={<PoDetailsV />} />
         </Route>
