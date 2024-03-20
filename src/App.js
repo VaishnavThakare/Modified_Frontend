@@ -66,6 +66,7 @@ import AllPolicyDocuments from "./pages/admin/Documents/AllPolicyDocuments";
 import AddProfile from "./pages/admin/Profile/AddProfile";
 import AllProfile from "./pages/admin/Profile/AllProfile";
 import Application from "./pages/admin/Application";
+import ChangePassword from "./pages/ChangePassword";
 
 const App = () => {
   const [userRole, setuserRole] = useState(sessionStorage.getItem("roles"));
@@ -101,6 +102,7 @@ const App = () => {
           <Route path="add-product-category" element={<AddProductCategory />} />
           <Route path="product-category" element={<ProductCategory />} />
           <Route path="vendor-verfication" element={<VendorVerification />} />
+          <Route path="changePassword" element={<ChangePassword/>} />
           <Route
             path="document-verification/:id"
             element={<DocumentDetails />}
@@ -135,11 +137,9 @@ const App = () => {
           <Route path="profile" element={<VendorProfile />} />
           <Route path="rfp" element={<RFP />} />
           <Route path="upload-document" element={<UploadDocument />} />
-          <Route path="view-invoice" element={<ViewInvoiceVendor />} />
-          <Route path="create-invoice" element={<CreateInvoiceVendor />} />
-          <Route path="update-invoice/:id" element={<UpdateInvoiceVendor />} />
 
           <Route path="po-check" element={<PoDetailsV />} />
+          <Route path="changePassword" element={<ChangePassword/>} />
         </Route>
 
         <Route path="/projecthead" element={<ProjectHeadDashboard />}>
@@ -147,7 +147,6 @@ const App = () => {
           <Route path="dashboard" element={<ProjectHeadDash />} />
           <Route path="profile" element={<ProjectHeadProfile />} />
           <Route path="assigned-project" element={<AssignedProject />} />
-          <Route path="grn-List" element={<GrnList/>} />
         </Route>
 
         {/* <Route path="/" element={<Navigate to="/login" />} /> */}
