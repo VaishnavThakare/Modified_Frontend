@@ -4,30 +4,27 @@ import axios from "axios";
 function CreateInvoiceVendor() {
     const [formData, setFormData] = useState({
         InvoiceNumber: "",
-        // Date: "",
         Amount: "",
-        // GRNNumber: "",
-        PONumber: "",
-        // S: "",
-        PaymentStatus: "",
+        GRNNumber: "",
+        PaymentStatus: false, // Adjusted to use boolean value
         DueDateTime: "", // Combine date and time into a single field
         Document: null
     });
 
-    const [poNumbers, setPoNumbers] = useState([]);
+    const [grnNumbers, setGRNNumbers] = useState([]);
 
-    const getAllPoNumbers = async () => {
+    const getAllGRNNumbers = async () => {
         try {
-            // Fetch PO numbers from backend API
-            const poRes = await axios.get("https://backend-api-url/poNumbers");
-            setPoNumbers(poRes.data);
+            // Fetch GRN numbers from backend API
+            const grnRes = await axios.get(`${process.env.REACT_APP_API_URL}/GRN/All`);
+            setGRNNumbers(grnRes.data);
         } catch (error) {
             console.log(error);
         }
     };
 
     useEffect(() => {
-        getAllPoNumbers();
+        getAllGRNNumbers();
     }, []);
 
     const handleInputChange = (event) => {
@@ -46,15 +43,7 @@ function CreateInvoiceVendor() {
         // Add your form submission logic here, e.g., sending data to backend API
         try {
             // Example: Submitting data to backend API
-            const formDataToSend = new FormData();
-            formDataToSend.append('InvoiceNumber', formData.InvoiceNumber);
-            formDataToSend.append('Amount', formData.Amount);
-            formDataToSend.append('PONumber', formData.PONumber);
-            formDataToSend.append('PaymentStatus', formData.PaymentStatus);
-            formDataToSend.append("DueDateTime", formData.DueDateTime); // Use combined field
-            formDataToSend.append('Document', formData.Document);
-
-            const res = await axios.post("https://backend-api-url/invoices", formDataToSend);
+            const res = await axios.post(`${process.env.REACT_APP_API_URL}/Invoice/Add`, formData);
             console.log("Response:", res.data);
             // Add further actions based on response if needed
         } catch (error) {
@@ -97,21 +86,21 @@ function CreateInvoiceVendor() {
                     />
                 </div>
                 <div className="mb-6 relative">
-                    <label htmlFor="poNumber" className="block mb-2 text-sm font-medium text-gray-900">
-                        PO Number:
+                    <label htmlFor="grnNumber" className="block mb-2 text-sm font-medium text-gray-900">
+                        GRN Number:
                     </label>
                     <select
-                        id="poNumber"
-                        name="PONumber"
-                        value={formData.PONumber}
+                        id="grnNumber"
+                        name="GRNNumber"
+                        value={formData.GRNNumber}
                         onChange={handleInputChange}
                         className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                         required
                     >
-                        <option value="">Select PO Number</option>
-                        {poNumbers.map((po) => (
-                            <option key={po.id} value={po.number}>
-                                {po.number}
+                        <option value="">Select GRN Number</option>
+                        {grnNumbers.map((grn) => (
+                            <option key={grn.id} value={grn.id}>
+                                {grn.id}
                             </option>
                         ))}
                     </select>
@@ -129,8 +118,8 @@ function CreateInvoiceVendor() {
                         required
                     >
                         <option value="">Select Payment Status</option>
-                        <option value="paid">Paid</option>
-                        <option value="unpaid">Unpaid</option>
+                        <option value={true}>Paid</option>
+                        <option value={false}>Unpaid</option>
                     </select>
                 </div>
                 <div className="mb-6 relative">
