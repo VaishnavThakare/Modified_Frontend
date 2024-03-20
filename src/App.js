@@ -46,6 +46,8 @@ import PoDetailsV from "./pages/Purchase Orders/PoDetailsV";
 import ViewInvoiceVendor from "./pages/vendor/ViewInvoiceVendor";
 import CreateInvoiceVendor from "./pages/vendor/CreateInvoiceVendor";
 import UpdateInvoiceVendor from "./pages/vendor/UpdateInvoiceVendor";
+import VGrnForm from "./pages/vendor/VGrnForm";
+import VGrnlist from "./pages/vendor/VGrnlist";
 
 //ProjectHead
 import ProjectHeadDash from "./pages/projecthead/ProjectHeadDash";
@@ -102,7 +104,7 @@ const App = () => {
           <Route path="add-product-category" element={<AddProductCategory />} />
           <Route path="product-category" element={<ProductCategory />} />
           <Route path="vendor-verfication" element={<VendorVerification />} />
-          <Route path="changePassword" element={<ChangePassword/>} />
+          <Route path="changePassword" element={<ChangePassword />} />
           <Route
             path="document-verification/:id"
             element={<DocumentDetails />}
@@ -141,7 +143,9 @@ const App = () => {
           <Route path="create-invoice" element={<CreateInvoiceVendor />} />
           <Route path="update-invoice/:id" element={<UpdateInvoiceVendor />} />
           <Route path="po-check" element={<PoDetailsV />} />
-          <Route path="changePassword" element={<ChangePassword/>} />
+          <Route path="changePassword" element={<ChangePassword />} />
+          <Route path="vendor-grnform" element={<VGrnForm />} />
+          <Route path="vendor-grnlist" element={<VGrnlist />} />
         </Route>
 
         <Route path="/projecthead" element={<ProjectHeadDashboard />}>
@@ -149,7 +153,8 @@ const App = () => {
           <Route path="dashboard" element={<ProjectHeadDash />} />
           <Route path="profile" element={<ProjectHeadProfile />} />
           <Route path="assigned-project" element={<AssignedProject />} />
-          <Route path="grn-List" element={<GrnList/>} />
+          {/* Add the GrnList route here */}
+          <Route path="grn-list" element={<GrnList />} />
         </Route>
 
         {/* <Route path="/" element={<Navigate to="/login" />} /> */}

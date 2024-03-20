@@ -36,6 +36,13 @@ export default function VendorDashboard() {
       subItems: [{ text: "Purchase Order", link: "po-check" }],
     },
     {
+      text: "GRN Details",
+      // icon: "ri ri-archive-2-line",
+      link: "#",
+      bgColor: "bg-cyan-700",
+      subItems: [{ text: "GRN List", link: "vendor-grnlist" },{ text: "GRN Form", link: "vendor-grnform" }],
+    },
+    {
       text: "INVOICE",
       // icon: "ri ri-archive-2-line",
       link: "#",
