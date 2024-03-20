@@ -42,6 +42,8 @@ import RFP from "./pages/vendor/RFP";
 import VendorProfile from "./pages/vendor/VendorProfile";
 import UploadDocument from "./pages/vendor/UploadDocument";
 import PoDetailsV from "./pages/Purchase Orders/PoDetailsV";
+import ViewInvoiceVendor from "./pages/vendor/ViewInvoiceVendor";
+import CreateInvoiceVendor from "./pages/vendor/CreateInvoiceVendor";
 
 //ProjectHead
 import ProjectHeadDash from "./pages/projecthead/ProjectHeadDash";
@@ -129,6 +131,8 @@ const App = () => {
           <Route path="profile" element={<VendorProfile />} />
           <Route path="rfp" element={<RFP />} />
           <Route path="upload-document" element={<UploadDocument />} />
+          <Route path="view-invoice" element={<ViewInvoiceVendor />} />
+          <Route path="create-invoice" element={<CreateInvoiceVendor />} />
 
           <Route path="po-check" element={<PoDetailsV />} />
         </Route>
