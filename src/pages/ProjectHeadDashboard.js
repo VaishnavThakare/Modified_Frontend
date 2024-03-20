@@ -9,16 +9,24 @@ export default function ProjectHeadDashboard() {
   const menuItems = [
     {
       text: "Dashboard",
-      icon: "ri-home-2-line",
+      icon: "ri-home-2-line text-white font-",
       link: "dashboard",
       bgColor: "bg-cyan-300",
+      textStyle: "font-bold",
     },
     {
       text: "Users",
-      icon: "bx bx-user",
+      icon: "bx bx-user text-white",
       link: "#",
       bgColor: "bg-cyan-400",
       subItems: [{ text: "Assigned Project ", link: "assigned-project " }],
+    },
+    {
+      text: "GRN",
+      icon: "bx bx-user text-white font-",
+      link: "#",
+      bgColor: "bg-cyan-400",
+      subItems: [{ text: "GRN Listing", link: "grn-List" }],
     },
   ];
 

@@ -21,6 +21,7 @@ import AddVendorCategory from "./pages/admin/AddVendorCategory";
 import VendorCategory from "./pages/admin/VendorCategory";
 import AddProject from "./pages/admin/AddProject";
 import Project from "./pages/admin/Project";
+import GRN from "./pages/admin/grn";
 import RFPA from "./pages/admin/RFP";
 import AddRFP from "./pages/admin/AddRFP";
 import AdminProfile from "./pages/admin/AdminProfile";
@@ -56,6 +57,7 @@ import AllBanner from "./pages/admin/Banner/AllBanner";
 import AddBanner from "./pages/admin/Banner/AddBanner";
 import AddNews from "./pages/admin/News/AddNews";
 import AllNews from "./pages/admin/News/AllNews";
+import GrnList from "./pages/projecthead/GrnList";
 
 import AddEvent from "./pages/admin/Event/AddEvent";
 import AllEvent from "./pages/admin/Event/AllEvent";
@@ -89,6 +91,7 @@ const App = () => {
           <Route path="document" element={<Documents />} />
           <Route path="add-document" element={<AddDocument />} />
           <Route path="projects" element={<Project />} />
+          <Route path="grn" element={<GRN />} />
           <Route path="create-project" element={<AddProject />} />
           <Route path="rfp" element={<RFPA />} />
           <Route path="create-rfp" element={<AddRFP />} />
@@ -144,6 +147,7 @@ const App = () => {
           <Route path="dashboard" element={<ProjectHeadDash />} />
           <Route path="profile" element={<ProjectHeadProfile />} />
           <Route path="assigned-project" element={<AssignedProject />} />
+          <Route path="grn-List" element={<GrnList/>} />
         </Route>
 
         {/* <Route path="/" element={<Navigate to="/login" />} /> */}
