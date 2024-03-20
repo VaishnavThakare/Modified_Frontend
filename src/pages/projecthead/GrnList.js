@@ -103,24 +103,24 @@ const GrnList = () => {
     <div className="relative">
       <ToastContainer />
       <div className="overflow-x-auto mt-8 ml-2 mr-2 rounded">
-        <h1 className="text-2xl font-bold mb-5 relative">
+        {/* <h1 className="text-2xl font-bold mb-5 relative">
           GRN Listing:
           <div className="absolute bottom-0 left-0 right-0">
             <div className="border-b border-cyan-400 w-32"></div>
             <div className="border-b-2 border-cyan-400 mt-1"></div>
           </div>
-        </h1>
+        </h1> */}
 
         <table className="table-auto w-full rounded-md border-2 border-cyan-400 bg-white">
           <thead>
             <tr className="text-gray-600">
-              <th className="px-4 py-2 text-left">Sr. No.</th>
+              <th className="px-4 py-2 text-left">SR. NO.</th>
               <th className="px-4 py-2 text-left">GRN No.</th>
               <th className="px-4 py-2 text-left">PO No.</th>
-              <th className="px-4 py-2 text-left">Sent On (date)</th>
-              <th className="px-4 py-2 text-left">Status</th>
-              <th className="px-4 py-2 text-left">Actions</th>
-              <th className="px-4 py-2 text-left">Shipment Status</th>
+              <th className="px-4 py-2 text-left">SENT ON (date)</th>
+              <th className="px-4 py-2 text-left">STATUS</th>
+              <th className="px-4 py-2 text-left">SHIPMENT STATUS</th>
+              <th className="px-4 py-2 text-left">ACTIONS</th>
             </tr>
             <tr className=" text-gray-600">
               <td colSpan="9" className=" px-4 py-1">
@@ -148,6 +148,13 @@ const GrnList = () => {
                   >
                     {item.purchaseOrder.isAccepted ? "Accepted" : "Rejected"}
                   </button>
+                </td>
+                <td className="px-4 py-2 bg-white">
+                  {item.shipmentStatus ? (
+                    <span className="text-green-500">Complete Shipment</span>
+                  ) : (
+                    <span className="text-red-500">Partial Shipment</span>
+                  )}
                 </td>
                 <td className="px-4 py-2 bg-zinc-50">
                   <button onClick={() => handleEdit(item)} className={`mr-2`}>
@@ -188,13 +195,6 @@ const GrnList = () => {
                         placeholder="Add comments..."
                       />
                     </>
-                  )}
-                </td>
-                <td className="px-4 py-2">
-                  {item.shipmentStatus ? (
-                    <span className="text-green-500">Complete Shipment</span>
-                  ) : (
-                    <span className="text-red-500">Partial Shipment</span>
                   )}
                 </td>
               </tr>
