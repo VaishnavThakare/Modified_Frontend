@@ -53,6 +53,7 @@ import AllBanner from "./pages/admin/Banner/AllBanner";
 import AddBanner from "./pages/admin/Banner/AddBanner";
 import AddNews from "./pages/admin/News/AddNews";
 import AllNews from "./pages/admin/News/AllNews";
+import GrnList from "./pages/projecthead/GrnList";
 
 import AddEvent from "./pages/admin/Event/AddEvent";
 import AllEvent from "./pages/admin/Event/AllEvent";
@@ -138,6 +139,7 @@ const App = () => {
           <Route path="dashboard" element={<ProjectHeadDash />} />
           <Route path="profile" element={<ProjectHeadProfile />} />
           <Route path="assigned-project" element={<AssignedProject />} />
+          <Route path="grn-List" element={<GrnList/>} />
         </Route>
 
         {/* <Route path="/" element={<Navigate to="/login" />} /> */}
