@@ -132,7 +132,9 @@ const PoDetailsV = () => {
               <th className="px-4 py-2 text-left">
                 Release<p></p> On
               </th>
-              <th className="px-4 py-2 text-left">PO <p></p>Amount</th>
+              <th className="px-4 py-2 text-left">
+                PO <p></p>Amount
+              </th>
               {/* <th className="px-4 py-2 text-left border">View PO</th> */}
               <th className="px-4 py-2 text-left">
                 Action<p></p>(Accept/Reject)
@@ -148,9 +150,7 @@ const PoDetailsV = () => {
           <tbody>
             {currentItems.map((order, index) => (
               <tr key={index} className="bg-white">
-                <td className="px-4 py-2">
-                  {indexOfFirstItem + index + 1}
-                </td>
+                <td className="px-4 py-2">{indexOfFirstItem + index + 1}</td>
                 <td className="px-4 py-2 ">{order.orderNo}</td>
                 <td className="px-4 py-2 ">{order.vendorName}</td>
                 <td className="px-4 py-2 ">
@@ -213,8 +213,8 @@ const PoDetailsV = () => {
       <div className="flex justify-end mt-2 ml-2 mr-2">
         <table className="table-auto border-collapse rounded border-blue-500 mb-5">
           <tbody>
-            <tr className="bg-gray-200">
-              <td className="px-4 py-2 border" colSpan="10">
+            <tr className="">
+              <td className="px-4 py-2 " colSpan="10">
                 <button
                   onClick={handlePrevPage}
                   className="pagination-button  bg-cyan-500 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded-3xl"
