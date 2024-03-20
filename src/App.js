@@ -26,6 +26,8 @@ import RFPA from "./pages/admin/RFP";
 import AddRFP from "./pages/admin/AddRFP";
 import AdminProfile from "./pages/admin/AdminProfile";
 import Product from "./pages/admin/Product";
+import AdminInvoiceList from "./pages/admin/AdminInvoiceList";
+import AdminDetailsView from "./pages/admin/AdminDetailsView";
 import AddProduct from "./pages/admin/AddProduct";
 import AddProductCategory from "./pages/admin/AddProductCategory";
 import VendorVerification from "./pages/admin/VendorVerification";
@@ -131,6 +133,8 @@ const App = () => {
             path="edit/:orderNo"
             element={<EditPurchaseOrderPage />}
           ></Route>
+          <Route path="view-invoice" element={<AdminInvoiceList />}></Route>
+          <Route path="details/:invoiceNo" element={<AdminDetailsView />}></Route>
         </Route>
 
         <Route path="/vendor" element={<VendorDashboard />}>

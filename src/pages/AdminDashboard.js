@@ -44,6 +44,17 @@ export default function AdminDashboard() {
       ],
     },
     {
+      text: "INVOICE",
+      icon: "bx bx-category text-white",
+      link: "#",
+      bgColor: "bg-cyan-600",
+      subItems: [
+        { text: "View", link: "view-invoice" },
+
+      ],
+    },
+
+    {
       text: "Project Head",
       icon: "bx bx-user text-white",
       link: "#",
