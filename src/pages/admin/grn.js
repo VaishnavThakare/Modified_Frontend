@@ -145,7 +145,12 @@ const GrnDetails = () => {
 
 
   return (
-    <div className="relative bg-zinc-50">
+    <div className="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 pr-10 lg:px-8 mb-8">
+        <div className="align-middle inline-block min-w-full shadow overflow-hidden bg-zinc-50 shadow-dashboard px-8 pt-3 rounded-bl-lg rounded-br-lg ">
+          <div className="flex text-2xl font-bold text-gray-500 mb-4 justify-center items-center ">
+            <h2>ALL GRN</h2>
+          </div>
+      <div className="relative bg-zinc-50 mb-5 bg-white">
       {selectedGrn ? (
         <DetailsView grn={grns.find((grn) => grn.id === selectedGrn)} />
       ) : (
@@ -155,13 +160,9 @@ const GrnDetails = () => {
               <tr className="text-gray-600">
                 <th className="px-4 py-2 text-left">GRN No.</th>
                 <th className="px-4 py-2 text-left">PO No.</th>
-                <th className="px-4 py-2 text-left">Sent on (date)</th>
                 <th className="px-4 py-2 text-left">Status</th>
-                <th className="px-4 py-2 text-left">
-                  View & download document
-                </th>
+                
                 <th className="px-4 py-2 text-left">Shipment Type</th>
-                <th className="px-4 py-2 text-left">Comment</th>
                 <th className="px-4 py-2 text-left">Action</th>
               </tr>
               <tr className="text-gray-600">
@@ -175,7 +176,6 @@ const GrnDetails = () => {
                 <tr key={grn.id} className="bg-white">
                   <td className="px-4 py-2">{grn.grnNo}</td>
                   <td className="px-4 py-2">{grn.poNo}</td>
-                  <td className="px-4 py-2">{grn.sentOn}</td>
                   <td className="px-4 py-2">
                     <button
                       className={`py-1 px-2 rounded ${
@@ -188,16 +188,8 @@ const GrnDetails = () => {
                       {grn.isApproved ? "Approved" : "Rejected"}
                     </button>
                   </td>
-                  <td className="px-4 py-2">
-                    <button className="mr-2 ml-3">
-                      <FontAwesomeIcon
-                        icon={faFileDownload}
-                        className="text-purple-600 text-xl"
-                      />
-                    </button>
-                  </td>
+                  
                   <td className="px-4 py-2">{grn.shipmentType}</td>
-                  <td className="px-4 py-2">{grn.comment}</td>
                   <td className="px-4 py-2">
                     <button
                       className="mr-2"
@@ -215,7 +207,10 @@ const GrnDetails = () => {
           </table>
         </div>
       )}
-      <div className="flex justify-end mt-2 ml-2 mr-2">
+      
+    </div>
+    </div>
+    <div className="flex justify-end mt-2 ml-2 mr-2">
         <button
           onClick={handlePrevPage}
           className="pagination-button bg-cyan-500 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded-3xl"
@@ -234,6 +229,7 @@ const GrnDetails = () => {
         </button>
       </div>
     </div>
+    
   );
 };
 
