@@ -1,141 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { useNavigate } from 'react-router-dom';
 
-export default function InvoiceTable() {
+export default function ViewInvoiceVendor() {
+  const [invoices, setInvoices] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const navigate = useNavigate();
 
-  const invoices = [
-    {
-      id: 1,
-      invoiceNo: "INV-001",
-      dateSentOn: "2024-03-20",
-      amount: "$1000",
-      grnNumber: "GRN-001",
-      poNumber: "PO-001",
-      s: "Approved",
-      paymentStatus: "Paid",
-      dueDate: "2024-04-20",
-      documents: "https://example.com/invoice-documents",
-      comment: "Lorem .",
-    },
-    {
-      id: 2,
-      invoiceNo: "INV-001",
-      dateSentOn: "2024-03-20",
-      amount: "$1000",
-      grnNumber: "GRN-001",
-      poNumber: "PO-001",
-      s: "Approved",
-      paymentStatus: "Paid",
-      dueDate: "2024-04-20",
-      documents: "https://example.com/invoice-documents",
-      comment: "Lorem ipsum .",
-    },
-    {
-      id: 3,
-      invoiceNo: "INV-001",
-      dateSentOn: "2024-03-20",
-      amount: "$1000",
-      grnNumber: "GRN-001",
-      poNumber: "PO-001",
-      s: "Approved",
-      paymentStatus: "Paid",
-      dueDate: "2024-04-20",
-      documents: "https://example.com/invoice-documents",
-      comment: "Lorem ipsum .",
-    },
-    {
-      id: 4,
-      invoiceNo: "INV-001",
-      dateSentOn: "2024-03-20",
-      amount: "$1000",
-      grnNumber: "GRN-001",
-      poNumber: "PO-001",
-      s: "Approved",
-      paymentStatus: "Paid",
-      dueDate: "2024-04-20",
-      documents: "https://example.com/invoice-documents",
-      comment: "Lorem ipsum .",
-    },
-    {
-      id: 5,
-      invoiceNo: "INV-001",
-      dateSentOn: "2024-03-20",
-      amount: "$1000",
-      grnNumber: "GRN-001",
-      poNumber: "PO-001",
-      s: "Approved",
-      paymentStatus: "Paid",
-      dueDate: "2024-04-20",
-      documents: "https://example.com/invoice-documents",
-      comment: "Lorem ipsum .",
-    },
-    {
-      id: 6,
-      invoiceNo: "INV-001",
-      dateSentOn: "2024-03-20",
-      amount: "$1000",
-      grnNumber: "GRN-001",
-      poNumber: "PO-001",
-      s: "Approved",
-      paymentStatus: "Paid",
-      dueDate: "2024-04-20",
-      documents: "https://example.com/invoice-documents",
-      comment: "Lorem ipsum .",
-    },
-    {
-      id: 7,
-      invoiceNo: "INV-001",
-      dateSentOn: "2024-03-20",
-      amount: "$1000",
-      grnNumber: "GRN-001",
-      poNumber: "PO-001",
-      s: "Approved",
-      paymentStatus: "Paid",
-      dueDate: "2024-04-20",
-      documents: "https://example.com/invoice-documents",
-      comment: "Lorem ipsum .",
-    },
-    {
-      id: 8,
-      invoiceNo: "INV-001",
-      dateSentOn: "2024-03-20",
-      amount: "$1000",
-      grnNumber: "GRN-001",
-      poNumber: "PO-001",
-      s: "Approved",
-      paymentStatus: "Paid",
-      dueDate: "2024-04-20",
-      documents: "https://example.com/invoice-documents",
-      comment: "Lorem ipsum .",
-    },
-    {
-      id: 9,
-      invoiceNo: "INV-001",
-      dateSentOn: "2024-03-20",
-      amount: "$1000",
-      grnNumber: "GRN-001",
-      poNumber: "PO-001",
-      s: "Approved",
-      paymentStatus: "Paid",
-      dueDate: "2024-04-20",
-      documents: "https://example.com/invoice-documents",
-      comment: "Lorem ipsum .",
-    },
-    {
-      id: 10,
-      invoiceNo: "INV-001",
-      dateSentOn: "2024-03-20",
-      amount: "$1000",
-      grnNumber: "GRN-001",
-      poNumber: "PO-001",
-      s: "Approved",
-      paymentStatus: "Paid",
-      dueDate: "2024-04-20",
-      documents: "https://example.com/invoice-documents",
-      comment: "Lorem ipsumxdfdf .",
-    },
-    // Add more dummy data here if needed
-  ];
+  useEffect(() => {
+    const fetchInvoices = async () => {
+      try {
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/Invoice/All`);
+        setInvoices(response.data);
+      } catch (error) {
+        console.error("Error fetching invoices:", error);
+      }
+    };
+
+    fetchInvoices();
+  }, []);
 
   const itemsPerPage = 5;
   const totalPages = Math.ceil(invoices.length / itemsPerPage);
@@ -145,6 +28,10 @@ export default function InvoiceTable() {
   const currentItems = invoices.slice(indexOfFirstItem, indexOfLastItem);
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+  const handleUpdateInvoice = (invoiceId) => {
+    navigate(`/vendor/update-invoice/${invoiceId}`); // Navigate to the "update-invoice" route with the invoice ID
+  };
 
   return (
     <div className="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 pr-10 lg:px-8 mb-8">
@@ -184,7 +71,10 @@ export default function InvoiceTable() {
                 </td>
                 <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500">{invoice.comment}</td>
                 <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
-                  <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                  <button
+                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                    onClick={() => handleUpdateInvoice(invoice.id)}
+                  >
                     Update
                   </button>
                 </td>
@@ -198,9 +88,8 @@ export default function InvoiceTable() {
         {Array.from({ length: totalPages }).map((_, index) => (
           <button
             key={index}
-            className={`mx-1 px-4 py-2 ${
-              currentPage === index + 1 ? "bg-blue-500 text-white" : "bg-gray-300"
-            }`}
+            className={`mx-1 px-4 py-2 ${currentPage === index + 1 ? "bg-blue-500 text-white" : "bg-gray-300"
+              }`}
             onClick={() => paginate(index + 1)}
           >
             {index + 1}
