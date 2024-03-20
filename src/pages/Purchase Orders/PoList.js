@@ -64,8 +64,8 @@ const PoList = () => {
 
   return (
     <div className="relative">
-      <div className="overflow-x-auto mt-8 ml-2 mr-2 border rounded border-gray-300">
-        <table className="table-auto w-full rounded-lg  border-2 border-cyan-400 border-#FBFBFB mb-5">
+      <div className="overflow-x-auto mt-8 ml-2 mr-2 rounded-lg">
+        <table className="table-auto w-full rounded-lg  border-2 border-cyan-400 mb-5">
           <thead>
             <tr className="bg-gray-200 text-gray-600">
               <th className="px-4 py-2 text-left border">

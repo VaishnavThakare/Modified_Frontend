@@ -62,7 +62,7 @@ export default function VendorDashboard() {
           text: <span className="white-bold-text">{item.text}</span>,
         }))}
       />
-      <main className="w-full md:w-[calc(100%-256px)] sm:ml-0 md:ml-64 bg-gray-200 min-h-screen transition-all main">
+      <main className="w-full md:w-[calc(100%-256px)] sm:ml-0 md:ml-64 bg-zinc-50 min-h-screen transition-all main">
         <Header handleMenuVisible={handleMenuVisible} />
         <div className="p-6">
           <Outlet />

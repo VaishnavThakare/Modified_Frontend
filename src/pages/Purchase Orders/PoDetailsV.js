@@ -116,47 +116,47 @@ const PoDetailsV = () => {
 
   return (
     <div className="relative">
-      <div className="overflow-x-auto mt-8 ml-2 mr-2 border rounded border-gray-300">
-        <table className="table-auto w-full rounded-lg border-2 border-cyan-400 border-#FBFBFB mb-5">
+      <div className="overflow-x-auto mt-8 ml-2 mr-2">
+        <table className="table-auto w-full rounded-lg border-2 border-cyan-400 mb-5">
           <thead>
-            <tr className="bg-gray-200 text-gray-600">
-              <th className="px-4 py-2 text-left border">
+            <tr className="bg-white text-gray-600">
+              <th className="px-4 py-2 text-left ">
                 Sr.<p></p> No.
               </th>
-              <th className="px-4 py-2 text-left border">
+              <th className="px-4 py-2 text-left ">
                 Purchase <p></p>Order No.
               </th>
-              <th className="px-4 py-2 text-left border">
+              <th className="px-4 py-2 text-left ">
                 Vendor<p></p>Name
               </th>
-              <th className="px-4 py-2 text-left border">
+              <th className="px-4 py-2 text-left">
                 Release<p></p> On
               </th>
-              <th className="px-4 py-2 text-left border">PO Amount</th>
+              <th className="px-4 py-2 text-left">
+                PO <p></p>Amount
+              </th>
               {/* <th className="px-4 py-2 text-left border">View PO</th> */}
-              <th className="px-4 py-2 text-left border">
+              <th className="px-4 py-2 text-left">
                 Action<p></p>(Accept/Reject)
               </th>
-              <th className="px-4 py-2 text-left border">Comments</th>
+              <th className="px-4 py-2 text-left">Comments</th>
             </tr>
-            <tr className="bg-gray-200 text-gray-600">
-              <td colSpan="8" className="border px-4 py-1">
-                <div style={{ borderTop: "1px solid black" }}></div>
+            <tr className="bg-white text-gray-600">
+              <td colSpan="8" className=" px-4 py-1">
+                <div style={{ borderTop: "2px solid gray" }}></div>
               </td>
             </tr>
           </thead>
           <tbody>
             {currentItems.map((order, index) => (
-              <tr key={index} className="bg-gray-200">
-                <td className="px-4 py-2 border">
-                  {indexOfFirstItem + index + 1}
-                </td>
-                <td className="px-4 py-2 border">{order.orderNo}</td>
-                <td className="px-4 py-2 border">{order.vendorName}</td>
-                <td className="px-4 py-2 border">
+              <tr key={index} className="bg-white">
+                <td className="px-4 py-2">{indexOfFirstItem + index + 1}</td>
+                <td className="px-4 py-2 ">{order.orderNo}</td>
+                <td className="px-4 py-2 ">{order.vendorName}</td>
+                <td className="px-4 py-2 ">
                   {formatDateTime(order.releaseDate)}
                 </td>
-                <td className="px-4 py-2 border">{order.orderAmount}</td>
+                <td className="px-4 py-2">{order.orderAmount}</td>
                 {/* <td className="px-4 py-2 border">
                   <button
                     onClick={() =>
@@ -173,7 +173,7 @@ const PoDetailsV = () => {
                     />
                   </button>
                 </td> */}
-                <td className="px-4 py-2 border">
+                <td className="px-4 py-2">
                   {order.isAccepted ? (
                     <span className="text-green-500">Already Accepted</span>
                   ) : order.isAccepted === false ? (
@@ -195,7 +195,7 @@ const PoDetailsV = () => {
                     </div>
                   )}
                 </td>
-                <td className="px-4 py-2 border">
+                <td className="px-4 py-2 ">
                   <textarea
                     rows="2"
                     cols="25"
@@ -213,11 +213,11 @@ const PoDetailsV = () => {
       <div className="flex justify-end mt-2 ml-2 mr-2">
         <table className="table-auto border-collapse rounded border-blue-500 mb-5">
           <tbody>
-            <tr className="bg-gray-200">
-              <td className="px-4 py-2 border" colSpan="10">
+            <tr className="bg-zinc-50">
+              <td className="px-4 py-2" colSpan="10">
                 <button
                   onClick={handlePrevPage}
-                  className="pagination-button"
+                  className="pagination-button  bg-cyan-500 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded-3xl"
                   disabled={currentPage === 1}
                 >
                   <FontAwesomeIcon
@@ -228,7 +228,7 @@ const PoDetailsV = () => {
                 </button>
                 <button
                   onClick={handleNextPage}
-                  className="pagination-button ml-2"
+                  className="pagination-button ml-2  bg-cyan-500 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded-3xl"
                   disabled={
                     currentPage === Math.ceil(dummyData.length / itemsPerPage)
                   }
