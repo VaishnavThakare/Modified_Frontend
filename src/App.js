@@ -74,7 +74,7 @@ import AllPolicyDocuments from "./pages/admin/Documents/AllPolicyDocuments";
 import AddProfile from "./pages/admin/Profile/AddProfile";
 import AllProfile from "./pages/admin/Profile/AllProfile";
 import Application from "./pages/admin/Application";
-
+import EditGrnDetails from "./pages/projecthead/EditGrnDetails";
 import ChangePassword from "./pages/ChangePassword";
 
 import PheadList from "./pages/projecthead/Invoice/PheadList";
@@ -173,6 +173,7 @@ const App = () => {
           <Route path="assigned-project" element={<AssignedProject />} />
           <Route path="grn-list" element={<GrnList />} />
           <Route path="invoice-list" element={<PheadList />} />
+          <Route path="editGrn-List/:grnId" element={<EditGrnDetails />} />
         </Route>
 
         {/* <Route path="/" element={<Navigate to="/login" />} /> */}
