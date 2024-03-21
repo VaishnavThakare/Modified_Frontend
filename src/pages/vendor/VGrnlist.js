@@ -24,7 +24,7 @@ const GrnDetails = () => {
   useEffect(() => {
     const fetchGrns = async () => {
       try {
-        const response = await axios.get("https://localhost:7254/api/GRN/All");
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/GRN/All`);
         setGrns(response.data);
       } catch (error) {
         console.error("Error fetching GRNs:", error.message);
@@ -156,7 +156,7 @@ const GrnDetails = () => {
       const fetchGrn = async () => {
         try {
           const response = await axios.get(
-            `https://localhost:7254/api/GRN/${id}`
+            `${process.env.REACT_APP_API_URL}/GRN/${id}`
           );
           setEditedGrn(response.data);
           setLoading(false);
@@ -174,7 +174,7 @@ const GrnDetails = () => {
       const fetchPurchaseOrders = async () => {
         try {
           const response = await axios.get(
-            `https://localhost:7254/api/PurchaseOrder/All`
+            `${process.env.REACT_APP_API_URL}/PurchaseOrder/All`
           );
           setPurchaseOrders(response.data);
         } catch (error) {
@@ -197,9 +197,17 @@ const GrnDetails = () => {
 
     const handleSave = async () => {
       try {
-        await axios.put(`https://localhost:7254/api/GRN/${id}`, editedGrn);
-        toast.success("GRN details updated successfully");
-        onSave(editedGrn);
+        await axios.post(
+          `${process.env.REACT_APP_API_URL}/GRN/${id}/document`,
+          formData,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
+  
+        toast.success("Document uploaded successfully");
       } catch (error) {
         console.error("Error updating GRN:", error.message);
         toast.error("Failed to update GRN details");
