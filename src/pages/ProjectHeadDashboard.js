@@ -34,7 +34,7 @@ export default function ProjectHeadDashboard() {
       icon: "bx bx-user text-white font-",
       link: "#",
       bgColor: "bg-cyan-400",
-      subItems: [{ text: "All Invoices", link: "phead-list" }],  
+      subItems: [{ text: "All Invoices", link: "invoice-list" }],  
     },
   ];
 

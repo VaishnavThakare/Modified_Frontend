@@ -72,8 +72,15 @@ import AllPolicyDocuments from "./pages/admin/Documents/AllPolicyDocuments";
 import AddProfile from "./pages/admin/Profile/AddProfile";
 import AllProfile from "./pages/admin/Profile/AllProfile";
 import Application from "./pages/admin/Application";
+
 import ChangePassword from "./pages/ChangePassword";
+
 import PheadList from "./pages/projecthead/Invoice/PheadList";
+// import PheadList from "./pages/projecthead/Invoice.js/ProjectHeadList";
+// import PheadForm from "./pages/projecthead/Invoice.js/ProjectHeadForm";
+// import HeadDetails from "./pages/projecthead/Invoice.js/HeadDetails";
+//import { Document, Page, Text, View, StyleSheet } from '@react-pdf/renderer';
+
 
 const App = () => {
   const [userRole, setuserRole] = useState(sessionStorage.getItem("roles"));
@@ -164,7 +171,8 @@ const App = () => {
           <Route path="assigned-project" element={<AssignedProject />} />
           {/* Add the GrnList route here */}
           <Route path="grn-list" element={<GrnList />} />
-          <Route path="phead-list" element={<PheadList />} />
+          <Route path="grn-List" element={<GrnList/>} />
+          <Route path="invoice-list" element={<PheadList/>} />
         </Route>
 
         {/* <Route path="/" element={<Navigate to="/login" />} /> */}

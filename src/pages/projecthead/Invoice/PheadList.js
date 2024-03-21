@@ -21,17 +21,31 @@ const PheadList = () => {
   const itemsPerPage = 5;
   const navigate = useNavigate();
 
-  useEffect(() => {
+  const getInvoices=()=>{
     axios
-      .get("https://localhost:7254/api/Invoice/All")
-      .then((response) => {
-        setInvoice(response.data); // Corrected from invoiceData to invoices
-      })
-      .catch((error) => {
-        console.error("Error fetching Invoice data:", error);
-        toast.error("Error fetching Invoice data");
-      });
+    .get("https://localhost:7254/api/Invoice/All")
+    .then((response) => {
+      setInvoice(response.data); // Corrected from invoiceData to invoices
+    })
+    .catch((error) => {
+      console.error("Error fetching Invoice data:", error);
+      toast.error("Error fetching Invoice data");
+    })};
+
+  useEffect(() => {
+    getInvoices();
+    // axios
+    //   .get("https://localhost:7254/api/Invoice/All")
+    //   .then((response) => {
+    //     setInvoice(response.data); // Corrected from invoiceData to invoices
+    //   })
+    //   .catch((error) => {
+    //     console.error("Error fetching Invoice data:", error);
+    //     toast.error("Error fetching Invoice data");
+    //   });
   }, []);
+
+  
   
 
   const currentItems = invoice.slice(
@@ -69,11 +83,12 @@ const PheadList = () => {
     try {
       await axios.put(`https://localhost:7254/api/Invoice/AcceptReject/${id}`, {
         comment: comment,
-        status: "Accept",
+        isAccepted: true,
       });
       toast.success("Invoice item accepted successfully");
       setEditedItem(null);
       setEditedComment("");
+      getInvoices();
     } catch (error) {
       console.error("Error accepting Invoice item:", error);
       toast.error("Error accepting Invoice item");
@@ -83,11 +98,12 @@ const PheadList = () => {
     try {
       await axios.put(`https://localhost:7254/api/Invoice/AcceptReject/${id}`, {
         comment: comment,
-        status: "Reject",
+        isAccepted: false,
       });
       toast.success("Invoice item rejected successfully");
       setEditedItem(null);
       setEditedComment("");
+      getInvoices();
     } catch (error) {
       console.error("Error rejecting Invoice item:", error);
       toast.error("Error rejecting Invoice item");
@@ -122,6 +138,7 @@ const PheadList = () => {
               <th className="px-4 py-2 text-left">Amount</th>
               <th className="px-4 py-2 text-left">SENT ON (date)</th>
               <th className="px-4 py-2 text-left">PAYMENT STATUS</th>
+              <th className="px-4 py-2 text-left">Accept/Reject</th>
               <th className="px-4 py-2 text-left">ACTIONS</th>
             </tr>
             <tr className=" text-gray-600">
@@ -142,23 +159,37 @@ const PheadList = () => {
                 <td className="px-4 py-2">
                   <button
                     className={`py-1 px-2 rounded ${
-                      item.paymentStatus.isAccepted
+                      item.paymentStatus
                         ? "bg-green-200 text-green-700"
                         : "bg-red-200 text-red-600"
                     }`}
                     style={{ minWidth: "6rem" }}
                   >
-                    {item.paymentStatus.isAccepted ? "Accepted" : "Rejected"}
+                    {item.paymentStatus ? "Paid" : "Unpaid"}
                   </button>
                 </td>
                
+                <td className="px-4 py-2">
+                  <button
+                    className={`py-1 px-2 rounded ${
+                      item.isAccepted!=null
+                        ? item.isAccepted?"bg-green-200 text-green-700"
+                        : "bg-red-200 text-red-600":"bg-yello-200 text-yello-600"
+                    }`}
+                    style={{ minWidth: "6rem" }}
+                  >
+                    {item.isAccepted !=null? item.isAccepted? "Already Accepted" : "Already Rejected" : "not accepted/Rejected"}
+                  </button>
+                </td>
+
                 <td className="px-4 py-2 bg-zinc-50">
+                 { item.isAccepted==null?(
                   <button onClick={() => handleEdit(item)} className={`mr-2`}>
                     <FontAwesomeIcon
                       icon={faEdit}
                       className={`text-purple-600 text-xl`}
                     />
-                  </button>
+                  </button>):""}
                   <button
                     onClick={() => handleView(item.id)}
                     className={`mr-2`}
@@ -206,7 +237,7 @@ const PheadList = () => {
               className="fixed inset-0 transition-opacity"
               aria-hidden="true"
             >
-              <div className="absolute inset-0 bg-gray-500 opacity-75"></div>
+              <div className="absolute inset-0 bg-gray-500 opacity-0"></div>
             </div>
             <span
               className="hidden sm:inline-block sm:align-middle sm:h-screen"
@@ -214,9 +245,9 @@ const PheadList = () => {
             >
               &#8203;
             </span>
-            <div className="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
-              <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
-                <div className="sm:flex sm:items-start">
+            <div className="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg ">
+              <div className="bg-white px-4 pt-5 pb-4 min:p-6 min:pb-4 ">   
+                <div className="sm:flex sm:items-start ">
                   <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
 
                   <h1 className="text-2xl font-bold mb-4 underline text-cyan-600">Invoice Details</h1>
@@ -310,3 +341,9 @@ const PheadList = () => {
 };
 
 export default PheadList;
+
+
+
+
+
+
