@@ -54,7 +54,7 @@ function LandingPage() {
         <div className="text-black ml-[395px]">EVENTS</div>
      </div> */}
 
-          <div className="grid grid-cols-3 w-full mt-[15px]  "  >
+          <div className="grid grid-cols-3 w-full mt-[10px]  "  >
             <div id="col1" className="mx-[10px]">
               {/* Policies with scrollbar */}
               <div className="text-black  font-semibold mb-[20px] ">POLICIES</div>

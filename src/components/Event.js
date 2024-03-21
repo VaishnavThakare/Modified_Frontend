@@ -10,6 +10,7 @@ const Event= () => {
 
   const [currentNewsIndex, setCurrentNewsIndex] = useState(0);
   const [overflow, setOverflow] = useState(false);
+  const [arrows, setArrows] = useState(true);
   const [events, setevents] = useState([
       {
         id: 1,
@@ -73,15 +74,15 @@ const Event= () => {
 
   return (
 
-    <div className="container mr-10 relative  w-full h-[280px] shadow-2xl overflow-hidden">
+    <div className="container mr-10 relative  w-full h-[300px] shadow-2xl overflow-hidden" onMouseEnter={()=>setArrows(false)}  onMouseLeave={()=>setArrows(true)}>
       <img src={events[currentNewsIndex].imagePath} alt="" className='w-full h-40 mx-auto' />
       <h1 className='text-center font-semibold'>{events[currentNewsIndex].title}</h1>
-      <div className={`w-full mb-1 h-[100px] ${overflow ?'overflow-y-scroll' :'overflow-hidden'}`}>
+      <div className={`w-full  h-[100px] ${overflow ?'overflow-y-scroll' :'overflow-hidden'}`}>
         <p className="text-1xl text-gray-800 mb-4 px-6 py-2 text-wrap overflow-hidden">
           {events[currentNewsIndex].content}
         </p>
       </div>
-      <div className="absolute top-1/2 transform -translate-y-1/2 left-0" style={{ width: '100%' }}>
+      <div hidden={arrows} className="absolute top-1/2 transform -translate-y-1/2 left-0" style={{ width: '100%' }}>
         <button className="absolute left-0 top-[0px] text-2xl font-semibold text-gray  w-[22px] h-[35px] rounded bg-stone-300 text-white" onClick={handleBackwardClick}>
           &lt; 
         </button>

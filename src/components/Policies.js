@@ -51,7 +51,7 @@ function Policies() {
   },[]);
 
   return (
-    <div className="max-h-60 overflow-y-auto"
+    <div className=" h-[300px] overflow-y-auto bg-white shadow-2xl py-3"
       style={{
         scrollbarWidth: "none",
         msOverflowStyle: "none",
@@ -60,7 +60,7 @@ function Policies() {
       }}
     >
        
-      <div className="flex flex-wrap justify-center w-full h-[280px] bg-white shadow-2xl">
+      <div className="flex flex-wrap justify-center w-full h-[300px] pb-[10px] ">
         {
             pdocument.map((pdf, index) => (
             <div key={index} className="p-4 max-w-sm mx-2 my-0.5 bg-white rounded-xl shadow-2xl flex items-center h-20 w-full ">
