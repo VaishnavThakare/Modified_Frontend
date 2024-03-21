@@ -43,9 +43,9 @@ const EditGrnDetails = ({ id }) => {
           <h2>Edit GRN Details</h2>
         </div>
         <p></p>
-        <div className="flex text-2xl font-bold text-gray-500 mb-5">
+        {/* <div className="flex text-2xl font-bold text-gray-500 mb-5">
           <h2>Edit for GRN No: {id}</h2>
-        </div>
+        </div> */}
         <div className="mb-6">
           <button
             onClick={handleAccept}

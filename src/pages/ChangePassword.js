@@ -2,10 +2,23 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import {faEye} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 export default function ChangePassword() {
 
   const [profile, setProfile] = useState({});
+  const [view1,setView1] = useState(false);
+  const [view2,setView2] = useState(false);
+  const [view3,setView3] = useState(false);
+  const [hide1,sethide1] = useState(true);
+  const [hide2,sethide2] = useState(true);
+  const [hide3,sethide3] = useState(true);  
+
+  const setHidden = (h)=>{
+    if(h == "hide1") sethide1(false);
+    if(h == "hide2") sethide2(false);
+    if(h == "hide3") sethide3(false);
+  }
 
   const [modal,setModal] = useState({
     currentPassword:"",
@@ -47,6 +60,11 @@ export default function ChangePassword() {
     }));
   };
 
+  const toggleView = (v)=>{
+    if(v=="view1")setView1(!view1);
+    if(v=="view2")setView2(!view2);
+    if(v=="view3")setView3(!view3);
+  }
 
 
   const handleSubmit = async (e) => {
@@ -114,7 +132,7 @@ export default function ChangePassword() {
 
   return (
     <div className="flex flex-col px-8 items-center justify-center">
-      <div class={`w-full p-8 bg-white shadow mt-7`}>
+      <div class={`w-full p-8 bg-zinc-50 shadow mt-7`}>
         <div class="grid grid-cols-1 mb-10">
           <div class="relative">
             <div class="w-30 h-30 mx-auto absolute inset-x-0 top-3 -mt-20 flex items-center justify-center text-indigo-500">
@@ -134,20 +152,23 @@ export default function ChangePassword() {
         </div>
 
 
-        <div className="mx-auto w-1/2">
+        <div className="mx-auto w-1/2 ">
           {/* <h2 className="text-2xl font-semibold mb-4">Login</h2> */}
           <form onSubmit={handleSubmit} className='appform'>
             <div className="mb-6 relative">
               <input
-                  type="Password"
+                  type={view1?"text":"Password"}
                   id="currentPassword"
                   name="currentPassword"
-                  onChange={handleChange}
+                  onChange={(e)=>{handleChange(e);setHidden("hide1")}}
                   value={modal.currentPassword}
                 className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                 placeholder=" "
                 required
               />
+              <button hidden={hide1} type="button"onClick={()=>toggleView("view1")} className="absolute -mt-8 ml-[93%] bg-zinc-50 w-5 h-5">
+                <FontAwesomeIcon  icon={faEye} className="w-6 h-6  text-purple-600"/>
+              </button>
               <label
                 htmlFor="currentPassword"
                 className="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"
@@ -158,15 +179,18 @@ export default function ChangePassword() {
 
             <div className="mb-4 relative">
               <input
-                  type="password"
+                  type={view2?"text":"Password"}
                   id="newPassword"
                   name="newPassword"
                   value={modal.newPassword}
-                  onChange={handleChange}
+                  onChange={(e)=>{handleChange(e);setHidden("hide2")}}
                 className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                 placeholder=" "
                 required
               />
+              <button hidden={hide2}  type="button" onClick={()=>toggleView("view2")} className="absolute -mt-8 ml-[93%] bg-zinc-50 w-5 h-5">
+                <FontAwesomeIcon  icon={faEye} className="w-6 h-6  text-purple-600"/>
+              </button>
               <label
                 htmlFor="newPassword"
                 className="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"
@@ -177,15 +201,18 @@ export default function ChangePassword() {
 
             <div className="mb-4 relative">
               <input
-                  type="password"
+                  type={view3?"text":"Password"}
                   id="confirmPassword"
                   name="confirmPassword"
                   value={modal.confirmPassword}
-                  onChange={handleChange}
+                  onChange={(e)=>{handleChange(e);setHidden("hide3")}}
                 className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                 placeholder=" "
                 required
               />
+              <button hidden={hide3} type="button" onClick={()=>toggleView("view3")} className="absolute -mt-8 ml-[93%] bg-zinc-50  w-5 h-5">
+                <FontAwesomeIcon  icon={faEye} className="w-6 h-6 text-purple-600"/>
+              </button>
               <label
                 htmlFor="confirmPassword"
                 className="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"

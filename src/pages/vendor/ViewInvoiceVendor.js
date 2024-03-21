@@ -7,6 +7,8 @@ import {
   faEye,
   faArrowLeft,
   faArrowRight,
+  faFileDownload,
+
 } from "@fortawesome/free-solid-svg-icons";
 
 export default function ViewInvoiceVendor() {
@@ -87,8 +89,18 @@ export default function ViewInvoiceVendor() {
                 <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500">{invoice.s}</td>
                 <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500">{invoice.paymentStatus}</td>
                 <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500">{invoice.dueDate}</td>
-                <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
+
+                {/* <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
                   <a href={invoice.documentPath}>View/Download</a>
+                </td> */}
+
+                <td className="px-6 py-2 text-center whitespace-no-wrap border-b border-gray-500">
+                  <a href={invoice.documentPath} target="_blank" rel="noopener noreferrer">
+                    <FontAwesomeIcon
+                      icon={faFileDownload}
+                      className="text-purple-600 text-xl"
+                    />
+                  </a>
                 </td>
                 <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500">{invoice.comment}</td>
                 <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
