@@ -19,6 +19,7 @@ const GrnDetails = () => {
   const itemsPerPage = 5;
   const [selectedGrn, setSelectedGrn] = useState(null);
   const [editingGrn, setEditingGrn] = useState(null);
+  const [pos, setpos] = useState([]);
 
   useEffect(() => {
     const fetchGrns = async () => {
@@ -49,8 +50,10 @@ const GrnDetails = () => {
   };
 
   const handleViewDetails = (grnId) => {
-    setSelectedGrn(grnId);
+    const selectedGrn = grns.find((grn) => grn.id === grnId);
+    setSelectedGrn(selectedGrn);
   };
+  
 
   const handleEditDetails = (grnId) => {
     setEditingGrn(grnId);
@@ -68,56 +71,61 @@ const GrnDetails = () => {
     setEditingGrn(null);
   };
 
+  const handleGoBack = () => {
+    setSelectedGrn(null);
+  };
+  const currentPos = pos.slice(indexOfFirstItem, indexOfLastItem);
  
-const DetailsView = ({ onCancel }) => {
-    const { id } = useParams();
-    const [grnDetails, setGrnDetails] = useState({});
-    const [loading, setLoading] = useState(true);
-  
-    useEffect(() => {
-      const fetchGrnDetails = async () => {
-        try {
-          const response = await axios.get(
-            `https://localhost:7254/api/GRN/${id}`
-          );
-          setGrnDetails(response.data);
-          setLoading(false);
-        } catch (error) {
-          console.error("Error fetching GRN details:", error.message);
-          setLoading(false);
-          toast.error("Failed to fetch GRN details");
-        }
-      };
-  
-      fetchGrnDetails();
-    }, [id]);
-  
-    if (loading) {
-      return <div>Loading...</div>;
-    }
+
+
+
+
+const DetailsView = ({ grnDetails, onCancel }) => {
+    
   
     return (
-      <div className="container mx-auto mt-8 bg-zinc-50">
-        <h2 className="text-2xl font-bold mb-4 text-gray-600">GRN Details</h2>
-        <div className="bg-white p-6 rounded-md shadow-md border-2 border-cyan-500">
-          <div>
-            <p><b>GRN No:</b> {grnDetails.grnNo}</p>
-            <p><b>PO No:</b> {grnDetails.purchaseOrderId}</p>
-            <p><b>Sent on (date):</b> {grnDetails.sendOn}</p>
-            <p><b>Status:</b> {grnDetails.isAccepted ? "Accepted" : "Pending"}</p>
-            <p><b>Shipment Type:</b> {grnDetails.shipmentStatus ? "Complete" : "Partial"}</p>
-            <p><b>Comment:</b> {grnDetails.comment}</p>
-            {/* Add more details as needed */}
-          </div>
-          <button
-            onClick={onCancel}
-            className="bg-gray-400 text-white py-2 px-4 rounded-md mt-4"
-          >
-            Cancel
-          </button>
+      <div>
+        <div className="flex text-2xl font-bold text-gray-500 ">
+          <h2 className="text-left text-cyan-500">ALL ABOUT GRN</h2>
         </div>
+        <div className="w-1/5 bg-cyan-500 h-0.5 mb-1"></div>
+        <div className="w-1/3 bg-cyan-500 h-0.5 mb-5"></div>
+      <div className="min-w-full border-2 border-cyan-500 rounded-lg mb-5 bg-white">
+        <div
+          className="bg-white p-6 rounded-md shadow-md"
+          style={{ height: "fit-content" }}
+        >
+      {/* Display the details of the selected GRN */}
+      <p className="text-gray-900">
+        <span className="font-bold">GRN No.</span>: {grnDetails.grnNo}
+      </p>
+      <p className="text-gray-900">
+        <span className="font-bold">PO No.</span>: {grnDetails.poNo}
+      </p>
+      <p className="text-gray-900">
+        <span className="font-bold">Sent on (date)</span>: {grnDetails.sentOn}
+      </p>
+      <p className="text-gray-900">
+        <span className="font-bold">Status</span>: {grnDetails.isApproved ? "Approved" : "Rejected"}
+      </p>
+      <p className="text-gray-900">
+        <span className="font-bold">Shipment Type</span>: {grnDetails.shipmentType}
+      </p>
+      <p className="text-gray-900">
+        <span className="font-bold">Comment</span>: {grnDetails.comment}
+      </p>
+      <button
+        className="mt-4 bg-blue-500 text-white px-4 py-2 rounded block mx-auto"
+        onClick={onCancel}
+      >
+        Close
+      </button>
+    </div>
+    </div>
       </div>
-    );
+      );
+    
+    
   };
   
 
@@ -300,10 +308,7 @@ const EditDetailsView = ({ onSave, onCancel }) => {
   return (
     <div className="relative bg-zinc-50">
       {selectedGrn ? (
-        <>
-          <DetailsView grn={grns.find((grn) => grn.id === selectedGrn)}  onCancel={handleCancelEdit}/>
-          {/* Hide next and previous buttons on DetailsView page */}
-        </>
+        <DetailsView grnDetails={selectedGrn} onCancel={() => setSelectedGrn(null)} />
       ) : editingGrn ? (
         <EditDetailsView
           grn={grns.find((grn) => grn.id === editingGrn)}
@@ -313,97 +318,97 @@ const EditDetailsView = ({ onSave, onCancel }) => {
       ) : (
         <div className="overflow-x-auto mt-8 ml-2 mr-2 rounded shadow-lg">
           <table className="table-auto w-full rounded-lg border-2 border-cyan-400 bg-white shadow-lg">
-            <thead>
-              <tr className="text-gray-600">
-                <th className="px-4 py-2 text-center">GRN No.</th>
-                <th className="px-4 py-2 text-center">PO No.</th>
-                <th className="px-4 py-2 text-center">Sent on (date)</th>
-                <th className="px-4 py-2 text-center">Status</th>
-                <th className="px-4 py-2 text-center">
-                  View & download document
-                </th>
-                <th className="px-4 py-2 text-center">Shipment Type</th>
-                <th className="px-4 py-2 text-center">Comment</th>
-                <th className="px-4 py-2 text-center">Action</th>
-              </tr>
-              <tr className="text-gray-600">
-                <td colSpan="8" className="px-4 py-1">
-                  <div style={{ borderTop: "2px solid gray" }}></div>
-                </td>
-              </tr>
-            </thead>
-            <tbody>
-  {currentGrns.map((grn) => (
-    <tr key={grn.id} className="bg-white">
-      <td className="px-4 py-2 text-center">{grn.grnNo}</td>
-      <td className="px-4 py-2 text-center">{grn.purchaseOrderId}</td>
-      <td className="px-4 py-2 text-center">{grn.sendOn}</td>
-      <td className="px-4 py-2 text-center">
-        <button
-          className={`py-1 px-2 rounded ${
-            grn.isAccepted
-              ? "bg-green-200 text-green-700"
-              : "bg-red-200 text-red-600"
-          }`}
-          style={{ minWidth: "6rem" }}
-        >
-          {grn.isAccepted ? "Accepted" : "Pending"}
-        </button>
-      </td>
-      <td className="px-4 py-2 text-center">
-        <a href={grn.documentPath} target="_blank" rel="noopener noreferrer">
-          <FontAwesomeIcon
-            icon={faFileDownload}
-            className="text-purple-600 text-xl"
-          />
-        </a>
-      </td>
-      <td className="px-4 py-2 text-center">{grn.shipmentStatus ? "Complete" : "Partial"}</td>
-      <td className="px-4 py-2 text-center">{grn.comment}</td>
-      <td className="px-4 py-2 text-center">
-        <button
-          className="mr-2"
-          onClick={() => handleEditDetails(grn.id)}
-        >
-          <FontAwesomeIcon
-            icon={faEdit}
-            className="text-purple-600 text-xl"
-          />
-        </button>
-        <button
-          className="mr-2"
-          onClick={() => handleViewDetails(grn.id)}
-        >
-          <FontAwesomeIcon
-            icon={faEye}
-            className="text-purple-600 text-xl"
-          />
-        </button>
-      </td>
-    </tr>
-  ))}
-</tbody>
+          <thead>
+                <tr className="text-gray-600">
+                  <th className="px-4 py-2 text-center">GRN No.</th>
+                  <th className="px-4 py-2 text-center">PO No.</th>
+                  <th className="px-4 py-2 text-center">SENT ON (DATE)</th>
+                  <th className="px-4 py-2 text-center">STATUS</th>
+                  <th className="px-4 py-2 text-center">
+                    VIEW & DOWNLOAD DOCUMENT
+                  </th>
+                  <th className="px-4 py-2 text-center">SHIPMENT TYPE</th>
+                  <th className="px-4 py-2 text-center">COMMENT</th>
+                  <th className="px-4 py-2 text-left">ACTION</th>
+                </tr>
+                <tr className="text-gray-600">
+                  <td colSpan="8" className="px-4 py-1">
+                    <div style={{ borderTop: "2px solid gray" }}></div>
+                  </td>
+                </tr>
+              </thead>
+              <tbody>
+    {currentGrns.map((grn) => (
+      <tr key={grn.id} className="bg-white">
+        <td className="px-4 py-2 text-center">{grn.grnNo}</td>
+        <td className="px-4 py-2 text-center">{grn.purchaseOrderId}</td>
+        <td className="px-4 py-2 text-center">{grn.sendOn}</td>
+        <td className="px-4 py-2 text-center">
+          <button
+            className={`py-1 px-2 rounded ${
+              grn.isAccepted
+                ? "bg-green-200 text-green-700"
+                : "bg-red-200 text-red-600"
+            }`}
+            style={{ minWidth: "6rem" }}
+          >
+            {grn.isAccepted ? "Accepted" : "Pending"}
+          </button>
+        </td>
+        <td className="px-4 py-2 text-center">
+          <a href={grn.documentPath} target="_blank" rel="noopener noreferrer">
+            <FontAwesomeIcon
+              icon={faFileDownload}
+              className="text-purple-600 text-xl"
+            />
+          </a>
+        </td>
+        <td className="px-4 py-2 text-center">{grn.shipmentStatus ? "Complete" : "Partial"}</td>
+        <td className="px-4 py-2 text-center">{grn.comment}</td>
+        <td className="px-4 py-2 text-left flex flex-row ">
+          <button
+            className="mr-2"
+            onClick={() => handleEditDetails(grn.id)}
+          >
+            <FontAwesomeIcon
+              icon={faEdit}
+              className="text-purple-600 text-xl"
+            />
+          </button>
+          <button
+            className="mr-2"
+            onClick={() => handleViewDetails(grn.id)}
+          >
+            <FontAwesomeIcon
+              icon={faEye}
+              className="text-purple-600 text-xl"
+            />
+          </button>
+        </td>
+      </tr>
+    ))}
+  </tbody>
           </table>
         </div>
       )}
       {!selectedGrn && !editingGrn && (
         <div className="flex justify-end mt-2 ml-2 mr-2">
           <button
-            onClick={handlePrevPage}
-            className="pagination-button bg-cyan-500 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded-3xl"
-            disabled={currentPage === 1}
-          >
-            <FontAwesomeIcon icon={faArrowLeft} className="pagination-icon" />
-            Previous
-          </button>
-          <button
-            onClick={handleNextPage}
-            className="pagination-button bg-cyan-500 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded-3xl ml-2"
-            disabled={currentPage === Math.ceil(grns.length / itemsPerPage)}
-          >
-            Next
-            <FontAwesomeIcon icon={faArrowRight} className="pagination-icon" />
-          </button>
+              onClick={handlePrevPage}
+              className="pagination-button bg-cyan-500 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded-3xl"
+              disabled={currentPage === 1}
+            >
+              <FontAwesomeIcon icon={faArrowLeft} className="pagination-icon" />
+              Previous
+            </button>
+            <button
+              onClick={handleNextPage}
+              className="pagination-button bg-cyan-500 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded-3xl ml-2"
+              disabled={currentPage === Math.ceil(grns.length / itemsPerPage)}
+            >
+              Next
+              <FontAwesomeIcon icon={faArrowRight} className="pagination-icon" />
+            </button>
         </div>
       )}
     </div>
@@ -411,6 +416,10 @@ const EditDetailsView = ({ onSave, onCancel }) => {
 };
 
 export default GrnDetails;
+
+
+
+
 
 
 

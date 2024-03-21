@@ -158,7 +158,7 @@ const App = () => {
           <Route path="upload-document" element={<UploadDocument />} />
           <Route path="view-invoice" element={<ViewInvoiceVendor />} />
           <Route path="create-invoice" element={<CreateInvoiceVendor />} />
-          <Route path="update-invoice/:id" element={<UpdateInvoiceVendor />} />
+          <Route path="update-invoice/:invoiceId" element={<UpdateInvoiceVendor />} />
           <Route path="po-check" element={<PoDetailsV />} />
           <Route path="changePassword" element={<ChangePassword />} />
           <Route path="vendor-grnform" element={<VGrnForm />} />
