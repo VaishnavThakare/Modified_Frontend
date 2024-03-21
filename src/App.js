@@ -22,6 +22,7 @@ import VendorCategory from "./pages/admin/VendorCategory";
 import AddProject from "./pages/admin/AddProject";
 import Project from "./pages/admin/Project";
 import GRN from "./pages/admin/grn";
+import DETAILEDGRN from "./pages/admin/detaiedgrn";
 import RFPA from "./pages/admin/RFP";
 import AddRFP from "./pages/admin/AddRFP";
 import AdminProfile from "./pages/admin/AdminProfile";
@@ -50,6 +51,7 @@ import CreateInvoiceVendor from "./pages/vendor/CreateInvoiceVendor";
 import UpdateInvoiceVendor from "./pages/vendor/UpdateInvoiceVendor";
 import VGrnForm from "./pages/vendor/VGrnForm";
 import VGrnlist from "./pages/vendor/VGrnlist";
+import VendorDetailsView from "./pages/vendor/VendorDetailsView";
 
 //ProjectHead
 import ProjectHeadDash from "./pages/projecthead/ProjectHeadDash";
@@ -71,6 +73,7 @@ import AddProfile from "./pages/admin/Profile/AddProfile";
 import AllProfile from "./pages/admin/Profile/AllProfile";
 import Application from "./pages/admin/Application";
 import ChangePassword from "./pages/ChangePassword";
+import PheadList from "./pages/projecthead/Invoice/PheadList";
 import EditGrnDetails from "./pages/projecthead/EditGrnDetails";
 
 const App = () => {
@@ -98,6 +101,7 @@ const App = () => {
           <Route path="add-document" element={<AddDocument />} />
           <Route path="projects" element={<Project />} />
           <Route path="grn" element={<GRN />} />
+          <Route path="details" element={<DETAILEDGRN />} />
           <Route path="create-project" element={<AddProject />} />
           <Route path="rfp" element={<RFPA />} />
           <Route path="create-rfp" element={<AddRFP />} />
@@ -153,7 +157,9 @@ const App = () => {
           <Route path="po-check" element={<PoDetailsV />} />
           <Route path="changePassword" element={<ChangePassword />} />
           <Route path="vendor-grnform" element={<VGrnForm />} />
-          <Route path="vendor-grnlist" element={<VGrnlist />} />
+          <Route path="vendor-grnlist" element={<VGrnlist />} />
+          <Route path="details/:invoiceNo" element={<VendorDetailsView />} />
+         
         </Route>
 
         <Route path="/projecthead" element={<ProjectHeadDashboard />}>
@@ -162,6 +168,7 @@ const App = () => {
           <Route path="profile" element={<ProjectHeadProfile />} />
           <Route path="assigned-project" element={<AssignedProject />} />
           <Route path="grn-list" element={<GrnList />} />
+          <Route path="phead-list" element={<PheadList />} />
           {/* Update the route for EditGrnDetails to accept grnId as a URL parameter */}
           <Route path="editGrn-List/:grnId" element={<EditGrnDetails />} />
         </Route>
