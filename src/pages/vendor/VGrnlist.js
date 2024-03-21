@@ -63,39 +63,36 @@ const GrnDetails = () => {
     navigate(`/vendor/vendor-grnedit/${grnId}`);
   };
 
-  const formatDateTime = (dateTime) => {
-    const formattedDateTime = new Date(dateTime).toLocaleString("en-US", {
-      year: "numeric",
-      month: "2-digit",
-      day: "2-digit",
-      hour: "2-digit",
-      minute: "2-digit",
-      second: "2-digit",
-    });
-    return formattedDateTime;
-  };
-
   // View
   const DetailsView = ({ grnDetails, onCancel }) => {
-    const [invoiceData, setInvoiceData] = useState([]);
+    const [currentItems, setCurrentItems] = useState([]);
 
     useEffect(() => {
-      if (!grnDetails || !grnDetails.id) return;
-
-      const fetchInvoiceData = async () => {
+      const fetchData = async () => {
         try {
           const response = await axios.get(
             `https://localhost:7254/api/Invoice/GRN/${grnDetails.id}`
           );
-          setInvoiceData(response.data);
+          setCurrentItems(response.data); // Set currentItems to the response data
         } catch (error) {
-          console.error("Failed to fetch invoice data:", error);
-          toast.error("Failed to fetch invoice data");
+          toast.error("Failed to fetch data from the API");
         }
       };
 
-      fetchInvoiceData();
-    }, [grnDetails]);
+      fetchData();
+    }, [grnDetails.id]);
+
+    const formatDateTime = (dateTime) => {
+      const formattedDateTime = new Date(dateTime).toLocaleString("en-US", {
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+      });
+      return formattedDateTime;
+    };
 
     return (
       <div>
@@ -110,7 +107,7 @@ const GrnDetails = () => {
             style={{ height: "fit-content" }}
           >
             <p className="text-gray-900 mb-3">
-              <span className="font-bold">GRN No.</span>: {grnDetails.grnNo}
+              <span className="font-bold">GRN Nos.</span>: {grnDetails.grnNo}
             </p>
             <p className="text-gray-900 mb-3">
               <span className="font-bold">PO No.</span>:{" "}
@@ -168,12 +165,13 @@ const GrnDetails = () => {
 
         <br></br>
 
+        {/* Invoice table code starts */}
         <div className="flex text-2xl font-bold text-gray-500">
           <h2 className="text-left text-cyan-500">ALL INVOICES</h2>
         </div>
         <div className="w-1/5 bg-cyan-500 h-0.5 mb-1"></div>
         <div className="w-1/3 bg-cyan-500 h-0.5 mb-5"></div>
-        <div className="border-2 border-cyan-500 mb-5 shadow-lg rounded-lg">
+        <div className="border-2 border-cyan-500 mb-5 shadow-lg rounded-lg p-0.5">
           <table className="min-w-full  rounded-lg bg-white">
             <thead>
               <tr>
@@ -208,38 +206,62 @@ const GrnDetails = () => {
                   COMMENT
                 </th>
               </tr>
+              <tr className=" text-gray-600">
+                <td colSpan="10" className=" px-4 py-1">
+                  <div style={{ borderTop: "2px solid gray" }}></div>
+                </td>
+              </tr>
             </thead>
             <tbody className="bg-white">
               {currentItems.map((invoice) => (
                 <tr key={invoice.id}>
-                  <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
+                  <td className="px-6 py-4 whitespace-no-wrap text-center ">
                     {invoice.invoiceNo}
                   </td>
-                  <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
-                    {invoice.dateSentOn}
+                  <td className="px-6 py-4 whitespace-no-wrap text-center ">
+                    {formatDateTime(invoice.sendOn)}
                   </td>
-                  <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
+                  <td className="px-6 py-4 whitespace-no-wrap text-center ">
                     {invoice.amount}
                   </td>
-                  <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
-                    {invoice.grnNumber}
+                  <td className="px-6 py-4 whitespace-no-wrap text-center ">
+                    {invoice.grn.grnNo}
                   </td>
-                  <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
-                    {invoice.poNumber}
+                  <td className="px-6 py-4 whitespace-no-wrap text-center ">
+                    {invoice.grn.purchaseOrder.orderNo}
                   </td>
-                  <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
-                    {invoice.s}
+                  <td className="px-6 py-4 whitespace-no-wrap text-center ">
+                    <button
+                      className={`py-1 px-2 rounded ${
+                        invoice.isAccepted
+                          ? "bg-green-200 text-green-700"
+                          : "bg-red-200 text-red-600"
+                      }`}
+                      style={{ minWidth: "6rem" }}
+                    >
+                      {invoice.isAccepted ? "Accepted" : "Pending"}
+                    </button>
                   </td>
-                  <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
-                    {invoice.paymentStatus}
+                  <td className="px-6 py-4 whitespace-no-wrap text-center ">
+                    {" "}
+                    {invoice.paymentStatus ? "Paid" : "Unpaid"}
                   </td>
-                  <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
-                    {invoice.dueDate}
+                  <td className="px-6 py-4 whitespace-no-wrap text-center ">
+                    {formatDateTime(invoice.dueDate)}
                   </td>
-                  <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
-                    <a href={invoice.documentPath}>View/Download</a>
+                  <td className="px-6 py-4 whitespace-no-wrap text-center ">
+                    <a
+                      href={invoice.documentPath}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <FontAwesomeIcon
+                        icon={faFileDownload}
+                        className="text-purple-600 text-xl"
+                      />
+                    </a>
                   </td>
-                  <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
+                  <td className="px-6 py-4 whitespace-no-wrap">
                     {invoice.comment}
                   </td>
                 </tr>
@@ -247,8 +269,20 @@ const GrnDetails = () => {
             </tbody>
           </table>
         </div>
+        {/* Invoice table code ends */}
       </div>
     );
+  };
+  const formatDateTime = (dateTime) => {
+    const formattedDateTime = new Date(dateTime).toLocaleString("en-US", {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+    });
+    return formattedDateTime;
   };
 
   return (
