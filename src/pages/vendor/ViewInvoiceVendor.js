@@ -26,7 +26,7 @@ export default function ViewInvoiceVendor() {
           invoiceNo: invoice.invoiceNo,
           dateSentOn: invoice.sendOn,
           amount: invoice.amount,
-          grnNumber: invoice.grnId,
+          grnNumber: invoice.grn.grnNo,
           poNumber: invoice.grn.purchaseOrder.orderNo,
           s: invoice.isAccepted ? "Approved" : "Rejected", // Assuming isAccepted indicates approval status
           paymentStatus: invoice.paymentStatus ? "Paid" : "Unpaid",

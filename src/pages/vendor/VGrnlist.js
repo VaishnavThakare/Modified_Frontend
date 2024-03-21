@@ -72,6 +72,23 @@ const GrnDetails = () => {
 // View
 const DetailsView = ({ grnDetails, onCancel }) => {
   
+  const [invoiceData, setInvoiceData] = useState([]);
+
+  useEffect(() => {
+    if (!grnDetails || !grnDetails.id) return;
+
+    const fetchInvoiceData = async () => {
+      try {
+        const response = await axios.get(`https://localhost:7254/api/Invoice/GRN/${grnDetails.id}`);
+        setInvoiceData(response.data);
+      } catch (error) {
+        console.error('Failed to fetch invoice data:', error);
+        toast.error('Failed to fetch invoice data');
+      }
+    };
+
+    fetchInvoiceData();
+  }, [grnDetails]);
   
     return (
       <div>
@@ -145,7 +162,7 @@ const DetailsView = ({ grnDetails, onCancel }) => {
     
       
         <div className="flex text-2xl font-bold text-gray-500">
-          <h2 className="text-left text-cyan-500">ALL ABOUT GRN</h2>
+          <h2 className="text-left text-cyan-500">ALL INVOICES</h2>
         </div>
         <div className="w-1/5 bg-cyan-500 h-0.5 mb-1"></div>
         <div className="w-1/3 bg-cyan-500 h-0.5 mb-5"></div>
@@ -153,16 +170,16 @@ const DetailsView = ({ grnDetails, onCancel }) => {
         <table className="min-w-full  rounded-lg bg-white">
           <thead> 
             <tr>
-              <th className="px-6 py-3  text-left leading-4 text-gray-600 tracking-wider">Invoice No</th>
-              <th className="px-6 py-3  text-left leading-4 text-gray-600 tracking-wider">Date Sent On</th>
-              <th className="px-6 py-3  text-left text-sm leading-4 text-gray-600 tracking-wider">Amount</th>
-              <th className="px-6 py-3  text-left text-sm leading-4 text-gray-600 tracking-wider">GRN Number</th>
-              <th className="px-6 py-3  text-left text-sm leading-4 text-gray-600 tracking-wider">PO Number</th>
-              <th className="px-6 py-3  text-left text-sm leading-4 text-gray-600 tracking-wider">S (Approved/Rejected)</th>
-              <th className="px-6 py-3  text-left text-sm leading-4 text-gray-600 tracking-wider">Payment Status</th>
-              <th className="px-6 py-3  text-left text-sm leading-4 text-gray-600 tracking-wider">Due Date</th>
-              <th className="px-6 py-3  text-left text-sm leading-4 text-gray-600 tracking-wider">View/Download Documents</th>
-              <th className="px-6 py-3  text-left text-sm leading-4 text-gray-600 tracking-wider">Comment</th>
+              <th className="px-6 py-3  text-center text-sm leading-4 text-gray-600 tracking-wider">INVOICE NO</th>
+              <th className="px-6 py-3  text-center text-sm leading-4 text-gray-600 tracking-wider">DATE SENT ON</th>
+              <th className="px-6 py-3  text-center text-sm leading-4 text-gray-600 tracking-wider">AMOUNT</th>
+              <th className="px-6 py-3  text-center text-sm leading-4 text-gray-600 tracking-wider">GRN NO</th>
+              <th className="px-6 py-3  text-center text-sm leading-4 text-gray-600 tracking-wider">PO NO</th>
+              <th className="px-6 py-3  text-center text-sm leading-4 text-gray-600 tracking-wider">S (APPROVED/REJECTED)</th>
+              <th className="px-6 py-3  text-center text-sm leading-4 text-gray-600 tracking-wider">PAYMENT STATUS</th>
+              <th className="px-6 py-3  text-center text-sm leading-4 text-gray-600 tracking-wider">DUE DATE</th>
+              <th className="px-6 py-3  text-center text-sm leading-4 text-gray-600 tracking-wider">VIEW/DOWNLOAD DOCUMENTS</th>
+              <th className="px-6 py-3  text-center text-sm leading-4 text-gray-600 tracking-wider">COMMENT</th>
               
             </tr>
           </thead>
@@ -256,7 +273,13 @@ const DetailsView = ({ grnDetails, onCancel }) => {
             />
           </a>
         </td>
-        <td className="px-4 py-2 text-center">{grn.shipmentStatus ? "Complete" : "Partial"}</td>
+        <td className="px-4 py-2 bg-white text-center">
+                  {grn.shipmentStatus ? (
+                    <span className="text-green-500">Complete</span>
+                  ) : (
+                    <span className="text-red-500">Partial</span>
+                  )}
+                </td>
         <td className="px-4 py-2 text-center">{grn.comment}</td>
         <td className="px-4 py-2 text-left flex flex-row ">
           <button
