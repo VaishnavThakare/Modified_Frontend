@@ -199,7 +199,6 @@ const GrnDetails = () => {
       try {
         await axios.post(
           `${process.env.REACT_APP_API_URL}/GRN/${id}/document`,
-          formData,
           {
             headers: {
               "Content-Type": "multipart/form-data",
