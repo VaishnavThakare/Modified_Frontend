@@ -8,6 +8,8 @@ import {
   faFileDownload,
   faArrowLeft,
   faArrowRight,
+  faPlane,
+  faTruck,
 } from "@fortawesome/free-solid-svg-icons";
 import { useParams } from "react-router-dom";
 import axios from "axios";
@@ -80,36 +82,62 @@ const DetailsView = ({ grnDetails, onCancel }) => {
         <div className="w-1/3 bg-cyan-500 h-0.5 mb-5"></div>
       <div className="min-w-full border-2 border-cyan-500 rounded-lg mb-5 bg-white">
         <div
-          className="bg-white p-6 rounded-md shadow-md"
+          className="bg-white p-6 rounded-md shadow-md "
           style={{ height: "fit-content" }}
         >
-      {/* Display the details of the selected GRN */}
-      <p className="text-gray-900">
+
+      <p className="text-gray-900 mb-3">
         <span className="font-bold">GRN No.</span>: {grnDetails.grnNo}
       </p>
-      <p className="text-gray-900">
-        <span className="font-bold">PO No.</span>: {grnDetails.poNo}
+      <p className="text-gray-900 mb-3">
+        <span className="font-bold">PO No.</span>: {grnDetails.purchaseOrder.orderNo}
       </p>
-      <p className="text-gray-900">
-        <span className="font-bold">Sent on (date)</span>: {grnDetails.sentOn}
+      <p className="text-gray-900 mb-3">
+        <span className="font-bold">Sent on (date)</span>: {grnDetails.sendOn}
       </p>
       <p className="text-gray-900">
         <span className="font-bold">Status</span>: {grnDetails.isApproved ? "Approved" : "Rejected"}
       </p>
-      <p className="text-gray-900">
-        <span className="font-bold">Shipment Type</span>: {grnDetails.shipmentType}
-      </p>
+      <p>
+                <td className="py-2">
+                  <span className="font-bold">Shipment Status:</span>
+                </td>
+                <td className="py-2">
+                  {grnDetails.shipmentStatus ? (
+                    <span className="flex items-center">
+                      <div className="bg-blue-100 text-blue-800 px-2 py-1 rounded-xl">
+                        Shipment Complete
+                        <FontAwesomeIcon
+                          icon={faPlane}
+                          className="ml-2 text-blue-500"
+                        />
+                      </div>
+                    </span>
+                  ) : (
+                    <span className="flex items-center">
+                      <div className="bg-red-100 text-red-800 px-2 py-1 rounded-xl">
+                        Partial Shipment
+                        <FontAwesomeIcon
+                          icon={faTruck}
+                          className="ml-2 text-red-500"
+                        />
+                      </div>
+                    </span>
+                  )}
+                </td>
+              </p>
       <p className="text-gray-900">
         <span className="font-bold">Comment</span>: {grnDetails.comment}
       </p>
-      <button
+      
+    </div>
+    </div>
+    <button
         className="mt-4 bg-blue-500 text-white px-4 py-2 rounded block mx-auto"
         onClick={onCancel}
       >
         Close
       </button>
-    </div>
-    </div>
     <br></br>
       <br></br>
 
@@ -181,7 +209,8 @@ const DetailsView = ({ grnDetails, onCancel }) => {
       // )
       : (
         <div className="overflow-x-auto mt-8 ml-2 mr-2 rounded shadow-lg">
-          <table className="table-auto w-full rounded-lg border-2 border-cyan-400 bg-white shadow-lg">
+          <div className="rounded-lg border-2 border-cyan-400 shadow-lg">
+          <table className="table-auto w-full bg-white rounded-lg">
           <thead>
                 <tr className="text-gray-600">
                   <th className="px-4 py-2 text-center">GRN No.</th>
@@ -253,6 +282,7 @@ const DetailsView = ({ grnDetails, onCancel }) => {
     ))}
   </tbody>
           </table>
+          </div>
         </div>
       )}
       {!selectedGrn && !editingGrn && (
@@ -275,6 +305,7 @@ const DetailsView = ({ grnDetails, onCancel }) => {
             </button>
         </div>
       )}
+      
     </div>
   );
 };
