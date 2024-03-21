@@ -172,7 +172,7 @@ const App = () => {
           <Route path="profile" element={<ProjectHeadProfile />} />
           <Route path="assigned-project" element={<AssignedProject />} />
           <Route path="grn-list" element={<GrnList />} />
-          <Route path="phead-list" element={<PheadList />} />
+          <Route path="invoice-list" element={<PheadList />} />
         </Route>
 
         {/* <Route path="/" element={<Navigate to="/login" />} /> */}
