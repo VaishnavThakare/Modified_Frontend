@@ -66,7 +66,7 @@ import AddBanner from "./pages/admin/Banner/AddBanner";
 import AddNews from "./pages/admin/News/AddNews";
 import AllNews from "./pages/admin/News/AllNews";
 import GrnList from "./pages/projecthead/GrnList";
-
+import InvoiceDetails from "./pages/projecthead/Invoice/InvoiceDetails.js";
 import AddEvent from "./pages/admin/Event/AddEvent";
 import AllEvent from "./pages/admin/Event/AllEvent";
 import AddPolicyDocument from "./pages/admin/Documents/AddPolicyDocument";
@@ -173,6 +173,8 @@ const App = () => {
           <Route path="assigned-project" element={<AssignedProject />} />
           <Route path="grn-list" element={<GrnList />} />
           <Route path="invoice-list" element={<PheadList />} />
+          <Route path="invoice-details-phead/:id" element={<InvoiceDetails />} />
+
         </Route>
 
         {/* <Route path="/" element={<Navigate to="/login" />} /> */}
