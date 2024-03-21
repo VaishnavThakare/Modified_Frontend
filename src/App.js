@@ -71,6 +71,7 @@ import AddProfile from "./pages/admin/Profile/AddProfile";
 import AllProfile from "./pages/admin/Profile/AllProfile";
 import Application from "./pages/admin/Application";
 import ChangePassword from "./pages/ChangePassword";
+import EditGrnDetails from "./pages/projecthead/EditGrnDetails";
 
 const App = () => {
   const [userRole, setuserRole] = useState(sessionStorage.getItem("roles"));
@@ -134,7 +135,10 @@ const App = () => {
             element={<EditPurchaseOrderPage />}
           ></Route>
           <Route path="view-invoice" element={<AdminInvoiceList />}></Route>
-          <Route path="details/:invoiceNo" element={<AdminDetailsView />}></Route>
+          <Route
+            path="details/:invoiceNo"
+            element={<AdminDetailsView />}
+          ></Route>
         </Route>
 
         <Route path="/vendor" element={<VendorDashboard />}>
@@ -149,7 +153,7 @@ const App = () => {
           <Route path="po-check" element={<PoDetailsV />} />
           <Route path="changePassword" element={<ChangePassword />} />
           <Route path="vendor-grnform" element={<VGrnForm />} />
-          <Route path="vendor-grnlist" element={<VGrnlist />} />
+          <Route path="vendor-grnlist" element={<VGrnlist />} />
         </Route>
 
         <Route path="/projecthead" element={<ProjectHeadDashboard />}>
@@ -157,8 +161,9 @@ const App = () => {
           <Route path="dashboard" element={<ProjectHeadDash />} />
           <Route path="profile" element={<ProjectHeadProfile />} />
           <Route path="assigned-project" element={<AssignedProject />} />
-          {/* Add the GrnList route here */}
           <Route path="grn-list" element={<GrnList />} />
+          {/* Update the route for EditGrnDetails to accept grnId as a URL parameter */}
+          <Route path="editGrn-List/:grnId" element={<EditGrnDetails />} />
         </Route>
 
         {/* <Route path="/" element={<Navigate to="/login" />} /> */}
