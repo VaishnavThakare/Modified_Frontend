@@ -10,8 +10,22 @@ export default function ViewInvoiceVendor() {
   useEffect(() => {
     const fetchInvoices = async () => {
       try {
-        const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/Invoice/All`);
-        setInvoices(response.data);
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/Invoice/All`);
+        // Map the response data to extract the fields you want to display
+        const formattedInvoices = response.data.map(invoice => ({
+          id: invoice.id,
+          invoiceNo: invoice.invoiceNo,
+          dateSentOn: invoice.sendOn,
+          amount: invoice.amount,
+          grnNumber: invoice.grnId,
+          poNumber: invoice.grn.purchaseOrder.orderNo,
+          s: invoice.isAccepted ? "Approved" : "Rejected", // Assuming isAccepted indicates approval status
+          paymentStatus: invoice.paymentStatus ? "Paid" : "Unpaid",
+          dueDate: invoice.dueDate,
+          documentPath: invoice.documentPath,
+          comment: invoice.comment
+        }));
+        setInvoices(formattedInvoices);
       } catch (error) {
         console.error("Error fetching invoices:", error);
       }
@@ -67,7 +81,7 @@ export default function ViewInvoiceVendor() {
                 <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500">{invoice.paymentStatus}</td>
                 <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500">{invoice.dueDate}</td>
                 <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
-                  <a href={invoice.documents}>View/Download</a>
+                  <a href={invoice.documentPath}>View/Download</a>
                 </td>
                 <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500">{invoice.comment}</td>
                 <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
@@ -88,7 +102,7 @@ export default function ViewInvoiceVendor() {
         {Array.from({ length: totalPages }).map((_, index) => (
           <button
             key={index}
-            className={`mx-1 px-4 py-2 ${currentPage === index + 1 ? "bg-blue-500 text-white" : "bg-gray-300"
+            className={`mx-1 px-4  py-2 ${currentPage === index + 1 ? "bg-blue-500 text-white" : "bg-gray-300"
               }`}
             onClick={() => paginate(index + 1)}
           >
@@ -100,117 +114,3 @@ export default function ViewInvoiceVendor() {
   );
 }
 
-
-// import React, { useState, useEffect } from "react";
-// import axios from "axios";
-
-// export default function ViewInvoiceVendor() {
-//   const [invoices, setInvoices] = useState([]);
-
-//   useEffect(() => {
-//     const fetchInvoices = async () => {
-//       try {
-//         const response = await axios.get(`${process.env.REACT_APP_API_URL}/invoices`);
-//         setInvoices(response.data);
-//       } catch (error) {
-//         console.error("Error fetching invoices:", error);
-//       }
-//     };
-
-//     fetchInvoices();
-//   }, []);
-
-//   return (
-//     <div className="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 pr-10 lg:px-8 mb-8">
-//       <div className="align-middle inline-block min-w-full shadow overflow-hidden bg-white shadow-dashboard px-8 pt-3 rounded-bl-lg rounded-br-lg">
-//         <div className="flex text-2xl font-bold text-gray-500 mb-4 justify-center items-center">
-//           <h2>All Invoices</h2>
-//         </div>
-//         <table className="min-w-full border-2 border-cyan-600 mb-5 bg-white">
-//           <thead>
-//             <tr>
-//               <th className="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-gray-600 tracking-wider">
-//                 Invoice No
-//               </th>
-//               <th className="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-gray-600 tracking-wider">
-//                 Date Sent On
-//               </th>
-//               <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-gray-600 tracking-wider">
-//                 Amount
-//               </th>
-//               <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-gray-600 tracking-wider">
-//                 GRN Number
-//               </th>
-//               <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-gray-600 tracking-wider">
-//                 PO Number
-//               </th>
-//               <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-gray-600 tracking-wider">
-//                 S (Approved/Rejected)
-//               </th>
-//               <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-gray-600 tracking-wider">
-//                 Payment Status
-//               </th>
-//               <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-gray-600 tracking-wider">
-//                 Due Date
-//               </th>
-//               <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-gray-600 tracking-wider">
-//                 View/Download Documents
-//               </th>
-//               <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-gray-600 tracking-wider">
-//                 Comment
-//               </th>
-//               <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-gray-600 tracking-wider">
-//                 Action
-//               </th>
-//             </tr>
-//           </thead>
-//           <tbody className="bg-white">
-//             {invoices.map((invoice) => (
-//               <tr key={invoice.id}>
-//                 <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
-//                   <div className="text-sm leading-5 text-gray-500">{invoice.invoiceNo}</div>
-//                 </td>
-//                 <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
-//                   <div className="text-sm leading-5 text-gray-500">{invoice.dateSentOn}</div>
-//                 </td>
-//                 <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
-//                   <div className="text-sm leading-5 text-gray-500">{invoice.amount}</div>
-//                 </td>
-//                 <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
-//                   <div className="text-sm leading-5 text-gray-500">{invoice.grnNumber}</div>
-//                 </td>
-//                 <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
-//                   <div className="text-sm leading-5 text-gray-500">{invoice.poNumber}</div>
-//                 </td>
-//                 <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
-//                   <div className="text-sm leading-5 text-gray-500">{invoice.s}</div>
-//                 </td>
-//                 <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
-//                   <div className="text-sm leading-5 text-gray-500">{invoice.paymentStatus}</div>
-//                 </td>
-//                 <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
-//                   <div className="text-sm leading-5 text-gray-500">{invoice.dueDate}</div>
-//                 </td>
-//                 <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
-//                   <div className="text-sm leading-5 text-gray-500">
-//                     <a href={invoice.documents}>View/Download</a>
-//                   </div>
-//                 </td>
-//                 <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
-//                   <div className="text-sm leading-5 text-gray-500">{invoice.comment}</div>
-//                 </td>
-//                 <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
-//                   <div className="text-sm leading-5 text-gray-500">
-//                     <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-//                       Update
-//                     </button>
-//                   </div>
-//                 </td>
-//               </tr>
-//             ))}
-//           </tbody>
-//         </table>
-//       </div>
-//     </div>
-//   );
-// }
