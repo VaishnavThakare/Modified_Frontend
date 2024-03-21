@@ -22,6 +22,7 @@ import VendorCategory from "./pages/admin/VendorCategory";
 import AddProject from "./pages/admin/AddProject";
 import Project from "./pages/admin/Project";
 import GRN from "./pages/admin/grn";
+import DETAILEDGRN from "./pages/admin/detaiedgrn";
 import RFPA from "./pages/admin/RFP";
 import AddRFP from "./pages/admin/AddRFP";
 import AdminProfile from "./pages/admin/AdminProfile";
@@ -99,6 +100,7 @@ const App = () => {
           <Route path="add-document" element={<AddDocument />} />
           <Route path="projects" element={<Project />} />
           <Route path="grn" element={<GRN />} />
+          <Route path="details" element={<DETAILEDGRN />} />
           <Route path="create-project" element={<AddProject />} />
           <Route path="rfp" element={<RFPA />} />
           <Route path="create-rfp" element={<AddRFP />} />
