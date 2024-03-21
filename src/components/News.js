@@ -71,7 +71,8 @@ const News = () => {
 
   useEffect(()=>{
     getAllNews();
-  },[]);
+    handleOverflow(news[0].content);
+  },[news]);
 
   return (
     <div className="container mr-10 relative  w-full h-[284px] shadow-2xl" >

@@ -68,7 +68,8 @@ const Event= () => {
 
   useEffect(()=>{
     getAllEvents();
-  },[]);
+    handleOverflow(events[0].content);
+  },[events]);
 
   return (
 
