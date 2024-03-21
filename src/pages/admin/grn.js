@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faEye,
@@ -9,7 +10,7 @@ import {
 
 const GrnDetails = () => {
   const [grns, setGrns] = useState([]);
-  const [pos, setpos] = useState([]);
+  const [inv, setinv] = useState([]);
 
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 5;
@@ -20,72 +21,33 @@ const GrnDetails = () => {
     const fetchGrns = async () => {
       try {
         // Dummy data
-        const dummyData = [
-          {
-            id: 1,
-            grnNo: "GRN001",
-            poNo: "PO001",
-            sentOn: "2024-03-20",
-            isApproved: true,
-            comment: "Received partial shipment",
-            shipmentType: "Partial",
-          },
-          {
-            id: 2,
-            grnNo: "GRN002",
-            poNo: "PO002",
-            sentOn: "2024-03-22",
-            isApproved: false,
-            comment: "Waiting for complete shipment",
-            shipmentType: "Complete",
-          },
-          {
-            id: 3,
-            grnNo: "GRN003",
-            poNo: "PO003",
-            sentOn: "2024-03-20",
-            isApproved: true,
-            comment: "Received partial shipment",
-            shipmentType: "Partial",
-          },
-          {
-            id: 4,
-            grnNo: "GRN004",
-            poNo: "PO004",
-            sentOn: "2024-03-22",
-            isApproved: false,
-            comment: "Waiting for complete shipment",
-            shipmentType: "Complete",
-          },
-        ];
-        const dummydata1 = [
-          {
-            id: 1,
-            grnNo: "GRN001",
-            poNo: "PO001",
-            sentOn: "2024-03-20",
-            isApproved: true,
-            comment: "Received partial shipment",
-            shipmentType: "Partial",
-          },
-          
-          
-        ];
 
-        setGrns(dummyData);
-        setpos(dummydata1);
+        let url = `${process.env.REACT_APP_API_URL}/GRN/All`;
+
+        const response = await axios.get(url);
+        setGrns(response.data);
       } catch (error) {
         console.error("Error fetching GRNs:", error.message);
       }
     };
-
     fetchGrns();
   }, []);
+  const fetchinvices = async (grnId) => {
+    try {
+      // Dummy data
 
+      let url = `${process.env.REACT_APP_API_URL}/Invoice/GRN/${grnId}`;
+
+      const response = await axios.get(url);
+      setinv(response.data);
+    } catch (error) {
+      console.error("Error fetching GRNs:", error.message);
+    }
+  };
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentGrns = grns.slice(indexOfFirstItem, indexOfLastItem);
-  const currentPos = pos.slice(indexOfFirstItem, indexOfLastItem);
+  const currentInv = inv.slice(indexOfFirstItem, indexOfLastItem);
 
   const handlePrevPage = () => {
     setCurrentPage((prevPage) => Math.max(prevPage - 1, 1));
@@ -111,52 +73,52 @@ const GrnDetails = () => {
           className="bg-white p-6 rounded-md shadow-md"
           style={{ height: "fit-content" }}
         >
-          <div>
+          <div className="relative">
+            <button
+              className="absolute top-0 right-0 bg-blue-500 text-white px-4 py-2 rounded"
+              onClick={handleGoBack}
+            >
+              Close
+            </button>
+
             <p className="text-gray-900">
               <span className="font-bold">GRN No.</span>: {grn.grnNo}
             </p>
             <p className="text-gray-900">
-              <span className="font-bold">PO No.</span>: {grn.poNo}
+              <span className="font-bold">PO No.</span>:{" "}
+              {grn.purchaseOrder.orderNo}
             </p>
             <p className="text-gray-900">
-              <span className="font-bold">Sent on (date)</span>: {grn.sentOn}
+              <span className="font-bold">Sent on (date)</span>: {grn.sendOn}
             </p>
             <p className="text-gray-900">
               <span className="font-bold">Status</span>:{" "}
               {grn.isApproved ? "Approved" : "Rejected"}
             </p>
             <p className="text-gray-900">
-              <span className="font-bold">Shipment Type</span>: {grn.shipmentType}
+              <span className="font-bold">Shipment Type</span>:{" "}
+              {grn.shipmentStatus ? "Complete Shipment" : "Partial Shipment"}
             </p>
             <p className="text-gray-900">
               <span className="font-bold">Comment</span>: {grn.comment}
             </p>
-            <button
-              className="mt-4 bg-blue-500 text-white px-4 py-2 rounded block mx-auto"
-              onClick={handleGoBack}
-            >
-              Close
-            </button>
           </div>
         </div>
       </div>
-      
-      
       <div className="flex text-2xl font-bold text-gray-500 mt-14">
-        <h2 className="text-left text-cyan-400 ">ALL PURCHASE ORDER</h2>
+        <h2 className="text-left text-cyan-400 ">ALL INVOICES</h2>
       </div>
       <div className="w-1/5 bg-cyan-400 h-0.5 mb-1"></div>
       <div className="w-1/3 bg-cyan-400 h-0.5 mb-5"></div>
       <div className="overflow-x-auto mt-8 ml-2 mr-2 rounded shadow-lg">
-        <table className="table-auto w-full rounded-lg border-2 border-cyan-400 bg-white shadow-lg">
+        <table className="table-auto w-full rounded-lg border-2 border-cyan-500 bg-white shadow-lg">
           <thead>
             <tr className="text-gray-600">
-              <th className="px-4 py-2 text-left">SR NO.</th>
-              <th className="px-4 py-2 text-left">GRN NO.</th>
-              <th className="px-4 py-2 text-left">PO NO.</th>
+              <th className="px-4 py-2 text-left">INVOICE NO.</th>
+              <th className="px-4 py-2 text-left">AMOUNT</th>
               <th className="px-4 py-2 text-left">SENT ON (DATE)</th>
               <th className="px-4 py-2 text-left">STATUS</th>
-              <th className="px-4 py-2 text-left">SHIPMENT TYPE</th>
+              <th className="px-4 py-2 text-left">PAYMENT STATUS</th>
               <th className="px-4 py-2 text-left">COMMENT</th>
             </tr>
             <tr className="text-gray-600">
@@ -166,27 +128,36 @@ const GrnDetails = () => {
             </tr>
           </thead>
           <tbody>
-            {currentPos.map((pos) => (
-              <tr key={pos.id} className="bg-white">
-                <td className="px-4 py-2">{pos.grnNo}</td>
-                <td className="px-4 py-2">{pos.poNo}</td>
-                <td className="px-4 py-2">{pos.sentOn}</td>
+            {currentInv.map((inv) => (
+              <tr key={inv.id} className="bg-white">
+                <td className="px-4 py-2">{inv.invoiceNo}</td>
+                <td className="px-4 py-2">{inv.amount}</td>
+                <td className="px-4 py-2">{inv.sendOn}</td>
                 <td className="px-4 py-2">
                   <button
                     className={`py-1 px-2 rounded ${
-                      pos.isApproved
+                      inv.isAccepted
                         ? "bg-green-200 text-green-700"
                         : "bg-red-200 text-red-600"
                     }`}
                     style={{ minWidth: "6rem" }}
                   >
-                    {pos.isApproved ? "Approved" : "Rejected"}
+                    {inv.isAccepted ? "Approved" : "Rejected"}
                   </button>
                 </td>
-                
-                <td className="px-4 py-2">{pos.shipmentType}</td>
-                <td className="px-4 py-2">{pos.comment}</td>
-                
+                <td className="px-4 py-2">
+                  <button
+                    className={`py-1 px-2 rounded ${
+                      inv.paymentStatus
+                        ? "bg-green-200 text-green-700"
+                        : "bg-red-200 text-red-600"
+                    }`}
+                    style={{ minWidth: "6rem" }}
+                  >
+                    {inv.paymentStatus ? "Approved" : "Rejected"}
+                  </button>
+                </td>
+                <td className="px-4 py-2">{inv.comment}</td>
               </tr>
             ))}
           </tbody>
@@ -205,10 +176,10 @@ const GrnDetails = () => {
         <div className="w-1/3 bg-cyan-400 h-0.5 mb-5"></div>
         <div className="relative bg-zinc-50 mb-5 bg-white">
           {selectedGrn ? (
-            <DetailsView grn={grns.find((grn) => grn.id === selectedGrn)} />
+            <DetailsView grn={grns.find((grn) => grn.grnNo === selectedGrn)} />
           ) : (
             <div className="overflow-x-auto mt-8 ml-2 mr-2 rounded shadow-lg">
-              <table className="table-auto w-full rounded-lg border-2 border-cyan-400 bg-white shadow-lg">
+              <table className="table-auto w-full rounded-lg border-2 border-cyan-500 bg-white shadow-lg">
                 <thead>
                   <tr className="text-gray-600">
                     <th className="px-4 py-2 text-left">GRN NO.</th>
@@ -225,9 +196,9 @@ const GrnDetails = () => {
                 </thead>
                 <tbody>
                   {currentGrns.map((grn) => (
-                    <tr key={grn.id} className="bg-white">
+                    <tr key={grn.grnNo} className="bg-white">
                       <td className="px-4 py-2">{grn.grnNo}</td>
-                      <td className="px-4 py-2">{grn.poNo}</td>
+                      <td className="px-4 py-2">{grn.purchaseOrder.orderNo}</td>
                       <td className="px-4 py-2">
                         <button
                           className={`py-1 px-2 rounded ${
@@ -240,11 +211,25 @@ const GrnDetails = () => {
                           {grn.isApproved ? "Approved" : "Rejected"}
                         </button>
                       </td>
-                      <td className="px-4 py-2">{grn.shipmentType}</td>
+                      <td className="px-4 py-2">
+                        <button
+                          className={`py-1 px-2 rounded ${
+                            grn.shipmentStatus ? "text-black" : "text-black"
+                          }`}
+                          style={{ minWidth: "6rem" }}
+                        >
+                          {grn.shipmentStatus
+                            ? "Complete Shipment"
+                            : "Partial Shipment"}
+                        </button>
+                      </td>
                       <td className="px-4 py-2">
                         <button
                           className="mr-2"
-                          onClick={() => handleViewDetails(grn.id)}
+                          onClick={() => {
+                            handleViewDetails(grn.grnNo);
+                            fetchinvices(grn.id);
+                          }}
                         >
                           <FontAwesomeIcon
                             icon={faEye}
@@ -260,7 +245,7 @@ const GrnDetails = () => {
           )}
         </div>
       </div>
-      <div className="flex justify-end mt-2 ml-2 mr-2">
+      <div className="flex justify-end mt-5 ml-2 mr-2">
         <button
           onClick={handlePrevPage}
           className="pagination-button bg-cyan-500 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded-3xl"
@@ -283,4 +268,3 @@ const GrnDetails = () => {
 };
 
 export default GrnDetails;
-   
