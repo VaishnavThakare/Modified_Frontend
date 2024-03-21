@@ -24,7 +24,7 @@ const GrnDetails = () => {
   useEffect(() => {
     const fetchGrns = async () => {
       try {
-        const response = await axios.get("https://localhost:7254/api/GRN/All");
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/GRN/All`);
         setGrns(response.data);
       } catch (error) {
         console.error("Error fetching GRNs:", error.message);
@@ -143,7 +143,7 @@ const EditDetailsView = ({ onSave, onCancel }) => {
       const fetchGrn = async () => {
         try {
           const response = await axios.get(
-            `https://localhost:7254/api/GRN/${id}`
+            `${process.env.REACT_APP_API_URL}/GRN/${id}`
           );
           setEditedGrn(response.data);
           setLoading(false);
@@ -161,7 +161,7 @@ const EditDetailsView = ({ onSave, onCancel }) => {
       const fetchPurchaseOrders = async () => {
         try {
           const response = await axios.get(
-            `https://localhost:7254/api/PurchaseOrder/All`
+            `${process.env.REACT_APP_API_URL}/PurchaseOrder/All`
           );
           setPurchaseOrders(response.data);
         } catch (error) {
@@ -188,7 +188,7 @@ const EditDetailsView = ({ onSave, onCancel }) => {
   
       try {
         await axios.post(
-          `https://localhost:7254/api/GRN/${id}/document`,
+          `${process.env.REACT_APP_API_URL}/GRN/${id}/document`,
           formData,
           {
             headers: {
