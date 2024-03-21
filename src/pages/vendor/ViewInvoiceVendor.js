@@ -1,6 +1,13 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faEdit,
+  faEye,
+  faArrowLeft,
+  faArrowRight,
+} from "@fortawesome/free-solid-svg-icons";
 
 export default function ViewInvoiceVendor() {
   const [invoices, setInvoices] = useState([]);
@@ -85,12 +92,26 @@ export default function ViewInvoiceVendor() {
                 </td>
                 <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500">{invoice.comment}</td>
                 <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
-                  <button
+
+                  {/* <button
                     className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
                     onClick={() => handleUpdateInvoice(invoice.id)}
                   >
                     Update
+                  </button> */}
+
+
+                  <button
+                    className={`mr-2`} type="submit"
+                    onClick={() => handleUpdateInvoice(invoice.id)}
+
+                  >
+                    <FontAwesomeIcon
+                      icon={faEdit}
+                      className={`text-purple-600 text-xl`}
+                    />
                   </button>
+
                 </td>
               </tr>
             ))}
