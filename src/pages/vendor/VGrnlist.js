@@ -209,7 +209,7 @@ const DetailsView = ({ grnDetails, onCancel }) => {
       // )
       : (
         <div className="overflow-x-auto mt-8 ml-2 mr-2 rounded shadow-lg">
-          <div className="rounded-lg border-2 border-cyan-400 shadow-lg">
+          <div className="rounded-lg  p-0.5 border-2 border-cyan-400 shadow-lg">
           <table className="table-auto w-full bg-white rounded-lg">
           <thead>
                 <tr className="text-gray-600">
