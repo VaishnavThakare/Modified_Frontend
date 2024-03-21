@@ -31,6 +31,7 @@ const Carousel = () => {
     }
   ]);
 
+
   const getAllBanners = async () => {
     try {
       let res = await axios.get(`${process.env.REACT_APP_API_URL}/Banner/All`);
@@ -39,6 +40,9 @@ const Carousel = () => {
       }
     } catch (error) {
       console.error("Error fetching Banner data:", error);
+    }
+    finally{
+      console.log(banners);
     }
   };
 
@@ -61,13 +65,24 @@ const Carousel = () => {
     ),
   };
 
+  if(banners.length == 1){
+    return (
+      <div className='relative h-[300px] border border-b-black'>
+        <img src={banners[0].imagePath} alt={banners[0].title} className="w-full h-[300px]" />
+        <p className='absolute top-[90%] h-[10%] w-full px-3 text-right bg-stone-300 bg-opacity-35 text-black'>
+          {banners[0].title}
+        </p>
+      </div>
+    );
+  }
+
   return (
-    <Slider {...settings}>
+      <Slider {...settings}>
       {
         banners.map((slide) => (
         <div key={slide.id} className='relative h-[300px] border border-b-black'>
           <img src={slide.imagePath} alt={slide.id} className="w-full h-[370px]" />
-          <p className='absolute'>
+          <p className='absolute top-[95%] h-[10%] w-full px-3 text-right bg-stone-300 bg-opacity-35 text-black'>
             {slide.title}
           </p>
         </div>
