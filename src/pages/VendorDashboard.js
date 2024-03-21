@@ -50,6 +50,7 @@ export default function VendorDashboard() {
       subItems: [
         { text: "View", link: "view-invoice" },
         { text: "Add", link: "create-invoice" },
+        
       ],
 
     },

@@ -50,6 +50,7 @@ import CreateInvoiceVendor from "./pages/vendor/CreateInvoiceVendor";
 import UpdateInvoiceVendor from "./pages/vendor/UpdateInvoiceVendor";
 import VGrnForm from "./pages/vendor/VGrnForm";
 import VGrnlist from "./pages/vendor/VGrnlist";
+import VendorDetailsView from "./pages/vendor/VendorDetailsView";
 
 //ProjectHead
 import ProjectHeadDash from "./pages/projecthead/ProjectHeadDash";
@@ -150,6 +151,7 @@ const App = () => {
           <Route path="changePassword" element={<ChangePassword />} />
           <Route path="vendor-grnform" element={<VGrnForm />} />
           <Route path="vendor-grnlist" element={<VGrnlist />} />
+          <Route path="details/:invoiceNo" element={<VendorDetailsView />} />
         </Route>
 
         <Route path="/projecthead" element={<ProjectHeadDashboard />}>
