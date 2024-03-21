@@ -6,6 +6,8 @@ import {
   Navigate,
 } from "react-router-dom";
 import axios from "axios";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import Login from "./pages/Login";
 import VendorDashboard from "./pages/VendorDashboard";
@@ -76,11 +78,6 @@ import Application from "./pages/admin/Application";
 import ChangePassword from "./pages/ChangePassword";
 
 import PheadList from "./pages/projecthead/Invoice/PheadList";
-// import PheadList from "./pages/projecthead/Invoice.js/ProjectHeadList";
-// import PheadForm from "./pages/projecthead/Invoice.js/ProjectHeadForm";
-// import HeadDetails from "./pages/projecthead/Invoice.js/HeadDetails";
-//import { Document, Page, Text, View, StyleSheet } from '@react-pdf/renderer';
-
 
 const App = () => {
   const [userRole, setuserRole] = useState(sessionStorage.getItem("roles"));
@@ -90,7 +87,8 @@ const App = () => {
 
   return (
     <Router>
-      <Routes>
+    <ToastContainer /> {/* Add ToastContainer here */}
+    <Routes>
         {/* <Route path="/login" element={<Login />} />
         <Route path="/test1" element={<Carousel />} /> */}
         <Route path="/" element={<LandingPage />} />
@@ -145,7 +143,10 @@ const App = () => {
             element={<EditPurchaseOrderPage />}
           ></Route>
           <Route path="view-invoice" element={<AdminInvoiceList />}></Route>
-          <Route path="details/:invoiceNo" element={<AdminDetailsView />}></Route>
+          <Route
+            path="details/:invoiceNo"
+            element={<AdminDetailsView />}
+          ></Route>
         </Route>
 
         <Route path="/vendor" element={<VendorDashboard />}>
@@ -156,12 +157,13 @@ const App = () => {
           <Route path="upload-document" element={<UploadDocument />} />
           <Route path="view-invoice" element={<ViewInvoiceVendor />} />
           <Route path="create-invoice" element={<CreateInvoiceVendor />} />
-          <Route path="update-invoice/:id" element={<UpdateInvoiceVendor />} />
+          <Route path="update-invoice/:invoiceId" element={<UpdateInvoiceVendor />} />
           <Route path="po-check" element={<PoDetailsV />} />
           <Route path="changePassword" element={<ChangePassword />} />
           <Route path="vendor-grnform" element={<VGrnForm />} />
           <Route path="vendor-grnlist" element={<VGrnlist />} />
           <Route path="details/:invoiceNo" element={<VendorDetailsView />} />
+         
         </Route>
 
         <Route path="/projecthead" element={<ProjectHeadDashboard />}>
@@ -169,10 +171,8 @@ const App = () => {
           <Route path="dashboard" element={<ProjectHeadDash />} />
           <Route path="profile" element={<ProjectHeadProfile />} />
           <Route path="assigned-project" element={<AssignedProject />} />
-          {/* Add the GrnList route here */}
           <Route path="grn-list" element={<GrnList />} />
-          <Route path="grn-List" element={<GrnList/>} />
-          <Route path="invoice-list" element={<PheadList/>} />
+          <Route path="phead-list" element={<PheadList />} />
         </Route>
 
         {/* <Route path="/" element={<Navigate to="/login" />} /> */}

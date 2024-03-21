@@ -7,9 +7,13 @@ import {
   faArrowLeft,
   faArrowRight,
   faExternalLinkAlt,
+  faTruck,
+  faPlane,
 } from "@fortawesome/free-solid-svg-icons";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from "react-router-dom";
+import EditGrnDetails from "./EditGrnDetails"; // Import the EditGrnDetails component
 
 const GrnList = () => {
   const [grnData, setGrnData] = useState([]);
@@ -18,6 +22,8 @@ const GrnList = () => {
   const [editedComment, setEditedComment] = useState("");
   const [selectedGrnDetails, setSelectedGrnDetails] = useState(null);
   const [showDetails, setShowDetails] = useState(false);
+  const navigate = useNavigate();
+
   const itemsPerPage = 5;
 
   useEffect(() => {
@@ -48,8 +54,8 @@ const GrnList = () => {
   };
 
   const handleEdit = (item) => {
-    setEditedItem(item);
-    setEditedComment(item.comment || "");
+    // Redirect to the editGrn-List page with the specific grnId
+    navigate(`/projecthead/editGrn-List/${item.id}`);
   };
 
   const handleView = async (id) => {
@@ -63,40 +69,6 @@ const GrnList = () => {
     }
   };
 
-  const handleAccept = async (id, comment) => {
-    try {
-      await axios.put(`https://localhost:7254/api/GRN/AcceptReject/${id}`, {
-        comment: comment,
-        status: "Accept",
-      });
-      toast.success("GRN item accepted successfully");
-      setEditedItem(null);
-      setEditedComment("");
-    } catch (error) {
-      console.error("Error accepting GRN item:", error);
-      toast.error("Error accepting GRN item");
-    }
-  };
-
-  const handleReject = async (id, comment) => {
-    try {
-      await axios.put(`https://localhost:7254/api/GRN/AcceptReject/${id}`, {
-        comment: comment,
-        status: "Reject",
-      });
-      toast.success("GRN item rejected successfully");
-      setEditedItem(null);
-      setEditedComment("");
-    } catch (error) {
-      console.error("Error rejecting GRN item:", error);
-      toast.error("Error rejecting GRN item");
-    }
-  };
-
-  const handleCommentChange = (e, id) => {
-    setEditedComment(e.target.value);
-  };
-
   const openDocument = (url) => {
     window.open(url, "_blank");
   };
@@ -107,37 +79,97 @@ const GrnList = () => {
     };
 
     return (
-      <div className="bg-white rounded-lg shadow-lg p-4">
-        <h3 className="text-lg font-medium mb-2">GRN Details</h3>
-        <p>
-          <span className="font-bold">GRN No.:</span> {grnDetails.grnNo}
-        </p>
-        <p>
-          <span className="font-bold">PO No.:</span>{" "}
-          {grnDetails.purchaseOrder.orderNo}
-        </p>
-        <p>
-          <span className="font-bold">Sent On:</span> {grnDetails.sendOn}
-        </p>
-        <p>
-          <span className="font-bold">Created On:</span> {grnDetails.createdOn}
-        </p>
-        <button
-          className="mt-4 bg-cyan-600 hover:bg-cyan-700 mr-4 text-white font-bold py-2 px-4 rounded"
-          onClick={handleBack}
-        >
-          <FontAwesomeIcon icon={faArrowLeft} className="mr-2 " />
-          Back
-        </button>
-        {grnDetails.documentPath && (
-          <button
-            className="mt-4 bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded"
-            onClick={() => openDocument(grnDetails.documentPath)}
-          >
-            <FontAwesomeIcon icon={faExternalLinkAlt} className="mr-2" />
-            View Document
-          </button>
-        )}
+      <div className="ml-96 items-center justify-center h-screen">
+        <div className="rounded-lg border-2 border-cyan-400  bg-white shadow-lg p-4 max-w-lg w-full mt-2">
+          <h3 className="text-lg font-medium mb-2">GRN Details</h3>
+          <table className="w-full">
+            <tbody>
+              <tr>
+                <td className="py-2">
+                  <span className="font-bold">GRN No.:</span>
+                </td>
+                <td className="py-2">{grnDetails.grnNo}</td>
+              </tr>
+              <tr>
+                <td className="py-2">
+                  <span className="font-bold">PO No.:</span>
+                </td>
+                <td className="py-2">{grnDetails.purchaseOrder.orderNo}</td>
+              </tr>
+              <tr>
+                <td className="py-2">
+                  <span className="font-bold">Sent On:</span>
+                </td>
+                <td className="py-2">{grnDetails.sendOn}</td>
+              </tr>
+              <tr>
+                <td className="py-2">
+                  <span className="font-bold">Created On:</span>
+                </td>
+                <td className="py-2">{grnDetails.createdOn}</td>
+              </tr>
+
+              <tr>
+                <td className="py-2">
+                  <span className="font-bold">Last Modified on:</span>
+                </td>
+                <td className="py-2">{grnDetails.lastModifiedOn}</td>
+              </tr>
+              <tr>
+                <td className="py-2">
+                  <span className="font-bold">Comment:</span>
+                </td>
+                <td className="py-2">{grnDetails.comment}</td>
+              </tr>
+              <tr>
+                <td className="py-2">
+                  <span className="font-bold">Shipment Status:</span>
+                </td>
+                <td className="py-2">
+                  {grnDetails.shipmentStatus ? (
+                    <span className="flex items-center">
+                      <div className="bg-blue-100 text-blue-800 px-2 py-1 rounded-xl">
+                        Shipment Complete
+                        <FontAwesomeIcon
+                          icon={faPlane}
+                          className="ml-2 text-blue-500"
+                        />
+                      </div>
+                    </span>
+                  ) : (
+                    <span className="flex items-center">
+                      <div className="bg-red-100 text-red-800 px-2 py-1 rounded-xl">
+                        Partial Shipment
+                        <FontAwesomeIcon
+                          icon={faTruck}
+                          className="ml-2 text-red-500"
+                        />
+                      </div>
+                    </span>
+                  )}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div className="flex justify-end mt-4">
+            <button
+              className="bg-cyan-600 hover:bg-cyan-700 mr-4 text-white font-bold py-2 px-4 rounded"
+              onClick={handleBack}
+            >
+              <FontAwesomeIcon icon={faArrowLeft} className="mr-2" />
+              Back
+            </button>
+            {grnDetails.documentPath && (
+              <button
+                className="bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded"
+                onClick={() => openDocument(grnDetails.documentPath)}
+              >
+                <FontAwesomeIcon icon={faExternalLinkAlt} className="mr-2" />
+                View Document
+              </button>
+            )}
+          </div>
+        </div>
       </div>
     );
   };
@@ -149,8 +181,8 @@ const GrnList = () => {
   return (
     <div className="relative">
       <ToastContainer />
-      <div className="overflow-x-auto mt-8 ml-2 mr-2 rounded">
-        <table className="table-auto w-full rounded-md border-2 border-cyan-400 bg-white">
+      <div className="overflow-x-auto mt-8 ml-2 mr-2 rounded shadow-lg ">
+        <table className="table-auto w-full rounded-s-3xl border-2 border-cyan-400 bg-white">
           <thead>
             <tr className="text-gray-600">
               <th className="px-4 py-2 text-left">SR. NO.</th>
@@ -177,17 +209,32 @@ const GrnList = () => {
                 <td className="px-4 py-2">{item.purchaseOrder.orderNo}</td>
                 <td className="px-4 py-2">{item.sendOn}</td>
                 <td className="px-4 py-2">
-                  <button
-                    className={`py-1 px-2 rounded ${
-                      item.purchaseOrder.isAccepted
-                        ? "bg-green-200 text-green-700"
-                        : "bg-red-200 text-red-600"
-                    }`}
-                    style={{ minWidth: "6rem" }}
-                  >
-                    {item.purchaseOrder.isAccepted ? "Accepted" : "Rejected"}
-                  </button>
+                  {item.isAccepted === true && (
+                    <button
+                      className="py-1 px-2 rounded bg-green-200 text-green-700"
+                      style={{ minWidth: "6rem" }}
+                    >
+                      Accepted
+                    </button>
+                  )}
+                  {item.isAccepted === false && (
+                    <button
+                      className="py-1 px-2 rounded bg-red-200 text-red-600"
+                      style={{ minWidth: "6rem" }}
+                    >
+                      Rejected
+                    </button>
+                  )}
+                  {item.isAccepted === null && (
+                    <button
+                      className="py-1 px-2 rounded bg-yellow-200 text-yellow-700"
+                      style={{ minWidth: "6rem" }}
+                    >
+                      Pending
+                    </button>
+                  )}
                 </td>
+
                 <td className="px-4 py-2 bg-white">
                   {item.shipmentStatus ? (
                     <span className="text-green-500">Complete Shipment</span>
@@ -195,7 +242,7 @@ const GrnList = () => {
                     <span className="text-red-500">Partial Shipment</span>
                   )}
                 </td>
-                <td className="px-4 py-2 bg-zinc-50">
+                <td className="px-4 py-2 bg-white">
                   <button onClick={() => handleEdit(item)} className={`mr-2`}>
                     <FontAwesomeIcon
                       icon={faEdit}
@@ -211,30 +258,6 @@ const GrnList = () => {
                       className={`text-purple-600 text-xl`}
                     />
                   </button>
-                  {editedItem && editedItem.id === item.id && (
-                    <>
-                      <button
-                        onClick={() => handleAccept(item.id, editedComment)}
-                        className="px-4 py-2 mr-2 bg-green-500 text-white rounded hover:bg-green-600"
-                      >
-                        Accept
-                      </button>
-                      <button
-                        onClick={() => handleReject(item.id, editedComment)}
-                        className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
-                      >
-                        Reject
-                      </button>
-                      <textarea
-                        rows="2"
-                        cols="25"
-                        value={editedComment}
-                        onChange={(e) => handleCommentChange(e, item.id)}
-                        className="border rounded px-2 py-1 w-full focus:outline-none focus:ring focus:border-blue-300"
-                        placeholder="Add comments..."
-                      />
-                    </>
-                  )}
                 </td>
               </tr>
             ))}

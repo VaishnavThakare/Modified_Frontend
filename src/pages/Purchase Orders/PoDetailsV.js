@@ -116,8 +116,8 @@ const PoDetailsV = () => {
 
   return (
     <div className="relative">
-      <div className="overflow-x-auto mt-8 ml-2 mr-2">
-        <table className="table-auto w-full rounded-lg border-2 border-cyan-400 mb-5">
+      <div className="overflow-x-auto mt-8 ml-2 mr-2 ">
+        <table className="table-auto w-full rounded-lg border-2 border-cyan-400 mb-5 shadow-lg">
           <thead>
             <tr className="bg-white text-gray-600">
               <th className="px-4 py-2 text-left ">

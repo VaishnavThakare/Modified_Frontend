@@ -26,7 +26,10 @@ export default function ProjectHeadDashboard() {
       icon: "bx bx-user text-white font-",
       link: "#",
       bgColor: "bg-cyan-400",
-      subItems: [{ text: "GRN Listing", link: "grn-List" }],  
+      subItems: [
+        { text: "GRN Listing", link: "grn-List" },
+        {  link: "editGrn-List/:grnId" },
+      ],
     },
 
     {
