@@ -27,6 +27,8 @@ import RFPA from "./pages/admin/RFP";
 import AddRFP from "./pages/admin/AddRFP";
 import AdminProfile from "./pages/admin/AdminProfile";
 import Product from "./pages/admin/Product";
+import AdminInvoiceList from "./pages/admin/AdminInvoiceList";
+import AdminDetailsView from "./pages/admin/AdminDetailsView";
 import AddProduct from "./pages/admin/AddProduct";
 import AddProductCategory from "./pages/admin/AddProductCategory";
 import VendorVerification from "./pages/admin/VendorVerification";
@@ -47,6 +49,9 @@ import PoDetailsV from "./pages/Purchase Orders/PoDetailsV";
 import ViewInvoiceVendor from "./pages/vendor/ViewInvoiceVendor";
 import CreateInvoiceVendor from "./pages/vendor/CreateInvoiceVendor";
 import UpdateInvoiceVendor from "./pages/vendor/UpdateInvoiceVendor";
+import VGrnForm from "./pages/vendor/VGrnForm";
+import VGrnlist from "./pages/vendor/VGrnlist";
+import VendorDetailsView from "./pages/vendor/VendorDetailsView";
 
 //ProjectHead
 import ProjectHeadDash from "./pages/projecthead/ProjectHeadDash";
@@ -104,7 +109,7 @@ const App = () => {
           <Route path="add-product-category" element={<AddProductCategory />} />
           <Route path="product-category" element={<ProductCategory />} />
           <Route path="vendor-verfication" element={<VendorVerification />} />
-          <Route path="changePassword" element={<ChangePassword/>} />
+          <Route path="changePassword" element={<ChangePassword />} />
           <Route
             path="document-verification/:id"
             element={<DocumentDetails />}
@@ -131,6 +136,8 @@ const App = () => {
             path="edit/:orderNo"
             element={<EditPurchaseOrderPage />}
           ></Route>
+          <Route path="view-invoice" element={<AdminInvoiceList />}></Route>
+          <Route path="details/:invoiceNo" element={<AdminDetailsView />}></Route>
         </Route>
 
         <Route path="/vendor" element={<VendorDashboard />}>
@@ -143,7 +150,10 @@ const App = () => {
           <Route path="create-invoice" element={<CreateInvoiceVendor />} />
           <Route path="update-invoice/:id" element={<UpdateInvoiceVendor />} />
           <Route path="po-check" element={<PoDetailsV />} />
-          <Route path="changePassword" element={<ChangePassword/>} />
+          <Route path="changePassword" element={<ChangePassword />} />
+          <Route path="vendor-grnform" element={<VGrnForm />} />
+          <Route path="vendor-grnlist" element={<VGrnlist />} />
+          <Route path="details/:invoiceNo" element={<VendorDetailsView />} />
         </Route>
 
         <Route path="/projecthead" element={<ProjectHeadDashboard />}>
@@ -151,7 +161,8 @@ const App = () => {
           <Route path="dashboard" element={<ProjectHeadDash />} />
           <Route path="profile" element={<ProjectHeadProfile />} />
           <Route path="assigned-project" element={<AssignedProject />} />
-          <Route path="grn-List" element={<GrnList/>} />
+          {/* Add the GrnList route here */}
+          <Route path="grn-list" element={<GrnList />} />
         </Route>
 
         {/* <Route path="/" element={<Navigate to="/login" />} /> */}

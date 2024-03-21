@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faEdit,
@@ -18,8 +17,8 @@ const GrnList = () => {
   const [editedItem, setEditedItem] = useState(null);
   const [editedComment, setEditedComment] = useState("");
   const [selectedGrnDetails, setSelectedGrnDetails] = useState(null);
+  const [showDetails, setShowDetails] = useState(false);
   const itemsPerPage = 5;
-  const navigate = useNavigate();
 
   useEffect(() => {
     axios
@@ -57,11 +56,13 @@ const GrnList = () => {
     try {
       const response = await axios.get(`https://localhost:7254/api/GRN/${id}`);
       setSelectedGrnDetails(response.data);
+      setShowDetails(true);
     } catch (error) {
       console.error("Error fetching GRN details:", error);
       toast.error("Error fetching GRN details");
     }
   };
+
   const handleAccept = async (id, comment) => {
     try {
       await axios.put(`https://localhost:7254/api/GRN/AcceptReject/${id}`, {
@@ -76,6 +77,7 @@ const GrnList = () => {
       toast.error("Error accepting GRN item");
     }
   };
+
   const handleReject = async (id, comment) => {
     try {
       await axios.put(`https://localhost:7254/api/GRN/AcceptReject/${id}`, {
@@ -99,18 +101,55 @@ const GrnList = () => {
     window.open(url, "_blank");
   };
 
+  const DetailsView = ({ grnDetails }) => {
+    const handleBack = () => {
+      setShowDetails(false);
+    };
+
+    return (
+      <div className="bg-white rounded-lg shadow-lg p-4">
+        <h3 className="text-lg font-medium mb-2">GRN Details</h3>
+        <p>
+          <span className="font-bold">GRN No.:</span> {grnDetails.grnNo}
+        </p>
+        <p>
+          <span className="font-bold">PO No.:</span>{" "}
+          {grnDetails.purchaseOrder.orderNo}
+        </p>
+        <p>
+          <span className="font-bold">Sent On:</span> {grnDetails.sendOn}
+        </p>
+        <p>
+          <span className="font-bold">Created On:</span> {grnDetails.createdOn}
+        </p>
+        <button
+          className="mt-4 bg-cyan-600 hover:bg-cyan-700 mr-4 text-white font-bold py-2 px-4 rounded"
+          onClick={handleBack}
+        >
+          <FontAwesomeIcon icon={faArrowLeft} className="mr-2 " />
+          Back
+        </button>
+        {grnDetails.documentPath && (
+          <button
+            className="mt-4 bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded"
+            onClick={() => openDocument(grnDetails.documentPath)}
+          >
+            <FontAwesomeIcon icon={faExternalLinkAlt} className="mr-2" />
+            View Document
+          </button>
+        )}
+      </div>
+    );
+  };
+
+  if (showDetails) {
+    return <DetailsView grnDetails={selectedGrnDetails} />;
+  }
+
   return (
     <div className="relative">
       <ToastContainer />
       <div className="overflow-x-auto mt-8 ml-2 mr-2 rounded">
-        {/* <h1 className="text-2xl font-bold mb-5 relative">
-          GRN Listing:
-          <div className="absolute bottom-0 left-0 right-0">
-            <div className="border-b border-cyan-400 w-32"></div>
-            <div className="border-b-2 border-cyan-400 mt-1"></div>
-          </div>
-        </h1> */}
-
         <table className="table-auto w-full rounded-md border-2 border-cyan-400 bg-white">
           <thead>
             <tr className="text-gray-600">
@@ -202,78 +241,6 @@ const GrnList = () => {
           </tbody>
         </table>
       </div>
-      {/* Modal/Pop-up to display GRN Details */}
-      {selectedGrnDetails && (
-        <div className="fixed z-10 inset-0 overflow-y-auto">
-          <div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
-            <div
-              className="fixed inset-0 transition-opacity"
-              aria-hidden="true"
-            >
-              <div className="absolute inset-0 bg-gray-500 opacity-75"></div>
-            </div>
-            <span
-              className="hidden sm:inline-block sm:align-middle sm:h-screen"
-              aria-hidden="true"
-            >
-              &#8203;
-            </span>
-            <div className="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
-              <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
-                <div className="sm:flex sm:items-start">
-                  <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-                    <h3 className="text-lg font-medium leading-6 text-gray-900 mb-2">
-                      GRN Details
-                    </h3>
-                    <div className="mt-2">
-                      <p>
-                        <span className="font-bold">GRN No.:</span>{" "}
-                        {selectedGrnDetails.grnNo}
-                      </p>
-                      <p>
-                        <span className="font-bold">PO No.:</span>{" "}
-                        {selectedGrnDetails.purchaseOrderId}
-                      </p>
-                      <p>
-                        <span className="font-bold">Sent On:</span>{" "}
-                        {selectedGrnDetails.sendOn}
-                      </p>
-                      <p>
-                        <span className="font-bold">Created On:</span>{" "}
-                        {selectedGrnDetails.createdOn}
-                      </p>
-                      {selectedGrnDetails.documentPath && (
-                        <button
-                          className="mt-4 bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded"
-                          onClick={() =>
-                            openDocument(selectedGrnDetails.documentPath)
-                          }
-                        >
-                          <FontAwesomeIcon
-                            icon={faExternalLinkAlt}
-                            className="mr-2"
-                          />
-                          View Document
-                        </button>
-                      )}
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
-                <button
-                  type="button"
-                  className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-cyan-600 text-base font-medium text-white hover:bg-cyan-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 sm:ml-3 sm:w-auto sm:text-sm"
-                  onClick={() => setSelectedGrnDetails(null)}
-                >
-                  Close
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
-
       <div className="flex justify-end mt-2 ml-2 mr-2">
         <table className="table-auto border-collapse rounded border-blue-500 mb-5">
           <tbody>
