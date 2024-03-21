@@ -140,6 +140,8 @@ const GrnDetails = () => {
           </div>
         </div>
       </div>
+      
+      
       <div className="flex text-2xl font-bold text-gray-500 mt-14">
         <h2 className="text-left text-cyan-400 ">ALL PURCHASE ORDER</h2>
       </div>

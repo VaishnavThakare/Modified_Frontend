@@ -86,10 +86,10 @@ const DetailsView = ({ grnDetails, onCancel }) => {
     return (
       <div>
         <div className="flex text-2xl font-bold text-gray-500 ">
-          <h2 className="text-left text-cyan-400">ALL ABOUT GRN</h2>
+          <h2 className="text-left text-cyan-500">ALL ABOUT GRN</h2>
         </div>
-        <div className="w-1/5 bg-cyan-400 h-0.5 mb-1"></div>
-        <div className="w-1/3 bg-cyan-400 h-0.5 mb-5"></div>
+        <div className="w-1/5 bg-cyan-500 h-0.5 mb-1"></div>
+        <div className="w-1/3 bg-cyan-500 h-0.5 mb-5"></div>
       <div className="min-w-full border-2 border-cyan-500 rounded-lg mb-5 bg-white">
         <div
           className="bg-white p-6 rounded-md shadow-md"
