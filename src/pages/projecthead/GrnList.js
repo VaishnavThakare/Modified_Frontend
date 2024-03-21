@@ -15,6 +15,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 import EditGrnDetails from "./EditGrnDetails"; // Import the EditGrnDetails component
 
+
 const GrnList = () => {
   const [grnData, setGrnData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -73,6 +74,18 @@ const GrnList = () => {
     window.open(url, "_blank");
   };
 
+  const formatDateTime = (dateTime) => {
+    const formattedDateTime = new Date(dateTime).toLocaleString("en-US", {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+    });
+    return formattedDateTime;
+  };
+
   const DetailsView = ({ grnDetails }) => {
     const handleBack = () => {
       setShowDetails(false);
@@ -81,7 +94,11 @@ const GrnList = () => {
     return (
       <div className="ml-96 items-center justify-center h-screen">
         <div className="rounded-lg border-2 border-cyan-400  bg-white shadow-lg p-4 max-w-lg w-full mt-2">
-          <h3 className="text-lg font-medium mb-2">GRN Details</h3>
+          <div className="flex text-2xl font-bold text-gray-500">
+            <h2 className="text-left text-cyan-500">GRN Details:</h2>
+          </div>
+          <div className="w-36 bg-cyan-500 h-0.5 mb-1"></div>
+          <div className="w-44 bg-cyan-500 h-0.5 mb-5"></div>
           <table className="w-full">
             <tbody>
               <tr>
@@ -100,20 +117,20 @@ const GrnList = () => {
                 <td className="py-2">
                   <span className="font-bold">Sent On:</span>
                 </td>
-                <td className="py-2">{grnDetails.sendOn}</td>
+                <td className="py-2">{formatDateTime(grnDetails.sendOn)}</td>
               </tr>
               <tr>
                 <td className="py-2">
                   <span className="font-bold">Created On:</span>
                 </td>
-                <td className="py-2">{grnDetails.createdOn}</td>
+                <td className="py-2">{formatDateTime(grnDetails.createdOn)}</td>
               </tr>
 
               <tr>
                 <td className="py-2">
                   <span className="font-bold">Last Modified on:</span>
                 </td>
-                <td className="py-2">{grnDetails.lastModifiedOn}</td>
+                <td className="py-2">{formatDateTime(grnDetails.lastModifiedOn)}</td>
               </tr>
               <tr>
                 <td className="py-2">
@@ -181,6 +198,11 @@ const GrnList = () => {
   return (
     <div className="relative">
       <ToastContainer />
+      <div className="flex text-2xl font-bold text-gray-500">
+        <h2 className="ml-4 text-left text-cyan-500">GRN Listing:</h2>
+      </div>
+      <div className="ml-4 w-36 bg-cyan-500 h-0.5 mb-1"></div>
+      <div className="ml-4 w-44 bg-cyan-500 h-0.5 mb-5"></div>
       <div className="overflow-x-auto mt-8 ml-2 mr-2 rounded shadow-lg ">
         <table className="table-auto w-full rounded-s-3xl border-2 border-cyan-400 bg-white">
           <thead>
@@ -207,7 +229,7 @@ const GrnList = () => {
                 </td>
                 <td className="px-4 py-2">{item.grnNo}</td>
                 <td className="px-4 py-2">{item.purchaseOrder.orderNo}</td>
-                <td className="px-4 py-2">{item.sendOn}</td>
+                <td className="px-4 py-2">{formatDateTime(item.sendOn)}</td>
                 <td className="px-4 py-2">
                   {item.isAccepted === true && (
                     <button

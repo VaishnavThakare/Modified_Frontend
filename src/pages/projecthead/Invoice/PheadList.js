@@ -60,14 +60,16 @@ const PheadList = () => {
     // console.log(id);
     navigate(`/projecthead/invoice-details-phead/${id}`);
   };
-  
 
   const handleAccept = async (id, comment) => {
     try {
-      await axios.put(`${process.env.REACT_APP_API_URL}/Invoice/AcceptReject/${id}`, {
-        comment: comment,
-        isAccepted: true,
-      });
+      await axios.put(
+        `${process.env.REACT_APP_API_URL}/Invoice/AcceptReject/${id}`,
+        {
+          comment: comment,
+          isAccepted: true,
+        }
+      );
       toast.success("Invoice item accepted successfully");
       setEditedItem(null);
       setEditedComment("");
@@ -80,10 +82,13 @@ const PheadList = () => {
 
   const handleReject = async (id, comment) => {
     try {
-      await axios.put(`${process.env.REACT_APP_API_URL}/Invoice/AcceptReject/${id}`, {
-        comment: comment,
-        isAccepted: false,
-      });
+      await axios.put(
+        `${process.env.REACT_APP_API_URL}/Invoice/AcceptReject/${id}`,
+        {
+          comment: comment,
+          isAccepted: false,
+        }
+      );
       toast.success("Invoice item rejected successfully");
       setEditedItem(null);
       setEditedComment("");
@@ -96,6 +101,18 @@ const PheadList = () => {
 
   const handleCommentChange = (e, id) => {
     setEditedComment(e.target.value);
+  };
+
+  const formatDateTime = (dateTime) => {
+    const formattedDateTime = new Date(dateTime).toLocaleString("en-US", {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+    });
+    return formattedDateTime;
   };
 
   const openDocument = (url) => {
@@ -131,13 +148,14 @@ const PheadList = () => {
                 </td>
                 <td className="px-4 py-2">{item.invoiceNo}</td>
                 <td className="px-4 py-2">{item.amount}</td>
-                <td className="px-4 py-2">{item.sendOn}</td>
+                <td className="px-4 py-2">{formatDateTime(item.sendOn)}</td>
                 <td className="px-4 py-2">
                   <button
-                    className={`py-1 px-2 rounded ${item.paymentStatus
+                    className={`py-1 px-2 rounded ${
+                      item.paymentStatus
                         ? "bg-green-200 text-green-700"
                         : "bg-red-200 text-red-600"
-                      }`}
+                    }`}
                     style={{ minWidth: "6rem" }}
                   >
                     {item.paymentStatus ? "Paid" : "Unpaid"}
@@ -145,12 +163,13 @@ const PheadList = () => {
                 </td>
                 <td className="px-4 py-2">
                   <button
-                    className={`py-1 px-2 rounded ${item.isAccepted != null
+                    className={`py-1 px-2 rounded ${
+                      item.isAccepted != null
                         ? item.isAccepted
                           ? "bg-green-200 text-green-700"
                           : "bg-red-200 text-red-600"
                         : "bg-yellow-200 text-yellow-600"
-                      }`}
+                    }`}
                     style={{ minWidth: "6rem" }}
                   >
                     {item.isAccepted != null
