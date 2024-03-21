@@ -71,7 +71,7 @@ const News = () => {
 
   useEffect(()=>{
     getAllNews();
-    handleOverflow(news[0].content);
+    handleOverflow(news[currentNewsIndex].content);
   },[news]);
 
   return (
