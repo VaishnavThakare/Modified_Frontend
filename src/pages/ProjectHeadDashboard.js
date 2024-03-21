@@ -19,14 +19,25 @@ export default function ProjectHeadDashboard() {
       icon: "bx bx-user text-white",
       link: "#",
       bgColor: "bg-cyan-400",
-      subItems: [{ text: "Assigned Project ", link: "assigned-project " }],
+      subItems: [{ text: "Assigned Project ", link: "assigned-project " }],  
     },
     {
       text: "GRN",
       icon: "bx bx-user text-white font-",
       link: "#",
       bgColor: "bg-cyan-400",
-      subItems: [{ text: "GRN Listing", link: "grn-List" }],
+      subItems: [
+        { text: "GRN Listing", link: "grn-List" },
+        {  link: "editGrn-List/:grnId" },
+      ],
+    },
+
+    {
+      text: "Invoices",
+      icon: "bx bx-user text-white font-",
+      link: "#",
+      bgColor: "bg-cyan-400",
+      subItems: [{ text: "All Invoices", link: "phead-list" }],  
     },
   ];
 

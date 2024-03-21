@@ -1,130 +1,43 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faEdit,
   faEye,
   faArrowLeft,
   faArrowRight,
+  faExternalLinkAlt,
+  faTruck,
+  faPlane,
 } from "@fortawesome/free-solid-svg-icons";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from "react-router-dom";
 
 const GrnList = () => {
+  const [grnData, setGrnData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [dummyData, setDummyData] = useState([
-    {
-      id: 1,
-      grnNo: "GRN001",
-      poNo: "PO001",
-      sentOn: "2024-03-18",
-      status: "Pending",
-      isAccepted: false,
-      purchaseOrderHistories: [
-        {
-          comment: "First comment",
-        },
-      ],
-    },
-    {
-      id: 2,
-      grnNo: "GRN002",
-      poNo: "PO002",
-      sentOn: "2024-03-19",
-      status: "Accepted",
-      isAccepted: true,
-      purchaseOrderHistories: [
-        {
-          comment: "Second comment",
-        },
-      ],
-    },
-    {
-      id: 3,
-      grnNo: "GRN003",
-      poNo: "PO003",
-      sentOn: "2024-03-20",
-      status: "Pending",
-      isAccepted: false,
-      purchaseOrderHistories: [
-        {
-          comment: "Third comment",
-        },
-      ],
-    },
-    {
-      id: 4,
-      grnNo: "GRN004",
-      poNo: "PO004",
-      sentOn: "2024-03-21",
-      status: "Accepted",
-      isAccepted: true,
-      purchaseOrderHistories: [
-        {
-          comment: "Fourth comment",
-        },
-      ],
-    },
-    {
-      id: 5,
-      grnNo: "GRN005",
-      poNo: "PO005",
-      sentOn: "2024-03-22",
-      status: "Pending",
-      isAccepted: false,
-      purchaseOrderHistories: [
-        {
-          comment: "Fifth comment",
-        },
-      ],
-    },
-    {
-      id: 6,
-      grnNo: "GRN006",
-      poNo: "PO006",
-      sentOn: "2024-03-23",
-      status: "Accepted",
-      isAccepted: true,
-      purchaseOrderHistories: [
-        {
-          comment: "Sixth comment",
-        },
-      ],
-    },
-    {
-      id: 7,
-      grnNo: "GRN007",
-      poNo: "PO007",
-      sentOn: "2024-03-24",
-      status: "Pending",
-      isAccepted: false,
-      purchaseOrderHistories: [
-        {
-          comment: "Seventh comment",
-        },
-      ],
-    },
-    {
-      id: 8,
-      grnNo: "GRN008",
-      poNo: "PO008",
-      sentOn: "2024-03-25",
-      status: "Accepted",
-      isAccepted: true,
-      purchaseOrderHistories: [
-        {
-          comment: "Eighth comment",
-        },
-      ],
-    },
-  ]);
-  const itemsPerPage = 5;
-
   const [editedItem, setEditedItem] = useState(null);
   const [editedComment, setEditedComment] = useState("");
+  const [selectedGrnDetails, setSelectedGrnDetails] = useState(null);
+  const [showDetails, setShowDetails] = useState(false);
+  const navigate = useNavigate();
 
-  const currentItems = dummyData.slice(
+  const itemsPerPage = 5;
+
+  useEffect(() => {
+    axios
+      .get("https://localhost:7254/api/GRN/All")
+      .then((response) => {
+        setGrnData(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching GRN data:", error);
+        toast.error("Error fetching GRN data");
+      });
+  }, []);
+
+  const currentItems = grnData.slice(
     (currentPage - 1) * itemsPerPage,
     currentPage * itemsPerPage
   );
@@ -135,57 +48,182 @@ const GrnList = () => {
 
   const handleNextPage = () => {
     setCurrentPage((prevPage) =>
-      Math.min(prevPage + 1, Math.ceil(dummyData.length / itemsPerPage))
+      Math.min(prevPage + 1, Math.ceil(grnData.length / itemsPerPage))
     );
   };
 
   const handleEdit = (item) => {
-    setEditedItem(item);
-    setEditedComment(item.comment || "");
-  };
-  const handleView = (id) => {
-    // Handle view logic
-    console.log("View item with ID:", id);
-    // You can implement the view logic here, e.g., show a modal with item details
-  };
-  const handleAccept = (id, comment) => {
-    console.log("Accept item with ID:", id, "and comment:", comment);
-    setEditedItem(null);
-    setEditedComment("");
+    // Redirect to the editGrn-List page with the specific grnId
+    navigate(`/projecthead/editGrn-List/${item.id}`);
   };
 
-  const handleReject = (id, comment) => {
-    console.log("Reject item with ID:", id, "and comment:", comment);
-    setEditedItem(null);
-    setEditedComment("");
+  const handleView = async (id) => {
+    try {
+      const response = await axios.get(`https://localhost:7254/api/GRN/${id}`);
+      setSelectedGrnDetails(response.data);
+      setShowDetails(true);
+    } catch (error) {
+      console.error("Error fetching GRN details:", error);
+      toast.error("Error fetching GRN details");
+    }
   };
 
-  const handleCommentChange = (e, id) => {
-    setEditedComment(e.target.value);
+  // const handleAccept = async (id, comment) => {
+  //   try {
+  //     await axios.put(`https://localhost:7254/api/GRN/AcceptReject/${id}`, {
+  //       comment: comment,
+  //       status: "Accept",
+  //     });
+  //     toast.success("GRN item accepted successfully");
+  //     setEditedItem(null);
+  //     setEditedComment("");
+  //   } catch (error) {
+  //     console.error("Error accepting GRN item:", error);
+  //     toast.error("Error accepting GRN item");
+  //   }
+  // };
+
+  // const handleReject = async (id, comment) => {
+  //   try {
+  //     await axios.put(`https://localhost:7254/api/GRN/AcceptReject/${id}`, {
+  //       comment: comment,
+  //       status: "Reject",
+  //     });
+  //     toast.success("GRN item rejected successfully");
+  //     setEditedItem(null);
+  //     setEditedComment("");
+  //   } catch (error) {
+  //     console.error("Error rejecting GRN item:", error);
+  //     toast.error("Error rejecting GRN item");
+  //   }
+  // };
+
+  // const handleCommentChange = (e, id) => {
+  //   setEditedComment(e.target.value);
+  // };
+
+  const openDocument = (url) => {
+    window.open(url, "_blank");
   };
+
+  const DetailsView = ({ grnDetails }) => {
+    const handleBack = () => {
+      setShowDetails(false);
+    };
+
+    return (
+      <div className="ml-96 items-center justify-center h-screen">
+        <div className="bg-white rounded-lg shadow-lg p-4 max-w-lg w-full mt-2">
+          <h3 className="text-lg font-medium mb-2">GRN Details</h3>
+          <table className="w-full">
+            <tbody>
+              <tr>
+                <td className="py-2">
+                  <span className="font-bold">GRN No.:</span>
+                </td>
+                <td className="py-2">{grnDetails.grnNo}</td>
+              </tr>
+              <tr>
+                <td className="py-2">
+                  <span className="font-bold">PO No.:</span>
+                </td>
+                <td className="py-2">{grnDetails.purchaseOrder.orderNo}</td>
+              </tr>
+              <tr>
+                <td className="py-2">
+                  <span className="font-bold">Sent On:</span>
+                </td>
+                <td className="py-2">{grnDetails.sendOn}</td>
+              </tr>
+              <tr>
+                <td className="py-2">
+                  <span className="font-bold">Created On:</span>
+                </td>
+                <td className="py-2">{grnDetails.createdOn}</td>
+              </tr>
+
+              <tr>
+                <td className="py-2">
+                  <span className="font-bold">Last Modified on:</span>
+                </td>
+                <td className="py-2">{grnDetails.lastModifiedOn}</td>
+              </tr>
+              <tr>
+                <td className="py-2">
+                  <span className="font-bold">Comment:</span>
+                </td>
+                <td className="py-2">{grnDetails.comment}</td>
+              </tr>
+              <tr>
+                <td className="py-2">
+                  <span className="font-bold">Shipment Status:</span>
+                </td>
+                <td className="py-2">
+                  {grnDetails.shipmentStatus ? (
+                    <span className="flex items-center">
+                      <div className="bg-blue-100 text-blue-800 px-2 py-1 rounded-xl">
+                        Shipment Complete
+                        <FontAwesomeIcon
+                          icon={faPlane}
+                          className="ml-2 text-blue-500"
+                        />
+                      </div>
+                    </span>
+                  ) : (
+                    <span className="flex items-center">
+                      <div className="bg-red-100 text-red-800 px-2 py-1 rounded-xl">
+                        Partial Shipment
+                        <FontAwesomeIcon
+                          icon={faTruck}
+                          className="ml-2 text-red-500"
+                        />
+                      </div>
+                    </span>
+                  )}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div className="flex justify-end mt-4">
+            <button
+              className="bg-cyan-600 hover:bg-cyan-700 mr-4 text-white font-bold py-2 px-4 rounded"
+              onClick={handleBack}
+            >
+              <FontAwesomeIcon icon={faArrowLeft} className="mr-2" />
+              Back
+            </button>
+            {grnDetails.documentPath && (
+              <button
+                className="bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded"
+                onClick={() => openDocument(grnDetails.documentPath)}
+              >
+                <FontAwesomeIcon icon={faExternalLinkAlt} className="mr-2" />
+                View Document
+              </button>
+            )}
+          </div>
+        </div>
+      </div>
+    );
+  };
+  if (showDetails) {
+    return <DetailsView grnDetails={selectedGrnDetails} />;
+  }
 
   return (
     <div className="relative">
       <ToastContainer />
       <div className="overflow-x-auto mt-8 ml-2 mr-2 rounded">
-        <h1 className="text-2xl font-bold mb-5 relative">
-          GRN Listing:
-          <div className="absolute bottom-0 left-0 right-0">
-            <div className="border-b border-cyan-400 w-32"></div>
-            <div className="border-b-2 border-cyan-400 mt-1"></div>
-          </div>
-        </h1>
-
         <table className="table-auto w-full rounded-md border-2 border-cyan-400 bg-white">
           <thead>
             <tr className="text-gray-600">
-              <th className="px-4 py-2 text-left">Sr. No.</th>
+              <th className="px-4 py-2 text-left">SR. NO.</th>
               <th className="px-4 py-2 text-left">GRN No.</th>
               <th className="px-4 py-2 text-left">PO No.</th>
-              <th className="px-4 py-2 text-left">Sent On (date)</th>
-              <th className="px-4 py-2 text-left">Status</th>
-              <th className="px-4 py-2 text-left">Actions</th>
-              <th className="px-4 py-2 text-left">Select Shipment Comment</th>
+              <th className="px-4 py-2 text-left">SENT ON (date)</th>
+              <th className="px-4 py-2 text-left">STATUS</th>
+              <th className="px-4 py-2 text-left">SHIPMENT STATUS</th>
+              <th className="px-4 py-2 text-left">ACTIONS</th>
             </tr>
             <tr className=" text-gray-600">
               <td colSpan="9" className=" px-4 py-1">
@@ -200,10 +238,28 @@ const GrnList = () => {
                   {(currentPage - 1) * itemsPerPage + index + 1}
                 </td>
                 <td className="px-4 py-2">{item.grnNo}</td>
-                <td className="px-4 py-2">{item.poNo}</td>
-                <td className="px-4 py-2">{item.sentOn}</td>
-                <td className="px-4 py-2">{item.status}</td>
-                <td className="px-4 py-2 bg-zinc-50">
+                <td className="px-4 py-2">{item.purchaseOrder.orderNo}</td>
+                <td className="px-4 py-2">{item.sendOn}</td>
+                <td className="px-4 py-2">
+                  <button
+                    className={`py-1 px-2 rounded ${
+                      item.purchaseOrder.isAccepted
+                        ? "bg-green-200 text-green-700"
+                        : "bg-red-200 text-red-600"
+                    }`}
+                    style={{ minWidth: "6rem" }}
+                  >
+                    {item.purchaseOrder.isAccepted ? "Accepted" : "Rejected"}
+                  </button>
+                </td>
+                <td className="px-4 py-2 bg-white">
+                  {item.shipmentStatus ? (
+                    <span className="text-green-500">Complete Shipment</span>
+                  ) : (
+                    <span className="text-red-500">Partial Shipment</span>
+                  )}
+                </td>
+                <td className="px-4 py-2 bg-white">
                   <button onClick={() => handleEdit(item)} className={`mr-2`}>
                     <FontAwesomeIcon
                       icon={faEdit}
@@ -219,7 +275,7 @@ const GrnList = () => {
                       className={`text-purple-600 text-xl`}
                     />
                   </button>
-                  {editedItem && editedItem.id === item.id ? (
+                  {/* {editedItem && editedItem.id === item.id && (
                     <>
                       <button
                         onClick={() => handleAccept(item.id, editedComment)}
@@ -242,14 +298,13 @@ const GrnList = () => {
                         placeholder="Add comments..."
                       />
                     </>
-                  ) : null}
+                  )} */}
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
-
       <div className="flex justify-end mt-2 ml-2 mr-2">
         <table className="table-auto border-collapse rounded border-blue-500 mb-5">
           <tbody>
@@ -270,7 +325,7 @@ const GrnList = () => {
                   onClick={handleNextPage}
                   className="pagination-button ml-2  bg-cyan-500 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded-3xl"
                   disabled={
-                    currentPage === Math.ceil(dummyData.length / itemsPerPage)
+                    currentPage === Math.ceil(grnData.length / itemsPerPage)
                   }
                 >
                   Next

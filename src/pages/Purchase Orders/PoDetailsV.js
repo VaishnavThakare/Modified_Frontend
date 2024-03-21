@@ -135,7 +135,7 @@ const PoDetailsV = () => {
               <th className="px-4 py-2 text-left">
                 PO <p></p>Amount
               </th>
-              {/* <th className="px-4 py-2 text-left border">View PO</th> */}
+              <th className="px-4 py-2 text-left ">View PO</th>
               <th className="px-4 py-2 text-left">
                 Action<p></p>(Accept/Reject)
               </th>
@@ -157,7 +157,7 @@ const PoDetailsV = () => {
                   {formatDateTime(order.releaseDate)}
                 </td>
                 <td className="px-4 py-2">{order.orderAmount}</td>
-                {/* <td className="px-4 py-2 border">
+                <td className="px-4 py-2 ">
                   <button
                     onClick={() =>
                       handleView(
@@ -172,7 +172,7 @@ const PoDetailsV = () => {
                       className="w-6 h-6 px-4 py-2 text-purple-600"
                     />
                   </button>
-                </td> */}
+                </td>
                 <td className="px-4 py-2">
                   {order.isAccepted ? (
                     <span className="text-green-500">Already Accepted</span>
@@ -248,7 +248,7 @@ const PoDetailsV = () => {
       <ToastContainer />
 
       {/* Purchase Order Details Modal */}
-      {/* {showDetailsModal && (
+      {showDetailsModal && (
         <div className="fixed z-10 inset-0 overflow-y-auto">
           <div className="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
             <div className="fixed inset-0 transition-opacity">
@@ -368,7 +368,7 @@ const PoDetailsV = () => {
             </div>
           </div>
         </div>
-      )} */}
+      )}
     </div>
   );
 };
