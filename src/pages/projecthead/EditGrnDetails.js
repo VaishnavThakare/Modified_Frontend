@@ -1,15 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { useParams } from "react-router-dom";
+import "react-toastify/dist/ReactToastify.css";
 
 const EditGrnDetails = ({ id }) => {
+  const { grnId } = useParams();
   const [comment, setComment] = useState("");
 
   const handleAccept = async () => {
     try {
-      await axios.put(`https://localhost:7254/api/GRN/AcceptReject/${id}`, {
+      await axios.put(`https://localhost:7254/api/GRN/AcceptReject/${grnId}`, {
         comment: comment,
-        status: "Accept",
+        isAccepted: true,
       });
       toast.success("GRN item accepted successfully");
       setComment("");
@@ -21,9 +24,9 @@ const EditGrnDetails = ({ id }) => {
 
   const handleReject = async () => {
     try {
-      await axios.put(`https://localhost:7254/api/GRN/AcceptReject/${id}`, {
+      await axios.put(`https://localhost:7254/api/GRN/AcceptReject/${grnId}`, {
         comment: comment,
-        status: "Reject",
+        isAccepted: false,
       });
       toast.success("GRN item rejected successfully");
       setComment("");
@@ -41,7 +44,7 @@ const EditGrnDetails = ({ id }) => {
         </div>
         <p></p>
         <div className="flex text-2xl font-bold text-gray-500 mb-5">
-          <h2>Edit for GRN No:</h2>
+          <h2>Edit for GRN No: {id}</h2>
         </div>
         <div className="mb-6">
           <button

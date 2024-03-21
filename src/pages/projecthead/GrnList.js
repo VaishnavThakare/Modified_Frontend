@@ -13,6 +13,7 @@ import {
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
+import EditGrnDetails from "./EditGrnDetails"; // Import the EditGrnDetails component
 
 const GrnList = () => {
   const [grnData, setGrnData] = useState([]);
@@ -68,40 +69,6 @@ const GrnList = () => {
     }
   };
 
-  // const handleAccept = async (id, comment) => {
-  //   try {
-  //     await axios.put(`https://localhost:7254/api/GRN/AcceptReject/${id}`, {
-  //       comment: comment,
-  //       status: "Accept",
-  //     });
-  //     toast.success("GRN item accepted successfully");
-  //     setEditedItem(null);
-  //     setEditedComment("");
-  //   } catch (error) {
-  //     console.error("Error accepting GRN item:", error);
-  //     toast.error("Error accepting GRN item");
-  //   }
-  // };
-
-  // const handleReject = async (id, comment) => {
-  //   try {
-  //     await axios.put(`https://localhost:7254/api/GRN/AcceptReject/${id}`, {
-  //       comment: comment,
-  //       status: "Reject",
-  //     });
-  //     toast.success("GRN item rejected successfully");
-  //     setEditedItem(null);
-  //     setEditedComment("");
-  //   } catch (error) {
-  //     console.error("Error rejecting GRN item:", error);
-  //     toast.error("Error rejecting GRN item");
-  //   }
-  // };
-
-  // const handleCommentChange = (e, id) => {
-  //   setEditedComment(e.target.value);
-  // };
-
   const openDocument = (url) => {
     window.open(url, "_blank");
   };
@@ -113,7 +80,7 @@ const GrnList = () => {
 
     return (
       <div className="ml-96 items-center justify-center h-screen">
-        <div className="bg-white rounded-lg shadow-lg p-4 max-w-lg w-full mt-2">
+        <div className="rounded-lg border-2 border-cyan-400  bg-white shadow-lg p-4 max-w-lg w-full mt-2">
           <h3 className="text-lg font-medium mb-2">GRN Details</h3>
           <table className="w-full">
             <tbody>
@@ -206,6 +173,7 @@ const GrnList = () => {
       </div>
     );
   };
+
   if (showDetails) {
     return <DetailsView grnDetails={selectedGrnDetails} />;
   }
@@ -213,8 +181,8 @@ const GrnList = () => {
   return (
     <div className="relative">
       <ToastContainer />
-      <div className="overflow-x-auto mt-8 ml-2 mr-2 rounded">
-        <table className="table-auto w-full rounded-md border-2 border-cyan-400 bg-white">
+      <div className="overflow-x-auto mt-8 ml-2 mr-2 rounded shadow-lg ">
+        <table className="table-auto w-full rounded-s-3xl border-2 border-cyan-400 bg-white">
           <thead>
             <tr className="text-gray-600">
               <th className="px-4 py-2 text-left">SR. NO.</th>
@@ -241,17 +209,32 @@ const GrnList = () => {
                 <td className="px-4 py-2">{item.purchaseOrder.orderNo}</td>
                 <td className="px-4 py-2">{item.sendOn}</td>
                 <td className="px-4 py-2">
-                  <button
-                    className={`py-1 px-2 rounded ${
-                      item.purchaseOrder.isAccepted
-                        ? "bg-green-200 text-green-700"
-                        : "bg-red-200 text-red-600"
-                    }`}
-                    style={{ minWidth: "6rem" }}
-                  >
-                    {item.purchaseOrder.isAccepted ? "Accepted" : "Rejected"}
-                  </button>
+                  {item.isAccepted === true && (
+                    <button
+                      className="py-1 px-2 rounded bg-green-200 text-green-700"
+                      style={{ minWidth: "6rem" }}
+                    >
+                      Accepted
+                    </button>
+                  )}
+                  {item.isAccepted === false && (
+                    <button
+                      className="py-1 px-2 rounded bg-red-200 text-red-600"
+                      style={{ minWidth: "6rem" }}
+                    >
+                      Rejected
+                    </button>
+                  )}
+                  {item.isAccepted === null && (
+                    <button
+                      className="py-1 px-2 rounded bg-yellow-200 text-yellow-700"
+                      style={{ minWidth: "6rem" }}
+                    >
+                      Pending
+                    </button>
+                  )}
                 </td>
+
                 <td className="px-4 py-2 bg-white">
                   {item.shipmentStatus ? (
                     <span className="text-green-500">Complete Shipment</span>
@@ -275,30 +258,6 @@ const GrnList = () => {
                       className={`text-purple-600 text-xl`}
                     />
                   </button>
-                  {/* {editedItem && editedItem.id === item.id && (
-                    <>
-                      <button
-                        onClick={() => handleAccept(item.id, editedComment)}
-                        className="px-4 py-2 mr-2 bg-green-500 text-white rounded hover:bg-green-600"
-                      >
-                        Accept
-                      </button>
-                      <button
-                        onClick={() => handleReject(item.id, editedComment)}
-                        className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
-                      >
-                        Reject
-                      </button>
-                      <textarea
-                        rows="2"
-                        cols="25"
-                        value={editedComment}
-                        onChange={(e) => handleCommentChange(e, item.id)}
-                        className="border rounded px-2 py-1 w-full focus:outline-none focus:ring focus:border-blue-300"
-                        placeholder="Add comments..."
-                      />
-                    </>
-                  )} */}
                 </td>
               </tr>
             ))}

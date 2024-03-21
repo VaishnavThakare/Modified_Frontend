@@ -6,6 +6,8 @@ import {
   Navigate,
 } from "react-router-dom";
 import axios from "axios";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import Login from "./pages/Login";
 import VendorDashboard from "./pages/VendorDashboard";
@@ -76,6 +78,8 @@ import ChangePassword from "./pages/ChangePassword";
 import PheadList from "./pages/projecthead/Invoice/PheadList";
 import EditGrnDetails from "./pages/projecthead/EditGrnDetails";
 
+
+
 const App = () => {
   const [userRole, setuserRole] = useState(sessionStorage.getItem("roles"));
   useEffect(() => {
@@ -84,7 +88,8 @@ const App = () => {
 
   return (
     <Router>
-      <Routes>
+    <ToastContainer /> {/* Add ToastContainer here */}
+    <Routes>
         {/* <Route path="/login" element={<Login />} />
         <Route path="/test1" element={<Carousel />} /> */}
         <Route path="/" element={<LandingPage />} />
