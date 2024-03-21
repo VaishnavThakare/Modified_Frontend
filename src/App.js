@@ -54,6 +54,7 @@ import UpdateInvoiceVendor from "./pages/vendor/UpdateInvoiceVendor";
 import VGrnForm from "./pages/vendor/VGrnForm";
 import VGrnlist from "./pages/vendor/VGrnlist";
 import VendorDetailsView from "./pages/vendor/VendorDetailsView";
+import EditVGrnDetails  from "./pages/vendor/EditVGrnDetails.js";
 
 //ProjectHead
 import ProjectHeadDash from "./pages/projecthead/ProjectHeadDash";
@@ -163,6 +164,7 @@ const App = () => {
           <Route path="vendor-grnform" element={<VGrnForm />} />
           <Route path="vendor-grnlist" element={<VGrnlist />} />
           <Route path="details/:invoiceNo" element={<VendorDetailsView />} />
+          <Route path="vendor-grnedit/:grnId" element={<EditVGrnDetails />} />
          
         </Route>
 
