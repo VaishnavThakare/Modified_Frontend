@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import imgsrc from "./sciqus1.png";
 
 export default function Sidebar({
   isMenuVisible,
@@ -31,32 +32,12 @@ export default function Sidebar({
           href="#"
           className="flex items-center justify-center pb-4 border-b border-b-gray-800"
         >
-          <h2 className="font-bold text-2xl mt-4">
-            VENDOR
-            <span className="bg-[#f84525] text-white px-2 rounded-md">
-              PORTAL
-            </span>
-            <button
-              className="float-end pt-1 ml-2 md:hidden"
-              onClick={handleMenuVisible}
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="feather feather-x"
-              >
-                <line x1="18" y1="6" x2="6" y2="18"></line>
-                <line x1="6" y1="6" x2="18" y2="18"></line>
-              </svg>
-            </button>
-          </h2>
+           <img
+    className="mt-2 h-14 w-36"
+    src={imgsrc}
+    alt="Your Image"
+  />
+
         </a>
         <ul className="mt-4  ">
           <span className="text-gray font-bold ml-4">Menus</span>

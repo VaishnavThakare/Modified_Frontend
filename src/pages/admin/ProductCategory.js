@@ -43,10 +43,13 @@ export default function ProductCategory() {
   return (
     <>
       <div className="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 pr-10 lg:px-8 mb-8">
-        <div className="align-middle inline-block min-w-full shadow overflow-hidden bg-zinc-50 shadow-dashboard px-8 pt-3 rounded-bl-lg rounded-br-lg">
-          <div className="flex text-2xl font-bold text-gray-500 mb-4 justify-center items-center">
-            <h2>Product Category</h2>
-          </div>
+      <div className="flex text-2xl font-bold text-gray-500">
+          <h2 className="text-left text-cyan-500">PRODUCT CATEGORY</h2>
+        </div>
+        <div className="w-1/5 bg-cyan-500 h-0.5 mb-1"></div>
+        <div className="w-1/3 bg-cyan-500 h-0.5 mb-5"></div>
+        <div className="align-middle inline-block min-w-full overflow-hidden bg-zinc-50  px-8 pt-3 rounded-bl-lg rounded-br-lg">
+      
 
           {/* Input field for filtering */}
           <div className="mt-4 searchFilter">
@@ -58,24 +61,25 @@ export default function ProductCategory() {
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 inline w-50 p-2"
             />
           </div>
-
-          <table className="min-w-full border-2 bg-white border-cyan-600 mb-5">
+          <div className="shadow-xl">
+          <div className="border-2 border-cyan-500 rounded-lg shadow-xl p-0.5">
+          <table className="min-w-full bg-white">
             <thead>
               <tr>
-                <th className="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-gray-600 tracking-wider">
+                <th className="px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-600 tracking-wider">
                   Sr.No
                 </th>
-                <th className="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-gray-600 tracking-wider">
+                <th className="px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-600 tracking-wider">
                   Name
                 </th>
-                <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-gray-600 tracking-wider">
+                <th className="px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-600 tracking-wider">
                   Description
                 </th>
-                <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-gray-600 tracking-wider">
+                <th className="px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-600 tracking-wider">
                   Parent Category ID
                 </th>
                
-                <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-gray-600 tracking-wider">
+                <th className="px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-600 tracking-wider">
                   Parent Category
                 </th>
               </tr>
@@ -83,28 +87,28 @@ export default function ProductCategory() {
             <tbody className="bg-white">
               {filteredCategories.slice(indexOfFirstItem, indexOfLastItem).map((cat, index) => (
                 <tr key={cat.id}>
-                  <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
+                  <td className="px-6 py-4 whitespace-no-wrap text-center text-sm">
                     <div className="text-sm leading-5 text-gray-500">
                       {(currentPage - 1) * itemsPerPage + index + 1}
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
+                  <td className="px-6 py-4 whitespace-no-wrap text-center text-sm">
                     <div className="text-sm leading-5 text-gray-500">
                       {cat.name}
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
+                  <td className="px-6 py-4 whitespace-no-wrap text-center text-sm">
                     <div className="text-sm leading-5 text-gray-500">
                       {cat.description}
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
+                  <td className="px-6 py-4 whitespace-no-wrap text-center text-sm">
                     <div className="text-sm leading-5 text-gray-500">
                       {cat.parentCategoryId}
                     </div>
                   </td>
                    
-                  <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
+                  <td className="px-6 py-4 whitespace-no-wrap text-center text-sm">
                     <div className="text-sm leading-5 text-gray-500">
                       {/* Assuming parentCategory is an object with name property */}
                       {cat.parentCategory && cat.parentCategory.name}
@@ -114,6 +118,8 @@ export default function ProductCategory() {
               ))}
             </tbody>
           </table>
+          </div>
+          </div>
         </div>
       </div>
       <div className="flex justify-center mt-4">
@@ -122,7 +128,7 @@ export default function ProductCategory() {
             <button
               key={index}
               className={`mx-1 px-4 py-2 ${
-                currentPage === index + 1 ? "bg-blue-500 text-white" : "bg-gray-300"
+                currentPage === index + 1 ? "bg-cyan-500 text-white" : "bg-gray-300"
               }`}
               onClick={() => paginate(index + 1)}
             >

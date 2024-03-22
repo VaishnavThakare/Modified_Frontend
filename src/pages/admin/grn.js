@@ -7,6 +7,7 @@ import {
   faArrowLeft,
   faArrowRight,
 } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
 
 const GrnDetails = () => {
   const [grns, setGrns] = useState([]);
@@ -74,12 +75,7 @@ const GrnDetails = () => {
           style={{ height: "fit-content" }}
         >
           <div className="relative">
-            <button
-              className="absolute top-0 right-0 bg-blue-500 text-white px-4 py-2 rounded"
-              onClick={handleGoBack}
-            >
-              Close
-            </button>
+           
 
             <p className="text-gray-900">
               <span className="font-bold">GRN No.</span>: {grn.grnNo}
@@ -92,26 +88,37 @@ const GrnDetails = () => {
               <span className="font-bold">Sent on (date)</span>: {grn.sendOn}
             </p>
             <p className="text-gray-900">
-              <span className="font-bold">Status</span>:{" "}
-              {grn.isApproved ? "Approved" : "Rejected"}
-            </p>
-            <p className="text-gray-900">
               <span className="font-bold">Shipment Type</span>:{" "}
               {grn.shipmentStatus ? "Complete Shipment" : "Partial Shipment"}
             </p>
             <p className="text-gray-900">
+              <span className="font-bold">Status</span>:{" "}
+              {grn.isAccepted ? "Accepted" : "Rejected"}
+            </p>
+            
+            <p className="text-gray-900">
               <span className="font-bold">Comment</span>: {grn.comment}
             </p>
           </div>
+          
         </div>
+        
       </div>
+      <div className="flex justify-center">
+      <button
+              className=" bg-cyan-500 text-white px-4 py-2 rounded"
+              onClick={handleGoBack}
+            >
+              Close
+            </button>
+            </div>
       <div className="flex text-2xl font-bold text-gray-500 mt-14">
-        <h2 className="text-left text-cyan-400 ">ALL INVOICES</h2>
+        <h2 className="text-left text-cyan-500 ">ALL INVOICES</h2>
       </div>
       <div className="w-1/5 bg-cyan-400 h-0.5 mb-1"></div>
       <div className="w-1/3 bg-cyan-400 h-0.5 mb-5"></div>
-      <div className="overflow-x-auto mt-8 ml-2 mr-2 rounded shadow-lg">
-        <table className="table-auto w-full rounded-lg border-2 border-cyan-500 bg-white shadow-lg">
+      <div className="overflow-x-auto mt-8 ml-2 mr-2 border-2 border-cyan-500 p-0.5 rounded-lg shadow-lg">
+        <table className="table-auto w-full rounded-lg  bg-white ">
           <thead>
             <tr className="text-gray-600">
               <th className="px-4 py-2 text-left">INVOICE NO.</th>
@@ -120,6 +127,7 @@ const GrnDetails = () => {
               <th className="px-4 py-2 text-left">STATUS</th>
               <th className="px-4 py-2 text-left">PAYMENT STATUS</th>
               <th className="px-4 py-2 text-left">COMMENT</th>
+              <th className="px-4 py-2 text-left">ACTIONS</th>
             </tr>
             <tr className="text-gray-600">
               <td colSpan="8" className="px-4 py-1">
@@ -158,6 +166,14 @@ const GrnDetails = () => {
                   </button>
                 </td>
                 <td className="px-4 py-2">{inv.comment}</td>
+                <td className="px-4 py-2 bg-zinc-50">
+                  <Link className={`mr-2`} to ={`/admin/details/${inv.id}`}>
+                    <FontAwesomeIcon
+                      icon={faEye}
+                      className={`text-purple-600 text-xl`}
+                    />
+                  </Link>
+                </td>
               </tr>
             ))}
           </tbody>
@@ -168,25 +184,25 @@ const GrnDetails = () => {
 
   return (
     <div className="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 pr-10 lg:px-8 mb-8">
-      <div className="align-middle inline-block min-w-full shadow overflow-hidden bg-zinc-50 shadow-dashboard px-8 pt-3 rounded-bl-lg rounded-br-lg ">
+      <div className="align-middle inline-block min-w-full overflow-hidden bg-zinc-50 px-8 pt-3 rounded-bl-lg rounded-br-lg ">
         <div className="flex text-2xl font-bold text-gray-500 ">
-          <h2 className="text-left text-cyan-400">ALL ABOUT GRN</h2>
+          <h2 className="text-left text-cyan-500">GRN LIST</h2>
         </div>
         <div className="w-1/5 bg-cyan-400 h-0.5 mb-1"></div>
         <div className="w-1/3 bg-cyan-400 h-0.5 mb-5"></div>
-        <div className="relative bg-zinc-50 mb-5 bg-white">
+        <div className="relative  mb-5 bg-zinc-50">
           {selectedGrn ? (
             <DetailsView grn={grns.find((grn) => grn.grnNo === selectedGrn)} />
           ) : (
-            <div className="overflow-x-auto mt-8 ml-2 mr-2 rounded shadow-lg">
-              <table className="table-auto w-full rounded-lg border-2 border-cyan-500 bg-white shadow-lg">
+            <div className="overflow-x-auto mt-8 ml-2 mr-2 border-2 border-cyan-500 p-0.5 rounded shadow-lg">
+              <table className="table-auto w-full rounded-lg  bg-white shadow-lg">
                 <thead>
                   <tr className="text-gray-600">
-                    <th className="px-4 py-2 text-left">GRN NO.</th>
-                    <th className="px-4 py-2 text-left">PO NO.</th>
-                    <th className="px-4 py-2 text-left">STATUS</th>
-                    <th className="px-4 py-2 text-left">SHIPMENT TYPE</th>
-                    <th className="px-4 py-2 text-left">VIEW</th>
+                    <th className="px-4 py-2 text-center">GRN NO.</th>
+                    <th className="px-4 py-2 text-center">PO NO.</th>
+                    <th className="px-4 py-2 text-center">SHIPMENT TYPE</th>
+                    <th className="px-4 py-2 text-center">STATUS</th>
+                    <th className="px-4 py-2 text-center">VIEW</th>
                   </tr>
                   <tr className="text-gray-600">
                     <td colSpan="8" className="px-4 py-1">
@@ -197,21 +213,9 @@ const GrnDetails = () => {
                 <tbody>
                   {currentGrns.map((grn) => (
                     <tr key={grn.grnNo} className="bg-white">
-                      <td className="px-4 py-2">{grn.grnNo}</td>
-                      <td className="px-4 py-2">{grn.purchaseOrder.orderNo}</td>
-                      <td className="px-4 py-2">
-                        <button
-                          className={`py-1 px-2 rounded ${
-                            grn.isApproved
-                              ? "bg-green-200 text-green-700"
-                              : "bg-red-200 text-red-600"
-                          }`}
-                          style={{ minWidth: "6rem" }}
-                        >
-                          {grn.isApproved ? "Approved" : "Rejected"}
-                        </button>
-                      </td>
-                      <td className="px-4 py-2">
+                      <td className="px-4 py-2 text-center text-sm">{grn.grnNo}</td>
+                      <td className="px-4 py-2 text-center text-sm">{grn.purchaseOrder.orderNo}</td>
+                      <td className="px-4 py-2 text-center text-sm">
                         <button
                           className={`py-1 px-2 rounded ${
                             grn.shipmentStatus ? "text-black" : "text-black"
@@ -223,7 +227,34 @@ const GrnDetails = () => {
                             : "Partial Shipment"}
                         </button>
                       </td>
-                      <td className="px-4 py-2">
+                      <td className="px-4 py-2 text-center text-sm">
+                        {grn.isAccepted === true && (
+                        <button
+                         className="py-1 px-2 rounded bg-green-200 text-green-700"
+                         style={{ minWidth: "6rem" }}
+                        >
+                         Accepted
+                        </button>
+                        )}
+                        {grn.isAccepted === false && (
+                        <button
+                         className="py-1 px-2 rounded bg-red-200 text-red-600"
+                         style={{ minWidth: "6rem" }}
+                        >
+                         Rejected
+                        </button>
+                        )}
+                        {grn.isAccepted === null && (
+                        <button
+                          className="py-1 px-2 rounded bg-yellow-200 text-yellow-700"
+                          style={{ minWidth: "6rem" }}
+                        >
+                         Pending
+                        </button>
+                        )}
+                      </td>
+                      
+                      <td className="px-4 py-2 text-center text-sm">
                         <button
                           className="mr-2"
                           onClick={() => {

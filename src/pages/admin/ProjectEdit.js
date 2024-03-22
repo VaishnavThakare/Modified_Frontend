@@ -59,7 +59,13 @@ const ProjectEdit = () => {
   };
 
   return (
-    <div className="py-10 flex justify-center items-center bg-gray-100 font-poppins">
+    <div className="bg-zinc-50">
+    <div className="flex text-2xl font-bold text-gray-500">
+          <h2 className="text-left text-cyan-500">EDIT PROJECT</h2>
+        </div>
+        <div className="w-1/5 bg-cyan-500 h-0.5 mb-1"></div>
+        <div className="w-1/3 bg-cyan-500 h-0.5 mb-5"></div>
+    <div className="py-10 flex justify-center items-center bg-zinc-50 font-poppins">
       <div className="bg-white border-2 border-cyan-400 rounded-lg shadow-lg p-8 w-full max-w-lg mt">
         <form onSubmit={handleSubmit} className="p-10">
           <div className="grid grid-cols-1 gap-4">
@@ -114,6 +120,7 @@ const ProjectEdit = () => {
         </form>
         <ToastContainer />
       </div>
+    </div>
     </div>
   );
 };

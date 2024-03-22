@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faEye,
-  faFileDownload,
+  
   faArrowLeft,
   faArrowRight,
 } from "@fortawesome/free-solid-svg-icons";
@@ -175,7 +175,7 @@ const GrnDetails = () => {
         </div>
         <div className="w-1/5 bg-cyan-400 h-0.5 mb-1"></div>
           <div className="w-1/3 bg-cyan-400 h-0.5 mb-5"></div>
-        <div className="relative bg-zinc-50 mb-5 bg-white">
+        <div className="relative mb-5 bg-white">
           {selectedGrn ? (
             <DetailsView grn={grns.find((grn) => grn.id === selectedGrn)} />
           ) : (

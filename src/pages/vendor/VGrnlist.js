@@ -119,7 +119,7 @@ const GrnDetails = () => {
             </p>
             <p className="text-gray-900">
               <span className="font-bold">Status</span>:{" "}
-              {grnDetails.isApproved ? "Approved" : "Rejected"}
+              {grnDetails.isAccepted ? "Accepted" : "Rejected"}
             </p>
             <p>
               <td className="py-2">
