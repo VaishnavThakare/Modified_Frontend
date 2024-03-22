@@ -16,6 +16,7 @@ const PoDetailsA = () => {
   const [purchaseOrders, setPurchaseOrders] = useState([]);
   const [selectedPurchaseOrder, setSelectedPurchaseOrder] = useState(null);
   const [showDetails, setShowDetails] = useState(false);
+  
 
   const navigate = useNavigate();
   const itemsPerPage = 5;

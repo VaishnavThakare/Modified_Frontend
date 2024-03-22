@@ -6,14 +6,9 @@ import "react-toastify/dist/ReactToastify.css";
 
 const Poactions = () => {
   const [comment, setComment] = useState("");
-  const [purchaseOrders, setPurchaseOrders] = useState([]); // Initialize purchaseOrders state
-
   const { orderId } = useParams(); // Destructure 'id' from useParams
-
-  // Configure Toastify
-  toast.configure();
-
-  const handleAccept = async (orderId, comment) => {
+  const [purchaseOrder, setPurchaseOrders] = useState();
+  const handleAccept = async () => {
     try {
       await axios.put(
         `https://localhost:7254/api/PurchaseOrder/AcceptReject/${orderId}`,
@@ -35,7 +30,7 @@ const Poactions = () => {
     }
   };
 
-  const handleReject = async (orderId, comment) => {
+  const handleReject = async () => {
     try {
       await axios.put(
         `https://localhost:7254/api/PurchaseOrder/AcceptReject/${orderId}`,
@@ -63,15 +58,16 @@ const Poactions = () => {
         <div className="flex text-2xl font-bold text-gray-600 mb-5">
           <h2>Edit Purchase Order</h2>
         </div>
+        <p></p>
         <div className="mb-6">
           <button
-            onClick={() => handleAccept(orderId, comment)} // Pass 'id' and 'comment' to handleAccept
+           onClick={handleAccept} // Pass 'id' and 'comment' to handleAccept
             className="px-4 py-2 mr-2 bg-green-500 text-white rounded hover:bg-green-600"
           >
             Accept
           </button>
           <button
-            onClick={() => handleReject(orderId, comment)} // Pass 'id' and 'comment' to handleReject
+           onClick={handleReject} // Pass 'id' and 'comment' to handleReject
             className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
           >
             Reject
