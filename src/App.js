@@ -78,7 +78,6 @@ import Application from "./pages/admin/Application";
 import EditGrnDetails from "./pages/projecthead/EditGrnDetails";
 import ChangePassword from "./pages/ChangePassword";
 import PheadList from "./pages/projecthead/Invoice/PheadList";
-<<<<<<< HEAD
 import PoDetailsPHead from "./pages/projecthead/PoDetailsPHead";
 import PurchaseOrderFormPHead from "./pages/projecthead/PurchaseOrderFormPHead";
 import EditPurchaseOrderPagePHead from "./pages/projecthead/EditPurchaseOrderPagePHead";
@@ -86,9 +85,7 @@ import PODetailedView from "./pages/projecthead/PODetailedView";
 
 
 
-=======
 import Poactions from "./pages/Purchase Orders/Poactions.js";
->>>>>>> 23016b44104f6c934081eb926c131e7de72211eb
 
 const App = () => {
   const [userRole, setuserRole] = useState(sessionStorage.getItem("roles"));
@@ -180,11 +177,8 @@ const App = () => {
           <Route path="vendor-grnlist" element={<VGrnlist />} />
           <Route path="details/:invoiceNo" element={<VendorDetailsView />} />
           <Route path="vendor-grnedit/:grnId" element={<EditVGrnDetails />} />
-<<<<<<< HEAD
 
-=======
           {/* <Route path="/purchase-order-list/:id" element={<PurchaseOrderDetails />} /> */}
->>>>>>> 23016b44104f6c934081eb926c131e7de72211eb
         </Route>
 
         <Route path="/projecthead" element={<ProjectHeadDashboard />}>
@@ -195,14 +189,11 @@ const App = () => {
           <Route path="grn-list" element={<GrnList />} />
           <Route path="invoice-list" element={<PheadList />} />
           <Route path="editGrn-List/:grnId" element={<EditGrnDetails />} />
-<<<<<<< HEAD
           <Route path="invoice-details-phead/:id" element={<InvoiceDetails />} />
           <Route path="purchase-OrderForm-pHead" element={<PurchaseOrderFormPHead />} />
           <Route path="purchase-order-list-pHead" element={<PoDetailsPHead />} />
           <Route path="po-details-phead/:id" element={<PODetailedView />} />
           <Route path="edit/:orderNo" element={<EditPurchaseOrderPagePHead />} />
-=======
->>>>>>> 23016b44104f6c934081eb926c131e7de72211eb
         </Route>
 
         {/* <Route path="/" element={<Navigate to="/login" />} /> */}
