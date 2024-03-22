@@ -44,6 +44,16 @@ export default function AdminDashboard() {
       ],
     },
     {
+      text: "GRN",
+      icon: "bx bx-category text-white",
+      link: "#",
+      bgColor: "bg-cyan-600",
+      subItems: [
+        { text: "View", link: "grn" },
+        
+      ],
+    },
+    {
       text: "INVOICE",
       icon: "bx bx-category text-white",
       link: "#",
