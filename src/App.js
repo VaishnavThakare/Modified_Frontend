@@ -54,7 +54,7 @@ import UpdateInvoiceVendor from "./pages/vendor/UpdateInvoiceVendor";
 import VGrnForm from "./pages/vendor/VGrnForm";
 import VGrnlist from "./pages/vendor/VGrnlist";
 import VendorDetailsView from "./pages/vendor/VendorDetailsView";
-import EditVGrnDetails  from "./pages/vendor/EditVGrnDetails.js";
+import EditVGrnDetails from "./pages/vendor/EditVGrnDetails.js";
 
 //ProjectHead
 import ProjectHeadDash from "./pages/projecthead/ProjectHeadDash";
@@ -79,6 +79,13 @@ import EditGrnDetails from "./pages/projecthead/EditGrnDetails";
 import ChangePassword from "./pages/ChangePassword";
 
 import PheadList from "./pages/projecthead/Invoice/PheadList";
+import PoDetailsPHead from "./pages/projecthead/PoDetailsPHead";
+import PurchaseOrderFormPHead from "./pages/projecthead/PurchaseOrderFormPHead";
+import EditPurchaseOrderPagePHead from "./pages/projecthead/EditPurchaseOrderPagePHead";
+import PODetailedView from "./pages/projecthead/PODetailedView";
+
+
+
 
 const App = () => {
   const [userRole, setuserRole] = useState(sessionStorage.getItem("roles"));
@@ -88,8 +95,8 @@ const App = () => {
 
   return (
     <Router>
-    <ToastContainer /> {/* Add ToastContainer here */}
-    <Routes>
+      <ToastContainer /> {/* Add ToastContainer here */}
+      <Routes>
         {/* <Route path="/login" element={<Login />} />
         <Route path="/test1" element={<Carousel />} /> */}
         <Route path="/" element={<LandingPage />} />
@@ -162,10 +169,10 @@ const App = () => {
           <Route path="po-check" element={<PoDetailsV />} />
           <Route path="changePassword" element={<ChangePassword />} />
           <Route path="vendor-grnform" element={<VGrnForm />} />
-          <Route path="vendor-grnlist" element={<VGrnlist />} />
-          <Route path="details/:invoiceNo" element={<VendorDetailsView />} />
-          <Route path="vendor-grnedit/:grnId" element={<EditVGrnDetails />} />
-         
+          <Route path="vendor-grnlist" element={<VGrnlist />} />
+          <Route path="details/:invoiceNo" element={<VendorDetailsView />} />
+          <Route path="vendor-grnedit/:grnId" element={<EditVGrnDetails />} />
+
         </Route>
 
         <Route path="/projecthead" element={<ProjectHeadDashboard />}>
@@ -177,7 +184,10 @@ const App = () => {
           <Route path="invoice-list" element={<PheadList />} />
           <Route path="editGrn-List/:grnId" element={<EditGrnDetails />} />
           <Route path="invoice-details-phead/:id" element={<InvoiceDetails />} />
-
+          <Route path="purchase-OrderForm-pHead" element={<PurchaseOrderFormPHead />} />
+          <Route path="purchase-order-list-pHead" element={<PoDetailsPHead />} />
+          <Route path="po-details-phead/:id" element={<PODetailedView />} />
+          <Route path="edit/:orderNo" element={<EditPurchaseOrderPagePHead />} />
         </Route>
 
         {/* <Route path="/" element={<Navigate to="/login" />} /> */}
