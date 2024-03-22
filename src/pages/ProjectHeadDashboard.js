@@ -33,6 +33,17 @@ export default function ProjectHeadDashboard() {
     },
 
     {
+      text: "Purchase Order",
+      icon: "bx bx-category text-white",
+      link: "#",
+      bgColor: "bg-cyan-600",
+      subItems: [
+        { text: "Purchase Order Form", link: "purchase-OrderForm-pHead" },
+        { text: "Purchase Order View", link: "purchase-order-list-pHead" },
+      ],
+    },
+
+    {
       text: "Invoices",
       icon: "bx bx-user text-white font-",
       link: "#",

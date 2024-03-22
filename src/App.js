@@ -78,6 +78,13 @@ import Application from "./pages/admin/Application";
 import EditGrnDetails from "./pages/projecthead/EditGrnDetails";
 import ChangePassword from "./pages/ChangePassword";
 import PheadList from "./pages/projecthead/Invoice/PheadList";
+import PoDetailsPHead from "./pages/projecthead/PoDetailsPHead";
+import PurchaseOrderFormPHead from "./pages/projecthead/PurchaseOrderFormPHead";
+import EditPurchaseOrderPagePHead from "./pages/projecthead/EditPurchaseOrderPagePHead";
+import PODetailedView from "./pages/projecthead/PODetailedView";
+
+
+
 import Poactions from "./pages/Purchase Orders/Poactions.js";
 
 const App = () => {
@@ -170,6 +177,7 @@ const App = () => {
           <Route path="vendor-grnlist" element={<VGrnlist />} />
           <Route path="details/:invoiceNo" element={<VendorDetailsView />} />
           <Route path="vendor-grnedit/:grnId" element={<EditVGrnDetails />} />
+
           {/* <Route path="/purchase-order-list/:id" element={<PurchaseOrderDetails />} /> */}
         </Route>
 
@@ -181,6 +189,11 @@ const App = () => {
           <Route path="grn-list" element={<GrnList />} />
           <Route path="invoice-list" element={<PheadList />} />
           <Route path="editGrn-List/:grnId" element={<EditGrnDetails />} />
+          <Route path="invoice-details-phead/:id" element={<InvoiceDetails />} />
+          <Route path="purchase-OrderForm-pHead" element={<PurchaseOrderFormPHead />} />
+          <Route path="purchase-order-list-pHead" element={<PoDetailsPHead />} />
+          <Route path="po-details-phead/:id" element={<PODetailedView />} />
+          <Route path="edit/:orderNo" element={<EditPurchaseOrderPagePHead />} />
         </Route>
 
         {/* <Route path="/" element={<Navigate to="/login" />} /> */}
