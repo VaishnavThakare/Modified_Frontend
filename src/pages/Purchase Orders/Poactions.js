@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { useParams } from "react-router-dom";
@@ -6,8 +6,25 @@ import "react-toastify/dist/ReactToastify.css";
 
 const Poactions = () => {
   const [comment, setComment] = useState("");
-  const { orderId } = useParams(); // Destructure 'id' from useParams
-  const [purchaseOrder, setPurchaseOrders] = useState();
+  const { orderId } = useParams();
+  const [purchaseOrder, setPurchaseOrder] = useState(null); // Updated state name
+
+  useEffect(() => {
+    const fetchPurchaseOrder = async () => {
+      try {
+        const response = await axios.get(
+          `https://localhost:7254/api/PurchaseOrder/${orderId}`
+        );
+        setPurchaseOrder(response.data);
+      } catch (error) {
+        console.error("Error fetching purchase order:", error);
+        toast.error("Failed to fetch purchase order details.");
+      }
+    };
+
+    fetchPurchaseOrder();
+  }, [orderId]);
+
   const handleAccept = async () => {
     try {
       await axios.put(
@@ -17,12 +34,10 @@ const Poactions = () => {
           comment: comment,
         }
       );
-      // Assuming the API call was successful, update the UI
-      setPurchaseOrders((prevOrders) =>
-        prevOrders.map((order) =>
-          order.id === orderId ? { ...order, isAccepted: true } : order
-        )
-      );
+      setPurchaseOrder((prevOrder) => ({
+        ...prevOrder,
+        isAccepted: true,
+      }));
       toast.success("Purchase order accepted successfully!");
     } catch (error) {
       console.error("Error accepting purchase order:", error);
@@ -39,12 +54,10 @@ const Poactions = () => {
           comment: comment,
         }
       );
-      // Assuming the API call was successful, update the UI
-      setPurchaseOrders((prevOrders) =>
-        prevOrders.map((order) =>
-          order.id === orderId ? { ...order, isAccepted: false } : order
-        )
-      );
+      setPurchaseOrder((prevOrder) => ({
+        ...prevOrder,
+        isAccepted: false,
+      }));
       toast.success("Purchase order rejected successfully!");
     } catch (error) {
       console.error("Error rejecting purchase order:", error);
@@ -52,22 +65,34 @@ const Poactions = () => {
     }
   };
 
+  if (!purchaseOrder) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <div className="align-middle inline-block min-w-full shadow overflow-hidden bg-white shadow-dashboard px-8 py-3 pb-8 rounded-bl-lg rounded-br-lg">
       <div className="max-w-sm mx-auto mt-8 appform">
         <div className="flex text-2xl font-bold text-gray-600 mb-5">
-          <h2>Edit Purchase Order</h2>
+          <h2>Edit Purchase Order:</h2>
         </div>
-        <p></p>
-        <div className="mb-6">
+        <h1>Accept or Reject Purchase Order:</h1>
+        <p>
+          {purchaseOrder.isAccepted ? "Already Accepted" : "Already Rejected"}
+        </p>
+        {purchaseOrder.comment && (
+          <div className="mb-4">
+            <strong>Comment:</strong> {purchaseOrder.comment}
+          </div>
+        )}
+        <div className="mb-6 mt-4">
           <button
-           onClick={handleAccept} // Pass 'id' and 'comment' to handleAccept
+            onClick={handleAccept}
             className="px-4 py-2 mr-2 bg-green-500 text-white rounded hover:bg-green-600"
           >
             Accept
           </button>
           <button
-           onClick={handleReject} // Pass 'id' and 'comment' to handleReject
+            onClick={handleReject}
             className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
           >
             Reject

@@ -58,8 +58,19 @@ const PoDetailsPHead = () => {
     );
   };
 
-  return (
+  const formatDateTime = (dateTime) => {
+    const formattedDateTime = new Date(dateTime).toLocaleString("en-US", {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+    });
+    return formattedDateTime;
+  };
 
+  return (
     <div className="relative">
       <ToastContainer />
       <div className="overflow-x-auto mt-8 ml-2 mr-2 rounded">
@@ -105,29 +116,27 @@ const PoDetailsPHead = () => {
               <tr key={item.orderNo} className="bg-white">
                 <td className="px-4 py-2">{indexOfFirstItem + index + 1}</td>
                 <td className="px-4 py-2">{item.orderNo}</td>
-                <td className="px-4 py-2">{item.vendorId}</td>
-                <td className="px-4 py-2">{item.releaseDate}</td>
-                <td className="px-4 py-2">{item.acceptedOn}</td>
+                <td className="px-4 py-2">{item.vendorName}</td>
+                <td className="px-4 py-2">
+                  {formatDateTime(item.releaseDate)}
+                </td>
+                <td className="px-4 py-2">{formatDateTime(item.acceptedOn)}</td>
                 <td className="px-4 py-2">{item.orderAmount}</td>
                 <td className="px-4 py-2">
                   <button
-                    className={`py-1 px-2 rounded ${item.isAccepted
+                    className={`py-1 px-2 rounded ${
+                      item.isAccepted
                         ? "bg-green-200 text-green-700"
                         : "bg-red-200 text-red-600"
-                      }`}
+                    }`}
                     style={{ minWidth: "6rem" }}
                   >
                     {item.isAccepted ? "Accepted" : "Rejected"}
                   </button>
                 </td>
-                <td className="px-4 py-2 border">
-                  {item.purchaseOrderHistories &&
-                    item.purchaseOrderHistories.length > 0
-                    ? item.purchaseOrderHistories[0].comment
-                    : "-"}
-                </td>
+                <td className="px-4 py-2 ">{item.comment}</td>
 
-                <td className="px-4 py-2 bg-zinc-50">
+                <td className="px-4 py-2 bg-white">
                   <button onClick={() => handleEdit(item)} className={`mr-2`}>
                     <FontAwesomeIcon
                       icon={faEdit}
