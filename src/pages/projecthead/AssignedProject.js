@@ -12,6 +12,7 @@ export default function AssignedProject() {
         );
 
         setProject(response.data);
+
       } catch (error) {
         console.error("Error fetching Project data:", error);
       }
@@ -19,6 +20,10 @@ export default function AssignedProject() {
 
     fetchProjectData();
   }, []);
+
+
+  console.log(projects)
+
   return (
     <>
       <div className="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 pr-10 lg:px-8 mb-8">
