@@ -90,12 +90,14 @@ const PoDetailsA = () => {
     <div className="relative">
       <ToastContainer />
       {showDetails && selectedPurchaseOrder && (
-        <div className=" ml-96 rounded-lg border-2 border-cyan-400 bg-white shadow-lg p-4 max-w-lg w-full mt-2">
-          <div className="flex text-2xl font-bold text-gray-500">
-            <h2 className="text-left text-cyan-500">Purchase Order Details:</h2>
+        <>
+        <div className="flex text-2xl font-bold text-gray-500">
+            <h2 className="text-left text-cyan-500">Purchase Order Details</h2>
           </div>
           <div className="w-64 bg-cyan-500 h-0.5 mb-1"></div>
           <div className="w-72 bg-cyan-500 h-0.5 mb-5"></div>
+        <div className="ml-52 align-middle inline-block rounded-lg border-2 border-cyan-400 bg-white shadow-lg p-4 max-w-lg w-full mt-2">
+          
           <table className="w-full">
             <tbody>
               <tr>
@@ -165,7 +167,7 @@ const PoDetailsA = () => {
             </tbody>
           </table>
 
-          <div className="mt-4 flex justify-end">
+          <div className="mt-4 flex justify-center">
             <button
               onClick={handleCloseDetails}
               className="bg-cyan-600 hover:bg-cyan-700 mr-4 text-white font-bold py-2 px-4 rounded"
@@ -183,23 +185,31 @@ const PoDetailsA = () => {
             )}
           </div>
         </div>
+        </>
       )}
 
       {!showDetails && (
         <div className="overflow-x-auto mt-8 ml-2 mr-2 rounded">
-          <table className="table-auto w-full rounded-md border-2 border-cyan-400 bg-white">
+          <div className="flex text-2xl font-bold text-gray-500">
+            <h2 className="text-left text-cyan-500">Purchase Orders List</h2>
+          </div>
+          <div className="w-64 bg-cyan-500 h-0.5 mb-1"></div>
+          <div className="w-72 bg-cyan-500 h-0.5 mb-5"></div>
+          <div className="shadow-xl">
+          <div className="border-2 border-cyan-500 rounded-lg shadow-md p-0.5">
+          <table className="table-auto w-full rounded-lg  bg-white">
             {/* Table Header */}
             <thead>
               <tr className="text-gray-600">
-                <th className="px-4 py-2 text-left">Sr. No.</th>
-                <th className="px-4 py-2 text-left">Purchase Order No.</th>
-                <th className="px-4 py-2 text-left">Vendor Name</th>
-                <th className="px-4 py-2 text-left">Release On</th>
-                <th className="px-4 py-2 text-left">Accepted On</th>
-                <th className="px-4 py-2 text-left">PO Amount</th>
-                <th className="px-4 py-2 text-left">Status</th>
-                <th className="px-4 py-2 text-left">Comments</th>
-                <th className="px-4 py-2 text-left">Actions</th>
+                <th className="px-4 py-2 text-center">Sr. No.</th>
+                <th className="px-4 py-2 text-center">Purchase Order No.</th>
+                <th className="px-4 py-2 text-center">Vendor Name</th>
+                <th className="px-4 py-2 text-center">Release On</th>
+                <th className="px-4 py-2 text-center">Accepted On</th>
+                <th className="px-4 py-2 text-center">PO Amount</th>
+                <th className="px-4 py-2 text-center">Status</th>
+                <th className="px-4 py-2 text-center">Comments</th>
+                <th className="px-4 py-2 text-center">Actions</th>
               </tr>
               <tr className="text-gray-600">
                 <td colSpan="9" className="px-4 py-1">
@@ -211,19 +221,19 @@ const PoDetailsA = () => {
             <tbody>
               {currentItems.map((item, index) => (
                 <tr key={item.id} className="bg-white">
-                  <td className="px-4 py-2">
+                  <td className="px-4 py-2 text-center text-sm">
                     {(currentPage - 1) * itemsPerPage + index + 1}
                   </td>
-                  <td className="px-4 py-2">{item.orderNo}</td>
-                  <td className="px-4 py-2">{item.vendorName}</td>
-                  <td className="px-4 py-2">
+                  <td className="px-4 py-2 text-center text-sm">{item.orderNo}</td>
+                  <td className="px-4 py-2 text-center text-sm">{item.vendorName}</td>
+                  <td className="px-4 py-2 text-center text-sm">
                     {formatDateTime(item.releaseDate)}
                   </td>
-                  <td className="px-4 py-2">
+                  <td className="px-4 py-2 text-center text-sm">
                     {item.acceptedOn ? formatDateTime(item.acceptedOn) : "-"}
                   </td>
-                  <td className="px-4 py-2">{item.orderAmount}</td>
-                  <td className="px-4 py-2">
+                  <td className="px-4 py-2 text-center text-sm">{item.orderAmount}</td>
+                  <td className="px-4 py-2 text-center text-sm">
                     <button
                       className={`py-1 px-2 rounded ${
                         item.isAccepted
@@ -235,8 +245,8 @@ const PoDetailsA = () => {
                       {item.isAccepted ? "Accepted" : "Rejected"}
                     </button>
                   </td>
-                  <td className="px-4 py-2">{item.comment}</td>
-                  <td className="px-4 py-2 bg-white">
+                  <td className="px-4 py-2 text-center text-sm">{item.comment}</td>
+                  <td className="px-4 py-2 text-center bg-white">
                     <button
                       onClick={() => handleView(item.id)}
                       className={`mr-2`}
@@ -251,6 +261,8 @@ const PoDetailsA = () => {
               ))}
             </tbody>
           </table>
+          </div>
+          </div>
           <div className="flex justify-end mt-2 ml-2 mr-2">
             <table className="table-auto border-collapse rounded border-cyan-500 mb-5">
               <tbody>

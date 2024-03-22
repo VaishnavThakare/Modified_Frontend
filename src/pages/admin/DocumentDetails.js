@@ -92,8 +92,12 @@ const DocumentDetails = () => {
       {vendorDetails ? (
         <>
       
-          <h1 className="text-2xl font-bold mb-4 underline text-cyan-600">Vendor Details</h1>
-          <p className="border-2 border-blue-500 p-4 w-1/2">
+      <div className="mt-4 flex text-2xl font-bold text-gray-500">
+            <h2 className="text-left text-cyan-500">VENDOR DETAILS</h2>
+          </div>
+          <div className="w-72 bg-cyan-500 h-0.5 mb-1"></div>
+          <div className="w-80 bg-cyan-500 h-0.5 "></div>
+          <div className="bg-white mt-3 border-2 border-cyan-500 p-4 w-1/2 rounded-lg shadow-lg">
           <p>
             <strong>Vendor ID:</strong> {vendorDetails.id}
           </p>
@@ -109,23 +113,32 @@ const DocumentDetails = () => {
           <p>
             <strong>Phone Number:</strong> {vendorDetails.phoneNumber}
           </p>
-          </p>
+          </div>
 
-        
-          <h2 className="text-2xl font-bold mt-8 mb-4 underline text-cyan-600 ">Document Details</h2>
-          <table className="min-w-full border-2 border-blue-500 p-4 mb-5">
+        <br />
+        <br />
+        <br />
+          <div className="mt-4 flex text-2xl font-bold text-gray-500">
+            <h2 className="text-left text-cyan-500">DOCUMENT DETAILS</h2>
+          </div>
+          <div className="w-72 bg-cyan-500 h-0.5 mb-1"></div>
+          <div className="w-80 bg-cyan-500 h-0.5 mb-3"></div>
+
+          <div className="shadow-xl">
+          <div className="border-2 border-cyan-500 rounded-lg shadow-xl p-0.5">
+          <table className="min-w-full p-4 mb-5">
             <thead>
               <tr>
-                <th className="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-blue-500 tracking-wider">
+                <th className="px-6 py-3 border-b-2 border-gray-300 text-center leading-4 tracking-wider">
                   Document
                 </th>
-                <th className="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-blue-500 tracking-wider">
+                <th className="px-6 py-3 border-b-2 border-gray-300 text-center leading-4 tracking-wider">
                   View
                 </th>
-                <th className="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-blue-500 tracking-wider">
+                <th className="px-6 py-3 border-b-2 border-gray-300 text-center leading-4 tracking-wider">
                   Status
                 </th>
-                <th className="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-blue-500 tracking-wider">
+                <th className="px-6 py-3 border-b-2 border-gray-300 text-center leading-4 tracking-wider">
                   Action
                 </th>
               </tr>
@@ -137,10 +150,10 @@ const DocumentDetails = () => {
                 vendorDetails.documentsUploadList 
                   .map((document, index) => (
                     <tr key={index}>
-                      <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
+                      <td className="px-6 py-4 whitespace-no-wrap text-center">
                         {document.documentName}
                       </td>
-                      <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
+                      <td className="px-6 py-4 whitespace-no-wrap text-center">
                         {
                           document.documentPath==null ?
                           "not uploaded the document"
@@ -148,12 +161,12 @@ const DocumentDetails = () => {
                           <a href={document.documentPath} target="_blank">{document.documentName}</a>
                         }
                       </td>
-                      <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
+                      <td className="px-6 py-4 whitespace-no-wrap text-center">
                         {document.isVerified ? "True":"False"}
                       </td>
-                      <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
-                        <button data-key={document.id} onClick={handleApprove} className="bg-cyan-400 py-[3px] px-[5px]  rounded-[10px] border border-solid border-black p-2">Approve</button>
-                        <button data-key={document.id} onClick={handleReject} className="ml-[10px] bg-red-400 py-[3px] px-[5px]  rounded-[10px] border border-solid border-black p-2">Reject</button>
+                      <td className="px-6 py-4 whitespace-no-wrap text-center">
+                        <button data-key={document.id} onClick={handleApprove} className="bg-cyan-400 py-[3px] px-[5px]  rounded-[10px] border-2 border-cyan-500 shadow-md p-2">Approve</button>
+                        <button data-key={document.id} onClick={handleReject} className="ml-[10px] bg-gray-400 py-[3px] px-[5px]  rounded-[10px] border-2 shadow-md border-gray-400 p-2">Reject</button>
                       </td>                      
                     </tr>
                   ))
@@ -166,6 +179,8 @@ const DocumentDetails = () => {
               )}
             </tbody>
           </table>
+          </div>
+          </div>
         </>
       ) : (
         <p>Loading vendor details...</p>

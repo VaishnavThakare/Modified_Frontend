@@ -58,57 +58,65 @@ export default function Application() {
   return (
     <>
       <div className="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 pr-10 lg:px-8 mb-8">
-        <div className="align-middle inline-block min-w-full shadow overflow-hidden bg-zinc-50 shadow-dashboard px-8 pt-3 rounded-bl-lg rounded-br-lg">
-          <div className="flex text-2xl font-bold text-gray-500 mb-4 justify-center items-center">
-            <h2>All Aplications</h2>
+      <div className="mt-4 flex text-2xl font-bold text-gray-500">
+            <h2 className="text-left text-cyan-500">ALL APPLICATIONS</h2>
+          </div>
+          <div className="w-72 bg-cyan-500 h-0.5 mb-1"></div>
+          <div className="w-80 bg-cyan-500 h-0.5 "></div>
+        <div className="align-middle inline-block min-w-full  overflow-hidden bg-zinc-50  px-8 pt-3 rounded-bl-lg rounded-br-lg">
+          
+
+        <div className="mb-5 searchFilter">
+          <div className="flex flex-row justify-end">
+            {/* Select option for filtering */}
+            
+            
+              <label className="mr-2 mt-3">Filter by Vendor Category:</label>
+              <select value={filterOption} onChange={handleFilterChange} className="align-middle">
+                {vendorCategories.map((category, index) => (
+                  <option key={index} value={category}>
+                    {category === 'all' ? 'All' : category}
+                  </option>
+                ))}
+              </select>
+            
+          
+
+          {/* Input field for additional filtering */}
+          <div className="mt-2">
+            <label className="mr-2 ml-10">Filter by Title:</label>
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={handleSearchChange}
+              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 inline w-50 p-2"
+            />
+          </div>
           </div>
 
-          <div className="mb-5 searchFilter">
-            <div>
-              {/* Select option for filtering */}
-              <div className="mt-4 align-content: flex-end;">
-                <label className="mr-2">Filter by Vendor Category:</label>
-                <select value={filterOption} onChange={handleFilterChange}>
-                  {vendorCategories.map((category, index) => (
-                    <option key={index} value={category}>
-                      {category === "all" ? "All" : category}
-                    </option>
-                  ))}
-                </select>
-              </div>
-            </div>
-
-            {/* Input field for additional filtering */}
-            <div className="mt-2">
-              <label className="mr-2 ml-10">Filter by Title:</label>
-              <input
-                type="text"
-                value={searchQuery}
-                onChange={handleSearchChange}
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 inline w-50 p-2"
-              />
-            </div>
           </div>
 
-          <table className="min-w-full border-2 bg-white border-cyan-600 mb-5">
+          <div className="shadow-xl">
+          <div className="border-2 border-cyan-500 rounded-lg shadow-xl p-0.5">
+          <table className="min-w-full bg-white">
             <thead>
               <tr>
-                <th className="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-gray-600 tracking-wider">
+                <th className="px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-600 tracking-wider">
                   RFP ID
                 </th>
-                <th className="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-gray-600 tracking-wider">
+                <th className="px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-600 tracking-wider">
                   Vendor
                 </th>
-                <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-gray-600 tracking-wider">
+                <th className="px-6 py-3 border-b-2 border-gray-300 text-centerleading-4 text-gray-600 tracking-wider">
                   Document
                 </th>
-                <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-gray-600 tracking-wider">
+                <th className="px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-600 tracking-wider">
                   Comment
                 </th>
-                <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-gray-600 tracking-wider">
+                <th className="px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-600 tracking-wider">
                   Category
                 </th>
-                <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-gray-600 tracking-wider">
+                <th className="px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-600 tracking-wider">
                   Date
                 </th>
               </tr>
@@ -116,35 +124,35 @@ export default function Application() {
             <tbody className="bg-white">
               {currentItems.map((rfp, index) => (
                 <tr key={rfp.id}>
-                  <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
-                    <div className="text-sm leading-5 text-blue-900">
+                  <td className="px-6 py-4 whitespace-no-wrap text-center">
+                    <div className="text-sm leading-5 ">
                       {"RFP-" + (currentPage - 1) * itemsPerPage + index + 1}
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
-                    <div className="text-sm leading-5 text-blue-900">
+                  <td className="px-6 py-4 whitespace-no-wrap text-center">
+                    <div className="text-sm leading-5 ">
                       {rfp.vendorName}
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
-                    <div className="text-sm leading-5 text-blue-900">
+                  <td className="px-6 py-4 whitespace-no-wrap text-center">
+                    <div className="text-sm leading-5 ">
                       <a href={rfp.documentPath} target="_blank">
                         Document
                       </a>
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
-                    <div className="text-sm leading-5 text-blue-900">
+                  <td className="px-6 py-4 whitespace-no-wrap text-center">
+                    <div className="text-sm leading-5 ">
                       {rfp.comment}
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
-                    <div className="text-sm leading-5 text-blue-900">
+                  <td className="px-6 py-4 whitespace-no-wrap text-center">
+                    <div className="text-sm leading-5 ">
                       {rfp.rfp.vendorCategory.name}
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
-                    <div className="text-sm leading-5 text-blue-900">
+                  <td className="px-6 py-4 whitespace-no-wrap text-center">
+                    <div className="text-sm leading-5 ">
                       {new Date(rfp.createdOn).toLocaleDateString("es-CL")}
                     </div>
                   </td>
@@ -152,6 +160,8 @@ export default function Application() {
               ))}
             </tbody>
           </table>
+          </div>
+          </div>
         </div>
       </div>
 
@@ -162,7 +172,7 @@ export default function Application() {
               key={index}
               className={`mx-1 px-4 py-2 ${
                 currentPage === index + 1
-                  ? "bg-blue-500 text-white"
+                  ? "bg-cyan-500 text-white"
                   : "bg-gray-300"
               }`}
               onClick={() => paginate(index + 1)}

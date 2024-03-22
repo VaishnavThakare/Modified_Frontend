@@ -217,7 +217,7 @@ const handleChange = (event) => {
           </div>
         </div>
         <button
-          className="mt-4 bg-blue-500 text-white px-4 py-2 rounded block mx-auto"
+          className="mt-4 bg-cyan-500 text-white px-4 py-2 rounded block mx-auto"
           onClick={onCancel}
         >
           Close
@@ -233,31 +233,31 @@ const handleChange = (event) => {
         </div>
         <div className="w-1/5 bg-cyan-500 h-0.5 mb-1"></div>
         <div className="w-1/3 bg-cyan-500 h-0.5 mb-5"></div>
-        <div className="border-2 border-cyan-500 mb-5 shadow-lg rounded-lg p-0.5">
+        <div className=" overflow-x-auto border-2 border-cyan-500 mb-5 shadow-lg rounded-lg p-1">
         <table className="table-auto w-full 0 bg-white">
           <thead>
             <tr className="text-gray-600">
-              <th className="px-4 py-2 text-left ">
+              <th className="px-4 py-2 text-center ">
                 Sr.<p></p> No.
               </th>
-              <th className="px-4 py-2 text-left ">
+              <th className="px-4 py-2 text-center ">
                 Purchase <p></p>Order No.
               </th>
-              <th className="px-4 py-2 text-left ">
+              <th className="px-4 py-2 text-center ">
                 Vendor <p></p>Name
               </th>
-              <th className="px-4 py-2 text-left ">
+              <th className="px-4 py-2 text-center ">
                 Release <p></p> On
               </th>
-              <th className="px-4 py-2 text-left ">
+              <th className="px-4 py-2 text-center ">
                 Accepted <p></p>On
               </th>
-              <th className="px-4 py-2 text-left ">
+              <th className="px-4 py-2 text-center ">
                 PO <p></p>Amount
               </th>
-              <th className="px-4 py-2 text-left ">Status</th>
-              <th className="px-4 py-2 text-left ">Comments</th>
-              <th className="px-4 py-2 text-left ">Actions</th>
+              <th className="px-4 py-2 text-center ">Status</th>
+              <th className="px-4 py-2 text-center ">Comments</th>
+              <th className="px-4 py-2 text-center ">Actions</th>
             </tr>
             <tr className=" text-gray-600">
               <td colSpan="9" className=" px-4 py-1">
@@ -268,15 +268,15 @@ const handleChange = (event) => {
           <tbody>
             {currentItems.map((item, index) => (
               <tr key={item.orderNo} className="bg-white">
-                <td className="px-4 py-2">{indexOfFirstItem + index + 1}</td>
+                <td className="px-4 py-2 text-center text-sm">{indexOfFirstItem + index + 1}</td>
                 <td className="px-4 py-2">{item.orderNo}</td>
-                <td className="px-4 py-2">{item.vendorId}</td>
-                <td className="px-4 py-2">{item.releaseDate}</td>
-                <td className="px-4 py-2">{item.project.createdOn}</td>
-                <td className="px-4 py-2">{item.orderAmount}</td>
-                <td className="px-4 py-2">
+                <td className="px-4 py-2 text-center text-sm">{item.vendorId}</td>
+                <td className="px-4 py-2 text-center text-sm">{item.releaseDate}</td>
+                <td className="px-4 py-2 text-center text-sm">{item.project.createdOn}</td>
+                <td className="px-4 py-2 text-center text-sm">{item.orderAmount}</td>
+                <td className="px-4 py-2 text-center text-sm">
                   <button
-                    className={`py-1 px-2 rounded ${
+                    className={`py-1 px-2 text-center text-sm rounded ${
                       item.isAccepted
                         ? "bg-green-200 text-green-700"
                         : "bg-red-200 text-red-600"
@@ -286,14 +286,14 @@ const handleChange = (event) => {
                     {item.isAccepted ? "Accepted" : "Rejected"}
                   </button>
                 </td>
-                <td className="px-4 py-2 border">
+                <td className="px-4 py-2 text-center text-sm">
                   {item.purchaseOrderHistories &&
                   item.purchaseOrderHistories.length > 0
                     ? item.purchaseOrderHistories[0].comment
                     : "-"}
                 </td>
 
-                <td className="px-4 py-2 bg-zinc-50">
+                <td className="px-4 py-2 text-center text-sm bg-zinc-50">
                   
                   <button  className={`mr-2`}>
                     <FontAwesomeIcon
@@ -307,7 +307,7 @@ const handleChange = (event) => {
           </tbody>
         </table>
         </div>
-        {/* Invoice table code ends */}
+        {/* Purchase Order table code ends */}
       </div>
     );
   };
@@ -341,7 +341,7 @@ const handleChange = (event) => {
         <div className="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 pr-10 lg:px-8 mb-8">
         <div className="align-middle inline-block min-w-full  overflow-hidden bg-zinc-50  px-8 pt-3 rounded-bl-lg rounded-br-lg">
         <div className="flex text-2xl font-bold text-gray-500">
-          <h2 className="text-left text-cyan-500">Projects List</h2>
+          <h2 className="text-left text-cyan-500">PROJECT LIST</h2>
         </div>
         <div className="w-1/5 bg-cyan-500 h-0.5 mb-1"></div>
         <div className="w-1/3 bg-cyan-500 h-0.5 mb-5"></div>
@@ -367,7 +367,8 @@ const handleChange = (event) => {
               placeholder="Enter filter value"
             />
           </div>
-          <div className="rounded-lg border-2 border-cyan-500 bg-zinc-50 p-0.5 shadow-lg">
+          <div className="shadow-lg">
+          <div className="rounded-lg border-2 border-cyan-500 bg-zinc-50 p-0.5 shadow-xl">
           <table className="min-w-full  bg-white">
             <thead>
               <tr>
@@ -400,34 +401,34 @@ const handleChange = (event) => {
             <tbody className="bg-white">
               {currentItems.map((proj, index) => (
                 <tr key={proj.id}>
-                  <td className="px-6 py-4 text-center whitespace-no-wrap">
+                  <td className="px-6 py-4 text-center text-sm whitespace-no-wrap">
                     <div className=" leading-5 text-gray-600">
                       {index + 1}
                     </div>
                   </td>
-                  <td className="px-6 py-4 text-center whitespace-no-wrap">
+                  <td className="px-6 py-4 text-center text-sm whitespace-no-wrap">
                     <div className=" leading-5 text-gray-600">
                       {proj.name}
                     </div>
                   </td>
-                  <td className="px-6 py-4 text-center whitespace-no-wrap">
+                  <td className="px-6 py-4 text-center text-sm whitespace-no-wrap">
                     <div className=" leading-5 text-gray-600">
                       {proj.projectHeadName}
                     </div>
                   </td>
-                  <td className="px-6 py-4 text-center whitespace-no-wrap">
+                  <td className="px-6 py-4 text-center text-sm whitespace-no-wrap">
                     <div className="leading-5 text-gray-600">
                       <span className="bg-green-300 text-green-600  font-medium me-2 px-2.5 py-0.5 rounded">
                         {proj.projectStatus}
                       </span>
                     </div>
                   </td>
-                  <td className="px-6 py-4 text-center whitespace-no-wrap">
+                  <td className="px-6 py-4 text-center text-sm whitespace-no-wrap">
                     <div className="leading-5 text-gray-600">
                       {proj.description}
                     </div>
                   </td>
-                  <td className="px-6 py-4 text-center whitespace-no-wrap">
+                  <td className="px-6 py-4 text-center text-sm whitespace-no-wrap">
                     <div className="leading-5 text-gray-600">
                       {new Date(proj.createdOn).toLocaleDateString("es-CL")}
                     </div>
@@ -456,6 +457,7 @@ const handleChange = (event) => {
               ))}
             </tbody>
           </table>
+          </div>
           </div>
         </div>
       </div>

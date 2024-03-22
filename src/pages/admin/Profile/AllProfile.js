@@ -86,15 +86,18 @@ export default function AllProfile() {
   return (
     <>
       <div className="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 pr-10 lg:px-8 mb-8">
-        <div className="align-middle inline-block min-w-full shadow overflow-hidden bg-white shadow-dashboard px-8 pt-3 rounded-bl-lg rounded-br-lg">
-          <div className="flex text-2xl font-bold text-gray-500 mb-4 justify-center items-center">
-            <h2>Profile</h2>
+      <div className="mt-4 flex text-2xl font-bold text-gray-500">
+            <h2 className="text-left text-cyan-500">ALL PROFILES</h2>
           </div>
+          <div className="w-72 bg-cyan-500 h-0.5 mb-1"></div>
+          <div className="w-80 bg-cyan-500 h-0.5 "></div>
+        <div className="align-middle inline-block min-w-full overflow-hidden bg-zinc-50 px-8 pt-3 rounded-bl-lg rounded-br-lg">
+        
 
           {currentItems.map((profileItem, index) => (
             <div
               key={profileItem.id}
-              className="relative flex flex-col md:flex-row md:space-x-5 space-y-3 md:space-y-0 rounded-xl shadow-lg p-3 max-w-xs md:max-w-xl mx-auto border border-gray-400 bg-white mb-4"
+              className="relative flex flex-col md:flex-row md:space-x-5 space-y-3 md:space-y-0 rounded-xl shadow-lg p-3 max-w-xs md:max-w-xl mx-auto border-2 border-cyan-500 bg-white mb-4"
             >
               <div className="w-full md:w-1/3 grid place-items-center">
                 <img src={profileItem.imagePath} alt={profileItem.title} className="rounded-xl" />
@@ -110,7 +113,7 @@ export default function AllProfile() {
                 <div>
                   <button
                     onClick={() => handleDelete(profileItem.id, index)}
-                    className="bg-red-500 hover:bg-red-700 text-white font-bold rounded p-1"
+                    className="bg-gray-500 hover:bg-gray-700 text-white font-bold rounded p-1"
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -134,7 +137,7 @@ export default function AllProfile() {
                       toggleEditModal();
                       setModal(profileItem);
                     }}
-                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold rounded ml-4 p-1"
+                    className="bg-cyan-500 hover:bg-cyan-700 text-white font-bold rounded ml-4 p-1"
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -164,7 +167,7 @@ export default function AllProfile() {
               key={index}
               className={`mx-1 px-4 py-2 ${
                 currentPage === index + 1
-                  ? "bg-blue-500 text-white"
+                  ? "bg-cyan-500 text-white"
                   : "bg-gray-300"
               }`}
               onClick={() => paginate(index + 1)}

@@ -89,7 +89,7 @@ const Header = () => {
         <div className="mt-0 pb-0 pl-4  place-self-end w-full">
           <h3 className=" py-2 px-6 font-sans  text-2xl">Vendor Portal</h3>
         </div>
-        <div className="grid grid-cols-2 gap-2  bg-stone-300 py-3 pl-4 w-full place-self-end">
+        <div className="grid grid-cols-2 gap-2  bg-zinc-300 py-3 pl-4 w-full place-self-end">
           <h3 className="border-red-500 font-sans font-bold text-m">
             <NavLink
               to="/dashboard"
@@ -228,7 +228,10 @@ const Header = () => {
                     setNotiVisible(false);
                   }}
                 />
-                <p className="ml-2 font-bold">{profile.name}</p>
+                <p className="ml-2 font-bold" onClick={() => {
+                    setMenu(!menu);
+                    setNotiVisible(false);
+                  }}>{profile.name}</p>
               </li>
               <ul
                 className="absolute right-2 top-24 bg-white py-3 max-w-24 w-full rounded-md border border-gray-100"

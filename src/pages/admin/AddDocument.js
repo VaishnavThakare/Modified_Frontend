@@ -83,13 +83,14 @@ export default function AddDocument() {
   </label>
 </div>
 
-
+          <div className="flex justify-center">
           <button
             type="submit"
             className="bg-cyan-500 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded"
           >
             Add Document
           </button>
+          </div>
         </form>
       </div>
       <ToastContainer/>

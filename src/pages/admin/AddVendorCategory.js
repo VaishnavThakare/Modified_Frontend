@@ -146,13 +146,14 @@ export default function AddVendorCategory() {
         
           </div>
 
-
+          <div className="flex justify-center">
           <button
             type="submit"
             className="bg-cyan-500 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded"
           >
             Add Vendor Category
           </button>
+          </div>
         </form>
       </div>
       <ToastContainer/>

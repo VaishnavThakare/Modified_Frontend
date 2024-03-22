@@ -77,7 +77,7 @@ const LoginModal = ({ onClose }) => {
   return (
     <>
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-      <div className="bg-white p-8 rounded-md shadow-md w-96" style={{ border: '3px solid cyan' }}>
+      <div className="bg-white p-8 rounded-md shadow-md shadow-cyan-900 w-96 border-4 border-cyan-500">
         <h2 className="text-2xl font-semibold mb-4">Login</h2>
         <form onSubmit={(e) => e.preventDefault()} className='pd-4'>
         <div className="mb-6 relative">
@@ -116,22 +116,24 @@ const LoginModal = ({ onClose }) => {
     Password
   </label>
 </div>
-
+         
+        </form>
+        <div className="flex justify-center">
           <button
             type="button" // Change to "submit" if you have a form submission logic
-            className="bg-cyan-400 text-white px-6 py-2 rounded-md"
+            className="group  py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-cyan-500 hover:bg-cyan-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500"
             onClick={handleLogin}
           >
             Login
           </button>
-        </form>
         <button
           type="button"
-          className="mt-4 text-sm text-gray-500 hover:text-gray-700 font-semibold cursor-pointer"
+          className="group  ml-7 py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-gray-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
           onClick={onClose}
         >
           Close
         </button>
+        </div>
       </div>
     </div>
     <ToastContainer/>

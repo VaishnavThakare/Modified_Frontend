@@ -125,13 +125,14 @@ export default function AddProjectHead() {
               Phone Number
             </label>
           </div>
-
+          <div className="flex justify-center">
           <button
             type="submit"
             className="bg-cyan-500 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded"
           >
             Create Project Head
           </button>
+          </div>
         </form>
       </div>
       <ToastContainer/>
