@@ -25,7 +25,7 @@ export default function ProjectHeadDashboard() {
       text: "GRN",
       icon: "bx bx-user text-white font-",
       link: "#",
-      bgColor: "bg-cyan-400",
+      bgColor: "bg-cyan-500",
       subItems: [
         { text: "GRN Listing", link: "grn-List" },
         // {  link: "editGrn-List/:grnId" },
@@ -47,7 +47,7 @@ export default function ProjectHeadDashboard() {
       text: "Invoices",
       icon: "bx bx-user text-white font-",
       link: "#",
-      bgColor: "bg-cyan-400",
+      bgColor: "bg-cyan-700",
       subItems: [{ text: "All Invoices", link: "invoice-list" }],
     },
   ];

@@ -66,6 +66,9 @@ const PoDetailsPHead = () => {
         <div className="flex text-2xl font-bold text-gray-500 ">
           <h2 className="text-left text-cyan-400">ALL ABOUT GRN</h2>
         </div>
+        <div className="w-1/5 bg-cyan-400 h-0.5 mb-1"></div>
+        <div className="w-1/3 bg-cyan-400 h-0.5 mb-5"></div>
+
         <table className="table-auto w-full rounded-md border-2 border-cyan-400 bg-white">
           <thead>
             <tr className="text-gray-600">
