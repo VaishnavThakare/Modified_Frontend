@@ -76,47 +76,55 @@ const Poactions = () => {
           <h2>Edit Purchase Order:</h2>
         </div>
         <h1>Accept or Reject Purchase Order:</h1>
-        <p>
-          {purchaseOrder.isAccepted ? "Already Accepted" : "Already Rejected"}
-        </p>
-        {purchaseOrder.comment && (
-          <div className="mb-4">
-            <strong>Comment:</strong> {purchaseOrder.comment}
-          </div>
+        {purchaseOrder.isAccepted !== null ? (
+          <>
+            {purchaseOrder.isAccepted ? (
+              <div className="text-green-600 font-bold mb-4">Already Accepted</div>
+            ) : (
+              <div className="text-red-600 font-bold mb-4">Already Rejected</div>
+            )}
+            {purchaseOrder.comment && (
+              <div className="mb-4">
+                <strong>Comment:</strong> {purchaseOrder.comment}
+              </div>
+            )}
+          </>
+        ) : (
+          <>
+            <div className="mb-6 mt-4">
+              <button
+                onClick={handleAccept}
+                className="px-4 py-2 mr-2 bg-green-500 text-white rounded hover:bg-green-600"
+              >
+                Accept
+              </button>
+              <button
+                onClick={handleReject}
+                className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+              >
+                Reject
+              </button>
+            </div>
+            <div className="mb-6 relative">
+              <label
+                htmlFor="comment"
+                className="block mb-2 text-sm font-medium text-gray-900"
+              >
+                Comment:
+              </label>
+              <textarea
+                id="comment"
+                value={comment}
+                onChange={(e) => setComment(e.target.value)}
+                className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                rows="4"
+                required
+              ></textarea>
+            </div>
+          </>
         )}
-        <div className="mb-6 mt-4">
-          <button
-            onClick={handleAccept}
-            className="px-4 py-2 mr-2 bg-green-500 text-white rounded hover:bg-green-600"
-          >
-            Accept
-          </button>
-          <button
-            onClick={handleReject}
-            className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
-          >
-            Reject
-          </button>
-        </div>
-        <div className="mb-6 relative">
-          <label
-            htmlFor="comment"
-            className="block mb-2 text-sm font-medium text-gray-900"
-          >
-            Comment:
-          </label>
-          <textarea
-            id="comment"
-            value={comment}
-            onChange={(e) => setComment(e.target.value)}
-            className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-            rows="4"
-            required
-          ></textarea>
-        </div>
       </div>
     </div>
   );
-};
-
+        };
 export default Poactions;
