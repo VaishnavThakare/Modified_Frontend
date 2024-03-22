@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
+  faFileDownload,
   faEye,
   faArrowLeft,
   faArrowRight,
@@ -23,6 +24,7 @@ const AdminInvoiceList = () => {
         const response = await axios.get(
           "https://localhost:7254/api/Invoice/All" 
         );
+        console.log(response.data);
         setInvoices(response.data);
       } catch (error) {
         console.error("Error fetching invoices:", error);
@@ -47,7 +49,7 @@ const AdminInvoiceList = () => {
 
   
 
-  const indexOfLastItem = (currentPage-1) * itemsPerPage;
+  const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = invoices.slice(indexOfFirstItem, indexOfLastItem);
 
@@ -56,22 +58,22 @@ const AdminInvoiceList = () => {
       <div className="overflow-x-auto mt-8 ml-2 mr-2 border rounded border-gray-300">
         <table className="table-auto w-full rounded-lg border-2 border-cyan-400 border-#FBFBFB mb-5">
           <thead>
-            <tr className="text-gray-600">
-              <th className="px-4 py-2 text-left ">Sr.<p></p> No.</th>
-              <th className="px-4 py-2 text-left ">Invoice<p></p> No.</th>
-              <th className="px-4 py-2 text-left ">GRN<p></p> No.</th>
-              <th className="px-4 py-2 text-left ">PO<p></p> No.</th>
-              <th className="px-4 py-2 text-left ">Release<p></p> Date</th>
-              <th className="px-4 py-2 text-left ">Due<p></p> Date</th>
-              <th className="px-4 py-2 text-left ">Amount</th>
-              <th className="px-4 py-2 text-left ">Status</th>
-              <th className="px-4 py-2 text-left ">Payment<p></p> Status</th>
-              <th className="px-4 py-2 text-left ">View/Download<p></p> Documents</th>
-              <th className="px-4 py-2 text-left ">Actions</th>
-              <th className="px-4 py-2 text-left ">Comment</th>
+            <tr className="text-gray-600 bg-white">
+              <th className="px-4 py-2 text-center ">Sr.<p></p> No.</th>
+              <th className="px-4 py-2 text-center ">Invoice<p></p> No.</th>
+              <th className="px-4 py-2 text-center ">GRN<p></p> No.</th>
+              <th className="px-4 py-2 text-center ">PO<p></p> No.</th>
+              <th className="px-4 py-2 text-center ">Release<p></p> Date</th>
+              <th className="px-4 py-2 text-center ">Due<p></p> Date</th>
+              <th className="px-4 py-2 text-center ">Amount</th>
+              <th className="px-4 py-2 text-center ">Status</th>
+              <th className="px-4 py-2 text-center ">Payment<p></p> Status</th>
+              <th className="px-4 py-2 text-center ">View/Download<p></p> Documents</th>
+              <th className="px-4 py-2 text-center ">Actions</th>
+              <th className="px-4 py-2 text-center ">Comment</th>
             </tr>
-            <tr className=" text-gray-600">
-              <td colSpan="9" className=" px-4 py-1">
+            <tr className=" text-gray-600 bg-white">
+              <td colSpan="12" className=" px-4 py-1">
                 <div style={{ borderTop: "2px solid gray " }}></div>
               </td>
             </tr>
@@ -79,14 +81,14 @@ const AdminInvoiceList = () => {
           <tbody>
             {currentItems.map((invoice, index) => (
               <tr key={invoice.id} className="bg-white">
-                <td className="px-4 py-2 ">{indexOfFirstItem + index + 1}</td>
-                <td className="px-4 py-2 ">{invoice.invoiceNo}</td>
-                <td className="px-4 py-2 ">{invoice.grnNo}</td>
-                <td className="px-4 py-2 ">{invoice.poNo}</td>
-                <td className="px-4 py-2 ">{invoice.releaseDate}</td>
-                <td className="px-4 py-2 ">{invoice.dueDate}</td>
-                <td className="px-4 py-2 ">{invoice.amount}</td>
-                <td className="px-4 py-2 ">
+                <td className="px-4 py-2 text-center">{indexOfFirstItem + index + 1}</td>
+                <td className="px-4 py-2 text-center">{invoice.invoiceNo}</td>
+                <td className="px-4 py-2 text-center">{invoice.grn.grnNo}</td>
+                <td className="px-4 py-2 text-center">{invoice.grn.purchaseOrder.orderNo}</td>
+                <td className="px-4 py-2 text-center">{invoice.createdOn}</td>
+                <td className="px-4 py-2 text-center">{invoice.dueDate}</td>
+                <td className="px-4 py-2 text-center">{invoice.amount}</td>
+                <td className="px-4 py-2 text-center">
                   <button
                     className={`py-1 px-2 rounded ${
                       invoice.isAccepted
@@ -98,12 +100,17 @@ const AdminInvoiceList = () => {
                     {invoice.isAccepted ? "Accepted" : "Rejected"}
                   </button>
                 </td>
-                <td className="px-4 py-2">{invoice.paymentStatus}</td>
-                <td className="px-4 py-2">
-                  <a href={invoice.documents}>View/Download</a>
+                <td className="px-4 py-2 text-center">{invoice.paymentStatus ? 'Paid' : 'Unpaid'}</td>
+                <td className="px-6 py-2 text-center whitespace-no-wrap border-b border-gray-500">
+                  <a href={invoice.documentPath} target="_blank" rel="noopener noreferrer">
+                    <FontAwesomeIcon
+                      icon={faFileDownload}
+                      className="text-purple-600 text-xl"
+                    />
+                  </a>
                 </td>
-                <td className="px-4 py-2 bg-zinc-50">
-                  <Link className={`mr-2`} to ={`invoice/${invoice.id}`}>
+                <td className="px-4 py-2 bg-white text-center">
+                  <Link className={`mr-2`} to ={`/admin/details/${invoice.id}`}>
                     <FontAwesomeIcon
                       icon={faEye}
                       className={`text-purple-600 text-xl`}
