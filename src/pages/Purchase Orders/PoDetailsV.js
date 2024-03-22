@@ -2,11 +2,12 @@ import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faEye,
+  faEdit,
   faArrowLeft,
   faArrowRight,
 } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
-import { toast, ToastContainer } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const PoDetailsV = () => {
@@ -18,6 +19,7 @@ const PoDetailsV = () => {
   const [documentName, setDocumentName] = useState("");
   const itemsPerPage = 5;
   const sid = sessionStorage.getItem("sid");
+
   useEffect(() => {
     const fetchPurchaseOrders = async () => {
       try {
@@ -45,6 +47,9 @@ const PoDetailsV = () => {
     setShowDetailsModal(true);
   };
 
+  const handleEdit = (orderId) => {
+    window.open(`/po-check/${orderId}`, "_blank");
+  };
   const handlePrevPage = () => {
     setCurrentPage((prevPage) => Math.max(prevPage - 1, 1));
   };
@@ -55,58 +60,7 @@ const PoDetailsV = () => {
     );
   };
 
-  const handleAccept = async (orderId, comment) => {
-    try {
-      await axios.put(
-        `https://localhost:7254/api/PurchaseOrder/AcceptReject/${orderId}`,
-        {
-          isAccepted: true,
-          comment: comment,
-        }
-      );
-      // Assuming the API call was successful, update the UI
-      setPurchaseOrders((prevOrders) =>
-        prevOrders.map((order) =>
-          order.id === orderId ? { ...order, isAccepted: true } : order
-        )
-      );
-      toast.success("Purchase order accepted successfully!");
-    } catch (error) {
-      console.error("Error accepting purchase order:", error);
-      toast.error("Failed to accept purchase order.");
-    }
-  };
 
-  const handleReject = async (orderId, comment) => {
-    try {
-      await axios.put(
-        `https://localhost:7254/api/PurchaseOrder/AcceptReject/${orderId}`,
-        {
-          isAccepted: false,
-          comment: comment,
-        }
-      );
-      // Assuming the API call was successful, update the UI
-      setPurchaseOrders((prevOrders) =>
-        prevOrders.map((order) =>
-          order.id === orderId ? { ...order, isAccepted: false } : order
-        )
-      );
-      toast.success("Purchase order rejected successfully!");
-    } catch (error) {
-      console.error("Error rejecting purchase order:", error);
-      toast.error("Failed to reject purchase order.");
-    }
-  };
-
-  const handleCommentChange = (event, orderId) => {
-    const { value } = event.target;
-    setPurchaseOrders((prevOrders) =>
-      prevOrders.map((order) =>
-        order.id === orderId ? { ...order, comment: value } : order
-      )
-    );
-  };
 
   // Function to format the timestamp to a readable date and time
   const formatDateTime = (timestamp) => {
@@ -116,17 +70,17 @@ const PoDetailsV = () => {
 
   return (
     <div className="relative">
-      <div className="overflow-x-auto mt-8 ml-2 mr-2 ">
+      <div className="overflow-x-auto mt-8 ml-2 mr-2">
         <table className="table-auto w-full rounded-lg border-2 border-cyan-400 mb-5 shadow-lg">
           <thead>
             <tr className="bg-white text-gray-600">
-              <th className="px-4 py-2 text-left ">
+              <th className="px-4 py-2 text-left">
                 Sr.<p></p> No.
               </th>
-              <th className="px-4 py-2 text-left ">
+              <th className="px-4 py-2 text-left">
                 Purchase <p></p>Order No.
               </th>
-              <th className="px-4 py-2 text-left ">
+              <th className="px-4 py-2 text-left">
                 Vendor<p></p>Name
               </th>
               <th className="px-4 py-2 text-left">
@@ -135,14 +89,10 @@ const PoDetailsV = () => {
               <th className="px-4 py-2 text-left">
                 PO <p></p>Amount
               </th>
-              <th className="px-4 py-2 text-left ">View PO</th>
-              <th className="px-4 py-2 text-left">
-                Action<p></p>(Accept/Reject)
-              </th>
-              <th className="px-4 py-2 text-left">Comments</th>
+              <th className="px-4 py-2 text-left">Actions</th>
             </tr>
             <tr className="bg-white text-gray-600">
-              <td colSpan="8" className=" px-4 py-1">
+              <td colSpan="7" className=" px-4 py-1">
                 <div style={{ borderTop: "2px solid gray" }}></div>
               </td>
             </tr>
@@ -151,59 +101,35 @@ const PoDetailsV = () => {
             {currentItems.map((order, index) => (
               <tr key={index} className="bg-white">
                 <td className="px-4 py-2">{indexOfFirstItem + index + 1}</td>
-                <td className="px-4 py-2 ">{order.orderNo}</td>
-                <td className="px-4 py-2 ">{order.vendorName}</td>
-                <td className="px-4 py-2 ">
+                <td className="px-4 py-2">{order.orderNo}</td>
+                <td className="px-4 py-2">{order.vendorName}</td>
+                <td className="px-4 py-2">
                   {formatDateTime(order.releaseDate)}
                 </td>
                 <td className="px-4 py-2">{order.orderAmount}</td>
-                <td className="px-4 py-2 ">
-                  <button
-                    onClick={() =>
-                      handleView(
-                        order.id,
-                        order.documentPath,
-                        "Purchase Order Document"
-                      )
-                    }
-                  >
-                    <FontAwesomeIcon
-                      icon={faEye}
-                      className="w-6 h-6 px-4 py-2 text-purple-600"
-                    />
-                  </button>
-                </td>
                 <td className="px-4 py-2">
-                  {order.isAccepted ? (
-                    <span className="text-green-500">Already Accepted</span>
-                  ) : order.isAccepted === false ? (
-                    <span className="text-red-500">Already Rejected</span>
-                  ) : (
-                    <div className="flex">
-                      <button
-                        onClick={() => handleAccept(order.id, order.comment)}
-                        className="px-4 py-2 mr-2 bg-green-500 text-white rounded hover:bg-green-600"
-                      >
-                        Accept
-                      </button>
-                      <button
-                        onClick={() => handleReject(order.id, order.comment)}
-                        className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
-                      >
-                        Reject
-                      </button>
-                    </div>
-                  )}
-                </td>
-                <td className="px-4 py-2 ">
-                  <textarea
-                    rows="2"
-                    cols="25"
-                    value={order.comment || ""}
-                    onChange={(e) => handleCommentChange(e, order.id)}
-                    className="border rounded px-2 py-1 w-full focus:outline-none focus:ring focus:border-blue-300"
-                    placeholder="Add comments..."
-                  />
+                  <div className="flex">
+                    <button
+                      onClick={() =>
+                        handleView(
+                          order.id,
+                          order.documentPath,
+                          "Purchase Order Document"
+                        )
+                      }
+                    >
+                      <FontAwesomeIcon
+                        icon={faEye}
+                        className="w-6 h-6 px-2 py-1 text-purple-600 cursor-pointer"
+                      />
+                    </button>
+                    <button onClick={() => handleEdit(order.id)}>
+                      <FontAwesomeIcon
+                        icon={faEdit}
+                        className="w-6 h-6 px-2 py-1 text-blue-600 cursor-pointer"
+                      />
+                    </button>
+                  </div>
                 </td>
               </tr>
             ))}
@@ -217,7 +143,7 @@ const PoDetailsV = () => {
               <td className="px-4 py-2" colSpan="10">
                 <button
                   onClick={handlePrevPage}
-                  className="pagination-button  bg-cyan-500 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded-3xl"
+                  className="pagination-button bg-cyan-500 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded-3xl"
                   disabled={currentPage === 1}
                 >
                   <FontAwesomeIcon
@@ -228,7 +154,7 @@ const PoDetailsV = () => {
                 </button>
                 <button
                   onClick={handleNextPage}
-                  className="pagination-button ml-2  bg-cyan-500 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded-3xl"
+                  className="pagination-button ml-2 bg-cyan-500 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded-3xl"
                   disabled={
                     currentPage === Math.ceil(dummyData.length / itemsPerPage)
                   }
@@ -250,7 +176,7 @@ const PoDetailsV = () => {
       {/* Purchase Order Details Modal */}
       {showDetailsModal && (
         <div className="fixed z-10 inset-0 overflow-y-auto">
-          <div className="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+          <div className="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0 sm:pt-24">
             <div className="fixed inset-0 transition-opacity">
               <div className="absolute inset-0 bg-gray-900 opacity-75"></div>
             </div>
@@ -372,4 +298,5 @@ const PoDetailsV = () => {
     </div>
   );
 };
+
 export default PoDetailsV;

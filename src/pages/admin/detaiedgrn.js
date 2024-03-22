@@ -105,15 +105,16 @@ const GrnDetails = () => {
             <span className="font-bold">Sent on (date)</span>: {grn.sentOn}
           </p>
           <p className="text-gray-900">
+            <span className="font-bold">Comment</span>: {grn.comment}
+          </p>
+          <p className="text-gray-900">
             <span className="font-bold">Status</span>:{" "}
             {grn.isApproved ? "Approved" : "Rejected"}
           </p>
           <p className="text-gray-900">
             <span className="font-bold">Shipment Type</span>: {grn.shipmentType}
           </p>
-          <p className="text-gray-900">
-            <span className="font-bold">Comment</span>: {grn.comment}
-          </p>
+          
           <button
             className="mt-4 bg-blue-500 text-white px-4 py-2 rounded block mx-auto"
             onClick={handleGoBack}
@@ -138,10 +139,11 @@ const GrnDetails = () => {
         <th className="px-4 py-2 text-left">GRN No.</th>
               <th className="px-4 py-2 text-left">PO No.</th>
               <th className="px-4 py-2 text-left">Sent on <p></p>(date)</th>
+              <th className="px-4 py-2 text-left">Comment</th>
               <th className="px-4 py-2 text-left">Status</th>
               <th className="px-4 py-2 text-left">View & download <p></p>document</th>
               <th className="px-4 py-2 text-left">Shipment<p></p>Type</th>
-              <th className="px-4 py-2 text-left">Comment</th>
+              
               <th className="px-4 py-2 text-left">Action</th>
         </tr>
         <tr className="text-gray-600">
