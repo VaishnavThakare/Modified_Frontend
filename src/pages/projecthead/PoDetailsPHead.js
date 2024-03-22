@@ -59,9 +59,16 @@ const PoDetailsPHead = () => {
   };
 
   return (
+
     <div className="relative">
       <ToastContainer />
       <div className="overflow-x-auto mt-8 ml-2 mr-2 rounded">
+        <div className="flex text-2xl font-bold text-gray-500 ">
+          <h2 className="text-left text-cyan-400">ALL ABOUT GRN</h2>
+        </div>
+        <div className="w-1/5 bg-cyan-400 h-0.5 mb-1"></div>
+        <div className="w-1/3 bg-cyan-400 h-0.5 mb-5"></div>
+
         <table className="table-auto w-full rounded-md border-2 border-cyan-400 bg-white">
           <thead>
             <tr className="text-gray-600">
@@ -104,11 +111,10 @@ const PoDetailsPHead = () => {
                 <td className="px-4 py-2">{item.orderAmount}</td>
                 <td className="px-4 py-2">
                   <button
-                    className={`py-1 px-2 rounded ${
-                      item.isAccepted
+                    className={`py-1 px-2 rounded ${item.isAccepted
                         ? "bg-green-200 text-green-700"
                         : "bg-red-200 text-red-600"
-                    }`}
+                      }`}
                     style={{ minWidth: "6rem" }}
                   >
                     {item.isAccepted ? "Accepted" : "Rejected"}
@@ -116,7 +122,7 @@ const PoDetailsPHead = () => {
                 </td>
                 <td className="px-4 py-2 border">
                   {item.purchaseOrderHistories &&
-                  item.purchaseOrderHistories.length > 0
+                    item.purchaseOrderHistories.length > 0
                     ? item.purchaseOrderHistories[0].comment
                     : "-"}
                 </td>
