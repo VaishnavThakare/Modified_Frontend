@@ -39,7 +39,7 @@ export default function AdminDashboard() {
       link: "#",
       bgColor: "bg-cyan-600",
       subItems: [
-        { text: "Purchase Order Form", link: "purchase-OrderForm" },
+        // { text: "Purchase Order Form", link: "purchase-OrderForm" },
         { text: "Purchase Order View", link: "purchase-order-list" },
       ],
     },
@@ -48,10 +48,7 @@ export default function AdminDashboard() {
       icon: "bx bx-category text-white",
       link: "#",
       bgColor: "bg-cyan-600",
-      subItems: [
-        { text: "View", link: "view-invoice" },
-
-      ],
+      subItems: [{ text: "View", link: "view-invoice" }],
     },
 
     {
