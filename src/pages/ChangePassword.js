@@ -132,7 +132,7 @@ export default function ChangePassword() {
 
   return (
     <div className="flex flex-col px-8 items-center justify-center">
-      <div class={`w-full p-8 bg-zinc-50 shadow mt-7`}>
+      <div class={`w-full p-8 mt-7`}>
         <div class="grid grid-cols-1 mb-10">
           <div class="relative">
             <div class="w-30 h-30 mx-auto absolute inset-x-0 top-3 -mt-20 flex items-center justify-center text-indigo-500">
@@ -154,7 +154,7 @@ export default function ChangePassword() {
 
         <div className="mx-auto w-1/2 ">
           {/* <h2 className="text-2xl font-semibold mb-4">Login</h2> */}
-          <form onSubmit={handleSubmit} className='appform'>
+          <form onSubmit={handleSubmit} className='border-2 border-cyan-500 p-8 shadow-lg rounded'>
             <div className="mb-6 relative">
               <input
                   type={view1?"text":"Password"}
