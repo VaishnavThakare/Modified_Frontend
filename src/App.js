@@ -41,6 +41,7 @@ import Documents from "./pages/admin/Documents";
 import PoDetailsA from "./pages/Purchase Orders/PoDetailsA";
 import PurchaseOrderForm from "./pages/Purchase Orders/PurchaseOrderForm";
 import EditPurchaseOrderPage from "./pages/Purchase Orders/EditPurchaseOrderPage";
+import ProjectEdit from "./pages/admin/ProjectEdit";
 
 //Vendor
 import VendorDash from "./pages/vendor/VendorDash";
@@ -121,6 +122,7 @@ const App = () => {
           <Route path="products" element={<Product />} />
           <Route path="create-product" element={<AddProduct />} />
           <Route path="add-product-category" element={<AddProductCategory />} />
+          <Route path="projects/:projectId" element={<ProjectEdit />} />
           <Route path="product-category" element={<ProductCategory />} />
           <Route path="vendor-verfication" element={<VendorVerification />} />
           <Route path="changePassword" element={<ChangePassword />} />
