@@ -1,4 +1,3 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import imgsrc from "./sciqus1.png";
@@ -9,6 +8,8 @@ export default function Sidebar({
   menuItems,
 }) {
   const [openMenus, setOpenMenus] = useState([]);
+  const [selectedItem, setSelectedItem] = useState(null);
+  const [searchTerm, setSearchTerm] = useState("");
 
   const toggleMenu = (index) => {
     setSelectedItem(index);
@@ -19,7 +20,21 @@ export default function Sidebar({
     });
   };
 
-  const [selectedItem, setSelectedItem] = useState(null);
+  const filterMenuItems = (items, term) => {
+    return items.filter((item) => {
+      if (item.text.toLowerCase().includes(term.toLowerCase())) {
+        return true;
+      }
+
+      if (item.subItems) {
+        return filterMenuItems(item.subItems, term).length > 0;
+      }
+
+      return false;
+    });
+  };
+
+  const filteredMenuItems = filterMenuItems(menuItems, searchTerm);
 
   return (
     <div>
@@ -30,7 +45,7 @@ export default function Sidebar({
       >
         <a
           href="#"
-          className="flex items-center justify-center pb-4 border-b border-b-gray-800"
+          className="flex items-center justify-center pb-4 "
         >
            <img
     className="mt-2 h-14 w-36"
@@ -39,9 +54,18 @@ export default function Sidebar({
   />
 
         </a>
+        <input
+  type="text"
+  placeholder="Search..."
+  className="block w-56 p-2 my-2 border border-gray-300 rounded-full pl-8 ml-2 shadow-md"
+  style={{ backgroundImage: `url(${require("./mglass.png")})`, backgroundSize: '16px 16px', backgroundRepeat: 'no-repeat', backgroundPosition: 'left 8px center', paddingLeft: '2.5rem' }}
+  value={searchTerm}
+  onChange={(e) => setSearchTerm(e.target.value)}
+/>
+
         <ul className="mt-4  ">
-          <span className="text-gray font-bold ml-4">Menus</span>
-          {menuItems.map((menuItem, index) => (
+          
+          {filteredMenuItems.map((menuItem, index) => (
             <li key={index} className={`group menuSidebar `}>
               <Link
                 to={menuItem.link}
