@@ -190,89 +190,100 @@ const PoDetailsV = () => {
 
       {!showDetails && (
         <div className="overflow-x-auto mt-8 ml-2 mr-2 rounded">
-          <table className="table-auto w-full rounded-lg border-2 border-cyan-400 mb-5 shadow-lg">
-            <thead>
-              <tr className="bg-white text-gray-600">
-                <th className="px-4 py-2 text-left">
-                  Sr.<p></p> No.
-                </th>
-                <th className="px-4 py-2 text-left">
-                  Purchase <p></p>Order No.
-                </th>
-                <th className="px-4 py-2 text-left">
-                  Vendor<p></p>Name
-                </th>
-                <th className="px-4 py-2 text-left">
-                  Sent<p></p> On
-                </th>
-                <th className="px-4 py-2 text-left">
-                  PO <p></p>Amount
-                </th>
-                <th className="px-4 py-2 text-left">Status</th>
-                <th className="px-4 py-2 text-left">Actions</th>
-              </tr>
-              <tr className="bg-white text-gray-600">
-                <td colSpan="7" className=" px-4 py-1">
-                  <div style={{ borderTop: "2px solid gray" }}></div>
-                </td>
-              </tr>
-            </thead>
-            <tbody>
-              {currentItems.map((order, index) => (
-                <tr key={order.id} className="bg-white">
-                  <td className="px-4 py-2">{indexOfFirstItem + index + 1}</td>
-                  <td className="px-4 py-2">{order.orderNo}</td>
-                  <td className="px-4 py-2">{order.vendorName}</td>
-                  <td className="px-4 py-2">
-                    {formatDateTime(order.releaseDate)}
-                  </td>
-                  <td className="px-4 py-2">{order.orderAmount}</td>
-                  <td className="px-4 py-2">
-                    {order.isAccepted === true && (
-                      <button
-                        className="py-1 px-2 rounded bg-green-200 text-green-700"
-                        style={{ minWidth: "6rem" }}
-                      >
-                        Accepted
-                      </button>
-                    )}
-                    {order.isAccepted === false && (
-                      <button
-                        className="py-1 px-2 rounded bg-red-200 text-red-600"
-                        style={{ minWidth: "6rem" }}
-                      >
-                        Rejected
-                      </button>
-                    )}
-                    {order.isAccepted === null && (
-                      <button
-                        className="py-1 px-2 rounded bg-yellow-200 text-yellow-700"
-                        style={{ minWidth: "6rem" }}
-                      >
-                        Pending
-                      </button>
-                    )}
-                  </td>
-                  <td className="px-4 py-2">
-                    <div className="flex">
-                      <button onClick={() => handleView(order.id)}>
-                        <FontAwesomeIcon
-                          icon={faEye}
-                          className="w-6 h-6 px-2 py-1 text-purple-600 cursor-pointer"
-                        />
-                      </button>
-                      <button onClick={() => handleEdit(order.id)}>
-                        <FontAwesomeIcon
-                          icon={faEdit}
-                          className="w-6 h-6 px-2 py-1 text-purple-600 cursor-pointer"
-                        />
-                      </button>
-                    </div>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+          <div className="flex text-2xl font-bold text-gray-500">
+            <h2 className="text-left text-cyan-500">Purchase Orders List</h2>
+          </div>
+          <div className="w-64 bg-cyan-500 h-0.5 mb-1"></div>
+          <div className="w-72 bg-cyan-500 h-0.5 mb-5"></div>
+          <div className="shadow-xl">
+            <div className="border-2 border-cyan-500 rounded-lg shadow-md p-0.5">
+              <table className="table-auto w-full rounded-lg  bg-white">
+                <thead>
+                  <tr className="bg-white text-gray-600">
+                    <th className="px-4 py-2 text-left">
+                      Sr.<p></p> No.
+                    </th>
+                    <th className="px-4 py-2 text-left">
+                      Purchase <p></p>Order No.
+                    </th>
+                    <th className="px-4 py-2 text-left">
+                      Vendor<p></p>Name
+                    </th>
+                    <th className="px-4 py-2 text-left">
+                      Sent<p></p> On
+                    </th>
+                    <th className="px-4 py-2 text-left">
+                      PO <p></p>Amount
+                    </th>
+                    <th className="px-4 py-2 text-left">Status</th>
+                    <th className="px-4 py-2 text-left">Actions</th>
+                  </tr>
+                  <tr className="bg-white text-gray-600">
+                    <td colSpan="7" className=" px-4 py-1">
+                      <div style={{ borderTop: "2px solid gray" }}></div>
+                    </td>
+                  </tr>
+                </thead>
+                <tbody>
+                  {currentItems.map((order, index) => (
+                    <tr key={order.id} className="bg-white">
+                      <td className="px-4 py-2">
+                        {indexOfFirstItem + index + 1}
+                      </td>
+                      <td className="px-4 py-2">{order.orderNo}</td>
+                      <td className="px-4 py-2">{order.vendorName}</td>
+                      <td className="px-4 py-2">
+                        {formatDateTime(order.releaseDate)}
+                      </td>
+                      <td className="px-4 py-2">{order.orderAmount}</td>
+                      <td className="px-4 py-2">
+                        {order.isAccepted === true && (
+                          <button
+                            className="py-1 px-2 rounded bg-green-200 text-green-700"
+                            style={{ minWidth: "6rem" }}
+                          >
+                            Accepted
+                          </button>
+                        )}
+                        {order.isAccepted === false && (
+                          <button
+                            className="py-1 px-2 rounded bg-red-200 text-red-600"
+                            style={{ minWidth: "6rem" }}
+                          >
+                            Rejected
+                          </button>
+                        )}
+                        {order.isAccepted === null && (
+                          <button
+                            className="py-1 px-2 rounded bg-yellow-200 text-yellow-700"
+                            style={{ minWidth: "6rem" }}
+                          >
+                            Pending
+                          </button>
+                        )}
+                      </td>
+                      <td className="px-4 py-2">
+                        <div className="flex">
+                          <button onClick={() => handleView(order.id)}>
+                            <FontAwesomeIcon
+                              icon={faEye}
+                              className="w-6 h-6 px-2 py-1 text-purple-600 cursor-pointer"
+                            />
+                          </button>
+                          <button onClick={() => handleEdit(order.id)}>
+                            <FontAwesomeIcon
+                              icon={faEdit}
+                              className="w-6 h-6 px-2 py-1 text-purple-600 cursor-pointer"
+                            />
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
           <div className="flex justify-end mt-2 ml-2 mr-2">
             <table className="table-auto border-collapse rounded border-cyan-500 mb-5">
               <tbody>
