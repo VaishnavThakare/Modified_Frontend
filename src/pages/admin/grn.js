@@ -194,7 +194,7 @@ const GrnDetails = () => {
           {selectedGrn ? (
             <DetailsView grn={grns.find((grn) => grn.grnNo === selectedGrn)} />
           ) : (
-            <div className="overflow-x-auto mt-8 ml-2 mr-2 border-2 border-cyan-500 p-0.5 rounded shadow-lg">
+            <div className="overflow-x-auto mt-8 ml-2 mr-2 border-2 border-cyan-500 rounded-lg shadow-lg">
               <table className="table-auto w-full rounded-lg  bg-white shadow-lg">
                 <thead>
                   <tr className="text-gray-600">
