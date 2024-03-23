@@ -160,7 +160,7 @@ export default function AdminDashboard() {
         { text: "All Profile", link: "allProfile" },
         { text: "Add Profile", link: "addProfile" },
       ],
-      bgColor: "bg-[#67e8f9]",
+      bgColor: "bg-[#033d45]",
     },
 
     /////////////
