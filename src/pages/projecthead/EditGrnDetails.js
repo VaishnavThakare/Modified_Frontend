@@ -56,8 +56,8 @@ const EditGrnDetails = () => {
   };
 
   return (
-    <div className="align-middle inline-block min-w-full shadow overflow-hidden bg-white shadow-dashboard px-8 py-3 pb-8 rounded-bl-lg rounded-br-lg">
-      <div className="max-w-sm mx-auto mt-8 appform">
+    <div className="align-middle inline-block min-w-full  overflow-hidden bg-zinc-50 px-8 py-3 pb-8 rounded-bl-lg rounded-br-lg">
+      <div className="max-w-sm mx-auto mt-8 appform bg-white">
         <div className="flex text-2xl font-bold text-gray-600 mb-5">
           <h2>Edit GRN Details</h2>
         </div>
@@ -79,13 +79,13 @@ const EditGrnDetails = () => {
             <>
               <button
                 onClick={handleAccept}
-                className="px-4 py-2 mr-2 bg-green-500 text-white rounded hover:bg-green-600"
+                className="px-4 py-2 mr-2 bg-cyan-500 text-white rounded hover:bg-cyan-600"
               >
                 Accept
               </button>
               <button
                 onClick={handleReject}
-                className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+                className="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600"
               >
                 Reject
               </button>

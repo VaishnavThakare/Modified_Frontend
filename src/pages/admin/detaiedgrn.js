@@ -221,7 +221,7 @@ const GrnDetails = () => {
                         >
                           <FontAwesomeIcon
                             icon={faEye}
-                            className="text-purple-600 text-xl"
+                            className="text-cyan-600 text-xl"
                           />
                         </button>
                       </td>

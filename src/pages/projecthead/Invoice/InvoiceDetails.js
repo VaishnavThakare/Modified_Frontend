@@ -30,7 +30,9 @@ const InvoiceDetails = () => {
     return (
         <div className="ml-96 items-center justify-center h-screen">
             <div className="rounded-lg border-2 border-cyan-400 bg-white shadow-lg p-4 max-w-lg w-full mt-2">
-                <h3 className="text-lg font-medium mb-2">Invoice Details</h3>
+                <div className="flex justify-center">
+                <h3 className="text-2xl font-medium text-gray-600 mb-2">Invoice Details</h3>
+                </div>
                 {invoiceDetails ? (
                     <div className="space-y-4">
                         <div>

@@ -122,8 +122,15 @@ const PheadList = () => {
   return (
     <div className="relative">
       <ToastContainer />
+      <div className="flex text-2xl font-bold text-gray-500">
+            <h2 className="text-left text-cyan-500">INVOICES  LIST</h2>
+          </div>
+          <div className="w-64 bg-cyan-500 h-0.5 mb-1"></div>
+          <div className="w-72 bg-cyan-500 h-0.5 mb-5"></div>
       <div className="overflow-x-auto mt-8 ml-2 mr-2 rounded">
-        <table className="table-auto w-full rounded-md border-2 border-cyan-400 bg-white">
+      <div className="shadow-xl">
+          <div className="border-2 border-cyan-500 rounded-lg shadow-xl p-0.5">
+        <table className="table-auto w-full rounded-lg  bg-white">
           <thead>
             <tr className="text-gray-600">
               <th className="px-4 py-2 text-left">SR. NO.</th>
@@ -179,12 +186,12 @@ const PheadList = () => {
                       : "Not Accepted/Rejected"}
                   </button>
                 </td>
-                <td className="px-4 py-2 bg-gray-50">
+                <td className="px-4 py-2 bg-white">
                   {item.isAccepted == null ? (
                     <button onClick={() => handleEdit(item)} className={`mr-2`}>
                       <FontAwesomeIcon
                         icon={faEdit}
-                        className={`text-purple-600 text-xl`}
+                        className={`text-cyan-600 text-xl`}
                       />
                     </button>
                   ) : (
@@ -197,7 +204,7 @@ const PheadList = () => {
                   >
                     <FontAwesomeIcon
                       icon={faEye}
-                      className={`text-purple-600 text-xl`}
+                      className={`text-cyan-600 text-xl`}
                     />
                   </button>
                   {editedItem && editedItem.id === item.id && (
@@ -229,6 +236,8 @@ const PheadList = () => {
             ))}
           </tbody>
         </table>
+        </div>
+        </div>
       </div>
 
       <div className="flex justify-end mt-2 ml-2 mr-2">

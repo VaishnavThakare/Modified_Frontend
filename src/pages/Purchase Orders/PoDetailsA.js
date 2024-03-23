@@ -172,7 +172,7 @@ const PoDetailsA = () => {
               onClick={handleCloseDetails}
               className="bg-cyan-600 hover:bg-cyan-700 mr-4 text-white font-bold py-2 px-4 rounded"
             >
-              Close
+              Back
             </button>
             {selectedPurchaseOrder.documentPath && (
               <button
@@ -253,7 +253,7 @@ const PoDetailsA = () => {
                     >
                       <FontAwesomeIcon
                         icon={faEye}
-                        className={`text-purple-600 text-xl`}
+                        className={`text-cyan-600 text-xl`}
                       />
                     </button>
                   </td>

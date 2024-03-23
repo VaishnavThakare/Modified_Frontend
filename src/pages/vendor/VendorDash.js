@@ -54,7 +54,7 @@ export default function VendorDash() {
   return (
     <>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
-        <div class="bg-white rounded-md border border-gray-100 p-6 shadow-md shadow-black/5">
+        <div class="bg-white rounded-md border-2 border-cyan-500 p-6 shadow-lg shadow-black/5">
           <div class="flex justify-between mb-6">
             <div>
               <div class="flex items-center mb-1">
@@ -70,7 +70,7 @@ export default function VendorDash() {
             verifyVendor ? 
             <a            
             href="/vendor/rfp"
-            class="text-[#f84525] font-medium text-sm hover:text-red-800"
+            class="text-cyan-300 font-medium text-sm hover:text-cyan-800"
           >
             View
           </a>
@@ -80,7 +80,7 @@ export default function VendorDash() {
 
 
         </div>
-        <div class="bg-white rounded-md border border-gray-100 p-6 shadow-md shadow-black/5">
+        <div class="bg-white rounded-md border-2 border-cyan-500 p-6 shadow-lg shadow-black/5">
           <div class="flex justify-between mb-6">
             <div>
               <div class="flex items-center mb-1">
@@ -96,7 +96,7 @@ export default function VendorDash() {
             verifyVendor ? 
             <a
             href="rfp"
-            class="text-[#f84525] font-medium text-sm hover:text-red-800"
+            class="text-cyan-500 font-medium text-sm hover:text-cyan-800"
           >
             View
           </a>

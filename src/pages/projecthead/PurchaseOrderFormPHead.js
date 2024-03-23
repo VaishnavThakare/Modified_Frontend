@@ -92,7 +92,7 @@ const PurchaseOrderFormPHead = () => {
     fetchProjects();
   }, []);
   return (
-    <div className="py-10 flex justify-center items-center bg-gray-100 font-poppins">
+    <div className="py-10 flex justify-center items-center bg-zinc-50 font-poppins">
       <div className="bg-white border-2 border-cyan-400 rounded-lg shadow-lg p-8 w-full max-w-lg mt">
         <form onSubmit={handleSubmit} className="p-10">
           <div className="grid grid-cols-1 gap-4">
@@ -217,7 +217,7 @@ const PurchaseOrderFormPHead = () => {
             <div className="flex justify-center mt-4">
               <button
                 type="submit"
-                className=" text-white px-4 py-2 rounded-full bg-cyan-500 hover:bg-cyan-700 focus:outline-none focus:bg-cyan-700"
+                className=" text-white px-4 py-2 rounded-lg bg-cyan-500 hover:bg-cyan-700 focus:outline-none focus:bg-cyan-700"
               >
                 Send Purchase Order
               </button>

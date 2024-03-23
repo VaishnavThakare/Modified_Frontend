@@ -56,8 +56,8 @@ function CreateInvoiceVendor() {
     };
 
     return (
-        <div className="align-middle inline-block min-w-full shadow overflow-hidden bg-white shadow-dashboard px-8 py-3 pb-8 rounded-bl-lg rounded-br-lg">
-            <form onSubmit={handleSubmit} className="max-w-sm mx-auto mt-8 appform">
+        <div className="align-middle inline-block min-w-full  overflow-hidden bg-zinc-50 px-8 py-3 pb-8 rounded-bl-lg rounded-br-lg">
+            <form onSubmit={handleSubmit} className="max-w-sm mx-auto mt-8 appform bg-white">
                 <div className="flex text-2xl font-bold text-gray-500 mb-5">
                     <h2>Create Invoice</h2>
                 </div>
@@ -153,12 +153,14 @@ function CreateInvoiceVendor() {
                         required
                     />
                 </div>
+                <div className="flex justify-center">
                 <button
                     type="submit"
                     className="bg-cyan-500 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded"
                 >
                     Submit
                 </button>
+                </div>
             </form>
         </div>
     );

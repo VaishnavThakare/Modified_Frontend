@@ -131,7 +131,7 @@ const PoList = () => {
                   >
                     <FontAwesomeIcon
                       icon={faEye}
-                      className="w-6 h-6 px-4 py-2 text-purple-600"
+                      className="w-6 h-6 px-4 py-2 text-cyan-600"
                     />
                   </button>
                 </td>

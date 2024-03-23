@@ -72,11 +72,12 @@ const AdminInvoiceList = () => {
               <th className="px-4 py-2 text-center ">Release<p></p> Date</th>
               <th className="px-4 py-2 text-center ">Due<p></p> Date</th>
               <th className="px-4 py-2 text-center ">Amount</th>
+              <th className="px-4 py-2 text-center ">Comment</th>
               <th className="px-4 py-2 text-center ">Status</th>
               <th className="px-4 py-2 text-center ">Payment<p></p> Status</th>
               <th className="px-4 py-2 text-center ">View/Download<p></p> Documents</th>
               <th className="px-4 py-2 text-center ">Actions</th>
-              <th className="px-4 py-2 text-center ">Comment</th>
+              
             </tr>
             <tr className=" text-gray-600 bg-white">
               <td colSpan="12" className=" px-4 py-1">
@@ -95,6 +96,9 @@ const AdminInvoiceList = () => {
                 <td className="px-4 py-2 text-center text-sm">{invoice.dueDate}</td>
                 <td className="px-4 py-2 text-center text-sm">{invoice.amount}</td>
                 <td className="px-4 py-2 text-center text-sm">
+                 {invoice.comment}
+                </td>
+                <td className="px-4 py-2 text-center text-sm">
                   <button
                     className={`py-1 px-2 rounded ${
                       invoice.isAccepted
@@ -111,7 +115,7 @@ const AdminInvoiceList = () => {
                   <a href={invoice.documentPath} target="_blank" rel="noopener noreferrer">
                     <FontAwesomeIcon
                       icon={faFileDownload}
-                      className="text-purple-600 text-xl"
+                      className="text-cyan-600 text-xl"
                     />
                   </a>
                 </td>
@@ -119,13 +123,11 @@ const AdminInvoiceList = () => {
                   <Link className={`mr-2`} to ={`/admin/details/${invoice.id}`}>
                     <FontAwesomeIcon
                       icon={faEye}
-                      className={`text-purple-600 text-xl`}
+                      className={`text-cyan-600 text-xl`}
                     />
                   </Link>
                 </td>
-                <td className="px-4 py-2">
-                 {invoice.comment}
-                </td>
+                
               </tr>
             ))}
           </tbody>

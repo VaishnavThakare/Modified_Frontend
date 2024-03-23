@@ -95,7 +95,7 @@ const GrnList = () => {
       <div className="ml-96 items-center justify-center h-screen">
         <div className="rounded-lg border-2 border-cyan-400  bg-white shadow-lg p-4 max-w-lg w-full mt-2">
           <div className="flex text-2xl font-bold text-gray-500">
-            <h2 className="text-left text-cyan-500">GRN Details:</h2>
+            <h2 className="text-left text-cyan-500">GRN DETAILS</h2>
           </div>
           <div className="w-36 bg-cyan-500 h-0.5 mb-1"></div>
           <div className="w-44 bg-cyan-500 h-0.5 mb-5"></div>
@@ -199,12 +199,12 @@ const GrnList = () => {
     <div className="relative">
       <ToastContainer />
       <div className="flex text-2xl font-bold text-gray-500">
-        <h2 className="ml-4 text-left text-cyan-500">GRN Listing:</h2>
+        <h2 className="ml-4 text-left text-cyan-500">GRN LIST</h2>
       </div>
       <div className="ml-4 w-36 bg-cyan-500 h-0.5 mb-1"></div>
       <div className="ml-4 w-44 bg-cyan-500 h-0.5 mb-5"></div>
-      <div className="overflow-x-auto mt-8 ml-2 mr-2 rounded shadow-lg ">
-        <table className="table-auto w-full rounded-s-3xl border-2 border-cyan-400 bg-white">
+      <div className="overflow-x-auto mt-8 ml-2 mr-2 border-2 border-cyan-400 rounded-lg shadow-lg ">
+        <table className="table-auto w-full rounded-lg  bg-white">
           <thead>
             <tr className="text-gray-600">
               <th className="px-4 py-2 text-left">SR. NO.</th>
@@ -268,7 +268,7 @@ const GrnList = () => {
                   <button onClick={() => handleEdit(item)} className={`mr-2`}>
                     <FontAwesomeIcon
                       icon={faEdit}
-                      className={`text-purple-600 text-xl`}
+                      className={`text-cyan-600 text-xl`}
                     />
                   </button>
                   <button
@@ -277,7 +277,7 @@ const GrnList = () => {
                   >
                     <FontAwesomeIcon
                       icon={faEye}
-                      className={`text-purple-600 text-xl`}
+                      className={`text-cyan-600 text-xl`}
                     />
                   </button>
                 </td>

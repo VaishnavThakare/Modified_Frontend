@@ -75,12 +75,15 @@ const PoDetailsPHead = () => {
       <ToastContainer />
       <div className="overflow-x-auto mt-8 ml-2 mr-2 rounded">
         <div className="flex text-2xl font-bold text-gray-500 ">
-          <h2 className="text-left text-cyan-400">ALL ABOUT GRN</h2>
+          <h2 className="text-left text-cyan-500">PURCHASE ORDERS</h2>
         </div>
         <div className="w-1/5 bg-cyan-400 h-0.5 mb-1"></div>
         <div className="w-1/3 bg-cyan-400 h-0.5 mb-5"></div>
 
-        <table className="table-auto w-full rounded-md border-2 border-cyan-400 bg-white">
+        <div className="shadow-xl">
+        <div className="border-2 border-cyan-500 rounded-lg shadow-xl p-0.5">
+
+        <table className="table-auto w-full rounded-lg bg-white">
           <thead>
             <tr className="text-gray-600">
               <th className="px-4 py-2 text-left ">
@@ -140,13 +143,13 @@ const PoDetailsPHead = () => {
                   <button onClick={() => handleEdit(item)} className={`mr-2`}>
                     <FontAwesomeIcon
                       icon={faEdit}
-                      className={`text-purple-600 text-xl`}
+                      className={`text-cyan-600 text-xl`}
                     />
                   </button>
                   <button onClick={() => handleView(item)} className={`mr-2`}>
                     <FontAwesomeIcon
                       icon={faEye}
-                      className={`text-purple-600 text-xl`}
+                      className={`text-cyan-600 text-xl`}
                     />
                   </button>
                 </td>
@@ -154,6 +157,8 @@ const PoDetailsPHead = () => {
             ))}
           </tbody>
         </table>
+        </div>
+        </div>
       </div>
 
       <div className="flex justify-end mt-2 ml-2 mr-2">

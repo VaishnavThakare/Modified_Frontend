@@ -162,7 +162,7 @@ const EditPurchaseOrderPagePHead = ({ vendors }) => {
           <button
             type="button"
             onClick={handleSave}
-            className="bg-blue-500 text-white px-4 py-2 rounded-md mr-2"
+            className="bg-cyan-500 text-white px-4 py-2 rounded-md mr-2"
           >
             Save
           </button>

@@ -96,11 +96,24 @@ const GrnDetails = () => {
 
     return (
       <div>
+        <div className="flex justify-between">
+          <div>
         <div className="flex text-2xl font-bold text-gray-500 ">
           <h2 className="text-left text-cyan-500">ALL ABOUT GRN</h2>
         </div>
-        <div className="w-1/5 bg-cyan-500 h-0.5 mb-1"></div>
-        <div className="w-1/3 bg-cyan-500 h-0.5 mb-5"></div>
+        <div className="w-52 bg-cyan-500 h-0.5 mb-1"></div>
+        <div className="w-96 bg-cyan-500 h-0.5 mb-5"></div>
+        </div>
+        <div>
+        <button
+          className="mt-4 bg-cyan-500 text-white px-4 py-2 rounded block mx-auto"
+          onClick={onCancel}
+        >
+          Close
+        </button>
+        </div>
+        </div>
+
         <div className="min-w-full border-2 border-cyan-500 rounded-lg mb-5 bg-white">
           <div
             className="bg-white p-6 rounded-md shadow-md "
@@ -154,12 +167,7 @@ const GrnDetails = () => {
             </p>
           </div>
         </div>
-        <button
-          className="mt-4 bg-blue-500 text-white px-4 py-2 rounded block mx-auto"
-          onClick={onCancel}
-        >
-          Close
-        </button>
+        
         <br></br>
         <br></br>
 
@@ -194,6 +202,9 @@ const GrnDetails = () => {
                   S (APPROVED/REJECTED)
                 </th>
                 <th className="px-6 py-3  text-center text-sm leading-4 text-gray-600 tracking-wider">
+                  COMMENT
+                </th>
+                <th className="px-6 py-3  text-center text-sm leading-4 text-gray-600 tracking-wider">
                   PAYMENT STATUS
                 </th>
                 <th className="px-6 py-3  text-center text-sm leading-4 text-gray-600 tracking-wider">
@@ -202,9 +213,7 @@ const GrnDetails = () => {
                 <th className="px-6 py-3  text-center text-sm leading-4 text-gray-600 tracking-wider">
                   VIEW/DOWNLOAD DOCUMENTS
                 </th>
-                <th className="px-6 py-3  text-center text-sm leading-4 text-gray-600 tracking-wider">
-                  COMMENT
-                </th>
+                
               </tr>
               <tr className=" text-gray-600">
                 <td colSpan="10" className=" px-4 py-1">
@@ -242,6 +251,9 @@ const GrnDetails = () => {
                       {invoice.isAccepted ? "Accepted" : "Pending"}
                     </button>
                   </td>
+                  <td className="px-6 py-4 whitespace-no-wrap text-center">
+                    {invoice.comment}
+                  </td>
                   <td className="px-6 py-4 whitespace-no-wrap text-center ">
                     {" "}
                     {invoice.paymentStatus ? "Paid" : "Unpaid"}
@@ -257,13 +269,11 @@ const GrnDetails = () => {
                     >
                       <FontAwesomeIcon
                         icon={faFileDownload}
-                        className="text-purple-600 text-xl"
+                        className="text-cyan-600 text-xl"
                       />
                     </a>
                   </td>
-                  <td className="px-6 py-4 whitespace-no-wrap">
-                    {invoice.comment}
-                  </td>
+                  
                 </tr>
               ))}
             </tbody>
@@ -352,7 +362,7 @@ const GrnDetails = () => {
                       >
                         <FontAwesomeIcon
                           icon={faFileDownload}
-                          className="text-purple-600 text-xl"
+                          className="text-cyan-600 text-xl"
                         />
                       </a>
                     </td>
@@ -371,7 +381,7 @@ const GrnDetails = () => {
                       >
                         <FontAwesomeIcon
                           icon={faEdit}
-                          className="text-purple-600 text-xl"
+                          className="text-cyan-600 text-xl"
                         />
                       </button>
                       <button
@@ -380,7 +390,7 @@ const GrnDetails = () => {
                       >
                         <FontAwesomeIcon
                           icon={faEye}
-                          className="text-purple-600 text-xl"
+                          className="text-cyan-600 text-xl"
                         />
                       </button>
                     </td>

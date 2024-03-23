@@ -167,7 +167,7 @@ export default function ChangePassword() {
                 required
               />
               <button hidden={hide1} type="button"onClick={()=>toggleView("view1")} className="absolute -mt-8 ml-[93%] bg-zinc-50 w-5 h-5">
-                <FontAwesomeIcon  icon={faEye} className="w-6 h-6  text-purple-600"/>
+                <FontAwesomeIcon  icon={faEye} className="w-6 h-6  text-cyan-600"/>
               </button>
               <label
                 htmlFor="currentPassword"
@@ -189,7 +189,7 @@ export default function ChangePassword() {
                 required
               />
               <button hidden={hide2}  type="button" onClick={()=>toggleView("view2")} className="absolute -mt-8 ml-[93%] bg-zinc-50 w-5 h-5">
-                <FontAwesomeIcon  icon={faEye} className="w-6 h-6  text-purple-600"/>
+                <FontAwesomeIcon  icon={faEye} className="w-6 h-6  text-cyan-600"/>
               </button>
               <label
                 htmlFor="newPassword"
@@ -211,7 +211,7 @@ export default function ChangePassword() {
                 required
               />
               <button hidden={hide3} type="button" onClick={()=>toggleView("view3")} className="absolute -mt-8 ml-[93%] bg-zinc-50  w-5 h-5">
-                <FontAwesomeIcon  icon={faEye} className="w-6 h-6 text-purple-600"/>
+                <FontAwesomeIcon  icon={faEye} className="w-6 h-6 text-cyan-600"/>
               </button>
               <label
                 htmlFor="confirmPassword"

@@ -158,11 +158,23 @@ const handleChange = (event) => {
 
     return (
       <div>
+        <div  className="flex justify-between">
+          <div>
         <div className="flex text-2xl font-bold text-gray-500 ">
           <h2 className="text-left text-cyan-500">PROJECT DETAILS</h2>
         </div>
-        <div className="w-1/5 bg-cyan-500 h-0.5 mb-1"></div>
-        <div className="w-1/3 bg-cyan-500 h-0.5 mb-5"></div>
+        <div className="w-52 bg-cyan-500 h-0.5 mb-1"></div>
+        <div className="w-96 bg-cyan-500 h-0.5 mb-5"></div>
+        </div>
+        <div>
+        <button
+          className="mt-4 bg-cyan-500 text-white px-4 py-2 rounded block mx-auto"
+          onClick={onCancel}
+        >
+          Close
+        </button>
+        </div>
+        </div>
         <div className="min-w-full border-2 border-cyan-500 rounded-lg mb-5 bg-white">
           <div
             className="bg-white p-6 rounded-md shadow-md "
@@ -216,12 +228,7 @@ const handleChange = (event) => {
             </p>
           </div>
         </div>
-        <button
-          className="mt-4 bg-cyan-500 text-white px-4 py-2 rounded block mx-auto"
-          onClick={onCancel}
-        >
-          Close
-        </button>
+        
         <br></br>
         <br></br>
 
@@ -298,7 +305,7 @@ const handleChange = (event) => {
                   <button  className={`mr-2`}>
                     <FontAwesomeIcon
                       icon={faEye}
-                      className={`text-purple-600 text-xl`}
+                      className={`text-cyan-600 text-xl`}
                     />
                   </button>
                 </td>
@@ -440,7 +447,7 @@ const handleChange = (event) => {
                       >
                         <FontAwesomeIcon
                           icon={faEdit}
-                          className="text-purple-600 text-xl"
+                          className="text-cyan-600 text-xl"
                         />
                       </button>
                       <button
@@ -449,7 +456,7 @@ const handleChange = (event) => {
                       >
                         <FontAwesomeIcon
                           icon={faEye}
-                          className="text-purple-600 text-xl"
+                          className="text-cyan-600 text-xl"
                         />
                       </button>
                     </td>

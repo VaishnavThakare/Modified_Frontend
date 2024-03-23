@@ -93,7 +93,7 @@ export default function VendorVerification() {
                     >
                       <FontAwesomeIcon
                         icon={faEye}
-                        className={`text-purple-600 text-xl`}
+                        className={`text-cyan-600 text-xl`}
                       />
                     </button></Link>
                 </div>

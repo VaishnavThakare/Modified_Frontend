@@ -10,6 +10,7 @@ import {
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useNavigate} from "react-router-dom";
 
 const PoDetailsV = () => {
   const [purchaseOrders, setPurchaseOrders] = useState([]);
@@ -61,8 +62,10 @@ const PoDetailsV = () => {
     setSelectedPurchaseOrder(null);
   };
 
+  const navigate = useNavigate();
+
   const handleEdit = (orderId) => {
-    window.open(`/vendor/po-check/${orderId}`, "_blank");
+    navigate(`/vendor/po-check/${orderId}`);
   };
 
   const handlePrevPage = () => {
@@ -267,13 +270,13 @@ const PoDetailsV = () => {
                           <button onClick={() => handleView(order.id)}>
                             <FontAwesomeIcon
                               icon={faEye}
-                              className="w-6 h-6 px-2 py-1 text-purple-600 cursor-pointer"
+                              className="w-6 h-6 px-2 py-1 text-cyan-600 cursor-pointer"
                             />
                           </button>
                           <button onClick={() => handleEdit(order.id)}>
                             <FontAwesomeIcon
                               icon={faEdit}
-                              className="w-6 h-6 px-2 py-1 text-purple-600 cursor-pointer"
+                              className="w-6 h-6 px-2 py-1 text-cyan-600 cursor-pointer"
                             />
                           </button>
                         </div>
