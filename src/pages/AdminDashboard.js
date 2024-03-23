@@ -11,20 +11,20 @@ export default function AdminDashboard() {
       text: "Dashboard",
       icon: "ri-home-2-line text-white",
       link: "dashboard",
-      bgColor: "bg-cyan-300",
+      bgColor: "bg-[#7fecfa]",
     },
     {
       text: "Users",
       icon: "bx bx-user text-white",
       link: "#",
       subItems: [{ text: "All", link: "allusers" }],
-      bgColor: "bg-cyan-400",
+      bgColor: "bg-[#6ce9f9]",
     },
     {
       text: "Vendor",
       icon: "bx bx-category text-white",
       link: "#",
-      bgColor: "bg-cyan-500",
+      bgColor: "bg-[#58e6f8]",
       subItems: [
         { text: "Create Vendor", link: "create-vendor" },
         { text: "All Vendor Category", link: "vendor-category" },
@@ -37,7 +37,7 @@ export default function AdminDashboard() {
       text: "Purchase Order",
       icon: "bx bx-category text-white",
       link: "#",
-      bgColor: "bg-cyan-600",
+      bgColor: "bg-[#45e3f8]",
       subItems: [
         // { text: "Purchase Order Form", link: "purchase-OrderForm" },
         { text: "Purchase Order View", link: "purchase-order-list" },
@@ -47,7 +47,7 @@ export default function AdminDashboard() {
       text: "GRN",
       icon: "bx bx-category text-white",
       link: "#",
-      bgColor: "bg-cyan-600",
+      bgColor: "bg-[#31e0f7]",
       subItems: [
         { text: "View", link: "grn" },
         
@@ -57,7 +57,7 @@ export default function AdminDashboard() {
       text: "INVOICE",
       icon: "bx bx-category text-white",
       link: "#",
-      bgColor: "bg-cyan-600",
+      bgColor: "bg-[#1dddf6]",
       subItems: [{ text: "View", link: "view-invoice" }],
     },
 
@@ -66,7 +66,7 @@ export default function AdminDashboard() {
       icon: "bx bx-user text-white",
       link: "#",
       subItems: [{ text: "Create Project Head", link: "create-project-head" }],
-      bgColor: "bg-cyan-700",
+        bgColor: "bg-[#0adaf5]",
     },
     {
       text: "Project",
@@ -76,7 +76,7 @@ export default function AdminDashboard() {
         { text: "All Project", link: "projects" },
         { text: "Create Project", link: "create-project" },
       ],
-      bgColor: "bg-cyan-800",
+      bgColor: "bg-[#09c8e2]",
     },
 
     {
@@ -88,7 +88,7 @@ export default function AdminDashboard() {
         { text: "Create Product", link: "create-product" },
         { text: "Create Product Category", link: "add-product-category" },
       ],
-      bgColor: "bg-cyan-900",
+      bgColor: "bg-[#08b7ce]",
     },
 
     {
@@ -100,7 +100,7 @@ export default function AdminDashboard() {
         { text: "Create RFP", link: "create-rfp" },
         { text: "Application ", link: "all-application" },
       ],
-      bgColor: "bg-cyan-950",
+      bgColor: "bg-[#07a6ba]",
     },
 
     {
@@ -108,7 +108,7 @@ export default function AdminDashboard() {
       icon: "ri ri-verified-badge-fill text-white",
       link: "#",
       subItems: [{ text: "Vendor", link: "vendor-verfication" }],
-      bgColor: "bg-cyan-950",
+      bgColor: "bg-[#0794a7]",
     },
 
     {
@@ -119,7 +119,7 @@ export default function AdminDashboard() {
         { text: "All Banner", link: "allBanners" },
         { text: "Add Banner", link: "addBanner" },
       ],
-      bgColor: "bg-cyan-950",
+      bgColor: "bg-[#068393]",
     },
     {
       text: "News",
@@ -129,7 +129,7 @@ export default function AdminDashboard() {
         { text: "All News", link: "allNews" },
         { text: "Add News", link: "addNews" },
       ],
-      bgColor: "bg-cyan-950",
+      bgColor: "bg-[#057180]",
     },
     {
       text: "Event",
@@ -139,7 +139,7 @@ export default function AdminDashboard() {
         { text: "All Event", link: "allEvents" },
         { text: "Add Event", link: "addEvent" },
       ],
-      bgColor: "bg-cyan-950",
+      bgColor: "bg-[#04606c]",
     },
 
     {
@@ -150,7 +150,7 @@ export default function AdminDashboard() {
         { text: "All Document", link: "allDocuments" },
         { text: "Add Document", link: "addDocument" },
       ],
-      bgColor: "bg-cyan-950",
+        bgColor: "bg-[#034e58]",
     },
     {
       text: "Profile",
@@ -160,7 +160,7 @@ export default function AdminDashboard() {
         { text: "All Profile", link: "allProfile" },
         { text: "Add Profile", link: "addProfile" },
       ],
-      bgColor: "bg-cyan-950",
+      bgColor: "bg-[#67e8f9]",
     },
 
     /////////////
@@ -185,3 +185,4 @@ export default function AdminDashboard() {
     </>
   );
 }
+
