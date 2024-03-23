@@ -26,7 +26,7 @@ export default function Sidebar({
       <div
         className={`${
           isMenuVisible ? "" : "hidden"
-        } fixed left-0 top-0 w-64 h-full z-50 sidebar-menu transition-transform md:block overflow-y-auto bg-cyan-50 `}
+        } fixed left-0 top-0 w-64 h-full z-50 sidebar-menu transition-transform md:block overflow-y-auto bg-cyan-200 `}
       >
         <a
           href="#"
