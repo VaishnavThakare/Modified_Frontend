@@ -61,10 +61,13 @@ export default function Products() {
     <>
       <div className="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 pr-10 lg:px-8 mb-8"
        >
-        <div className="align-middle inline-block min-w-full shadow overflow-hidden bg-white shadow-dashboard px-8 pt-3 rounded-bl-lg rounded-br-lg">
-          <div className="flex text-2xl font-bold text-gray-500 mb-4 justify-center items-center">
-            <h2>Products</h2>
+        <div className="flex text-2xl font-bold text-gray-500">
+            <h2 className="text-left text-cyan-500">PRODUCTS LIST</h2>
           </div>
+          <div className="w-64 bg-cyan-500 h-0.5 mb-1"></div>
+          <div className="w-72 bg-cyan-500 h-0.5 mb-5"></div>
+        <div className="align-middle inline-block min-w-full overflow-hidden bg-zinc-50  px-8 pt-3 rounded-bl-lg rounded-br-lg">
+          
           <div className="searchFilter">
             <select
               id="filterOn"
@@ -87,37 +90,40 @@ export default function Products() {
               placeholder="Enter filter value"
             />
           </div>
-          <table className="min-w-full mb-5">
+
+          <div className="shadow-xl">
+          <div className="border-2 border-cyan-500 rounded-lg shadow-xl p-0.5">
+          <table className="min-w-full bg-white">
             <thead>
               <tr>
-                <th className="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-blue-500 tracking-wider">
+                <th className="px-6 py-3 border-b-2 border-gray-3center leading-4 tracking-wider">
                   Sr.No
                 </th>
-                <th className="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-blue-500 tracking-wider">
+                <th className="px-6 py-3 border-b-2 border-gray-3center leading-4 tracking-wider">
                   Name
                 </th>
-                <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-blue-500 tracking-wider">
+                <th className="px-6 py-3 border-b-2 border-gray-300 text-center leading-4 tracking-wider">
                   Image
                 </th>
-                <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-blue-500 tracking-wider">
+                <th className="px-6 py-3 border-b-2 border-gray-300 text-center leading-4 tracking-wider">
                   Short Description
                 </th>
-                <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-blue-500 tracking-wider">
+                <th className="px-6 py-3 border-b-2 border-gray-300 text-center leading-4 tracking-wider">
                   Long Description
                 </th>
-                <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-blue-500 tracking-wider">
+                <th className="px-6 py-3 border-b-2 border-gray-300 text-center leading-4 tracking-wider">
                   Unit Type
                 </th>
-                <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-blue-500 tracking-wider">
+                <th className="px-6 py-3 border-b-2 border-gray-300 text-center leading-4 tracking-wider">
                   Size
                 </th>
-                <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-blue-500 tracking-wider">
+                <th className="px-6 py-3 border-b-2 border-gray-300 text-center leading-4 tracking-wider">
                   Specification
                 </th>
-                <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-blue-500 tracking-wider">
+                <th className="px-6 py-3 border-b-2 border-gray-300 text-center leading-4 tracking-wider">
                   Product Category
                 </th>
-                <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-blue-500 tracking-wider">
+                <th className="px-6 py-3 border-b-2 border-gray-300 text-center leading-4 tracking-wider">
                   Product Sub-category
                 </th>
               </tr>
@@ -125,56 +131,56 @@ export default function Products() {
             <tbody className="bg-white">
               {currentItems.map((product, index) => (
                 <tr key={product.id}>
-                  <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
-                    <div className="text-sm leading-5 text-blue-900">
+                  <td className="px-6 py-4 whitespace-no-wrap">
+                    <div className="text-sm leading-5 ">
                       {index + 1}
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
-                    <div className="text-sm leading-5 text-blue-900">
+                  <td className="px-6 py-4 whitespace-no-wrap">
+                    <div className="text-sm leading-5 ">
                       {product.name}
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
-                    <div className="text-sm leading-5 text-blue-900">
+                  <td className="px-6 py-4 whitespace-no-wrap">
+                    <div className="text-sm leading-5 ">
                       {product.imagePath}
                     </div>
                     
                   </td>
-                  <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
-                    <div className="text-sm leading-5 text-blue-900">
+                  <td className="px-6 py-4 whitespace-no-wrap">
+                    <div className="text-sm leading-5 ">
                       {product.shortDescription}
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
-                    <div className="text-sm leading-5 text-blue-900">
+                  <td className="px-6 py-4 whitespace-no-wrap">
+                    <div className="text-sm leading-5 ">
                       {product.longDescription}
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
-                    <div className="text-sm leading-5 text-blue-900">
+                  <td className="px-6 py-4 whitespace-no-wrap">
+                    <div className="text-sm leading-5 ">
                       {/* Add your unit type rendering logic here */}
                       {product.unitType}
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
-                    <div className="text-sm leading-5 text-blue-900">
+                  <td className="px-6 py-4 whitespace-no-wrap">
+                    <div className="text-sm leading-5 ">
                       {/* Add your size rendering logic here */}
                       {product.size}
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
-                    <div className="text-sm leading-5 text-blue-900">
+                  <td className="px-6 py-4 whitespace-no-wrap">
+                    <div className="text-sm leading-5 ">
                       {product.specification}
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
-                    <div className="text-sm leading-5 text-blue-900">
+                  <td className="px-6 py-4 whitespace-no-wrap">
+                    <div className="text-sm leading-5 ">
                       {product.category}
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
-                    <div className="text-sm leading-5 text-blue-900">
+                  <td className="px-6 py-4 whitespace-no-wrap">
+                    <div className="text-sm leading-5 ">
                       {product.subCategory}
                     </div>
                   </td>
@@ -182,6 +188,8 @@ export default function Products() {
               ))}
             </tbody>
           </table>
+          </div>
+          </div>
         </div>
       </div>
       <div className="flex justify-center mt-4">
@@ -190,7 +198,7 @@ export default function Products() {
             <button
               key={index}
               className={`mx-1 px-4 py-2 ${
-                currentPage === index + 1 ? "bg-blue-500 text-white" : "bg-gray-300"
+                currentPage === index + 1 ? "bg-cyan-500 text-white" : "bg-gray-300"
               }`}
               onClick={() => paginate(index + 1)}
             >

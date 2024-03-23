@@ -91,37 +91,37 @@ export default function Users() {
           <table className="min-w-full rounded-lg bg-white">
           <thead>
               <tr>
-                <th className="px-6 py-3 border-b-2 border-gray-300 text-center text-sm leading-4 text-gray-600 tracking-wider">
+                <th className="px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-600 tracking-wider">
                   Sr. No.
                 </th>
-                <th className="px-6 py-3 border-b-2 border-gray-300 text-center text-sm leading-4 text-gray-600 tracking-wider">
+                <th className="px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-600 tracking-wider">
                   Name
                 </th>
-                <th className="px-6 py-3 border-b-2 border-gray-300 text-center text-sm leading-4 text-gray-600 tracking-wider">
+                <th className="px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-600 tracking-wider">
                   Organization Name
                 </th>
-                <th className="px-6 py-3 border-b-2 border-gray-300 text-center text-sm leading-4 text-gray-600 tracking-wider">
+                <th className="px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-600 tracking-wider">
                   Email
                 </th>
-                <th className="px-6 py-3 border-b-2 border-gray-300 text-center text-sm leading-4 text-gray-600 tracking-wider">
+                <th className="px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-600 tracking-wider">
                   Phone Number
                 </th>
-                <th className="px-6 py-3 border-b-2 border-gray-300 text-center text-sm leading-4 text-gray-600 tracking-wider">
+                <th className="px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-600 tracking-wider">
                   State
                 </th>
-                <th className="px-6 py-3 border-b-2 border-gray-300 text-center text-sm leading-4 text-gray-600 tracking-wider">
+                <th className="px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-600 tracking-wider">
                   City
                 </th>
-                <th className="px-6 py-3 border-b-2 border-gray-300 text-center text-sm leading-4 text-gray-600 tracking-wider">
+                <th className="px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-600 tracking-wider">
                   Address
                 </th>
-                <th className="px-6 py-3 border-b-2 border-gray-300 text-center text-sm leading-4 text-gray-600 tracking-wider">
+                <th className="px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-600 tracking-wider">
                   Pincode
                 </th>
-                <th className="px-6 py-3 border-b-2 border-gray-300 text-center text-sm leading-4 text-gray-600 tracking-wider">
+                <th className="px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-600 tracking-wider">
                   Category
                 </th>
-                <th className="px-6 py-3 border-b-2 border-gray-300 text-center text-sm leading-4 text-gray-600 tracking-wider">
+                <th className="px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-600 tracking-wider">
                   Document List
                 </th>
               </tr>
@@ -130,58 +130,58 @@ export default function Users() {
               {currentVendors.map((vendor, index) => (
                 <tr key={vendor.id}>
                   <td className="px-6 py-4 whitespace-no-wrap">
-                <div className="text-sm text-center leading-5 text-gray-500">
+                <div className="text-sm text-center leading-5">
                   {renderSerialNumber(index)}
                 </div>
               </td>
               <td class="px-6 py-4 whitespace-no-wrap">
-                    <div class="text-sm text-center leading-5 text-gray-500">
+                    <div class="text-sm text-center leading-5">
                       {vendor.name}
                     </div>
                   </td>
               <td class="px-6 py-4 whitespace-no-wrap">
-                    <div class="text-sm text-center leading-5 text-gray-500">
+                    <div class="text-sm text-center leading-5">
                       {vendor.organizationName}
                     </div>
                   </td>
                   <td class="px-6 py-4 whitespace-no-wrap">
-                    <div class="text-sm text-center leading-5 text-gray-500">
+                    <div class="text-sm text-center leading-5">
                       {vendor.email}
                     </div>
                   </td>
                   <td class="px-6 py-4 whitespace-no-wrap">
-                    <div class="text-sm text-center leading-5 text-gray-500">
+                    <div class="text-sm text-center leading-5">
                       {vendor.phoneNumber}
                     </div>
                   </td>
                   <td class="px-6 py-4 whitespace-no-wrap">
-                    <div class="text-sm text-center leading-5 text-gray-500">
+                    <div class="text-sm text-center leading-5">
                       {vendor.state}
                     </div>
                   </td>
                   <td class="px-6 py-4 whitespace-no-wrap">
-                    <div class="text-sm text-center leading-5 text-gray-500">
+                    <div class="text-sm text-center leading-5">
                       {vendor.city}
                     </div>
                   </td>
 
                   <td class="px-6 py-4 whitespace-no-wrap">
-                    <div class="text-sm text-center leading-5 text-gray-500">
+                    <div class="text-sm text-center leading-5">
                       {vendor.address}
                     </div>
                   </td>
                   <td class="px-6 py-4 whitespace-no-wrap">
-                    <div class="text-sm text-center leading-5 text-gray-500">
+                    <div class="text-sm text-center leading-5">
                       {vendor.pincode}
                     </div>
                   </td>
                   <td class="px-6 py-4 whitespace-no-wrap">
-                    <div class="text-sm text-center leading-5 text-gray-500">
+                    <div class="text-sm text-center leading-5">
                       {vendor.vendorCategory.name}
                     </div>
                   </td>
                   <td class="px-6 py-4 whitespace-no-wrap">
-                    <div class="text-sm text-center leading-5 text-gray-500">
+                    <div class="text-sm text-center leading-5">
                       {vendor.documentsUploadList
                         .map((item, index) =>
                             <p key={index}>
@@ -211,20 +211,20 @@ export default function Users() {
           <div className="w-64 bg-cyan-500 h-0.5 mb-1"></div>
           <div className="w-72 bg-cyan-500 h-0.5 mb-5"></div>
           <div className="shadow-lg">
-          <div className="rounded-lg shadow-xl border-2 p-0.5 border-cyan-600">
+          <div className="rounded-lg shadow-xl border-2 p-0.5 border-cyan-500">
           <table className="min-w-full  bg-white ">
           <thead>
               <tr>
-              <th className="px-6 py-3 border-b-2 border-gray-300 text-center text-sm leading-4 text-gray-600 tracking-wider">
+              <th className="px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-600 tracking-wider">
                   Sr. No.
                 </th>
-                <th className="px-6 py-3 border-b-2 border-gray-300 text-center text-sm leading-4 text-gray-600 tracking-wider">
+                <th className="px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-600 tracking-wider">
                   Name
                 </th>
-                <th className="px-6 py-3 border-b-2 border-gray-300 text-center text-sm leading-4 text-gray-600 tracking-wider">
+                <th className="px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-600 tracking-wider">
                   Email
                 </th>
-                <th className="px-6 py-3 border-b-2 border-gray-300 text-center text-sm leading-4 text-gray-600 tracking-wider">
+                <th className="px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-600 tracking-wider">
                   Phone Number
                 </th>
               </tr>
@@ -233,23 +233,23 @@ export default function Users() {
               {currentProjectHeads.map((head, index) => (
                 <tr key={head.id}>
                   <td className="px-6 py-4 text-center whitespace-no-wrap">
-                <div className="text-sm leading-5 text-gray-500">
+                <div className="text-sm leading-5 ">
                   {renderSerialNumber(index)}
                 </div>
               </td>
               <td className="px-6 py-4 text-center whitespace-no-wrap">
-                    <div className="text-sm leading-5 text-gray-500">
+                    <div className="text-sm leading-5 ">
                       {head.name}
                     </div>
                   </td>
               
                   <td className="px-6 py-4 text-center whitespace-no-wrap">
-                    <div className="text-sm leading-5 text-gray-500">
+                    <div className="text-sm leading-5 ">
                       {head.email}
                     </div>
                   </td>
                   <td className="px-6 py-4 text-center whitespace-no-wrap">
-                    <div className="text-sm leading-5 text-gray-500">
+                    <div className="text-sm leading-5 ">
                       {head.phoneNumber}
                     </div>
                   </td>
