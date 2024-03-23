@@ -159,8 +159,8 @@ const Header = () => {
             </button>
 
             {isNotiVisible && (
-              <div className="dropdown-menu absolute right-2 md:right-10 top-24 shadow-md shadow-black/5 z-30 max-w-xs w-full bg-white rounded-md border border-gray-100">
-                <div className="flex items-center px-4 pt-4 border-b border-b-gray-100 notification-tab">
+              <div className="dropdown-menu absolute right-2 md:right-10 top-24 shadow-lg shadow-black/5 z-30 max-w-xs w-full bg-zinc-100 rounded-md border border-gray-100">
+                <div className="flex items-center shadow-lg px-4 pt-4 border-b border-gray-400 notification-tab">
                   <button
                     type="button"
                     data-tab="notification"
@@ -234,18 +234,18 @@ const Header = () => {
                   }}>{profile.name}</p>
               </li>
               <ul
-                className="absolute right-2 top-24 bg-white py-3 max-w-24 w-full rounded-md border border-gray-100"
+                className="mt-1 absolute right-2 top-24 bg-zinc-300 py-3 max-w-40 w-full rounded-md border shadow-lg border-gray-300"
                 hidden={menu}
               >
-                <li className="font-sans font-bold text-left pl-4 cursor cursor-pointer w-full hover:bg-blue-300">
+                <li className="font-sans font-bold text-left pl-4 cursor cursor-pointer w-full hover:bg-cyan-300">
                   <NavLink to="profile">Profile</NavLink>
                 </li>
-                <li className="font-sans font-bold pl-4 text-left cursor cursor-pointer w-full hover:bg-blue-300">
+                <li className="font-sans font-bold pl-4 text-left cursor cursor-pointer w-full hover:bg-cyan-300">
                   <NavLink to="changePassword">
                     Change Password
                   </NavLink>
                 </li>                  
-                <li className="font-sans font-bold pl-4 text-left cursor cursor-pointer w-full hover:bg-blue-300">
+                <li className="font-sans font-bold pl-4 text-left cursor cursor-pointer w-full hover:bg-cyan-300">
                   <NavLink to="/" onClick={logOut}>
                     Log Out
                   </NavLink>
