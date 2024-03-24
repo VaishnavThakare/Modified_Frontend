@@ -20,19 +20,21 @@ export default function Sidebar({
     });
   };
 
-  const filterMenuItems = (items, term) => {
-    return items.filter((item) => {
-      if (item.text.toLowerCase().includes(term.toLowerCase())) {
-        return true;
-      }
+ const filterMenuItems = (items, term) => {
+  return items.filter((item) => {
+    if (typeof item.text === 'string' && item.text.toLowerCase().includes(term.toLowerCase())) {
+      return true;
+    }
 
-      if (item.subItems) {
-        return filterMenuItems(item.subItems, term).length > 0;
-      }
+    if (item.subItems) {
+      return filterMenuItems(item.subItems, term).length > 0;
+    }
 
-      return false;
-    });
-  };
+    return false;
+  });
+};
+
+
 
   const filteredMenuItems = filterMenuItems(menuItems, searchTerm);
 
