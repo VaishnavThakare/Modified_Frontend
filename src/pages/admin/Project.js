@@ -411,64 +411,75 @@ export default function Project() {
                     </tr>
                   </thead>
                   <tbody className="bg-white">
-                    {currentItems.map((proj, index) => (
-                      <tr key={proj.id}>
-                        <td className="px-6 py-4 text-center text-sm whitespace-no-wrap">
-                          <div className=" leading-5 text-gray-600">
-                            {index + 1}
-                          </div>
-                        </td>
-                        <td className="px-6 py-4 text-center text-sm whitespace-no-wrap">
-                          <div className=" leading-5 text-gray-600">
-                            {proj.name}
-                          </div>
-                        </td>
-                        <td className="px-6 py-4 text-center text-sm whitespace-no-wrap">
-                          <div className=" leading-5 text-gray-600">
-                            {proj.projectHeadName}
-                          </div>
-                        </td>
-                        <td className="px-6 py-4 text-center text-sm whitespace-no-wrap">
-                          <div className="leading-5 text-gray-600">
-                            <span className="bg-green-300 text-green-600  font-medium me-2 px-2.5 py-0.5 rounded">
-                              {proj.projectStatus}
-                            </span>
-                          </div>
-                        </td>
-                        <td className="px-6 py-4 text-center text-sm whitespace-no-wrap">
-                          <div className="leading-5 text-gray-600">
-                            {proj.description}
-                          </div>
-                        </td>
-                        <td className="px-6 py-4 text-center text-sm whitespace-no-wrap">
-                          <div className="leading-5 text-gray-600">
-                            {new Date(proj.createdOn).toLocaleDateString(
-                              "es-CL"
-                            )}
-                          </div>
-                        </td>
-                        <td className="px-4 py-2 flex flex-row justify-center ">
-                          <button
-                            className="mr-2"
-                            onClick={() => handleEditDetails(proj.id)}
-                          >
-                            <FontAwesomeIcon
-                              icon={faEdit}
-                              className="text-cyan-600 text-xl"
-                            />
-                          </button>
-                          <button
-                            className="mr-2"
-                            onClick={() => handleViewDetails(proj.id)}
-                          >
-                            <FontAwesomeIcon
-                              icon={faEye}
-                              className="text-cyan-600 text-xl"
-                            />
-                          </button>
+                    {currentItems.length === 0 ? (
+                      <tr>
+                        <td
+                          colSpan="7"
+                          className="px-6 py-4 text-center text-sm whitespace-no-wrap"
+                        >
+                          No data available
                         </td>
                       </tr>
-                    ))}
+                    ) : (
+                      currentItems.map((proj, index) => (
+                        <tr key={proj.id}>
+                          <td className="px-6 py-4 text-center text-sm whitespace-no-wrap">
+                            <div className=" leading-5 text-gray-600">
+                              {index + 1}
+                            </div>
+                          </td>
+                          <td className="px-6 py-4 text-center text-sm whitespace-no-wrap">
+                            <div className=" leading-5 text-gray-600">
+                              {proj.name}
+                            </div>
+                          </td>
+                          <td className="px-6 py-4 text-center text-sm whitespace-no-wrap">
+                            <div className=" leading-5 text-gray-600">
+                              {proj.projectHeadName}
+                            </div>
+                          </td>
+                          <td className="px-6 py-4 text-center text-sm whitespace-no-wrap">
+                            <div className="leading-5 text-gray-600">
+                              <span className="bg-green-300 text-green-600  font-medium me-2 px-2.5 py-0.5 rounded">
+                                {proj.projectStatus}
+                              </span>
+                            </div>
+                          </td>
+                          <td className="px-6 py-4 text-center text-sm whitespace-no-wrap">
+                            <div className="leading-5 text-gray-600">
+                              {proj.description}
+                            </div>
+                          </td>
+                          <td className="px-6 py-4 text-center text-sm whitespace-no-wrap">
+                            <div className="leading-5 text-gray-600">
+                              {new Date(proj.createdOn).toLocaleDateString(
+                                "es-CL"
+                              )}
+                            </div>
+                          </td>
+                          <td className="px-4 py-2 flex flex-row justify-center ">
+                            <button
+                              className="mr-2"
+                              onClick={() => handleEditDetails(proj.id)}
+                            >
+                              <FontAwesomeIcon
+                                icon={faEdit}
+                                className="text-cyan-600 text-xl"
+                              />
+                            </button>
+                            <button
+                              className="mr-2"
+                              onClick={() => handleViewDetails(proj.id)}
+                            >
+                              <FontAwesomeIcon
+                                icon={faEye}
+                                className="text-cyan-600 text-xl"
+                              />
+                            </button>
+                          </td>
+                        </tr>
+                      ))
+                    )}
                   </tbody>
                 </table>
               </div>

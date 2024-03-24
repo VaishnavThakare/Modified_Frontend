@@ -98,20 +98,20 @@ const GrnDetails = () => {
       <div>
         <div className="flex justify-between">
           <div>
-        <div className="flex text-2xl font-bold text-gray-500 ">
-          <h2 className="text-left text-cyan-500">ALL ABOUT GRN</h2>
-        </div>
-        <div className="w-52 bg-cyan-500 h-0.5 mb-1"></div>
-        <div className="w-96 bg-cyan-500 h-0.5 mb-5"></div>
-        </div>
-        <div>
-        <button
-          className="mt-4 bg-cyan-500 text-white px-4 py-2 rounded block mx-auto"
-          onClick={onCancel}
-        >
-          Close
-        </button>
-        </div>
+            <div className="flex text-2xl font-bold text-gray-500 ">
+              <h2 className="text-left text-cyan-500">ALL ABOUT GRN</h2>
+            </div>
+            <div className="w-52 bg-cyan-500 h-0.5 mb-1"></div>
+            <div className="w-96 bg-cyan-500 h-0.5 mb-5"></div>
+          </div>
+          <div>
+            <button
+              className="mt-4 bg-cyan-500 text-white px-4 py-2 rounded block mx-auto"
+              onClick={onCancel}
+            >
+              Close
+            </button>
+          </div>
         </div>
 
         <div className="min-w-full border-2 border-cyan-500 rounded-lg mb-5 bg-white">
@@ -167,7 +167,7 @@ const GrnDetails = () => {
             </p>
           </div>
         </div>
-        
+
         <br></br>
         <br></br>
 
@@ -213,7 +213,6 @@ const GrnDetails = () => {
                 <th className="px-6 py-3  text-center text-sm leading-4 text-gray-600 tracking-wider">
                   VIEW/DOWNLOAD DOCUMENTS
                 </th>
-                
               </tr>
               <tr className=" text-gray-600">
                 <td colSpan="10" className=" px-4 py-1">
@@ -273,7 +272,6 @@ const GrnDetails = () => {
                       />
                     </a>
                   </td>
-                  
                 </tr>
               ))}
             </tbody>
@@ -333,69 +331,80 @@ const GrnDetails = () => {
                 </tr>
               </thead>
               <tbody>
-                {currentGrns.map((grn) => (
-                  <tr key={grn.id} className="bg-white">
-                    <td className="px-4 py-2 text-center">{grn.grnNo}</td>
-                    <td className="px-4 py-2 text-center">
-                      {grn.purchaseOrder.orderNo}
-                    </td>
-                    <td className="px-4 py-2 text-center">
-                      {formatDateTime(grn.sendOn)}
-                    </td>
-                    <td className="px-4 py-2 text-center">
-                      <button
-                        className={`py-1 px-2 rounded ${
-                          grn.isAccepted
-                            ? "bg-green-200 text-green-700"
-                            : "bg-red-200 text-red-600"
-                        }`}
-                        style={{ minWidth: "6rem" }}
-                      >
-                        {grn.isAccepted ? "Accepted" : "Pending"}
-                      </button>
-                    </td>
-                    <td className="px-4 py-2 text-center">
-                      <a
-                        href={grn.documentPath}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <FontAwesomeIcon
-                          icon={faFileDownload}
-                          className="text-cyan-600 text-xl"
-                        />
-                      </a>
-                    </td>
-                    <td className="px-4 py-2 bg-white text-center">
-                      {grn.shipmentStatus ? (
-                        <span className="text-green-500">Complete</span>
-                      ) : (
-                        <span className="text-red-500">Partial</span>
-                      )}
-                    </td>
-                    <td className="px-4 py-2 text-center">{grn.comment}</td>
-                    <td className="px-4 py-2 text-left flex flex-row ">
-                      <button
-                        className="mr-2"
-                        onClick={() => handleEditDetails(grn.id)}
-                      >
-                        <FontAwesomeIcon
-                          icon={faEdit}
-                          className="text-cyan-600 text-xl"
-                        />
-                      </button>
-                      <button
-                        className="mr-2"
-                        onClick={() => handleViewDetails(grn.id)}
-                      >
-                        <FontAwesomeIcon
-                          icon={faEye}
-                          className="text-cyan-600 text-xl"
-                        />
-                      </button>
+                {currentGrns.length === 0 ? (
+                  <tr>
+                    <td
+                      colSpan="8"
+                      className="px-4 py-2 whitespace-no-wrap text-center text-sm"
+                    >
+                      No data available
                     </td>
                   </tr>
-                ))}
+                ) : (
+                  currentGrns.map((grn) => (
+                    <tr key={grn.id} className="bg-white">
+                      <td className="px-4 py-2 text-center">{grn.grnNo}</td>
+                      <td className="px-4 py-2 text-center">
+                        {grn.purchaseOrder.orderNo}
+                      </td>
+                      <td className="px-4 py-2 text-center">
+                        {formatDateTime(grn.sendOn)}
+                      </td>
+                      <td className="px-4 py-2 text-center">
+                        <button
+                          className={`py-1 px-2 rounded ${
+                            grn.isAccepted
+                              ? "bg-green-200 text-green-700"
+                              : "bg-red-200 text-red-600"
+                          }`}
+                          style={{ minWidth: "6rem" }}
+                        >
+                          {grn.isAccepted ? "Accepted" : "Pending"}
+                        </button>
+                      </td>
+                      <td className="px-4 py-2 text-center">
+                        <a
+                          href={grn.documentPath}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <FontAwesomeIcon
+                            icon={faFileDownload}
+                            className="text-cyan-600 text-xl"
+                          />
+                        </a>
+                      </td>
+                      <td className="px-4 py-2 bg-white text-center">
+                        {grn.shipmentStatus ? (
+                          <span className="text-green-500">Complete</span>
+                        ) : (
+                          <span className="text-red-500">Partial</span>
+                        )}
+                      </td>
+                      <td className="px-4 py-2 text-center">{grn.comment}</td>
+                      <td className="px-4 py-2 text-left flex flex-row ">
+                        <button
+                          className="mr-2"
+                          onClick={() => handleEditDetails(grn.id)}
+                        >
+                          <FontAwesomeIcon
+                            icon={faEdit}
+                            className="text-cyan-600 text-xl"
+                          />
+                        </button>
+                        <button
+                          className="mr-2"
+                          onClick={() => handleViewDetails(grn.id)}
+                        >
+                          <FontAwesomeIcon
+                            icon={faEye}
+                            className="text-cyan-600 text-xl"
+                          />
+                        </button>
+                      </td>
+                    </tr>
+                  ))
+                )}
               </tbody>
             </table>
           </div>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import axios from 'axios';
-import { toast, ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import axios from "axios";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const PurchaseOrderFormPHead = () => {
   const [formData, setFormData] = useState({
@@ -11,8 +11,7 @@ const PurchaseOrderFormPHead = () => {
     ExpectedDelivery: "",
     Document: null,
     IsActive: true,
-    ProjectId: "" // Add ProjectId state
-
+    ProjectId: "", // Add ProjectId state
   });
   const [vendors, setVendors] = useState([]); // Rename vendorNames to vendors
   const [projects, setProjects] = useState([]); // Add state for projects
@@ -20,7 +19,9 @@ const PurchaseOrderFormPHead = () => {
   useEffect(() => {
     const fetchVendors = async () => {
       try {
-        const response = await axios.get("https://localhost:7254/api/Vendor/All");
+        const response = await axios.get(
+          "https://localhost:7254/api/Vendor/All"
+        );
         setVendors(response.data); // Store entire vendor objects
       } catch (error) {
         console.error("Error fetching vendors:", error);
@@ -39,7 +40,10 @@ const PurchaseOrderFormPHead = () => {
     } else {
       setFormData({
         ...formData,
-        [event.target.name]: event.target.type === "checkbox" ? event.target.checked : event.target.value,
+        [event.target.name]:
+          event.target.type === "checkbox"
+            ? event.target.checked
+            : event.target.value,
       });
     }
   };
@@ -50,13 +54,17 @@ const PurchaseOrderFormPHead = () => {
     const formDataToSend = new FormData();
     formDataToSend.append("OrderNo", formData.OrderNo);
     formDataToSend.append("VendorId", formData.VendorId);
+    formDataToSend.append("ProjectId", formData.ProjectId);
     formDataToSend.append("OrderAmount", formData.OrderAmount);
     formDataToSend.append("ExpectedDelivery", formData.ExpectedDelivery);
     formDataToSend.append("Document", formData.Document);
     formDataToSend.append("IsActive", formData.IsActive); // Append the Document field with the file
 
     try {
-      const response = await axios.post("https://localhost:7254/api/PurchaseOrder/Add", formDataToSend);
+      const response = await axios.post(
+        "https://localhost:7254/api/PurchaseOrder/Add",
+        formDataToSend
+      );
 
       if (response.status === 200) {
         toast.success("Purchase order created successfully!");
@@ -66,7 +74,7 @@ const PurchaseOrderFormPHead = () => {
           OrderAmount: "",
           ExpectedDelivery: "",
           Document: null,
-          IsActive: true
+          IsActive: true,
         });
       } else {
         toast.error("Error creating purchase order");
@@ -82,7 +90,9 @@ const PurchaseOrderFormPHead = () => {
     const fetchProjects = async () => {
       try {
         const sid = sessionStorage.getItem("sid");
-        const response = await axios.get(`https://localhost:7254/api/Project/ProjectHead/${sid}`);
+        const response = await axios.get(
+          `https://localhost:7254/api/Project/ProjectHead/${sid}`
+        );
         setProjects(response.data);
       } catch (error) {
         console.error("Error fetching projects:", error);
@@ -128,12 +138,17 @@ const PurchaseOrderFormPHead = () => {
               >
                 <option value="">-- Select Vendor --</option>
                 {vendors.map((vendor, index) => (
-                  <option key={index} value={vendor.id}>{vendor.name}</option> // Use vendor.id as value
+                  <option key={index} value={vendor.id}>
+                    {vendor.name}
+                  </option> // Use vendor.id as value
                 ))}
               </select>
             </div>
             <div>
-              <label htmlFor="ProjectId" className="block text-sm font-medium text-gray-700">
+              <label
+                htmlFor="ProjectId"
+                className="block text-sm font-medium text-gray-700"
+              >
                 Select Project
               </label>
               <select
@@ -145,7 +160,9 @@ const PurchaseOrderFormPHead = () => {
               >
                 <option value="">-- Select Project --</option>
                 {projects.map((project) => (
-                  <option key={project.id} value={project.id}>{project.name}</option>
+                  <option key={project.id} value={project.id}>
+                    {project.name}
+                  </option>
                 ))}
               </select>
             </div>

@@ -123,120 +123,140 @@ const PheadList = () => {
     <div className="relative">
       <ToastContainer />
       <div className="flex text-2xl font-bold text-gray-500">
-            <h2 className="text-left text-cyan-500">INVOICES  LIST</h2>
-          </div>
-          <div className="w-64 bg-cyan-500 h-0.5 mb-1"></div>
-          <div className="w-72 bg-cyan-500 h-0.5 mb-5"></div>
+        <h2 className="text-left text-cyan-500">INVOICES LIST</h2>
+      </div>
+      <div className="w-64 bg-cyan-500 h-0.5 mb-1"></div>
+      <div className="w-72 bg-cyan-500 h-0.5 mb-5"></div>
       <div className="overflow-x-auto mt-8 ml-2 mr-2 rounded">
-      <div className="shadow-xl">
+        <div className="shadow-xl">
           <div className="border-2 border-cyan-500 rounded-lg shadow-xl p-0.5">
-        <table className="table-auto w-full rounded-lg  bg-white">
-          <thead>
-            <tr className="text-gray-600">
-              <th className="px-4 py-2 text-left">SR. NO.</th>
-              <th className="px-4 py-2 text-left">Invoice No.</th>
-              <th className="px-4 py-2 text-left">Amount</th>
-              <th className="px-4 py-2 text-left">SENT ON (date)</th>
-              <th className="px-4 py-2 text-left">PAYMENT STATUS</th>
-              <th className="px-4 py-2 text-left">Accept/Reject</th>
-              <th className="px-4 py-2 text-left">ACTIONS</th>
-            </tr>
-            <tr className="text-gray-600">
-              <td colSpan="9" className="px-4 py-1">
-                <div style={{ borderTop: "2px solid gray" }}></div>
-              </td>
-            </tr>
-          </thead>
-          <tbody>
-            {currentItems.map((item, index) => (
-              <tr className="bg-white" key={item.id}>
-                <td className="px-4 py-2">
-                  {(currentPage - 1) * itemsPerPage + index + 1}
-                </td>
-                <td className="px-4 py-2">{item.invoiceNo}</td>
-                <td className="px-4 py-2">{item.amount}</td>
-                <td className="px-4 py-2">{formatDateTime(item.sendOn)}</td>
-                <td className="px-4 py-2">
-                  <button
-                    className={`py-1 px-2 rounded ${
-                      item.paymentStatus
-                        ? "bg-green-200 text-green-700"
-                        : "bg-red-200 text-red-600"
-                    }`}
-                    style={{ minWidth: "6rem" }}
-                  >
-                    {item.paymentStatus ? "Paid" : "Unpaid"}
-                  </button>
-                </td>
-                <td className="px-4 py-2">
-                  <button
-                    className={`py-1 px-2 rounded ${
-                      item.isAccepted != null
-                        ? item.isAccepted
-                          ? "bg-green-200 text-green-700"
-                          : "bg-red-200 text-red-600"
-                        : "bg-yellow-200 text-yellow-600"
-                    }`}
-                    style={{ minWidth: "6rem" }}
-                  >
-                    {item.isAccepted != null
-                      ? item.isAccepted
-                        ? "Already Accepted"
-                        : "Already Rejected"
-                      : "Not Accepted/Rejected"}
-                  </button>
-                </td>
-                <td className="px-4 py-2 bg-white">
-                  {item.isAccepted == null ? (
-                    <button onClick={() => handleEdit(item)} className={`mr-2`}>
-                      <FontAwesomeIcon
-                        icon={faEdit}
-                        className={`text-cyan-600 text-xl`}
-                      />
-                    </button>
-                  ) : (
-                    ""
-                  )}
+            <table className="table-auto w-full rounded-lg  bg-white">
+              <thead>
+                <tr className="text-gray-600">
+                  <th className="px-4 py-2 text-left">SR. NO.</th>
+                  <th className="px-4 py-2 text-left">Invoice No.</th>
+                  <th className="px-4 py-2 text-left">Amount</th>
+                  <th className="px-4 py-2 text-left">SENT ON (date)</th>
+                  <th className="px-4 py-2 text-left">PAYMENT STATUS</th>
+                  <th className="px-4 py-2 text-left">Accept/Reject</th>
+                  <th className="px-4 py-2 text-left">ACTIONS</th>
+                </tr>
+                <tr className="text-gray-600">
+                  <td colSpan="9" className="px-4 py-1">
+                    <div style={{ borderTop: "2px solid gray" }}></div>
+                  </td>
+                </tr>
+              </thead>
+              <tbody>
+                {currentItems.length === 0 ? (
+                  <tr>
+                    <td
+                      colSpan="7"
+                      className="px-4 py-2 whitespace-no-wrap text-center text-sm"
+                    >
+                      No data available
+                    </td>
+                  </tr>
+                ) : (
+                  currentItems.map((item, index) => (
+                    <tr className="bg-white" key={item.id}>
+                      <td className="px-4 py-2">
+                        {(currentPage - 1) * itemsPerPage + index + 1}
+                      </td>
+                      <td className="px-4 py-2">{item.invoiceNo}</td>
+                      <td className="px-4 py-2">{item.amount}</td>
+                      <td className="px-4 py-2">
+                        {formatDateTime(item.sendOn)}
+                      </td>
+                      <td className="px-4 py-2">
+                        <button
+                          className={`py-1 px-2 rounded ${
+                            item.paymentStatus
+                              ? "bg-green-200 text-green-700"
+                              : "bg-red-200 text-red-600"
+                          }`}
+                          style={{ minWidth: "6rem" }}
+                        >
+                          {item.paymentStatus ? "Paid" : "Unpaid"}
+                        </button>
+                      </td>
+                      <td className="px-4 py-2">
+                        <button
+                          className={`py-1 px-2 rounded ${
+                            item.isAccepted != null
+                              ? item.isAccepted
+                                ? "bg-green-200 text-green-700"
+                                : "bg-red-200 text-red-600"
+                              : "bg-yellow-200 text-yellow-600"
+                          }`}
+                          style={{ minWidth: "6rem" }}
+                        >
+                          {item.isAccepted != null
+                            ? item.isAccepted
+                              ? "Already Accepted"
+                              : "Already Rejected"
+                            : "Not Accepted/Rejected"}
+                        </button>
+                      </td>
+                      <td className="px-4 py-2 bg-white">
+                        {item.isAccepted == null ? (
+                          <button
+                            onClick={() => handleEdit(item)}
+                            className={`mr-2`}
+                          >
+                            <FontAwesomeIcon
+                              icon={faEdit}
+                              className={`text-cyan-600 text-xl`}
+                            />
+                          </button>
+                        ) : (
+                          ""
+                        )}
 
-                  <button
-                    onClick={() => handleView(item.id)}
-                    className={`mr-2`}
-                  >
-                    <FontAwesomeIcon
-                      icon={faEye}
-                      className={`text-cyan-600 text-xl`}
-                    />
-                  </button>
-                  {editedItem && editedItem.id === item.id && (
-                    <>
-                      <button
-                        onClick={() => handleAccept(item.id, editedComment)}
-                        className="px-4 py-2 mr-2 bg-green-500 text-white rounded hover:bg-green-600"
-                      >
-                        Accept
-                      </button>
-                      <button
-                        onClick={() => handleReject(item.id, editedComment)}
-                        className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
-                      >
-                        Reject
-                      </button>
-                      <textarea
-                        rows="2"
-                        cols="25"
-                        value={editedComment}
-                        onChange={(e) => handleCommentChange(e, item.id)}
-                        className="border rounded px-2 py-1 w-full focus:outline-none focus:ring focus:border-blue-300"
-                        placeholder="Add comments..."
-                      />
-                    </>
-                  )}
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-        </div>
+                        <button
+                          onClick={() => handleView(item.id)}
+                          className={`mr-2`}
+                        >
+                          <FontAwesomeIcon
+                            icon={faEye}
+                            className={`text-cyan-600 text-xl`}
+                          />
+                        </button>
+                        {editedItem && editedItem.id === item.id && (
+                          <>
+                            <button
+                              onClick={() =>
+                                handleAccept(item.id, editedComment)
+                              }
+                              className="px-4 py-2 mr-2 bg-green-500 text-white rounded hover:bg-green-600"
+                            >
+                              Accept
+                            </button>
+                            <button
+                              onClick={() =>
+                                handleReject(item.id, editedComment)
+                              }
+                              className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+                            >
+                              Reject
+                            </button>
+                            <textarea
+                              rows="2"
+                              cols="25"
+                              value={editedComment}
+                              onChange={(e) => handleCommentChange(e, item.id)}
+                              className="border rounded px-2 py-1 w-full focus:outline-none focus:ring focus:border-blue-300"
+                              placeholder="Add comments..."
+                            />
+                          </>
+                        )}
+                      </td>
+                    </tr>
+                  ))
+                )}
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
 

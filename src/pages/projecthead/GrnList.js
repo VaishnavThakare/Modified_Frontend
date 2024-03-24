@@ -15,7 +15,6 @@ import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 import EditGrnDetails from "./EditGrnDetails"; // Import the EditGrnDetails component
 
-
 const GrnList = () => {
   const [grnData, setGrnData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -130,7 +129,9 @@ const GrnList = () => {
                 <td className="py-2">
                   <span className="font-bold">Last Modified on:</span>
                 </td>
-                <td className="py-2">{formatDateTime(grnDetails.lastModifiedOn)}</td>
+                <td className="py-2">
+                  {formatDateTime(grnDetails.lastModifiedOn)}
+                </td>
               </tr>
               <tr>
                 <td className="py-2">
@@ -221,68 +222,79 @@ const GrnList = () => {
               </td>
             </tr>
           </thead>
-          <tbody>
-            {currentItems.map((item, index) => (
-              <tr className="bg-white" key={item.id}>
-                <td className="px-4 py-2">
-                  {(currentPage - 1) * itemsPerPage + index + 1}
-                </td>
-                <td className="px-4 py-2">{item.grnNo}</td>
-                <td className="px-4 py-2">{item.purchaseOrder.orderNo}</td>
-                <td className="px-4 py-2">{formatDateTime(item.sendOn)}</td>
-                <td className="px-4 py-2">
-                  {item.isAccepted === true && (
-                    <button
-                      className="py-1 px-2 rounded bg-green-200 text-green-700"
-                      style={{ minWidth: "6rem" }}
-                    >
-                      Accepted
-                    </button>
-                  )}
-                  {item.isAccepted === false && (
-                    <button
-                      className="py-1 px-2 rounded bg-red-200 text-red-600"
-                      style={{ minWidth: "6rem" }}
-                    >
-                      Rejected
-                    </button>
-                  )}
-                  {item.isAccepted === null && (
-                    <button
-                      className="py-1 px-2 rounded bg-yellow-200 text-yellow-700"
-                      style={{ minWidth: "6rem" }}
-                    >
-                      Pending
-                    </button>
-                  )}
-                </td>
-
-                <td className="px-4 py-2 bg-white">
-                  {item.shipmentStatus ? (
-                    <span className="text-green-500">Complete Shipment</span>
-                  ) : (
-                    <span className="text-red-500">Partial Shipment</span>
-                  )}
-                </td>
-                <td className="px-4 py-2 bg-white">
-                  <button onClick={() => handleEdit(item)} className={`mr-2`}>
-                    <FontAwesomeIcon
-                      icon={faEdit}
-                      className={`text-cyan-600 text-xl`}
-                    />
-                  </button>
-                  <button
-                    onClick={() => handleView(item.id)}
-                    className={`mr-2`}
-                  >
-                    <FontAwesomeIcon
-                      icon={faEye}
-                      className={`text-cyan-600 text-xl`}
-                    />
-                  </button>
+          <tbody className="bg-white">
+            {currentItems.length === 0 ? (
+              <tr>
+                <td
+                  colSpan="7"
+                  className="px-6 py-4 whitespace-no-wrap text-center text-sm"
+                >
+                  No data available
                 </td>
               </tr>
-            ))}
+            ) : (
+              currentItems.map((item, index) => (
+                <tr className="bg-white" key={item.id}>
+                  <td className="px-4 py-2">
+                    {(currentPage - 1) * itemsPerPage + index + 1}
+                  </td>
+                  <td className="px-4 py-2">{item.grnNo}</td>
+                  <td className="px-4 py-2">{item.purchaseOrder.orderNo}</td>
+                  <td className="px-4 py-2">{formatDateTime(item.sendOn)}</td>
+                  <td className="px-4 py-2">
+                    {item.isAccepted === true && (
+                      <button
+                        className="py-1 px-2 rounded bg-green-200 text-green-700"
+                        style={{ minWidth: "6rem" }}
+                      >
+                        Accepted
+                      </button>
+                    )}
+                    {item.isAccepted === false && (
+                      <button
+                        className="py-1 px-2 rounded bg-red-200 text-red-600"
+                        style={{ minWidth: "6rem" }}
+                      >
+                        Rejected
+                      </button>
+                    )}
+                    {item.isAccepted === null && (
+                      <button
+                        className="py-1 px-2 rounded bg-yellow-200 text-yellow-700"
+                        style={{ minWidth: "6rem" }}
+                      >
+                        Pending
+                      </button>
+                    )}
+                  </td>
+
+                  <td className="px-4 py-2 bg-white">
+                    {item.shipmentStatus ? (
+                      <span className="text-green-500">Complete Shipment</span>
+                    ) : (
+                      <span className="text-red-500">Partial Shipment</span>
+                    )}
+                  </td>
+                  <td className="px-4 py-2 bg-white">
+                    <button onClick={() => handleEdit(item)} className={`mr-2`}>
+                      <FontAwesomeIcon
+                        icon={faEdit}
+                        className={`text-cyan-600 text-xl`}
+                      />
+                    </button>
+                    <button
+                      onClick={() => handleView(item.id)}
+                      className={`mr-2`}
+                    >
+                      <FontAwesomeIcon
+                        icon={faEye}
+                        className={`text-cyan-600 text-xl`}
+                      />
+                    </button>
+                  </td>
+                </tr>
+              ))
+            )}
           </tbody>
         </table>
       </div>

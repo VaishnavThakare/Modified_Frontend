@@ -10,49 +10,41 @@ export default function VendorDashboard() {
   const menuItems = [
     {
       text: "DASHBOARD",
-      // icon: "ri-home-2-line",
       link: "dashboard",
       bgColor: "bg-cyan-300",
     },
     {
       text: "REQUEST FOR PROPOSAL (RFP)",
-      // icon: "ri ri-archive-2-line",
       link: "#",
       bgColor: "bg-cyan-400",
       subItems: [{ text: "For You", link: "rfp" }],
     },
     {
       text: "DOCUMENTS",
-      // icon: "ri ri-archive-2-line",
       link: "#",
       bgColor: "bg-cyan-500",
       subItems: [{ text: "Upload Documents", link: "upload-document" }],
     },
     {
       text: "PURCHASE ORDER",
-      // icon: "ri ri-archive-2-line",
       link: "#",
       bgColor: "bg-cyan-600",
       subItems: [{ text: "Purchase Order", link: "po-check" }],
     },
     {
       text: "GRN Details",
-      // icon: "ri ri-archive-2-line",
       link: "#",
       bgColor: "bg-cyan-700",
-      subItems: [{ text: "GRN List", link: "vendor-grnlist" },{ text: "GRN Form", link: "vendor-grnform" }],
-    },
+      subItems: [{ text: "GRN List", link: "vendor-grnlist" },{ text: "GRN Form", link: "vendor-grnform" }],
+    },
     {
       text: "INVOICE",
-      // icon: "ri ri-archive-2-line",
       link: "#",
       bgColor: "bg-cyan-600",
       subItems: [
         { text: "View", link: "view-invoice" },
         { text: "Add", link: "create-invoice" },
-        
       ],
-
     },
   ];
 
@@ -65,10 +57,7 @@ export default function VendorDashboard() {
       <Sidebar
         isMenuVisible={isMenuVisible}
         handleMenuVisible={handleMenuVisible}
-        menuItems={menuItems.map((item) => ({
-          ...item,
-          text: <span className="white-bold-text">{item.text}</span>,
-        }))}
+        menuItems={menuItems}
       />
       <main className="w-full md:w-[calc(100%-256px)] sm:ml-0 md:ml-64 bg-zinc-50 min-h-screen transition-all main">
         <Header handleMenuVisible={handleMenuVisible} />

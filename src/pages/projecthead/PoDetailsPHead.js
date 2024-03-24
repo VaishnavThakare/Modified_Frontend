@@ -44,7 +44,6 @@ const PoDetailsPHead = () => {
   };
 
   const handleView = (item) => {
-    // console.log(id);
     navigate(`/projecthead/po-details-phead/${item.id}`);
   };
 
@@ -81,122 +80,119 @@ const PoDetailsPHead = () => {
         <div className="w-1/3 bg-cyan-400 h-0.5 mb-5"></div>
 
         <div className="shadow-xl">
-        <div className="border-2 border-cyan-500 rounded-lg shadow-xl p-0.5">
+          <div className="border-2 border-cyan-500 rounded-lg shadow-xl p-0.5">
+            <table className="table-auto w-full rounded-lg bg-white">
+              <thead>
+                <tr className="text-gray-600">
+                  <th className="px-4 py-2 text-left ">
+                    Sr.<p></p> No.
+                  </th>
+                  <th className="px-4 py-2 text-left ">
+                    Purchase <p></p>Order No.
+                  </th>
+                  <th className="px-4 py-2 text-left ">
+                    Vendor <p></p>Name
+                  </th>
+                  <th className="px-4 py-2 text-left ">
+                    Release <p></p> On
+                  </th>
+                  <th className="px-4 py-2 text-left ">
+                    Accepted <p></p>On
+                  </th>
+                  <th className="px-4 py-2 text-left ">
+                    PO <p></p>Amount
+                  </th>
+                  <th className="px-4 py-2 text-left ">Status</th>
+                  <th className="px-4 py-2 text-left ">Comments</th>
+                  <th className="px-4 py-2 text-left ">Actions</th>
+                </tr>
+                <tr className=" text-gray-600">
+                  <td colSpan="9" className=" px-4 py-1">
+                    <div style={{ borderTop: "2px solid gray" }}></div>
+                  </td>
+                </tr>
+              </thead>
+              <tbody>
+                {purchaseOrders.length === 0 ? (
+                  <tr>
+                    <td colSpan="9" className="px-4 py-2 text-center">
+                      No data available
+                    </td>
+                  </tr>
+                ) : (
+                  currentItems.map((item, index) => (
+                    <tr key={item.orderNo} className="bg-white">
+                      <td className="px-4 py-2">
+                        {indexOfFirstItem + index + 1}
+                      </td>
+                      <td className="px-4 py-2">{item.orderNo}</td>
+                      <td className="px-4 py-2">{item.vendorName}</td>
+                      <td className="px-4 py-2">
+                        {formatDateTime(item.releaseDate)}
+                      </td>
+                      <td className="px-4 py-2">
+                        {formatDateTime(item.acceptedOn)}
+                      </td>
+                      <td className="px-4 py-2">{item.orderAmount}</td>
+                      <td className="px-4 py-2">
+                        {item.isAccepted === true && (
+                          <button
+                            className="py-1 px-2 rounded bg-green-200 text-green-700"
+                            style={{ minWidth: "6rem" }}
+                          >
+                            Accepted
+                          </button>
+                        )}
+                        {item.isAccepted === false && (
+                          <button
+                            className="py-1 px-2 rounded bg-red-200 text-red-600"
+                            style={{ minWidth: "6rem" }}
+                          >
+                            Rejected
+                          </button>
+                        )}
+                        {item.isAccepted === null && (
+                          <button
+                            className="py-1 px-2 rounded bg-yellow-200 text-yellow-700"
+                            style={{ minWidth: "6rem" }}
+                          >
+                            Pending
+                          </button>
+                        )}
+                      </td>
 
-        <table className="table-auto w-full rounded-lg bg-white">
-          <thead>
-            <tr className="text-gray-600">
-              <th className="px-4 py-2 text-left ">
-                Sr.<p></p> No.
-              </th>
-              <th className="px-4 py-2 text-left ">
-                Purchase <p></p>Order No.
-              </th>
-              <th className="px-4 py-2 text-left ">
-                Vendor <p></p>Name
-              </th>
-              <th className="px-4 py-2 text-left ">
-                Release <p></p> On
-              </th>
-              <th className="px-4 py-2 text-left ">
-                Accepted <p></p>On
-              </th>
-              <th className="px-4 py-2 text-left ">
-                PO <p></p>Amount
-              </th>
-              <th className="px-4 py-2 text-left ">Status</th>
-              <th className="px-4 py-2 text-left ">Comments</th>
-              <th className="px-4 py-2 text-left ">Actions</th>
-            </tr>
-            <tr className=" text-gray-600">
-              <td colSpan="9" className=" px-4 py-1">
-                <div style={{ borderTop: "2px solid gray" }}></div>
-              </td>
-            </tr>
-          </thead>
-          <tbody>
-            {currentItems.map((item, index) => (
-              <tr key={item.orderNo} className="bg-white">
-                <td className="px-4 py-2">{indexOfFirstItem + index + 1}</td>
-                <td className="px-4 py-2">{item.orderNo}</td>
-                <td className="px-4 py-2">{item.vendorName}</td>
-                <td className="px-4 py-2">
-                  {formatDateTime(item.releaseDate)}
-                </td>
-                <td className="px-4 py-2">{formatDateTime(item.acceptedOn)}</td>
-                <td className="px-4 py-2">{item.orderAmount}</td>
-                <td className="px-4 py-2">
-                  <button
-                    className={`py-1 px-2 rounded ${
-                      item.isAccepted
-                        ? "bg-green-200 text-green-700"
-                        : "bg-red-200 text-red-600"
-                    }`}
-                    style={{ minWidth: "6rem" }}
-                  >
-                    {item.isAccepted ? "Accepted" : "Rejected"}
-                  </button>
-                </td>
-                <td className="px-4 py-2 ">{item.comment}</td>
+                      <td className="px-4 py-2 ">{item.comment}</td>
 
-                <td className="px-4 py-2 bg-white">
-                  <button onClick={() => handleEdit(item)} className={`mr-2`}>
-                    <FontAwesomeIcon
-                      icon={faEdit}
-                      className={`text-cyan-600 text-xl`}
-                    />
-                  </button>
-                  <button onClick={() => handleView(item)} className={`mr-2`}>
-                    <FontAwesomeIcon
-                      icon={faEye}
-                      className={`text-cyan-600 text-xl`}
-                    />
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+                      <td className="px-4 py-2 bg-white">
+                        <button
+                          onClick={() => handleEdit(item)}
+                          className={`mr-2`}
+                        >
+                          <FontAwesomeIcon
+                            icon={faEdit}
+                            className={`text-cyan-600 text-xl`}
+                          />
+                        </button>
+                        <button
+                          onClick={() => handleView(item)}
+                          className={`mr-2`}
+                        >
+                          <FontAwesomeIcon
+                            icon={faEye}
+                            className={`text-cyan-600 text-xl`}
+                          />
+                        </button>
+                      </td>
+                    </tr>
+                  ))
+                )}
+              </tbody>
+            </table>
+          </div>
         </div>
-        </div>
-      </div>
-
-      <div className="flex justify-end mt-2 ml-2 mr-2">
-        <table className="table-auto border-collapse rounded border-cyan-500 mb-5">
-          <tbody>
-            <tr>
-              <td className="px-4 py-2" colSpan="10">
-                <button
-                  onClick={handlePrevPage}
-                  className="pagination-button bg-cyan-500 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded-3xl"
-                  disabled={currentPage === 1}
-                >
-                  <FontAwesomeIcon
-                    icon={faArrowLeft}
-                    className="pagination-icon"
-                  />
-                  Previous
-                </button>
-                <button
-                  onClick={handleNextPage}
-                  className="pagination-button bg-cyan-500 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded-3xl ml-2"
-                  disabled={
-                    currentPage ===
-                    Math.ceil(purchaseOrders.length / itemsPerPage)
-                  }
-                >
-                  Next
-                  <FontAwesomeIcon
-                    icon={faArrowRight}
-                    className="pagination-icon"
-                  />
-                </button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
       </div>
     </div>
   );
 };
+
 export default PoDetailsPHead;

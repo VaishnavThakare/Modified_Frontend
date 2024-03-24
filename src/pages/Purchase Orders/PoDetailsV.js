@@ -10,7 +10,7 @@ import {
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const PoDetailsV = () => {
   const [purchaseOrders, setPurchaseOrders] = useState([]);
@@ -228,61 +228,72 @@ const PoDetailsV = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {currentItems.map((order, index) => (
-                    <tr key={order.id} className="bg-white">
-                      <td className="px-4 py-2">
-                        {indexOfFirstItem + index + 1}
-                      </td>
-                      <td className="px-4 py-2">{order.orderNo}</td>
-                      <td className="px-4 py-2">{order.vendorName}</td>
-                      <td className="px-4 py-2">
-                        {formatDateTime(order.releaseDate)}
-                      </td>
-                      <td className="px-4 py-2">{order.orderAmount}</td>
-                      <td className="px-4 py-2">
-                        {order.isAccepted === true && (
-                          <button
-                            className="py-1 px-2 rounded bg-green-200 text-green-700"
-                            style={{ minWidth: "6rem" }}
-                          >
-                            Accepted
-                          </button>
-                        )}
-                        {order.isAccepted === false && (
-                          <button
-                            className="py-1 px-2 rounded bg-red-200 text-red-600"
-                            style={{ minWidth: "6rem" }}
-                          >
-                            Rejected
-                          </button>
-                        )}
-                        {order.isAccepted === null && (
-                          <button
-                            className="py-1 px-2 rounded bg-yellow-200 text-yellow-700"
-                            style={{ minWidth: "6rem" }}
-                          >
-                            Pending
-                          </button>
-                        )}
-                      </td>
-                      <td className="px-4 py-2">
-                        <div className="flex">
-                          <button onClick={() => handleView(order.id)}>
-                            <FontAwesomeIcon
-                              icon={faEye}
-                              className="w-6 h-6 px-2 py-1 text-cyan-600 cursor-pointer"
-                            />
-                          </button>
-                          <button onClick={() => handleEdit(order.id)}>
-                            <FontAwesomeIcon
-                              icon={faEdit}
-                              className="w-6 h-6 px-2 py-1 text-cyan-600 cursor-pointer"
-                            />
-                          </button>
-                        </div>
+                  {currentItems.length === 0 ? (
+                    <tr>
+                      <td
+                        colSpan="7"
+                        className="px-4 py-2 whitespace-no-wrap text-center text-sm"
+                      >
+                        No data available
                       </td>
                     </tr>
-                  ))}
+                  ) : (
+                    currentItems.map((order, index) => (
+                      <tr key={order.id} className="bg-white">
+                        <td className="px-4 py-2">
+                          {indexOfFirstItem + index + 1}
+                        </td>
+                        <td className="px-4 py-2">{order.orderNo}</td>
+                        <td className="px-4 py-2">{order.vendorName}</td>
+                        <td className="px-4 py-2">
+                          {formatDateTime(order.releaseDate)}
+                        </td>
+                        <td className="px-4 py-2">{order.orderAmount}</td>
+                        <td className="px-4 py-2">
+                          {order.isAccepted === true && (
+                            <button
+                              className="py-1 px-2 rounded bg-green-200 text-green-700"
+                              style={{ minWidth: "6rem" }}
+                            >
+                              Accepted
+                            </button>
+                          )}
+                          {order.isAccepted === false && (
+                            <button
+                              className="py-1 px-2 rounded bg-red-200 text-red-600"
+                              style={{ minWidth: "6rem" }}
+                            >
+                              Rejected
+                            </button>
+                          )}
+                          {order.isAccepted === null && (
+                            <button
+                              className="py-1 px-2 rounded bg-yellow-200 text-yellow-700"
+                              style={{ minWidth: "6rem" }}
+                            >
+                              Pending
+                            </button>
+                          )}
+                        </td>
+                        <td className="px-4 py-2">
+                          <div className="flex">
+                            <button onClick={() => handleView(order.id)}>
+                              <FontAwesomeIcon
+                                icon={faEye}
+                                className="w-6 h-6 px-2 py-1 text-cyan-600 cursor-pointer"
+                              />
+                            </button>
+                            <button onClick={() => handleEdit(order.id)}>
+                              <FontAwesomeIcon
+                                icon={faEdit}
+                                className="w-6 h-6 px-2 py-1 text-cyan-600 cursor-pointer"
+                              />
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                    ))
+                  )}
                 </tbody>
               </table>
             </div>

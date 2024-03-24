@@ -32,7 +32,6 @@ const PoDetailsA = () => {
       setPurchaseOrders(response.data);
     } catch (error) {
       console.error("Error fetching purchase orders:", error.message);
-      toast.error("Failed to fetch purchase orders");
     }
   };
 
@@ -45,7 +44,6 @@ const PoDetailsA = () => {
       setShowDetails(true);
     } catch (error) {
       console.error("Error fetching Purchase order:", error);
-      toast.error("Error fetching Purchase order");
     }
   };
 
@@ -148,14 +146,6 @@ const PoDetailsA = () => {
                 </tr>
                 <tr>
                   <td className="py-2">
-                    <span className="font-bold">Status:</span>
-                  </td>
-                  <td className="py-2">
-                    {selectedPurchaseOrder.isAccepted ? "Accepted" : "Rejected"}
-                  </td>
-                </tr>
-                <tr>
-                  <td className="py-2">
                     <span className="font-bold">Comments:</span>
                   </td>
                   <td className="py-2">{selectedPurchaseOrder.comment}</td>
@@ -173,7 +163,9 @@ const PoDetailsA = () => {
               {selectedPurchaseOrder.documentPath && (
                 <button
                   className="bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded"
-                  onClick={() => openDocument(selectedPurchaseOrder.documentPath)}
+                  onClick={() =>
+                    openDocument(selectedPurchaseOrder.documentPath)
+                  }
                 >
                   <FontAwesomeIcon icon={faExternalLinkAlt} className="mr-2" />
                   View Document
@@ -198,7 +190,9 @@ const PoDetailsA = () => {
                 <thead>
                   <tr className="text-gray-600">
                     <th className="px-4 py-2 text-center">Sr. No.</th>
-                    <th className="px-4 py-2 text-center">Purchase Order No.</th>
+                    <th className="px-4 py-2 text-center">
+                      Purchase Order No.
+                    </th>
                     <th className="px-4 py-2 text-center">Vendor Name</th>
                     <th className="px-4 py-2 text-center">Release On</th>
                     <th className="px-4 py-2 text-center">Accepted On</th>
@@ -221,28 +215,53 @@ const PoDetailsA = () => {
                         <td className="px-4 py-2 text-center text-sm">
                           {(currentPage - 1) * itemsPerPage + index + 1}
                         </td>
-                        <td className="px-4 py-2 text-center text-sm">{item.orderNo}</td>
-                        <td className="px-4 py-2 text-center text-sm">{item.vendorName}</td>
+                        <td className="px-4 py-2 text-center text-sm">
+                          {item.orderNo}
+                        </td>
+                        <td className="px-4 py-2 text-center text-sm">
+                          {item.vendorName}
+                        </td>
                         <td className="px-4 py-2 text-center text-sm">
                           {formatDateTime(item.releaseDate)}
                         </td>
                         <td className="px-4 py-2 text-center text-sm">
-                          {item.acceptedOn ? formatDateTime(item.acceptedOn) : "-"}
+                          {item.acceptedOn
+                            ? formatDateTime(item.acceptedOn)
+                            : "-"}
                         </td>
-                        <td className="px-4 py-2 text-center text-sm">{item.orderAmount}</td>
                         <td className="px-4 py-2 text-center text-sm">
-                          <button
-                            className={`py-1 px-2 rounded ${
-                              item.isAccepted
-                                ? "bg-green-200 text-green-700"
-                                : "bg-red-200 text-red-600"
-                            }`}
-                            style={{ minWidth: "6rem" }}
-                          >
-                            {item.isAccepted ? "Accepted" : "Rejected"}
-                          </button>
+                          {item.orderAmount}
                         </td>
-                        <td className="px-4 py-2 text-center text-sm">{item.comment}</td>
+                        <td className="px-4 py-2">
+                          {item.isAccepted === true && (
+                            <button
+                              className="py-1 px-2 rounded bg-green-200 text-green-700"
+                              style={{ minWidth: "6rem" }}
+                            >
+                              Accepted
+                            </button>
+                          )}
+                          {item.isAccepted === false && (
+                            <button
+                              className="py-1 px-2 rounded bg-red-200 text-red-600"
+                              style={{ minWidth: "6rem" }}
+                            >
+                              Rejected
+                            </button>
+                          )}
+                          {item.isAccepted === null && (
+                            <button
+                              className="py-1 px-2 rounded bg-yellow-200 text-yellow-700"
+                              style={{ minWidth: "6rem" }}
+                            >
+                              Pending
+                            </button>
+                          )}
+                        </td>
+
+                        <td className="px-4 py-2 text-center text-sm">
+                          {item.comment}
+                        </td>
                         <td className="px-4 py-2 text-center bg-white">
                           <button
                             onClick={() => handleView(item.id)}
@@ -258,7 +277,10 @@ const PoDetailsA = () => {
                     ))
                   ) : (
                     <tr>
-                      <td colSpan="9" className="px-4 py-2 text-center bg-white">
+                      <td
+                        colSpan="9"
+                        className="px-4 py-2 text-center bg-white"
+                      >
                         No purchase orders found.
                       </td>
                     </tr>
@@ -311,4 +333,3 @@ const PoDetailsA = () => {
 };
 
 export default PoDetailsA;
-
