@@ -30,8 +30,8 @@ export default function Sidebar({
         return filterMenuItems(item.subItems, term).length > 0;
       }
   
-      return false;
-    });
+      return false;
+  });
   };
   
   const filteredMenuItems = filterMenuItems(menuItems, searchTerm);
