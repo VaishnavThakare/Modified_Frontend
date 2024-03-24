@@ -1,18 +1,10 @@
-
-
-
-
-
 import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faEye,
   faEdit,
-  faFileDownload,
   faArrowLeft,
   faArrowRight,
-  faPlane,
-  faTruck,
 } from "@fortawesome/free-solid-svg-icons";
 import { useParams } from "react-router-dom";
 import axios from "axios";
@@ -28,53 +20,53 @@ export default function Project() {
   const [editingProject, setEditingProject] = useState(null);
   const [selectedProject, setSelectedProject] = useState(null);
 
-const getData = async() => {
-  
-  try {
-    let url = `${process.env.REACT_APP_API_URL}/Project/All`;
+  const getData = async () => {
+    try {
+      let url = `${process.env.REACT_APP_API_URL}/Project/All`;
 
-    if (filterOn === "all") {
-      fetchProjectData();
-    } else if (filterOn && filterVal) {
-      url += `?filterOn=${filterOn}&filterVal=${filterVal}`;
+      if (filterOn === "all") {
+        fetchProjectData();
+      } else if (filterOn && filterVal) {
+        url += `?filterOn=${filterOn}&filterVal=${filterVal}`;
+      }
+
+      const response = await axios.get(url);
+      setProjects(response.data);
+    } catch (error) {
+      console.error("Error fetching Project data:", error);
     }
+  };
 
-    const response = await axios.get(url);
-    setProjects(response.data);
-  } catch (error) {
-    console.error("Error fetching Project data:", error);
-  }
-};
+  const fetchProjectData = async () => {
+    try {
+      const response = await axios.get(
+        `${process.env.REACT_APP_API_URL}/Project/All`
+      );
 
-const fetchProjectData = async () => {
-  try {
-    const response = await axios.get(
-      `${process.env.REACT_APP_API_URL}/Project/All`
-    );
+      setProjects(response.data);
+    } catch (error) {
+      console.error("Error fetching Project data:", error);
+    }
+  };
 
-    setProjects(response.data);
-  } catch (error) {
-    console.error("Error fetching Project data:", error);
-  }
-};
+  useEffect(() => {
+    // Fetch project data when the component mounts
+    fetchProjectData();
+  }, []);
 
-useEffect(() => {
-  // Fetch project data when the component mounts
-  fetchProjectData();
-}, []);
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = projects.slice(indexOfFirstItem, indexOfLastItem);
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
-const indexOfLastItem = currentPage * itemsPerPage;
-const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-const currentItems = projects.slice(indexOfFirstItem, indexOfLastItem);
-const paginate = (pageNumber) => setCurrentPage(pageNumber);
-
-const handleChange = (event) => {
-  if (event.target.name === "filterOn") {
-    setFilterOn(event.target.value);
-  } else if (event.target.name === "filterVal") {
-    setFilterVal(event.target.value);
-  }   getData();
-};
+  const handleChange = (event) => {
+    if (event.target.name === "filterOn") {
+      setFilterOn(event.target.value);
+    } else if (event.target.name === "filterVal") {
+      setFilterVal(event.target.value);
+    }
+    getData();
+  };
 
   const handlePrevPage = () => {
     setCurrentPage((prevPage) => Math.max(prevPage - 1, 1));
@@ -100,8 +92,6 @@ const handleChange = (event) => {
 
   // View
   const DetailsView = ({ grnDetails, onCancel }) => {
-   
-
     // useEffect(() => {
     //   const fetchData = async () => {
     //     try {
@@ -118,31 +108,34 @@ const handleChange = (event) => {
     // }, [grnDetails.id]);
 
     // PurchaseOrder Table Functions
-  const [currentPage, setCurrentPage] = useState(1);
-  const [selectedItem, setSelectedItem] = useState(null);
-  const navigate = useNavigate();
-  const itemsPerPage = 5;
-  const [purchaseOrders, setPurchaseOrders] = useState([]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [selectedItem, setSelectedItem] = useState(null);
+    const navigate = useNavigate();
+    const itemsPerPage = 5;
+    const [purchaseOrders, setPurchaseOrders] = useState([]);
 
-  useEffect(() => {
-    fetchPurchaseOrders();
-  }, []);
+    useEffect(() => {
+      fetchPurchaseOrders();
+    }, []);
 
-  const fetchPurchaseOrders = async () => {
-    try {
-      const response = await axios.get(
-        "https://localhost:7254/api/PurchaseOrder/All"
-      );
-      setPurchaseOrders(response.data);
-    } catch (error) {
-      console.error("Error fetching purchase orders:", error.message);
-      toast.error("Failed to fetch purchase orders");
-    }
-  };
+    const fetchPurchaseOrders = async () => {
+      try {
+        const response = await axios.get(
+          "https://localhost:7254/api/PurchaseOrder/All"
+        );
+        setPurchaseOrders(response.data);
+      } catch (error) {
+        console.error("Error fetching purchase orders:", error.message);
+        toast.error("Failed to fetch purchase orders");
+      }
+    };
 
-  const indexOfFirstItem = (currentPage - 1) * itemsPerPage;
-  const indexOfLastItem = currentPage * itemsPerPage;
-  const currentItems = purchaseOrders.slice(indexOfFirstItem, indexOfLastItem);
+    const indexOfFirstItem = (currentPage - 1) * itemsPerPage;
+    const indexOfLastItem = currentPage * itemsPerPage;
+    const currentItems = purchaseOrders.slice(
+      indexOfFirstItem,
+      indexOfLastItem
+    );
 
     const formatDateTime = (dateTime) => {
       const formattedDateTime = new Date(dateTime).toLocaleString("en-US", {
@@ -158,22 +151,22 @@ const handleChange = (event) => {
 
     return (
       <div>
-        <div  className="flex justify-between">
+        <div className="flex justify-between">
           <div>
-        <div className="flex text-2xl font-bold text-gray-500 ">
-          <h2 className="text-left text-cyan-500">PROJECT DETAILS</h2>
-        </div>
-        <div className="w-52 bg-cyan-500 h-0.5 mb-1"></div>
-        <div className="w-96 bg-cyan-500 h-0.5 mb-5"></div>
-        </div>
-        <div>
-        <button
-          className="mt-4 bg-cyan-500 text-white px-4 py-2 rounded block mx-auto"
-          onClick={onCancel}
-        >
-          Close
-        </button>
-        </div>
+            <div className="flex text-2xl font-bold text-gray-500 ">
+              <h2 className="text-left text-cyan-500">PROJECT DETAILS</h2>
+            </div>
+            <div className="w-52 bg-cyan-500 h-0.5 mb-1"></div>
+            <div className="w-96 bg-cyan-500 h-0.5 mb-5"></div>
+          </div>
+          <div>
+            <button
+              className="mt-4 bg-cyan-500 text-white px-4 py-2 rounded block mx-auto"
+              onClick={onCancel}
+            >
+              Close
+            </button>
+          </div>
         </div>
         <div className="min-w-full border-2 border-cyan-500 rounded-lg mb-5 bg-white">
           <div
@@ -224,11 +217,12 @@ const handleChange = (event) => {
               </td>
             </p> */}
             <p className="text-gray-900">
-              <span className="font-bold">Description</span>: {grnDetails.description}
+              <span className="font-bold">Description</span>:{" "}
+              {grnDetails.description}
             </p>
           </div>
         </div>
-        
+
         <br></br>
         <br></br>
 
@@ -241,78 +235,87 @@ const handleChange = (event) => {
         <div className="w-1/5 bg-cyan-500 h-0.5 mb-1"></div>
         <div className="w-1/3 bg-cyan-500 h-0.5 mb-5"></div>
         <div className=" overflow-x-auto border-2 border-cyan-500 mb-5 shadow-lg rounded-lg p-1">
-        <table className="table-auto w-full 0 bg-white">
-          <thead>
-            <tr className="text-gray-600">
-              <th className="px-4 py-2 text-center ">
-                Sr.<p></p> No.
-              </th>
-              <th className="px-4 py-2 text-center ">
-                Purchase <p></p>Order No.
-              </th>
-              <th className="px-4 py-2 text-center ">
-                Vendor <p></p>Name
-              </th>
-              <th className="px-4 py-2 text-center ">
-                Release <p></p> On
-              </th>
-              <th className="px-4 py-2 text-center ">
-                Accepted <p></p>On
-              </th>
-              <th className="px-4 py-2 text-center ">
-                PO <p></p>Amount
-              </th>
-              <th className="px-4 py-2 text-center ">Status</th>
-              <th className="px-4 py-2 text-center ">Comments</th>
-              <th className="px-4 py-2 text-center ">Actions</th>
-            </tr>
-            <tr className=" text-gray-600">
-              <td colSpan="9" className=" px-4 py-1">
-                <div style={{ borderTop: "2px solid gray" }}></div>
-              </td>
-            </tr>
-          </thead>
-          <tbody>
-            {currentItems.map((item, index) => (
-              <tr key={item.orderNo} className="bg-white">
-                <td className="px-4 py-2 text-center text-sm">{indexOfFirstItem + index + 1}</td>
-                <td className="px-4 py-2">{item.orderNo}</td>
-                <td className="px-4 py-2 text-center text-sm">{item.vendorId}</td>
-                <td className="px-4 py-2 text-center text-sm">{item.releaseDate}</td>
-                <td className="px-4 py-2 text-center text-sm">{item.project.createdOn}</td>
-                <td className="px-4 py-2 text-center text-sm">{item.orderAmount}</td>
-                <td className="px-4 py-2 text-center text-sm">
-                  <button
-                    className={`py-1 px-2 text-center text-sm rounded ${
-                      item.isAccepted
-                        ? "bg-green-200 text-green-700"
-                        : "bg-red-200 text-red-600"
-                    }`}
-                    style={{ minWidth: "6rem" }}
-                  >
-                    {item.isAccepted ? "Accepted" : "Rejected"}
-                  </button>
-                </td>
-                <td className="px-4 py-2 text-center text-sm">
-                  {item.purchaseOrderHistories &&
-                  item.purchaseOrderHistories.length > 0
-                    ? item.purchaseOrderHistories[0].comment
-                    : "-"}
-                </td>
-
-                <td className="px-4 py-2 text-center text-sm bg-zinc-50">
-                  
-                  <button  className={`mr-2`}>
-                    <FontAwesomeIcon
-                      icon={faEye}
-                      className={`text-cyan-600 text-xl`}
-                    />
-                  </button>
+          <table className="table-auto w-full 0 bg-white">
+            <thead>
+              <tr className="text-gray-600">
+                <th className="px-4 py-2 text-center ">
+                  Sr.<p></p> No.
+                </th>
+                <th className="px-4 py-2 text-center ">
+                  Purchase <p></p>Order No.
+                </th>
+                <th className="px-4 py-2 text-center ">
+                  Vendor <p></p>Name
+                </th>
+                <th className="px-4 py-2 text-center ">
+                  Release <p></p> On
+                </th>
+                <th className="px-4 py-2 text-center ">
+                  Accepted <p></p>On
+                </th>
+                <th className="px-4 py-2 text-center ">
+                  PO <p></p>Amount
+                </th>
+                <th className="px-4 py-2 text-center ">Status</th>
+                <th className="px-4 py-2 text-center ">Comments</th>
+                <th className="px-4 py-2 text-center ">Actions</th>
+              </tr>
+              <tr className=" text-gray-600">
+                <td colSpan="9" className=" px-4 py-1">
+                  <div style={{ borderTop: "2px solid gray" }}></div>
                 </td>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {currentItems.map((item, index) => (
+                <tr key={item.orderNo} className="bg-white">
+                  <td className="px-4 py-2 text-center text-sm">
+                    {indexOfFirstItem + index + 1}
+                  </td>
+                  <td className="px-4 py-2">{item.orderNo}</td>
+                  <td className="px-4 py-2 text-center text-sm">
+                    {item.vendorId}
+                  </td>
+                  <td className="px-4 py-2 text-center text-sm">
+                    {item.releaseDate}
+                  </td>
+                  <td className="px-4 py-2 text-center text-sm">
+                    {item.project.createdOn}
+                  </td>
+                  <td className="px-4 py-2 text-center text-sm">
+                    {item.orderAmount}
+                  </td>
+                  <td className="px-4 py-2 text-center text-sm">
+                    <button
+                      className={`py-1 px-2 text-center text-sm rounded ${
+                        item.isAccepted
+                          ? "bg-green-200 text-green-700"
+                          : "bg-red-200 text-red-600"
+                      }`}
+                      style={{ minWidth: "6rem" }}
+                    >
+                      {item.isAccepted ? "Accepted" : "Rejected"}
+                    </button>
+                  </td>
+                  <td className="px-4 py-2 text-center text-sm">
+                    {item.purchaseOrderHistories &&
+                    item.purchaseOrderHistories.length > 0
+                      ? item.purchaseOrderHistories[0].comment
+                      : "-"}
+                  </td>
+
+                  <td className="px-4 py-2 text-center text-sm bg-zinc-50">
+                    <button className={`mr-2`}>
+                      <FontAwesomeIcon
+                        icon={faEye}
+                        className={`text-cyan-600 text-xl`}
+                      />
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
         {/* Purchase Order table code ends */}
       </div>
@@ -346,128 +349,132 @@ const handleChange = (event) => {
         //   />
         // )
         <div className="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 pr-10 lg:px-8 mb-8">
-        <div className="align-middle inline-block min-w-full  overflow-hidden bg-zinc-50  px-8 pt-3 rounded-bl-lg rounded-br-lg">
-        <div className="flex text-2xl font-bold text-gray-500">
-          <h2 className="text-left text-cyan-500">PROJECT LIST</h2>
+          <div className="align-middle inline-block min-w-full  overflow-hidden bg-zinc-50  px-8 pt-3 rounded-bl-lg rounded-br-lg">
+            <div className="flex text-2xl font-bold text-gray-500">
+              <h2 className="text-left text-cyan-500">PROJECT LIST</h2>
+            </div>
+            <div className="w-1/5 bg-cyan-500 h-0.5 mb-1"></div>
+            <div className="w-1/3 bg-cyan-500 h-0.5 mb-5"></div>
+            <div className="searchFilter">
+              <select
+                id="filterOn"
+                name="filterOn"
+                value={filterOn}
+                onChange={handleChange}
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 inline w-50 p-2 "
+              >
+                <option value="all">All</option>
+                <option value="projectStatus">Project Status</option>
+                <option value="projectHead">Project Head</option>
+              </select>
+              <input
+                type="text"
+                id="filterVal"
+                name="filterVal"
+                value={filterVal}
+                onChange={handleChange}
+                className=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 inline w-50 p-2"
+                placeholder="Enter filter value"
+              />
+            </div>
+            <div className="shadow-lg">
+              <div className="rounded-lg border-2 border-cyan-500 bg-zinc-50 p-0.5 shadow-xl">
+                <table className="min-w-full  bg-white">
+                  <thead>
+                    <tr>
+                      <th className="px-6 py-3 text-center leading-4 text-gray-600 tracking-wider">
+                        Sr.No
+                      </th>
+                      <th className="px-6 py-3 text-center leading-4 text-gray-600 tracking-wider">
+                        Name
+                      </th>
+                      <th className="px-6 py-3 text-center  leading-4 text-gray-600 tracking-wider">
+                        Project Head Name
+                      </th>
+                      <th className="px-6 py-3 text-center leading-4 text-gray-600 tracking-wider">
+                        Project Status
+                      </th>
+                      <th className="px-6 py-3 text-center leading-4 text-gray-600 tracking-wider">
+                        Description
+                      </th>
+                      <th className="px-6 py-3 text-center leading-4 text-gray-600 tracking-wider">
+                        Created On
+                      </th>
+                      <th className="px-4 py-2 text-center leading-4 text-gray-600 tracking-wider">
+                        ACTION
+                      </th>
+                    </tr>
+                    <tr className="text-gray-600">
+                      <td colSpan="8" className="px-4 py-1">
+                        <div style={{ borderTop: "2px solid gray" }}></div>
+                      </td>
+                    </tr>
+                  </thead>
+                  <tbody className="bg-white">
+                    {currentItems.map((proj, index) => (
+                      <tr key={proj.id}>
+                        <td className="px-6 py-4 text-center text-sm whitespace-no-wrap">
+                          <div className=" leading-5 text-gray-600">
+                            {index + 1}
+                          </div>
+                        </td>
+                        <td className="px-6 py-4 text-center text-sm whitespace-no-wrap">
+                          <div className=" leading-5 text-gray-600">
+                            {proj.name}
+                          </div>
+                        </td>
+                        <td className="px-6 py-4 text-center text-sm whitespace-no-wrap">
+                          <div className=" leading-5 text-gray-600">
+                            {proj.projectHeadName}
+                          </div>
+                        </td>
+                        <td className="px-6 py-4 text-center text-sm whitespace-no-wrap">
+                          <div className="leading-5 text-gray-600">
+                            <span className="bg-green-300 text-green-600  font-medium me-2 px-2.5 py-0.5 rounded">
+                              {proj.projectStatus}
+                            </span>
+                          </div>
+                        </td>
+                        <td className="px-6 py-4 text-center text-sm whitespace-no-wrap">
+                          <div className="leading-5 text-gray-600">
+                            {proj.description}
+                          </div>
+                        </td>
+                        <td className="px-6 py-4 text-center text-sm whitespace-no-wrap">
+                          <div className="leading-5 text-gray-600">
+                            {new Date(proj.createdOn).toLocaleDateString(
+                              "es-CL"
+                            )}
+                          </div>
+                        </td>
+                        <td className="px-4 py-2 flex flex-row justify-center ">
+                          <button
+                            className="mr-2"
+                            onClick={() => handleEditDetails(proj.id)}
+                          >
+                            <FontAwesomeIcon
+                              icon={faEdit}
+                              className="text-cyan-600 text-xl"
+                            />
+                          </button>
+                          <button
+                            className="mr-2"
+                            onClick={() => handleViewDetails(proj.id)}
+                          >
+                            <FontAwesomeIcon
+                              icon={faEye}
+                              className="text-cyan-600 text-xl"
+                            />
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
         </div>
-        <div className="w-1/5 bg-cyan-500 h-0.5 mb-1"></div>
-        <div className="w-1/3 bg-cyan-500 h-0.5 mb-5"></div>
-          <div className="searchFilter">
-            <select
-              id="filterOn"
-              name="filterOn"
-              value={filterOn}
-              onChange={handleChange}
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 inline w-50 p-2 "
-            >
-              <option value="all">All</option>
-              <option value="projectStatus">Project Status</option>
-              <option value="projectHead">Project Head</option>
-            </select>
-            <input
-              type="text"
-              id="filterVal"
-              name="filterVal"
-              value={filterVal}
-              onChange={handleChange}
-              className=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 inline w-50 p-2"
-              placeholder="Enter filter value"
-            />
-          </div>
-          <div className="shadow-lg">
-          <div className="rounded-lg border-2 border-cyan-500 bg-zinc-50 p-0.5 shadow-xl">
-          <table className="min-w-full  bg-white">
-            <thead>
-              <tr>
-                <th className="px-6 py-3 text-center leading-4 text-gray-600 tracking-wider">
-                  Sr.No
-                </th>
-                <th className="px-6 py-3 text-center leading-4 text-gray-600 tracking-wider">
-                  Name
-                </th>
-                <th className="px-6 py-3 text-center  leading-4 text-gray-600 tracking-wider">
-                  Project Head Name
-                </th>
-                <th className="px-6 py-3 text-center leading-4 text-gray-600 tracking-wider">
-                  Project Status
-                </th>
-                <th className="px-6 py-3 text-center leading-4 text-gray-600 tracking-wider">
-                  Description
-                </th>
-                <th className="px-6 py-3 text-center leading-4 text-gray-600 tracking-wider">
-                  Created On
-                </th>
-                <th className="px-4 py-2 text-center leading-4 text-gray-600 tracking-wider">ACTION</th>
-              </tr>
-              <tr className="text-gray-600">
-                  <td colSpan="8" className="px-4 py-1">
-                    <div style={{ borderTop: "2px solid gray" }}></div>
-                  </td>
-                </tr>
-            </thead>
-            <tbody className="bg-white">
-              {currentItems.map((proj, index) => (
-                <tr key={proj.id}>
-                  <td className="px-6 py-4 text-center text-sm whitespace-no-wrap">
-                    <div className=" leading-5 text-gray-600">
-                      {index + 1}
-                    </div>
-                  </td>
-                  <td className="px-6 py-4 text-center text-sm whitespace-no-wrap">
-                    <div className=" leading-5 text-gray-600">
-                      {proj.name}
-                    </div>
-                  </td>
-                  <td className="px-6 py-4 text-center text-sm whitespace-no-wrap">
-                    <div className=" leading-5 text-gray-600">
-                      {proj.projectHeadName}
-                    </div>
-                  </td>
-                  <td className="px-6 py-4 text-center text-sm whitespace-no-wrap">
-                    <div className="leading-5 text-gray-600">
-                      <span className="bg-green-300 text-green-600  font-medium me-2 px-2.5 py-0.5 rounded">
-                        {proj.projectStatus}
-                      </span>
-                    </div>
-                  </td>
-                  <td className="px-6 py-4 text-center text-sm whitespace-no-wrap">
-                    <div className="leading-5 text-gray-600">
-                      {proj.description}
-                    </div>
-                  </td>
-                  <td className="px-6 py-4 text-center text-sm whitespace-no-wrap">
-                    <div className="leading-5 text-gray-600">
-                      {new Date(proj.createdOn).toLocaleDateString("es-CL")}
-                    </div>
-                  </td>
-                  <td className="px-4 py-2 flex flex-row justify-center ">
-                      <button
-                        className="mr-2"
-                        onClick={() => handleEditDetails(proj.id)}
-                      >
-                        <FontAwesomeIcon
-                          icon={faEdit}
-                          className="text-cyan-600 text-xl"
-                        />
-                      </button>
-                      <button
-                        className="mr-2"
-                        onClick={() => handleViewDetails(proj.id)}
-                      >
-                        <FontAwesomeIcon
-                          icon={faEye}
-                          className="text-cyan-600 text-xl"
-                        />
-                      </button>
-                    </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-          </div>
-          </div>
-        </div>
-      </div>
       )}
       {!selectedProject && !editingProject && (
         <div className="flex justify-end mt-2 ml-2 mr-2">
@@ -491,7 +498,4 @@ const handleChange = (event) => {
       )}
     </div>
   );
-};
-
-
-
+}

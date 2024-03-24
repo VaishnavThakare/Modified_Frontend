@@ -22,18 +22,18 @@ export default function Sidebar({
 
   const filterMenuItems = (items, term) => {
     return items.filter((item) => {
-      if (item.text.toLowerCase().includes(term.toLowerCase())) {
+      if (typeof item.text === 'string' && item.text.toLowerCase().includes(term.toLowerCase())) {
         return true;
       }
-
+  
       if (item.subItems) {
         return filterMenuItems(item.subItems, term).length > 0;
       }
-
-      return false;
-    });
+  
+      return false;
+    });
   };
-
+  
   const filteredMenuItems = filterMenuItems(menuItems, searchTerm);
 
   return (
@@ -43,28 +43,25 @@ export default function Sidebar({
           isMenuVisible ? "" : "hidden"
         } fixed left-0 top-0 w-64 h-full z-50 sidebar-menu transition-transform md:block overflow-y-auto bg-cyan-200 `}
       >
-        <a
-          href="#"
-          className="flex items-center justify-center pb-4 "
-        >
-           <img
-    className="mt-2 h-14 w-36"
-    src={imgsrc}
-    alt="Your Image"
-  />
-
+        <a href="#" className="flex items-center justify-center pb-4 ">
+          <img className="mt-2 h-14 w-36" src={imgsrc} alt="Your Image" />
         </a>
         <input
-  type="text"
-  placeholder="Search..."
-  className="block w-56 p-2 my-2 border border-gray-300 rounded-full pl-8 ml-2 shadow-md"
-  style={{ backgroundImage: `url(${require("./mglass.png")})`, backgroundSize: '16px 16px', backgroundRepeat: 'no-repeat', backgroundPosition: 'left 8px center', paddingLeft: '2.5rem' }}
-  value={searchTerm}
-  onChange={(e) => setSearchTerm(e.target.value)}
-/>
+          type="text"
+          placeholder="Search..."
+          className="block w-56 p-2 my-2 border border-gray-300 rounded-full pl-8 ml-2 shadow-md"
+          style={{
+            backgroundImage: `url(${require("./mglass.png")})`,
+            backgroundSize: "16px 16px",
+            backgroundRepeat: "no-repeat",
+            backgroundPosition: "left 8px center",
+            paddingLeft: "2.5rem",
+          }}
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
 
         <ul className="mt-4  ">
-          
           {filteredMenuItems.map((menuItem, index) => (
             <li key={index} className={`group menuSidebar `}>
               <Link
@@ -77,7 +74,9 @@ export default function Sidebar({
                 }}
               >
                 <i className={menuItem.icon + " mr-3 text-lg"}></i>
-                <span className="text-sm text-white uppercase">{menuItem.text}</span>
+                <span className="text-sm text-white uppercase">
+                  {menuItem.text}
+                </span>
                 {menuItem.subItems && (
                   <i
                     className={`ri-arrow-right-s-line ml-auto ${

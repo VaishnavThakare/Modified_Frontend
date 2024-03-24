@@ -3,7 +3,6 @@ import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faEye,
-  faFileDownload,
   faArrowLeft,
   faArrowRight,
 } from "@fortawesome/free-solid-svg-icons";
@@ -199,96 +198,104 @@ const GrnDetails = () => {
   return (
     <div className="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 pr-10 lg:px-8 mb-8">
       <div className="align-middle inline-block min-w-full overflow-hidden bg-zinc-50 px-8 pt-3 rounded-bl-lg rounded-br-lg ">
-        
         <div className="relative  mb-5 bg-zinc-50">
           {selectedGrn ? (
             <DetailsView grn={grns.find((grn) => grn.grnNo === selectedGrn)} />
           ) : (
             <>
-            <div className="flex text-2xl font-bold text-gray-500 ">
-             <h2 className="text-left text-cyan-500">GRN LIST</h2>
-            </div>
-            <div className="w-1/5 bg-cyan-400 h-0.5 mb-1"></div>
-           <div className="w-1/3 bg-cyan-400 h-0.5 mb-5"></div>
-            <div className="overflow-x-auto mt-8 ml-2 mr-2 border-2 border-cyan-500 rounded-lg shadow-lg">
-              <table className="table-auto w-full rounded-lg  bg-white shadow-lg">
-                <thead>
-                  <tr className="text-gray-600">
-                    <th className="px-4 py-2 text-center">GRN NO.</th>
-                    <th className="px-4 py-2 text-center">PO NO.</th>
-                    <th className="px-4 py-2 text-center">SHIPMENT TYPE</th>
-                    <th className="px-4 py-2 text-center">STATUS</th>
-                    <th className="px-4 py-2 text-center">VIEW</th>
-                  </tr>
-                  <tr className="text-gray-600">
-                    <td colSpan="8" className="px-4 py-1">
-                      <div style={{ borderTop: "2px solid gray" }}></div>
-                    </td>
-                  </tr>
-                </thead>
-                <tbody>
-                  {currentGrns.map((grn) => (
-                    <tr key={grn.grnNo} className="bg-white">
-                      <td className="px-4 py-2 text-center text-sm">{grn.grnNo}</td>
-                      <td className="px-4 py-2 text-center text-sm">{grn.purchaseOrder.orderNo}</td>
-                      <td className="px-4 py-2 text-center text-sm">
-                        <button
-                          className={`py-1 px-2 rounded ${
-                            grn.shipmentStatus ? "text-black" : "text-black"
-                          }`}
-                          style={{ minWidth: "6rem" }}
-                        >
-                          {grn.shipmentStatus
-                            ? "Complete Shipment"
-                            : "Partial Shipment"}
-                        </button>
-                      </td>
-                      <td className="px-4 py-2 text-center text-sm">
-                        {grn.isAccepted === true && (
-                        <button
-                         className="py-1 px-2 rounded bg-green-200 text-green-700"
-                         style={{ minWidth: "6rem" }}
-                        >
-                         Accepted
-                        </button>
-                        )}
-                        {grn.isAccepted === false && (
-                        <button
-                         className="py-1 px-2 rounded bg-red-200 text-red-600"
-                         style={{ minWidth: "6rem" }}
-                        >
-                         Rejected
-                        </button>
-                        )}
-                        {grn.isAccepted === null && (
-                        <button
-                          className="py-1 px-2 rounded bg-yellow-200 text-yellow-700"
-                          style={{ minWidth: "6rem" }}
-                        >
-                         Pending
-                        </button>
-                        )}
-                      </td>
-                      
-                      <td className="px-4 py-2 text-center text-sm">
-                        <button
-                          className="mr-2"
-                          onClick={() => {
-                            handleViewDetails(grn.grnNo);
-                            fetchinvices(grn.id);
-                          }}
-                        >
-                          <FontAwesomeIcon
-                            icon={faEye}
-                            className="text-cyan-600 text-xl"
-                          />
-                        </button>
+              <div className="flex text-2xl font-bold text-gray-500 ">
+                <h2 className="text-left text-cyan-500">GRN LIST</h2>
+              </div>
+              <div className="w-1/5 bg-cyan-400 h-0.5 mb-1"></div>
+              <div className="w-1/3 bg-cyan-400 h-0.5 mb-5"></div>
+              <div className="overflow-x-auto mt-8 ml-2 mr-2 border-2 border-cyan-500 rounded-lg shadow-lg">
+                <table className="table-auto w-full rounded-lg  bg-white shadow-lg">
+                  {/* Table Header */}
+                  <thead>
+                    <tr className="text-gray-600">
+                      <th className="px-4 py-2 text-center">GRN NO.</th>
+                      <th className="px-4 py-2 text-center">PO NO.</th>
+                      <th className="px-4 py-2 text-center">SHIPMENT TYPE</th>
+                      <th className="px-4 py-2 text-center">STATUS</th>
+                      <th className="px-4 py-2 text-center">VIEW</th>
+                    </tr>
+                    <tr className="text-gray-600">
+                      <td colSpan="8" className="px-4 py-1">
+                        <div style={{ borderTop: "2px solid gray" }}></div>
                       </td>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+                  </thead>
+                  {/* Table Body */}
+                  <tbody>
+                    {currentGrns.length > 0 ? (
+                      currentGrns.map((grn) => (
+                        <tr key={grn.grnNo} className="bg-white">
+                          <td className="px-4 py-2 text-center text-sm">{grn.grnNo}</td>
+                          <td className="px-4 py-2 text-center text-sm">{grn.purchaseOrder.orderNo}</td>
+                          <td className="px-4 py-2 text-center text-sm">
+                            <button
+                              className={`py-1 px-2 rounded ${
+                                grn.shipmentStatus ? "text-black" : "text-black"
+                              }`}
+                              style={{ minWidth: "6rem" }}
+                            >
+                              {grn.shipmentStatus
+                                ? "Complete Shipment"
+                                : "Partial Shipment"}
+                            </button>
+                          </td>
+                          <td className="px-4 py-2 text-center text-sm">
+                            {grn.isAccepted === true && (
+                              <button
+                                className="py-1 px-2 rounded bg-green-200 text-green-700"
+                                style={{ minWidth: "6rem" }}
+                              >
+                                Accepted
+                              </button>
+                            )}
+                            {grn.isAccepted === false && (
+                              <button
+                                className="py-1 px-2 rounded bg-red-200 text-red-600"
+                                style={{ minWidth: "6rem" }}
+                              >
+                                Rejected
+                              </button>
+                            )}
+                            {grn.isAccepted === null && (
+                              <button
+                                className="py-1 px-2 rounded bg-yellow-200 text-yellow-700"
+                                style={{ minWidth: "6rem" }}
+                              >
+                                Pending
+                              </button>
+                            )}
+                          </td>
+                          <td className="px-4 py-2 text-center text-sm">
+                            <button
+                              className="mr-2"
+                              onClick={() => {
+                                handleViewDetails(grn.grnNo);
+                                fetchinvices(grn.id);
+                              }}
+                            >
+                              <FontAwesomeIcon
+                                icon={faEye}
+                                className="text-cyan-600 text-xl"
+                              />
+                            </button>
+                          </td>
+                        </tr>
+                      ))
+                    ) : (
+                      <tr>
+                        <td colSpan="5" className="px-4 py-2 text-center bg-white">
+                          No GRNs found.
+                        </td>
+                      </tr>
+                    )}
+                  </tbody>
+                </table>
+              </div>
             </>
           )}
         </div>

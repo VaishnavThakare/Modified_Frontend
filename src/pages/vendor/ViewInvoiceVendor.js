@@ -4,9 +4,6 @@ import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faEdit,
-  faEye,
-  faArrowLeft,
-  faArrowRight,
   faFileDownload,
 
 } from "@fortawesome/free-solid-svg-icons";

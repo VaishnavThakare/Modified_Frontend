@@ -16,7 +16,6 @@ const PoDetailsA = () => {
   const [purchaseOrders, setPurchaseOrders] = useState([]);
   const [selectedPurchaseOrder, setSelectedPurchaseOrder] = useState(null);
   const [showDetails, setShowDetails] = useState(false);
-  
 
   const navigate = useNavigate();
   const itemsPerPage = 5;
@@ -91,100 +90,97 @@ const PoDetailsA = () => {
       <ToastContainer />
       {showDetails && selectedPurchaseOrder && (
         <>
-        <div className="flex text-2xl font-bold text-gray-500">
+          <div className="flex text-2xl font-bold text-gray-500">
             <h2 className="text-left text-cyan-500">Purchase Order Details</h2>
           </div>
           <div className="w-64 bg-cyan-500 h-0.5 mb-1"></div>
           <div className="w-72 bg-cyan-500 h-0.5 mb-5"></div>
-        <div className="ml-52 align-middle inline-block rounded-lg border-2 border-cyan-400 bg-white shadow-lg p-4 max-w-lg w-full mt-2">
-          
-          <table className="w-full">
-            <tbody>
-              <tr>
-                <td className="py-2">
-                  <span className="font-bold">Purchase Order No.:</span>
-                </td>
-                <td className="py-2">{selectedPurchaseOrder.orderNo}</td>
-              </tr>
-              <tr>
-                <td className="py-2">
-                  <span className="font-bold">Vendor Name.:</span>
-                </td>
-                <td className="py-2">{selectedPurchaseOrder.vendorName}</td>
-              </tr>
-              <tr>
-                <td className="py-2">
-                  <span className="font-bold">Created On:</span>
-                </td>
-                <td className="py-2">
-                  {selectedPurchaseOrder.createdOn
-                    ? formatDateTime(selectedPurchaseOrder.createdOn)
-                    : "-"}
-                </td>
-              </tr>
-              <tr>
-                <td className="py-2">
-                  <span className="font-bold">Expected Delivery On:</span>
-                </td>
-                <td className="py-2">
-                  {selectedPurchaseOrder.expectedDelivery
-                    ? formatDateTime(selectedPurchaseOrder.expectedDelivery)
-                    : "-"}
-                </td>
-              </tr>
+          <div className="ml-52 align-middle inline-block rounded-lg border-2 border-cyan-400 bg-white shadow-lg p-4 max-w-lg w-full mt-2">
+            <table className="w-full">
+              <tbody>
+                <tr>
+                  <td className="py-2">
+                    <span className="font-bold">Purchase Order No.:</span>
+                  </td>
+                  <td className="py-2">{selectedPurchaseOrder.orderNo}</td>
+                </tr>
+                <tr>
+                  <td className="py-2">
+                    <span className="font-bold">Vendor Name.:</span>
+                  </td>
+                  <td className="py-2">{selectedPurchaseOrder.vendorName}</td>
+                </tr>
+                <tr>
+                  <td className="py-2">
+                    <span className="font-bold">Created On:</span>
+                  </td>
+                  <td className="py-2">
+                    {selectedPurchaseOrder.createdOn
+                      ? formatDateTime(selectedPurchaseOrder.createdOn)
+                      : "-"}
+                  </td>
+                </tr>
+                <tr>
+                  <td className="py-2">
+                    <span className="font-bold">Expected Delivery On:</span>
+                  </td>
+                  <td className="py-2">
+                    {selectedPurchaseOrder.expectedDelivery
+                      ? formatDateTime(selectedPurchaseOrder.expectedDelivery)
+                      : "-"}
+                  </td>
+                </tr>
+                <tr>
+                  <td className="py-2">
+                    <span className="font-bold">Sent On:</span>
+                  </td>
+                  <td className="py-2">
+                    {selectedPurchaseOrder.releaseDate
+                      ? formatDateTime(selectedPurchaseOrder.releaseDate)
+                      : "-"}
+                  </td>
+                </tr>
+                <tr>
+                  <td className="py-2">
+                    <span className="font-bold">Po Amount:</span>
+                  </td>
+                  <td className="py-2">{selectedPurchaseOrder.orderAmount}</td>
+                </tr>
+                <tr>
+                  <td className="py-2">
+                    <span className="font-bold">Status:</span>
+                  </td>
+                  <td className="py-2">
+                    {selectedPurchaseOrder.isAccepted ? "Accepted" : "Rejected"}
+                  </td>
+                </tr>
+                <tr>
+                  <td className="py-2">
+                    <span className="font-bold">Comments:</span>
+                  </td>
+                  <td className="py-2">{selectedPurchaseOrder.comment}</td>
+                </tr>
+              </tbody>
+            </table>
 
-              <tr>
-                <td className="py-2">
-                  <span className="font-bold">Sent On:</span>
-                </td>
-                <td className="py-2">
-                  {selectedPurchaseOrder.releaseDate
-                    ? formatDateTime(selectedPurchaseOrder.releaseDate)
-                    : "-"}
-                </td>
-              </tr>
-              <tr>
-                <td className="py-2">
-                  <span className="font-bold">Po Amount:</span>
-                </td>
-                <td className="py-2">{selectedPurchaseOrder.orderAmount}</td>
-              </tr>
-
-              <tr>
-                <td className="py-2">
-                  <span className="font-bold">Status:</span>
-                </td>
-                <td className="py-2">
-                  {selectedPurchaseOrder.isAccepted ? "Accepted" : "Rejected"}
-                </td>
-              </tr>
-              <tr>
-                <td className="py-2">
-                  <span className="font-bold">Comments:</span>
-                </td>
-                <td className="py-2">{selectedPurchaseOrder.comment}</td>
-              </tr>
-            </tbody>
-          </table>
-
-          <div className="mt-4 flex justify-center">
-            <button
-              onClick={handleCloseDetails}
-              className="bg-cyan-600 hover:bg-cyan-700 mr-4 text-white font-bold py-2 px-4 rounded"
-            >
-              Back
-            </button>
-            {selectedPurchaseOrder.documentPath && (
+            <div className="mt-4 flex justify-center">
               <button
-                className="bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded"
-                onClick={() => openDocument(selectedPurchaseOrder.documentPath)}
+                onClick={handleCloseDetails}
+                className="bg-cyan-600 hover:bg-cyan-700 mr-4 text-white font-bold py-2 px-4 rounded"
               >
-                <FontAwesomeIcon icon={faExternalLinkAlt} className="mr-2" />
-                View Document
+                Back
               </button>
-            )}
+              {selectedPurchaseOrder.documentPath && (
+                <button
+                  className="bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded"
+                  onClick={() => openDocument(selectedPurchaseOrder.documentPath)}
+                >
+                  <FontAwesomeIcon icon={faExternalLinkAlt} className="mr-2" />
+                  View Document
+                </button>
+              )}
+            </div>
           </div>
-        </div>
         </>
       )}
 
@@ -196,72 +192,80 @@ const PoDetailsA = () => {
           <div className="w-64 bg-cyan-500 h-0.5 mb-1"></div>
           <div className="w-72 bg-cyan-500 h-0.5 mb-5"></div>
           <div className="shadow-xl">
-          <div className="border-2 border-cyan-500 rounded-lg shadow-md p-0.5">
-          <table className="table-auto w-full rounded-lg  bg-white">
-            {/* Table Header */}
-            <thead>
-              <tr className="text-gray-600">
-                <th className="px-4 py-2 text-center">Sr. No.</th>
-                <th className="px-4 py-2 text-center">Purchase Order No.</th>
-                <th className="px-4 py-2 text-center">Vendor Name</th>
-                <th className="px-4 py-2 text-center">Release On</th>
-                <th className="px-4 py-2 text-center">Accepted On</th>
-                <th className="px-4 py-2 text-center">PO Amount</th>
-                <th className="px-4 py-2 text-center">Status</th>
-                <th className="px-4 py-2 text-center">Comments</th>
-                <th className="px-4 py-2 text-center">Actions</th>
-              </tr>
-              <tr className="text-gray-600">
-                <td colSpan="9" className="px-4 py-1">
-                  <div style={{ borderTop: "2px solid gray" }}></div>
-                </td>
-              </tr>
-            </thead>
-            {/* Table Body */}
-            <tbody>
-              {currentItems.map((item, index) => (
-                <tr key={item.id} className="bg-white">
-                  <td className="px-4 py-2 text-center text-sm">
-                    {(currentPage - 1) * itemsPerPage + index + 1}
-                  </td>
-                  <td className="px-4 py-2 text-center text-sm">{item.orderNo}</td>
-                  <td className="px-4 py-2 text-center text-sm">{item.vendorName}</td>
-                  <td className="px-4 py-2 text-center text-sm">
-                    {formatDateTime(item.releaseDate)}
-                  </td>
-                  <td className="px-4 py-2 text-center text-sm">
-                    {item.acceptedOn ? formatDateTime(item.acceptedOn) : "-"}
-                  </td>
-                  <td className="px-4 py-2 text-center text-sm">{item.orderAmount}</td>
-                  <td className="px-4 py-2 text-center text-sm">
-                    <button
-                      className={`py-1 px-2 rounded ${
-                        item.isAccepted
-                          ? "bg-green-200 text-green-700"
-                          : "bg-red-200 text-red-600"
-                      }`}
-                      style={{ minWidth: "6rem" }}
-                    >
-                      {item.isAccepted ? "Accepted" : "Rejected"}
-                    </button>
-                  </td>
-                  <td className="px-4 py-2 text-center text-sm">{item.comment}</td>
-                  <td className="px-4 py-2 text-center bg-white">
-                    <button
-                      onClick={() => handleView(item.id)}
-                      className={`mr-2`}
-                    >
-                      <FontAwesomeIcon
-                        icon={faEye}
-                        className={`text-cyan-600 text-xl`}
-                      />
-                    </button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-          </div>
+            <div className="border-2 border-cyan-500 rounded-lg shadow-md p-0.5">
+              <table className="table-auto w-full rounded-lg bg-white">
+                {/* Table Header */}
+                <thead>
+                  <tr className="text-gray-600">
+                    <th className="px-4 py-2 text-center">Sr. No.</th>
+                    <th className="px-4 py-2 text-center">Purchase Order No.</th>
+                    <th className="px-4 py-2 text-center">Vendor Name</th>
+                    <th className="px-4 py-2 text-center">Release On</th>
+                    <th className="px-4 py-2 text-center">Accepted On</th>
+                    <th className="px-4 py-2 text-center">PO Amount</th>
+                    <th className="px-4 py-2 text-center">Status</th>
+                    <th className="px-4 py-2 text-center">Comments</th>
+                    <th className="px-4 py-2 text-center">Actions</th>
+                  </tr>
+                  <tr className="text-gray-600">
+                    <td colSpan="9" className="px-4 py-1">
+                      <div style={{ borderTop: "2px solid gray" }}></div>
+                    </td>
+                  </tr>
+                </thead>
+                {/* Table Body */}
+                <tbody>
+                  {currentItems.length > 0 ? (
+                    currentItems.map((item, index) => (
+                      <tr key={item.id} className="bg-white">
+                        <td className="px-4 py-2 text-center text-sm">
+                          {(currentPage - 1) * itemsPerPage + index + 1}
+                        </td>
+                        <td className="px-4 py-2 text-center text-sm">{item.orderNo}</td>
+                        <td className="px-4 py-2 text-center text-sm">{item.vendorName}</td>
+                        <td className="px-4 py-2 text-center text-sm">
+                          {formatDateTime(item.releaseDate)}
+                        </td>
+                        <td className="px-4 py-2 text-center text-sm">
+                          {item.acceptedOn ? formatDateTime(item.acceptedOn) : "-"}
+                        </td>
+                        <td className="px-4 py-2 text-center text-sm">{item.orderAmount}</td>
+                        <td className="px-4 py-2 text-center text-sm">
+                          <button
+                            className={`py-1 px-2 rounded ${
+                              item.isAccepted
+                                ? "bg-green-200 text-green-700"
+                                : "bg-red-200 text-red-600"
+                            }`}
+                            style={{ minWidth: "6rem" }}
+                          >
+                            {item.isAccepted ? "Accepted" : "Rejected"}
+                          </button>
+                        </td>
+                        <td className="px-4 py-2 text-center text-sm">{item.comment}</td>
+                        <td className="px-4 py-2 text-center bg-white">
+                          <button
+                            onClick={() => handleView(item.id)}
+                            className={`mr-2`}
+                          >
+                            <FontAwesomeIcon
+                              icon={faEye}
+                              className={`text-cyan-600 text-xl`}
+                            />
+                          </button>
+                        </td>
+                      </tr>
+                    ))
+                  ) : (
+                    <tr>
+                      <td colSpan="9" className="px-4 py-2 text-center bg-white">
+                        No purchase orders found.
+                      </td>
+                    </tr>
+                  )}
+                </tbody>
+              </table>
+            </div>
           </div>
           <div className="flex justify-end mt-2 ml-2 mr-2">
             <table className="table-auto border-collapse rounded border-cyan-500 mb-5">
@@ -307,3 +311,4 @@ const PoDetailsA = () => {
 };
 
 export default PoDetailsA;
+
