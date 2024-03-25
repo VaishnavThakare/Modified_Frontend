@@ -43,11 +43,11 @@ export default function AddProfile() {
       formDataToSend.append("IsActive", profile.IsActive);
       console.log(formDataToSend);
 
-    //   const response = await axios.post(
-    //     `${process.env.REACT_APP_API_URL}/ProfileCard/Add`,
-    //     formDataToSend
-    //   );
-    //   if (response.status === 200) 
+      const response = await axios.post(
+        `${process.env.REACT_APP_API_URL}/ProfileCard/Add`,
+        formDataToSend
+      );
+      if (response.status === 200) 
     alert("Profile Added");
 
       setProfile({

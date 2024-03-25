@@ -55,9 +55,11 @@ export default function AllProfile() {
     e.preventDefault();
     try {
       const formDataToSend = new FormData();
-      formDataToSend.append("Title", modal.title);
-      formDataToSend.append("Content", modal.content);
+      formDataToSend.append("Description", modal.description);
       formDataToSend.append("Image", file);
+      formDataToSend.append("IsActive", modal.isActive);
+      // formDataToSend.append("UserId", modal.id);
+      formDataToSend.append("Position", modal.position);
       const response = await axios.put(
         `${process.env.REACT_APP_API_URL}/ProfileCard/${modal.id}`,
         formDataToSend
@@ -100,15 +102,15 @@ export default function AllProfile() {
               className="relative flex flex-col md:flex-row md:space-x-5 space-y-3 md:space-y-0 rounded-xl shadow-lg p-3 max-w-xs md:max-w-xl mx-auto border-2 border-cyan-500 bg-white mb-4"
             >
               <div className="w-full md:w-1/3 grid place-items-center">
-                <img src={profileItem.imagePath} alt={profileItem.title} className="rounded-xl" />
+                <img src={profileItem.imagePath} alt={profileItem.name} className="rounded-xl h-[150px] w-[150px]" />
               </div>
               <div className="w-full md:w-2/3 flex flex-col space-y-2 p-3">
                
                 <h3 className="font-black text-gray-800 md:text-lg text-lg">
-                  {profileItem.title}
+                  {profileItem.name +" ("+profileItem.position+")"}
                 </h3>
                 <div className="line-clamp-4">
-                  <p className="md:text-sm text-gray-500 text-sm">{profileItem.content}</p>
+                  <p className="md:text-sm text-gray-500 text-sm">{profileItem.description}</p>
                 </div>
                 <div>
                   <button
@@ -191,13 +193,13 @@ export default function AllProfile() {
                   htmlFor="title"
                   className="block mb-2 text-sm font-medium text-gray-900"
                 >
-                  Title
+                  Position
                 </label>
                 <input
                   type="text"
                   id="name"
-                  name="title"
-                  value={modal.title}
+                  name="position"
+                  value={modal.position}
                   onChange={handleChange}
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                   required
@@ -209,13 +211,13 @@ export default function AllProfile() {
                   htmlFor="content"
                   className="block mb-2 text-sm font-medium text-gray-900"
                 >
-                  Content
+                  Description
                 </label>
                 <textarea
                   type="text"
                   id="name"
-                  name="content"
-                  value={modal.content}
+                  name="description"
+                  value={modal.description}
                   onChange={handleChange}
                   className="resize-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                   rows="4"
