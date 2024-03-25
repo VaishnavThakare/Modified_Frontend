@@ -78,8 +78,8 @@ export default function AddEvent() {
     <input
         type="text"
         id="name"
-        name="name"
-        value={event.name}
+        name="Title"
+        value={event.Title}
         onChange={handleChange}
         class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
         placeholder=" "
