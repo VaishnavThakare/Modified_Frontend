@@ -69,20 +69,25 @@ export default function AddProfile() {
             <h2>Create Profile</h2>
           </div>
 
-          <div className="mb-6">
-            <label htmlFor="UserId" className="block mb-2 text-sm font-medium text-gray-900">
-              UserId
-            </label>
-            <input
-              type="text"
-              id="userId"
-              name="userId"
-              value={profile.userId}
-              onChange={handleChange}
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-              required
-            />
-          </div>
+          <div className="mb-6 relative">
+  <input
+    type="text"
+    id="userId"
+    name="userId"
+    value={profile.userId}
+    onChange={handleChange}
+    className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+    placeholder=" "
+    required
+  />
+  <label
+    htmlFor="userId"
+    className="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"
+  >
+    UserId
+  </label>
+</div>
+
 
           
           <div className="mb-6">
@@ -99,20 +104,25 @@ export default function AddProfile() {
             />
           </div>
 
-          <div className="mb-6">
-            <label htmlFor="Position" className="block mb-2 text-sm font-medium text-gray-900">
-              Position
-            </label>
-            <input
-              type="text"
-              id="name"
-              name="Position"
-              value={profile.Position}
-              onChange={handleChange}
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-              required
-            />
-          </div>
+          <div className="mb-6 relative">
+  <input
+    type="text"
+    id="Position"
+    name="Position"
+    value={profile.Position}
+    onChange={handleChange}
+    className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+    placeholder=" "
+    required
+  />
+  <label
+    htmlFor="Position"
+    className="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"
+  >
+    Position
+  </label>
+</div>
+
 
           <div class="mb-6">
             <label
@@ -138,19 +148,24 @@ export default function AddProfile() {
           </div>
 
 
-          <div className="mb-6">
-            <label htmlFor="description" className="block mb-2 text-sm font-medium text-gray-900">
-              Description
-            </label>
-            <textarea
-              id="description"
-              name="description"
-              value={profile.description}
-              onChange={handleChange}
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-              required
-            />
-          </div>
+          <div className="mb-6 relative">
+  <textarea
+    id="description"
+    name="description"
+    value={profile.description}
+    onChange={handleChange}
+    className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+    placeholder=" "
+    required
+  />
+  <label
+    htmlFor="description"
+    className="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"
+  >
+    Description
+  </label>
+</div>
+
 
          
 

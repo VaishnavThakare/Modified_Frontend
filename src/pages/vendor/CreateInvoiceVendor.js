@@ -73,39 +73,43 @@ function CreateInvoiceVendor() {
           <h2>Create Invoice</h2>
         </div>
         <div className="mb-6 relative">
-          <label
-            htmlFor="invoiceNo"
-            className="block mb-2 text-sm font-medium text-gray-900"
-          >
-            Invoice No:
-          </label>
-          <input
-            type="text"
-            id="invoiceNo"
-            name="InvoiceNo"
-            value={formData.InvoiceNo}
-            onChange={handleInputChange}
-            className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-            required
-          />
-        </div>
-        <div className="mb-6 relative">
-          <label
-            htmlFor="amount"
-            className="block mb-2 text-sm font-medium text-gray-900"
-          >
-            Amount:
-          </label>
-          <input
-            type="number"
-            id="amount"
-            name="Amount"
-            value={formData.Amount}
-            onChange={handleInputChange}
-            className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-            required
-          />
-        </div>
+  <input
+    type="number"
+    id="invoiceNo"
+    name="InvoiceNo"
+    value={formData.InvoiceNo}
+    onChange={handleInputChange}
+    className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+    placeholder=" "
+    required
+  />
+  <label
+    htmlFor="invoiceNo"
+    className="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"
+  >
+    Invoice No
+  </label>
+</div>
+
+<div className="mb-6 relative">
+  <input
+    type="number"
+    id="OrderAmount"
+    name="OrderAmount"
+    value={formData.Amount}
+    onChange={handleInputChange}
+    className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+    placeholder=" "
+    required
+  />
+  <label
+    htmlFor="OrderAmount"
+    className="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"
+  >
+    Amount
+  </label>
+</div>
+
         <div className="mb-6 relative">
           <label
             htmlFor="grnId"
