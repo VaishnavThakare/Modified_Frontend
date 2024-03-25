@@ -23,6 +23,21 @@ const GrnDetails = () => {
   const [pos, setpos] = useState([]);
   const [invoices, setInvoices] = useState([]);
 
+  const checkVerified = async()=>{
+    try{
+        const sid = sessionStorage.getItem("sid");
+        const vendorCatRes = await axios.get(
+          `${process.env.REACT_APP_API_URL}/Vendor/${sid}`
+        );
+        console.log(vendorCatRes);
+        if (!vendorCatRes.data.isVerified) navigate("/vendor/upload-document");  
+        else return true;
+    }
+    catch(error){
+      console.log(error);
+    }
+  }
+
   useEffect(() => {
     const fetchGrns = async () => {
       try {
@@ -33,8 +48,9 @@ const GrnDetails = () => {
         toast.error("Failed to fetch GRNs");
       }
     };
-
-    fetchGrns();
+    
+    if(checkVerified()===true)
+      fetchGrns();
   }, []);
 
   const indexOfLastItem = currentPage * itemsPerPage;
@@ -66,6 +82,7 @@ const GrnDetails = () => {
   // View
   const DetailsView = ({ grnDetails, onCancel }) => {
     const [currentItems, setCurrentItems] = useState([]);
+
 
     useEffect(() => {
       const fetchData = async () => {

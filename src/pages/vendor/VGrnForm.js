@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useNavigate } from "react-router-dom";
 
 const GRNForm = () => {
   const [formData, setFormData] = useState({
@@ -10,8 +11,26 @@ const GRNForm = () => {
     ShipmentType: true,
     Document: null
   });
+
   const sid = sessionStorage.getItem("sid");
   const [purchaseOrders, setPurchaseOrders] = useState([]);
+  const navigate = useNavigate();
+
+  const checkVerified = async()=>{
+    try{
+        const sid = sessionStorage.getItem("sid");
+        const vendorCatRes = await axios.get(
+          `${process.env.REACT_APP_API_URL}/Vendor/${sid}`
+        );
+        console.log(vendorCatRes);
+        if (!vendorCatRes.data.isVerified) navigate("/vendor/upload-document");  
+        else return true;
+    }
+    catch(error){
+      console.log(error);
+    }
+} 
+
   useEffect(() => {
     const fetchPurchaseOrders = async () => {
       try {
@@ -25,7 +44,8 @@ const GRNForm = () => {
       }
     };
 
-    fetchPurchaseOrders();
+    if(checkVerified()===true)
+      fetchPurchaseOrders();
   }, [sid]);
 
   const handleInputChange = (event) => {

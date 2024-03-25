@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 
 const Poactions = () => {
@@ -9,19 +9,21 @@ const Poactions = () => {
   const { orderId } = useParams();
   const [purchaseOrder, setPurchaseOrder] = useState(null); // Updated state name
 
-  useEffect(() => {
-    const fetchPurchaseOrder = async () => {
-      try {
-        const response = await axios.get(
-          `https://localhost:7254/api/PurchaseOrder/${orderId}`
-        );
-        setPurchaseOrder(response.data);
-      } catch (error) {
-        console.error("Error fetching purchase order:", error);
-        toast.error("Failed to fetch purchase order details.");
-      }
-    };
 
+
+  const fetchPurchaseOrder = async () => {
+    try {
+      const response = await axios.get(
+        `https://localhost:7254/api/PurchaseOrder/${orderId}`
+      );
+      setPurchaseOrder(response.data);
+    } catch (error) {
+      console.error("Error fetching purchase order:", error);
+      toast.error("Failed to fetch purchase order details.");
+    }
+  };
+
+  useEffect(() => {
     fetchPurchaseOrder();
   }, [orderId]);
 
