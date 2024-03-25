@@ -80,7 +80,7 @@ function UploadDocument() {
     var did = event.target.getAttribute("data-key");
     console.log(did);
     if (File.length == 0) {
-      toast.error("elect file to upload", {
+      toast.error("Select file to upload", {
         position: "top-center",
       });
     } else {
