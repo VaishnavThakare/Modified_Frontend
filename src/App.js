@@ -196,6 +196,7 @@ const App = () => {
           <Route path="purchase-order-list-pHead" element={<PoDetailsPHead />} />
           <Route path="po-details-phead/:id" element={<PODetailedView />} />
           <Route path="edit/:orderNo" element={<EditPurchaseOrderPagePHead />} />
+          <Route path="changePassword" element={<ChangePassword />} />
         </Route>
 
         {/* <Route path="/" element={<Navigate to="/login" />} /> */}
