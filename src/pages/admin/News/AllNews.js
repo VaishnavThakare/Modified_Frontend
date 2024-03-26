@@ -23,9 +23,7 @@ export default function AllNews() {
       let data = [];
       if (res.status == 200 && res.data != null) {
         data = res.data;
-        toast.success("All News Loaded",{
-          position:"top-right"
-        });
+        
       }
 
       setnews(data);

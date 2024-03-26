@@ -30,9 +30,7 @@ export default function AllEvent() {
       let data = [];
       if(res.status == 200 && res.data!=null){
         data = res.data;
-        toast.success("All Event Loaded",{
-          position:"top-right"
-        });
+        
       }
       console.log(data);
       setevents(data);    

@@ -28,9 +28,7 @@ export default function AllPolicyDocuments() {
       let data = [];
       if(res.status == 200 && res.data!=null){
         data = res.data;
-        toast.success("All Document Loaded",{
-          position:"top-right"
-        });
+        
       }
       console.log(data);
       setdocuments(data);    
