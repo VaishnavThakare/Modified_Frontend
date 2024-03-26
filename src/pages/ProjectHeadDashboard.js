@@ -3,7 +3,6 @@ import Sidebar from "../components/sidebar";
 import { Outlet } from "react-router-dom";
 import Header from "../components/Header";
 
-
 export default function ProjectHeadDashboard() {
   const [isMenuVisible, setMenuVisible] = useState(false);
 
@@ -12,21 +11,21 @@ export default function ProjectHeadDashboard() {
       text: "Dashboard",
       icon: "ri-home-2-line text-white font-",
       link: "dashboard",
-      bgColor: "bg-cyan-300",
+      bgColor: "bg-[#09c8e2]",
       textStyle: "font-bold",
     },
     {
       text: "Users",
       icon: "bx bx-user text-white",
       link: "#",
-      bgColor: "bg-cyan-400",
+      bgColor: "bg-[#09c8e2]",
       subItems: [{ text: "Assigned Project ", link: "assigned-project " }],
     },
     {
       text: "GRN",
       icon: "bx bx-user text-white font-",
       link: "#",
-      bgColor: "bg-cyan-500",
+      bgColor: "bg-[#09c8e2]",
       subItems: [
         { text: "GRN Listing", link: "grn-List" },
         // {  link: "editGrn-List/:grnId" },
@@ -37,7 +36,7 @@ export default function ProjectHeadDashboard() {
       text: "Purchase Order",
       icon: "bx bx-category text-white",
       link: "#",
-      bgColor: "bg-cyan-600",
+      bgColor: "bg-[#09c8e2]",
       subItems: [
         { text: "Purchase Order Form", link: "purchase-OrderForm-pHead" },
         { text: "Purchase Order View", link: "purchase-order-list-pHead" },
@@ -48,7 +47,7 @@ export default function ProjectHeadDashboard() {
       text: "Invoices",
       icon: "bx bx-user text-white font-",
       link: "#",
-      bgColor: "bg-cyan-700",
+      bgColor: "bg-[#09c8e2]",
       subItems: [{ text: "All Invoices", link: "invoice-list" }],
     },
   ];
