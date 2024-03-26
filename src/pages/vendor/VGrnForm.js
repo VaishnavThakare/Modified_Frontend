@@ -44,7 +44,7 @@ const GRNForm = () => {
       }
     };
 
-    if(checkVerified()===true)
+    checkVerified();
       fetchPurchaseOrders();
   }, [sid]);
 

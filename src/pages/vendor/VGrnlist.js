@@ -49,7 +49,7 @@ const GrnDetails = () => {
       }
     };
     
-    if(checkVerified()===true)
+    checkVerified();
       fetchGrns();
   }, []);
 

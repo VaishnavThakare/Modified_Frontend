@@ -3,6 +3,16 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faEye,
+  faEdit,
+  faFileDownload,
+  faArrowLeft,
+  faArrowRight,
+  faPlane,
+  faTruck,
+} from "@fortawesome/free-solid-svg-icons";
 
 const DocumentDetails = () => {
   const [vendorDetails, setVendorDetails] = useState(null);
@@ -118,7 +128,7 @@ const DocumentDetails = () => {
         <br />
         <br />
         <br />
-          <div className="mt-4 flex text-2xl font-bold text-gray-500">
+        <div className="mt-4 flex text-2xl font-bold text-gray-500">
             <h2 className="text-left text-cyan-500">DOCUMENT DETAILS</h2>
           </div>
           <div className="w-72 bg-cyan-500 h-0.5 mb-1"></div>

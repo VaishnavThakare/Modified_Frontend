@@ -87,8 +87,6 @@ import PODetailedView from "./pages/projecthead/PODetailedView";
 
 
 import Poactions from "./pages/Purchase Orders/Poactions.js";
-import VendorList from "./pages/admin/VendorList.js";
-import ProjectHeadList from "./pages/admin/ProjectHeadList.js";
 
 const App = () => {
   const [userRole, setuserRole] = useState(sessionStorage.getItem("roles"));
@@ -175,7 +173,7 @@ const App = () => {
             path="update-invoice/:invoiceId"
             element={<UpdateInvoiceVendor />}
           />
-          <Route path="po-check" element={<PoDetailsV />} />
+          <Route path="po-check" element={<PoDetailsV/>} />
           {/* Add this Route for Poactions */}
           <Route path="po-check/:orderId" element={<Poactions />} />
           <Route path="changePassword" element={<ChangePassword />} />
