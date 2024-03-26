@@ -64,11 +64,14 @@ export default function Sidebar({ isMenuVisible, menuItems }) {
                 </span>
                 {selectedItem === index && menuItem.subItems && (
                   <div
-                    className="ml-5 absolute bg-white text-gray-700 p-4 shadow-lg rounded-lg submenuArrow"
+                    className="w-full  absolute bg-white text-gray-700 p-4 shadow-lg shadow-gray-600 rounded-lg submenuArrow"
                     style={{
                       top: popupPosition.top + "px",
                       left: popupPosition.left + "px",
                       zIndex: 1000, // Set a higher z-index value
+                      transition: "opacity 0.3s, transform 0.3s",
+                      opacity: 1,
+                      transform: "translateY(0)",
                     }}
                     onMouseEnter={() => setSelectedItem(index)}
                     onMouseLeave={() => setSelectedItem(null)}
