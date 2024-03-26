@@ -72,7 +72,7 @@ export default function AddVendor() {
   return (
     <>
       <div className="align-middle flex min-w-96  overflow-hidden bg-zinc-50  px-8 py-3 pb-8 rounded-bl-lg rounded-br-lg">
-        <form onSubmit={handleSubmit} className="max-w-screen-lg mx-auto mt-8 appform bg-white grid grid-cols-2 gap-6">
+        <form onSubmit={handleSubmit} className="max-w-screen-lg mx-28 mt-8 appform bg-white grid grid-cols-2 gap-6">
         
           <div className="col-span-1">
             <div className="mb-6 relative">
