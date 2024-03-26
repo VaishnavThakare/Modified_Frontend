@@ -61,6 +61,7 @@ const Header = () => {
   const handleDeleteNotification = async (notificationId) => {
     try {
       const sid = sessionStorage.getItem("sid");
+      console.log(sid)
       await axios.delete(
         `${process.env.REACT_APP_API_URL}/Notification/${sid}/${notificationId}`
       );
@@ -79,6 +80,66 @@ const Header = () => {
       pathSegments[pathSegments.length - 1].toUpperCase(),
     ];
   };
+
+const handleNotificationClick = (notificationRoute) => {
+  console.log("Handling notification click...");
+  const currentUrl = window.location.href;
+  let baseUrl = localStorage.getItem("baseUrl"); // Get the base URL from localStorage
+  console.log("Base URL:", baseUrl);
+  if (!baseUrl || !currentUrl.includes(baseUrl)) {
+    baseUrl = currentUrl.split("#")[0]; // Extract base URL without hash
+    localStorage.setItem("baseUrl", baseUrl); // Store the base URL in localStorage
+    console.log("Base URL stored:", baseUrl);
+  }
+  const newUrl = baseUrl + notificationRoute; // Combine base URL with notification route
+  console.log("New URL:", newUrl);
+  window.location.href = newUrl; // Navigate to the new URL
+};
+
+  
+  
+
+
+// Render notifications
+const renderNotifications = () => {
+  return notificationData.map((noti, index) => {
+    const dateTime = new Date(noti.createdAt);
+    return (
+      <li key={index}>
+        <NavLink
+          to="#"
+          className="py-2 px-4 flex items-center hover:bg-gray-50 group relative"
+          onClick={() => handleNotificationClick(noti.route)} // Attach click handler to navigate to the notification route
+        >
+          <img
+            src={notiIcon}
+            alt=""
+            className="w-8 h-8 rounded block object-cover align-middle"
+          />
+          <div className="ml-2 pr-4 flex-1">
+            <div className="text-[13px] text-gray-600 font-medium group-hover:text-blue-500">
+              {noti.content}
+            </div>
+            <div className="text-[11px] text-gray-400">
+              {dateTime.toLocaleString()}
+            </div>
+          </div>
+          <FontAwesomeIcon
+            icon={faTimes}
+            className="cursor-pointer absolute right-4 top-1/2 transform -translate-y-1/2"
+            onClick={(event) => {
+              event.preventDefault();
+              event.stopPropagation();
+              handleDeleteNotification(noti.id); // Call delete function
+            }}
+          />
+        </NavLink>
+      </li>
+    );
+  });
+};
+
+
 
   return (
     <>
@@ -171,41 +232,14 @@ const Header = () => {
                   </button>
                 </div>
                 <div className="my-2 relative">
+                  {/* In your JSX code, replace the part where you render notifications with: */}
                   <ul
                     className="max-h-64 overflow-y-auto"
                     data-tab-for="notification"
                     data-page="notifications"
                   >
                     {notificationData.length > 0 ? (
-                      notificationData.map((noti, index) => {
-                        const dateTime = new Date(noti.createdAt);
-                        return (
-                          <li key={index}>
-                            <a
-                              href="#"
-                              className="py-2 px-4 flex items-center hover:bg-gray-50 group"
-                            >
-                              <img
-                                src={notiIcon}
-                                alt=""
-                                className="w-8 h-8 rounded block object-cover align-middle"
-                              />
-                              <div className="ml-2 pr-4">
-                                <div className="text-[13px] text-gray-600 font-medium group-hover:text-blue-500">
-                                  {noti.content}
-                                </div>
-                                <div className="text-[11px] text-gray-400">
-                                  {dateTime.toLocaleString()}
-                                </div>
-                              </div>
-                              <FontAwesomeIcon
-                                icon={faTimes}
-                                className="cursor-pointer ml-14"
-                              />
-                            </a>
-                          </li>
-                        );
-                      })
+                      renderNotifications() // Call the function to render notifications
                     ) : (
                       <div className="ml-4">
                         <div className="text-[13px] text-gray-600 font-medium group-hover:text-blue-500">
@@ -229,9 +263,9 @@ const Header = () => {
                   }}
                 />
                 <p className="ml-2 font-bold" onClick={() => {
-                    setMenu(!menu);
-                    setNotiVisible(false);
-                  }}>{profile.name}</p>
+                  setMenu(!menu);
+                  setNotiVisible(false);
+                }}>{profile.name}</p>
               </li>
               <ul
                 className="mt-1 absolute right-2 top-24 bg-zinc-300 py-3 max-w-40 w-full rounded-md border shadow-lg border-gray-300"
@@ -244,12 +278,12 @@ const Header = () => {
                   <NavLink to="changePassword">
                     Change Password
                   </NavLink>
-                </li>                  
+                </li>
                 <li className="font-sans font-bold pl-4 text-left cursor cursor-pointer w-full hover:bg-cyan-300">
                   <NavLink to="/" onClick={logOut}>
                     Log Out
                   </NavLink>
-                </li>              
+                </li>
               </ul>
             </ul>
           </div>
