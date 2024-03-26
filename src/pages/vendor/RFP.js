@@ -118,7 +118,9 @@ export default function RFP() {
               </tr>
             </thead>
             <tbody className="bg-white">
-              {rfps.map((rfp) => (
+              {
+                rfps && rfps.length > 0 ?
+                rfps.map((rfp) => (
                 <tr key={rfp.id}>
                   <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
                     <div className="text-sm leading-5 text-gray-500">
@@ -151,7 +153,14 @@ export default function RFP() {
                     </button>
                   </td>                  
                 </tr>
-              ))}
+              ))
+              :
+              <tr>
+                <td colSpan={6} className="px-4 py-2 whitespace-no-wrap text-center text-sm">
+                  No RFP's Found For Your Category.
+                </td>
+              </tr>
+              }
             </tbody>
           </table>
         </div>

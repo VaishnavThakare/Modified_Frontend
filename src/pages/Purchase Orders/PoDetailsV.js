@@ -20,6 +20,21 @@ const PoDetailsV = () => {
   const sid = sessionStorage.getItem("sid");
   const [currentPage, setCurrentPage] = useState(1);
 
+  const checkVerified = async()=>{
+    try{
+        const sid = sessionStorage.getItem("sid");
+        const vendorCatRes = await axios.get(
+          `${process.env.REACT_APP_API_URL}/Vendor/${sid}`
+        );
+        console.log(vendorCatRes);
+        if (!vendorCatRes.data.isVerified) navigate("/vendor/upload-document");  
+        else return true;
+    }
+    catch(error){
+      console.log(error);
+    }
+}
+
   useEffect(() => {
     const fetchPurchaseOrders = async () => {
       try {
@@ -33,7 +48,8 @@ const PoDetailsV = () => {
       }
     };
 
-    fetchPurchaseOrders();
+    if(checkVerified()===true)
+      fetchPurchaseOrders();
   }, [sid]);
 
   const indexOfFirstItem = (currentPage - 1) * itemsPerPage;

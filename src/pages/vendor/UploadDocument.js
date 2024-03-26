@@ -38,7 +38,7 @@ function UploadDocument() {
       console.log(vendor.isVerified);
     } else {
       sethide(false);
-      setVerified(false);
+      setVerified(vendor.isVerified);
     }
   };
 
@@ -57,6 +57,12 @@ function UploadDocument() {
         sethide(false);
         setVerified(false);
       }
+      if(vendor.isVerified){
+        toast.success("You are  a verified Vendor.");
+      }
+      else{
+        toast.error("You are not a verified Vendor.");
+      }
     } catch (error) {
       alert("Error to fetch the data");
       console.log(error);
@@ -74,7 +80,7 @@ function UploadDocument() {
     var did = event.target.getAttribute("data-key");
     console.log(did);
     if (File.length == 0) {
-      toast.error("elect file to upload", {
+      toast.error("Select file to upload", {
         position: "top-center",
       });
     } else {
