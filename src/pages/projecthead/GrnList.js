@@ -6,9 +6,10 @@ import {
   faEye,
   faArrowLeft,
   faArrowRight,
-  faExternalLinkAlt,
+  faFilePdf,
   faTruck,
   faPlane,
+  faFileDownload,
 } from "@fortawesome/free-solid-svg-icons";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -22,6 +23,7 @@ const GrnList = () => {
   const [editedComment, setEditedComment] = useState("");
   const [selectedGrnDetails, setSelectedGrnDetails] = useState(null);
   const [showDetails, setShowDetails] = useState(false);
+  const [selectedInvoiceData, setSelectedInvoiceData] = useState([]);
   const navigate = useNavigate();
 
   const itemsPerPage = 5;
@@ -63,6 +65,12 @@ const GrnList = () => {
       const response = await axios.get(`https://localhost:7254/api/GRN/${id}`);
       setSelectedGrnDetails(response.data);
       setShowDetails(true);
+
+      // Fetch associated invoices for the GRN
+      const invoiceResponse = await axios.get(
+        `https://localhost:7254/api/Invoice/GRN/${id}`
+      );
+      setSelectedInvoiceData(invoiceResponse.data);
     } catch (error) {
       console.error("Error fetching GRN details:", error);
       toast.error("Error fetching GRN details");
@@ -91,102 +99,176 @@ const GrnList = () => {
     };
 
     return (
-      <div className="ml-96 items-center justify-center h-screen">
-        <div className="rounded-lg border-2 border-cyan-400  bg-white shadow-lg p-4 max-w-lg w-full mt-2">
-          <div className="flex text-2xl font-bold text-gray-500">
-            <h2 className="text-left text-cyan-500">GRN DETAILS</h2>
+      <div>
+        <div className="flex justify-between">
+          <div>
+            <div className="flex text-2xl font-bold text-gray-500 ">
+              <h2 className="text-left text-cyan-500">ALL ABOUT GRN</h2>
+            </div>
+            <div className="w-52 bg-cyan-500 h-0.5 mb-1"></div>
+            <div className="w-96 bg-cyan-500 h-0.5 mb-5"></div>
           </div>
-          <div className="w-36 bg-cyan-500 h-0.5 mb-1"></div>
-          <div className="w-44 bg-cyan-500 h-0.5 mb-5"></div>
-          <table className="w-full">
-            <tbody>
-              <tr>
-                <td className="py-2">
-                  <span className="font-bold">GRN No.:</span>
-                </td>
-                <td className="py-2">{grnDetails.grnNo}</td>
-              </tr>
-              <tr>
-                <td className="py-2">
-                  <span className="font-bold">PO No.:</span>
-                </td>
-                <td className="py-2">{grnDetails.purchaseOrder.orderNo}</td>
-              </tr>
-              <tr>
-                <td className="py-2">
-                  <span className="font-bold">Sent On:</span>
-                </td>
-                <td className="py-2">{formatDateTime(grnDetails.sendOn)}</td>
-              </tr>
-              <tr>
-                <td className="py-2">
-                  <span className="font-bold">Created On:</span>
-                </td>
-                <td className="py-2">{formatDateTime(grnDetails.createdOn)}</td>
-              </tr>
-
-              <tr>
-                <td className="py-2">
-                  <span className="font-bold">Last Modified on:</span>
-                </td>
-                <td className="py-2">
-                  {formatDateTime(grnDetails.lastModifiedOn)}
-                </td>
-              </tr>
-              <tr>
-                <td className="py-2">
-                  <span className="font-bold">Comment:</span>
-                </td>
-                <td className="py-2">{grnDetails.comment}</td>
-              </tr>
-              <tr>
-                <td className="py-2">
-                  <span className="font-bold">Shipment Status:</span>
-                </td>
-                <td className="py-2">
-                  {grnDetails.shipmentStatus ? (
-                    <span className="flex items-center">
-                      <div className="bg-blue-100 text-blue-800 px-2 py-1 rounded-xl">
-                        Shipment Complete
-                        <FontAwesomeIcon
-                          icon={faPlane}
-                          className="ml-2 text-blue-500"
-                        />
-                      </div>
-                    </span>
-                  ) : (
-                    <span className="flex items-center">
-                      <div className="bg-red-100 text-red-800 px-2 py-1 rounded-xl">
-                        Partial Shipment
-                        <FontAwesomeIcon
-                          icon={faTruck}
-                          className="ml-2 text-red-500"
-                        />
-                      </div>
-                    </span>
-                  )}
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <div className="flex justify-end mt-4">
+          <div>
             <button
-              className="bg-cyan-600 hover:bg-cyan-700 mr-4 text-white font-bold py-2 px-4 rounded"
+              className="mt-4 bg-cyan-500 text-white px-4 py-2 rounded block mx-auto"
               onClick={handleBack}
             >
-              <FontAwesomeIcon icon={faArrowLeft} className="mr-2" />
-              Back
+              Close
             </button>
-            {grnDetails.documentPath && (
-              <button
-                className="bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded"
-                onClick={() => openDocument(grnDetails.documentPath)}
-              >
-                <FontAwesomeIcon icon={faExternalLinkAlt} className="mr-2" />
-                View Document
-              </button>
-            )}
           </div>
+        </div>
+
+        <div className="min-w-full border-2 border-cyan-500 rounded-lg mb-5 bg-white">
+          <div
+            className="bg-white p-6 rounded-md shadow-md "
+            style={{ height: "fit-content" }}
+          >
+            <p className="text-gray-900 mb-3">
+              <span className="font-bold">GRN Nos.</span>: {grnDetails.grnNo}
+            </p>
+            <p className="text-gray-900 mb-3">
+              <span className="font-bold">PO No.</span>:{" "}
+              {grnDetails.purchaseOrder.orderNo}
+            </p>
+            <p className="text-gray-900 mb-3">
+              <span className="font-bold">Sent on (date)</span>:{" "}
+              {formatDateTime(grnDetails.sendOn)}
+            </p>
+            <p className="text-gray-900">
+              <span className="font-bold">Status</span>:{" "}
+              {grnDetails.isAccepted ? "Accepted" : "Rejected"}
+            </p>
+            <p>
+              <td className="py-2">
+                <span className="font-bold">Shipment Status:</span>
+              </td>
+              <td className="py-2">
+                {grnDetails.shipmentStatus ? (
+                  <span className="flex items-center">
+                    <div className="bg-blue-100 text-blue-800 px-2 py-1 rounded-xl">
+                      Shipment Complete
+                      <FontAwesomeIcon
+                        icon={faPlane}
+                        className="ml-2 text-blue-500"
+                      />
+                    </div>
+                  </span>
+                ) : (
+                  <span className="flex items-center">
+                    <div className="bg-red-100 text-red-800 px-2 py-1 rounded-xl">
+                      Partial Shipment
+                      <FontAwesomeIcon
+                        icon={faTruck}
+                        className="ml-2 text-red-500"
+                      />
+                    </div>
+                  </span>
+                )}
+              </td>
+            </p>
+            <p className="text-gray-900">
+              <span className="font-bold">Comment</span>: {grnDetails.comment}
+            </p>
+            <div>
+              <span className="font-bold">Document:</span>{" "}
+              {grnDetails.documentPath && (
+                <button
+                  className="text-blue-500"
+                  onClick={() => openDocument(grnDetails.documentPath)}
+                >
+                  <FontAwesomeIcon icon={faFilePdf} className="mr-2" />
+                  View Document
+                </button>
+              )}
+            </div>
+          </div>
+        </div>
+        <br></br>
+        <br></br>
+
+        <br></br>
+
+        {/* Invoice Table */}
+        <div className="flex text-2xl font-bold text-gray-500">
+          <h2 className="text-left text-cyan-500">ALL INVOICES</h2>
+        </div>
+        <div className="w-1/5 bg-cyan-500 h-0.5 mb-1"></div>
+        <div className="w-1/3 bg-cyan-500 h-0.5 mb-5"></div>
+        <div className="border-2 border-cyan-500 mb-5 shadow-lg rounded-lg p-0.5">
+          <table className="min-w-full  rounded-lg bg-white">
+            <thead>
+              <tr>
+                <th className="px-6 py-3  text-center text-sm leading-4 text-gray-600 tracking-wider">
+                  Invoice No.
+                </th>
+                <th className="px-6 py-3  text-center text-sm leading-4 text-gray-600 tracking-wider">
+                  Sent On.
+                </th>
+
+                <th className="px-6 py-3  text-center text-sm leading-4 text-gray-600 tracking-wider">
+                  Amount
+                </th>
+                <th className="px-6 py-3  text-center text-sm leading-4 text-gray-600 tracking-wider">
+                  Grn NO
+                </th>
+                <th className="px-6 py-3  text-center text-sm leading-4 text-gray-600 tracking-wider">
+                  Payment Status.
+                </th>
+                <th className="px-6 py-3  text-center text-sm leading-4 text-gray-600 tracking-wider">
+                  Status
+                </th>
+                <th className="px-6 py-3  text-center text-sm leading-4 text-gray-600 tracking-wider">
+                  View Document
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {selectedInvoiceData.map((invoice) => (
+                <tr key={invoice.id} className="border-b border-gray-300">
+                  <td className="px-6 py-4 whitespace-no-wrap text-center ">
+                    {invoice.invoiceNo}
+                  </td>
+                  <td className="px-6 py-4 whitespace-no-wrap text-center ">
+                    {formatDateTime(invoice.sendOn)}
+                  </td>
+                  <td className="px-6 py-4 whitespace-no-wrap text-center ">
+                    {invoice.amount}
+                  </td>
+                  <td className="px-6 py-4 whitespace-no-wrap text-center ">
+                    {invoice.grn.grnNo}
+                  </td>
+                  <td className="px-6 py-4 whitespace-no-wrap text-center ">
+                    {" "}
+                    {invoice.paymentStatus ? "Paid" : "Unpaid"}
+                  </td>
+                  <td className="px-6 py-4 whitespace-no-wrap text-center ">
+                    <button
+                      className={`py-1 px-2 rounded ${
+                        invoice.isAccepted
+                          ? "bg-green-200 text-green-700"
+                          : "bg-red-200 text-red-600"
+                      }`}
+                      style={{ minWidth: "6rem" }}
+                    >
+                      {invoice.isAccepted ? "Accepted" : "Pending"}
+                    </button>
+                  </td>
+                  <td className="px-6 py-4 whitespace-no-wrap text-center ">
+                    <a
+                      href={invoice.documentPath}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <FontAwesomeIcon
+                        icon={faFileDownload}
+                        className="text-cyan-600 text-xl"
+                      />
+                    </a>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       </div>
     );
