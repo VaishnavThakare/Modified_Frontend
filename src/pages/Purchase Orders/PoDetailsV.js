@@ -16,6 +16,8 @@ import { useNavigate } from "react-router-dom";
 const PoDetailsV = () => {
   const [purchaseOrders, setPurchaseOrders] = useState([]);
   const [GRNs, setGRNs] = useState([]);
+  const [GRN, setGRN] = useState([]);
+  const [grnView, setGrnView] = useState(false);
   const [selectedPurchaseOrder, setSelectedPurchaseOrder] = useState(null);
   const [showDetails, setShowDetails] = useState(false);
   const itemsPerPage = 5;
@@ -75,6 +77,17 @@ const PoDetailsV = () => {
     }
   };
 
+  const fetchGRN = async (id) => {
+    try {
+      const res = await axios.get(
+        `${process.env.REACT_APP_API_URL}/GRN/${id}`
+      );
+      setGRN(res.data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   const openDocument = (url) => {
     window.open(url, "_blank");
   };
@@ -117,7 +130,7 @@ const PoDetailsV = () => {
     <div className="relative">
       <ToastContainer />
 
-      {showDetails && selectedPurchaseOrder && (
+      {showDetails && !grnView && selectedPurchaseOrder && (
         <>
           <div className="flex text-2xl font-bold text-gray-500">
             <h2 className="text-left text-cyan-500">Purchase Order Details:</h2>
@@ -212,7 +225,7 @@ const PoDetailsV = () => {
           <div className="w-72 bg-cyan-500 h-0.5 mb-1"></div>
           <div className="w-80 bg-cyan-500 h-0.5 mb-3"></div>
 
-          <div className="shadow-xl">
+          <div className="bg-white shadow-lg">
             <div className="border-2 border-cyan-500 rounded-lg shadow-xl p-0.5">
               <table className="min-w-full p-4 mb-5">
                 <thead>
@@ -225,6 +238,9 @@ const PoDetailsV = () => {
                     <th className="px-4 py-2 text-center">STATUS</th>
                     <th className="px-4 py-2 text-center">
                       View/Download
+                    </th>
+                    <th className="px-4 py-2 text-center">
+                      Action
                     </th>
                     {/* <th className="px-4 py-2 text-left">ACTION</th> */}
                   </tr>
@@ -248,26 +264,25 @@ const PoDetailsV = () => {
                           {formatDateTime(grn.sendOn)}
                         </td>
                         <td className="px-6 py-4 whitespace-no-wrap text-center">
-                          <button
-                            className={`py-1 px-2 rounded ${
-                              grn.isAccepted
-                                ? "bg-green-200 text-green-700"
-                                : "bg-red-200 text-red-600"
-                            }`}
-                            style={{ minWidth: "6rem" }}
-                          >
-                            {grn.isAccepted ? "Accepted" : "Pending"}
-                          </button>
-                        </td>
-                        <td className="px-6 py-4 whitespace-no-wrap text-center">
-                          {grn.comment}
-                        </td>
-                        <td className="px-6 py-4 whitespace-no-wrap text-center">
                           {grn.shipmentStatus ? (
                             <span className="text-green-500">Complete</span>
                           ) : (
                             <span className="text-red-500">Partial</span>
                           )}
+                        </td>
+                        <td className="px-6 py-4 whitespace-no-wrap text-center">
+                          {grn.comment}
+                        </td>
+                        <td className="px-6 py-4 whitespace-no-wrap text-center">
+                          <button
+                            className={`py-1 px-2 rounded ${grn.isAccepted
+                              ? "bg-green-200 text-green-700"
+                              : "bg-red-200 text-red-600"
+                              }`}
+                            style={{ minWidth: "6rem" }}
+                          >
+                            {grn.isAccepted ? "Accepted" : "Pending"}
+                          </button>
                         </td>
                         <td className="px-6 py-4 whitespace-no-wrap text-center">
                           <a
@@ -280,7 +295,17 @@ const PoDetailsV = () => {
                               className="text-cyan-600 text-xl"
                             />
                           </a>
-                        </td>                        
+                        </td>
+                        <td className="px-6 py-4 whitespace-no-wrap text-center">
+                          <button
+                          >
+                            <FontAwesomeIcon
+                              icon={faEye}
+                              className="text-cyan-600 text-xl"
+                              onClick={() => { setGrnView(true); fetchGRN(grn.id); }}
+                            />
+                          </button>
+                        </td>
                       </tr>
                     ))
                   ) : (
@@ -297,7 +322,7 @@ const PoDetailsV = () => {
         </>
       )}
 
-      {!showDetails && (
+      {!showDetails && !grnView && (
         <div className="overflow-x-auto mt-8 ml-2 mr-2 rounded">
           <div className="flex text-2xl font-bold text-gray-500">
             <h2 className="text-left text-cyan-500">Purchase Orders List</h2>
@@ -390,7 +415,7 @@ const PoDetailsV = () => {
                               />
                             </button>
                             {order.isAccepted == false ||
-                            order.isAccepted == null ? (
+                              order.isAccepted == null ? (
                               <button onClick={() => handleEdit(order.id)}>
                                 <FontAwesomeIcon
                                   icon={faEdit}
@@ -445,6 +470,88 @@ const PoDetailsV = () => {
         </div>
       )}
 
+      {
+        grnView &&
+        <>
+          <div className="w-full max-w-2xl mx-auto p-8 ">
+            <h1 className="text-cyan-500 text-2xl font-bold mb-4 ">
+              <span className="border-b-2 border-cyan-500 inline-block">GRN DETAILS</span>
+            </h1>
+            <div className="bg-white shadow-md rounded-lg p-6 border-2 border-cyan-500">
+              <table border="1px" className="w-full">
+                <tbody>
+                  <tr>
+                    <th className="text-left">GRN No</th>
+                    <td className="text-left">{GRN.grnNo}</td>
+                  </tr>
+                  <tr>
+                    <th className="text-left">PurchaseOrder No</th>
+                    <td className="text-left">{GRN.grnNo}</td>
+                  </tr>
+                  <tr>
+                    <th className="text-left">Sent On</th>
+                    <td className="text-left">{formatDateTime(GRN.sendOn)}</td>
+                  </tr>
+                  <tr>
+                    <th className="text-left">Shipment Type</th>
+                    <td className="text-left">
+                      {GRN.shipmentStatus ? (
+                        <span className="text-green-500">Complete</span>
+                      ) : (
+                        <span className="text-red-500">Partial</span>
+                      )}
+                    </td>
+                  </tr>
+                  <tr>
+                    <th className="text-left">Comment</th>
+                    <td className="text-left">{GRN.comment}</td>
+                  </tr>
+                  <tr>
+                    <th className="text-left">Status</th>
+                    <td className="text-left">
+                      <button
+                        className={`py-1 px-2 rounded ${GRN.isAccepted
+                          ? "bg-green-200 text-green-700"
+                          : "bg-red-200 text-red-600"
+                          }`}
+                        style={{ minWidth: "6rem" }}
+                      >
+                        {GRN.isAccepted ? "Accepted" : "Pending"}
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th className="text-left">View</th>
+                    <td className="text-left">
+                      <a
+                        href={GRN.documentPath}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <FontAwesomeIcon
+                          icon={faFileDownload}
+                          className="text-cyan-600 text-xl"
+                        />
+                        <span className="ml-1 text-blue-700">View Document</span>
+                      </a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td align="right" colSpan={2}>
+                      <button
+                        onClick={() => { setGrnView(false) }}
+                        className="bg-cyan-600 hover:bg-cyan-700 mr-4 text-white font-bold py-2 px-4 rounded"
+                      >
+                        Back
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </>
+      }
       <ToastContainer />
     </div>
   );
