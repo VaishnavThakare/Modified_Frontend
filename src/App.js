@@ -87,6 +87,8 @@ import PODetailedView from "./pages/projecthead/PODetailedView";
 
 
 import Poactions from "./pages/Purchase Orders/Poactions.js";
+import VendorList from "./pages/admin/VendorList.js";
+import ProjectHeadList from "./pages/admin/ProjectHeadList.js";
 
 const App = () => {
   const [userRole, setuserRole] = useState(sessionStorage.getItem("roles"));
@@ -106,6 +108,8 @@ const App = () => {
           <Route index element={<AdminDash />} />
           <Route path="dashboard" index element={<AdminDash />} />
           <Route path="allusers" element={<Users />} />
+          <Route path="vendor-list" element={<VendorList/>} />
+          <Route path="projectHead-list" element={<ProjectHeadList/>} />
           <Route path="create-vendor" element={<AddVendor />} />
           <Route path="create-project-head" element={<AddProjectHead />} />
           <Route path="add-vendor-category" element={<AddVendorCategory />} />

@@ -24,9 +24,7 @@ export default function AllBanner() {
         data = res.data; 
       }
       setbanners(data); 
-      toast.success("All Banners Loaded",{
-        position:"top-right"
-      });
+     
     } catch (error) {
       toast.error("Error to load Banners",{
         position:"top-right"

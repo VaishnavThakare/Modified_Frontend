@@ -17,7 +17,9 @@ export default function AdminDashboard() {
       text: "Users",
       icon: "bx bx-user text-white",
       link: "#",
-      subItems: [{ text: "All", link: "allusers" }],
+      subItems: [{ text: "All", link: "allusers" },
+      { text: "Vendor List", link: "vendor-list" },
+      { text: "Project Head List", link: "projectHead-list" },],
       bgColor: "bg-[#6ce9f9]",
     },
     {

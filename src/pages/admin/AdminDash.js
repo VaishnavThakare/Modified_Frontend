@@ -15,14 +15,14 @@ export default function AdminDash() {
         );
 
         setproject(projectRes.data.length);
-///
+        ///
         const productRes = await axios.get(
           `${process.env.REACT_APP_API_URL}/Product/All`
         );
 
         setproduct(productRes.data.length);
 
-///
+        ///
 
         const vendorRes = await axios.get(
           `${process.env.REACT_APP_API_URL}/Vendor/All`
@@ -51,7 +51,6 @@ export default function AdminDash() {
             <div>
               <div class="flex items-center mb-1">
                 <div class="text-2xl font-semibold">{product}</div>
-                
               </div>
               <div class="text-sm font-medium text-gray-400">Products</div>
             </div>
@@ -63,7 +62,7 @@ export default function AdminDash() {
             View
           </a>
         </div>
-        
+
         <div class="bg-white rounded-md border-2 border-cyan-500 p-6 shadow-lg">
           <div class="flex justify-between mb-6">
             <div>
@@ -94,7 +93,7 @@ export default function AdminDash() {
             </div>
           </div>
           <a
-            href="/admin/allusers"
+            href="/admin/vendor-list"
             class="text-cyan-500 font-medium text-sm hover:text-cyan-700"
           >
             View
@@ -113,7 +112,7 @@ export default function AdminDash() {
             </div>
           </div>
           <a
-            href="/admin/allusers"
+            href="/admin/projectHead-list"
             class="text-cyan-500 font-medium text-sm hover:text-cyan-700"
           >
             View
@@ -141,7 +140,6 @@ export default function AdminDash() {
         </div>
       </div>
 
-      
       {/* <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
         <div class="bg-white border border-gray-100 shadow-md shadow-black/5 p-6 rounded-md lg:col-span-2">
           <div class="flex justify-between mb-4 items-start">
