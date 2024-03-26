@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import Sidebar from "../components/sidebar";
 import { Outlet } from "react-router-dom";
 import Header from "../components/Header";
-import "./Css/VendorDashboard.css";
 
 export default function VendorDashboard() {
   const [isMenuVisible, setMenuVisible] = useState(false);
@@ -11,41 +10,44 @@ export default function VendorDashboard() {
     {
       text: "DASHBOARD",
       link: "dashboard",
-      bgColor: "bg-cyan-300",
+      bgColor: "bg-[#09c8e2]",
       icon: "ri-home-2-line text-white",
     },
     {
       text: "REQUEST FOR PROPOSAL (RFP)",
       link: "#",
-      bgColor: "bg-cyan-400",
+      bgColor: "bg-[#09c8e2]",
       subItems: [{ text: "For You", link: "rfp" }],
       icon: "ri-file-copy-2-line text-white",
     },
     {
       text: "DOCUMENTS",
       link: "#",
-      bgColor: "bg-cyan-500",
+      bgColor: "bg-[#09c8e2]",
       subItems: [{ text: "Upload Documents", link: "upload-document" }],
       icon: "ri-file-copy-2-line text-white",
     },
     {
       text: "PURCHASE ORDER",
       link: "#",
-      bgColor: "bg-cyan-600",
+      bgColor: "bg-[#09c8e2]",
       subItems: [{ text: "Purchase Order", link: "po-check" }],
       icon: "bx bx-category text-white",
     },
     {
       text: "GRN Details",
       link: "#",
-      bgColor: "bg-cyan-700",
+      bgColor: "bg-[#09c8e2]",
       icon: "ri ri-projector-line text-white",
-      subItems: [{ text: "GRN List", link: "vendor-grnlist" },{ text: "GRN Form", link: "vendor-grnform" }],
+      subItems: [
+        { text: "GRN List", link: "vendor-grnlist" },
+        { text: "GRN Form", link: "vendor-grnform" },
+      ],
     },
     {
       text: "INVOICE",
       link: "#",
-      bgColor: "bg-cyan-800",
+      bgColor: "bg-[#09c8e2]",
       icon: "bx bx-category text-white",
       subItems: [
         { text: "View", link: "view-invoice" },

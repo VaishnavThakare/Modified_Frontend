@@ -17,9 +17,11 @@ export default function AdminDashboard() {
       text: "Users",
       icon: "bx bx-user text-white",
       link: "#",
-      subItems: [{ text: "All", link: "allusers" },
-      { text: "Vendor List", link: "vendor-list" },
-      { text: "Project Head List", link: "projectHead-list" },],
+      subItems: [
+        { text: "All", link: "allusers" },
+        { text: "Vendor List", link: "vendor-list" },
+        { text: "Project Head List", link: "projectHead-list" },
+      ],
       bgColor: "bg-[#6ce9f9]",
     },
     {
@@ -50,10 +52,7 @@ export default function AdminDashboard() {
       icon: "bx bx-category text-white",
       link: "#",
       bgColor: "bg-[#31e0f7]",
-      subItems: [
-        { text: "View", link: "grn" },
-        
-      ],
+      subItems: [{ text: "View", link: "grn" }],
     },
     {
       text: "INVOICE",
@@ -68,7 +67,7 @@ export default function AdminDashboard() {
       icon: "bx bx-user text-white",
       link: "#",
       subItems: [{ text: "Create Project Head", link: "create-project-head" }],
-        bgColor: "bg-[#0adaf5]",
+      bgColor: "bg-[#0adaf5]",
     },
     {
       text: "Project",
@@ -152,7 +151,7 @@ export default function AdminDashboard() {
         { text: "All Document", link: "allDocuments" },
         { text: "Add Document", link: "addDocument" },
       ],
-        bgColor: "bg-[#034e58]",
+      bgColor: "bg-[#034e58]",
     },
     {
       text: "Profile",
@@ -164,8 +163,6 @@ export default function AdminDashboard() {
       ],
       bgColor: "bg-[#033d45]",
     },
-
-    /////////////
   ];
 
   const handleMenuVisible = () => {
@@ -187,4 +184,3 @@ export default function AdminDashboard() {
     </>
   );
 }
-

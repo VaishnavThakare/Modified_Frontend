@@ -42,6 +42,7 @@ import PoDetailsA from "./pages/Purchase Orders/PoDetailsA";
 import PurchaseOrderForm from "./pages/Purchase Orders/PurchaseOrderForm";
 import EditPurchaseOrderPage from "./pages/Purchase Orders/EditPurchaseOrderPage";
 import ProjectEdit from "./pages/admin/ProjectEdit";
+import VendorDetailsAdm from "./pages/admin/VendorDetailsAdm.js";
 
 //Vendor
 import VendorDash from "./pages/vendor/VendorDash";
@@ -160,7 +161,9 @@ const App = () => {
           <Route
             path="details/:invoiceNo"
             element={<AdminDetailsView />}
+
           ></Route>
+          <Route path="vendor-detailsadm/:id" element={<VendorDetailsAdm />}></Route>
         </Route>
 
         <Route path="/vendor" element={<VendorDashboard />}>

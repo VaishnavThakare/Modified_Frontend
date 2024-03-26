@@ -4,54 +4,54 @@ import { toast } from "react-toastify";
 import { useParams } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 
-const EditGrnDetails = () => {
-  const { grnId } = useParams();
+const EditInvoices = () => {
+  const { invoiceId } = useParams();
   const [comment, setComment] = useState("");
   const [isAccepted, setIsAccepted] = useState(null);
 
   useEffect(() => {
-    const fetchGrnDetails = async () => {
+    const fetchInvoiceDetails = async () => {
       try {
         const response = await axios.get(
-          `https://localhost:7254/api/GRN/${grnId}`
+          `https://localhost:7254/api/Invoice/${invoiceId}`
         );
-        const grnData = response.data;
-        setIsAccepted(grnData.isAccepted);
-        setComment(grnData.comment || "");
+        const invoiceData = response.data;
+        setIsAccepted(invoiceData.isAccepted);
+        setComment(invoiceData.comment || "");
       } catch (error) {
-        console.error("Error fetching GRN details:", error);
-        toast.error("Failed to fetch GRN details.");
+        console.error("Error fetching Invoice details:", error);
+        toast.error("Failed to fetch Invoice details.");
       }
     };
 
-    fetchGrnDetails();
-  }, [grnId]);
+    fetchInvoiceDetails();
+  }, [invoiceId]);
 
   const handleAccept = async () => {
     try {
-      await axios.put(`https://localhost:7254/api/GRN/AcceptReject/${grnId}`, {
+      await axios.put(`https://localhost:7254/api/Invoice/AcceptReject/${invoiceId}`, {
         comment: comment,
         isAccepted: true,
       });
       setIsAccepted(true);
-      toast.success("GRN item accepted successfully");
+      toast.success("invoice item accepted successfully");
     } catch (error) {
-      console.error("Error accepting GRN item:", error);
-      toast.error("Error accepting GRN item");
+      console.error("Error accepting Invoice item:", error);
+      toast.error("Error accepting Invoice item");
     }
   };
 
   const handleReject = async () => {
     try {
-      await axios.put(`https://localhost:7254/api/GRN/AcceptReject/${grnId}`, {
+      await axios.put(`https://localhost:7254/api/Invoice/AcceptReject/${invoiceId}`, {
         comment: comment,
         isAccepted: false,
       });
       setIsAccepted(false);
-      toast.success("GRN item rejected successfully");
+      toast.success("Invoice item rejected successfully");
     } catch (error) {
-      console.error("Error rejecting GRN item:", error);
-      toast.error("Error rejecting GRN item");
+      console.error("Error rejecting invoice item:", error);
+      toast.error("Error rejecting invoice item");
     }
   };
 
@@ -59,7 +59,7 @@ const EditGrnDetails = () => {
     <div className="align-middle inline-block min-w-full  overflow-hidden bg-zinc-50 px-8 py-3 pb-8 rounded-bl-lg rounded-br-lg">
       <div className="max-w-sm mx-auto mt-8 appform bg-white">
         <div className="flex text-2xl font-bold text-gray-600 mb-5">
-          <h2>Edit GRN Details</h2>
+          <h2>Edit Invoice Details</h2>
         </div>
         <div className="mb-6">
           <button
@@ -110,4 +110,4 @@ const EditGrnDetails = () => {
   );
 };
 
-export default EditGrnDetails;
+export default EditInvoices;
