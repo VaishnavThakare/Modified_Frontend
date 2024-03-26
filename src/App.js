@@ -87,6 +87,8 @@ import PODetailedView from "./pages/projecthead/PODetailedView";
 
 
 import Poactions from "./pages/Purchase Orders/Poactions.js";
+import VendorList from "./pages/admin/VendorList.js";
+import ProjectHeadList from "./pages/admin/ProjectHeadList.js";
 
 const App = () => {
   const [userRole, setuserRole] = useState(sessionStorage.getItem("roles"));
