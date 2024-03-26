@@ -207,7 +207,7 @@ const PoDetailsV = () => {
 
           {/*  */}
           <div className="mt-4 flex text-2xl font-bold text-gray-500">
-            <h2 className="text-left text-cyan-500">GRN's DETAILS</h2>
+            <h2 className="text-left text-cyan-500">GRNS</h2>
           </div>
           <div className="w-72 bg-cyan-500 h-0.5 mb-1"></div>
           <div className="w-80 bg-cyan-500 h-0.5 mb-3"></div>
@@ -220,12 +220,12 @@ const PoDetailsV = () => {
                     <th className="px-4 py-2 text-center">GRN No.</th>
                     <th className="px-4 py-2 text-center">PO No.</th>
                     <th className="px-4 py-2 text-center">SENT ON (DATE)</th>
-                    <th className="px-4 py-2 text-center">STATUS</th>
-                    <th className="px-4 py-2 text-center">
-                      VIEW & DOWNLOAD DOCUMENT
-                    </th>
                     <th className="px-4 py-2 text-center">SHIPMENT TYPE</th>
                     <th className="px-4 py-2 text-center">COMMENT</th>
+                    <th className="px-4 py-2 text-center">STATUS</th>
+                    <th className="px-4 py-2 text-center">
+                      View/Download
+                    </th>
                     {/* <th className="px-4 py-2 text-left">ACTION</th> */}
                   </tr>
                   <tr className="text-gray-600">
@@ -260,6 +260,16 @@ const PoDetailsV = () => {
                           </button>
                         </td>
                         <td className="px-6 py-4 whitespace-no-wrap text-center">
+                          {grn.comment}
+                        </td>
+                        <td className="px-6 py-4 whitespace-no-wrap text-center">
+                          {grn.shipmentStatus ? (
+                            <span className="text-green-500">Complete</span>
+                          ) : (
+                            <span className="text-red-500">Partial</span>
+                          )}
+                        </td>
+                        <td className="px-6 py-4 whitespace-no-wrap text-center">
                           <a
                             href={grn.documentPath}
                             target="_blank"
@@ -270,17 +280,7 @@ const PoDetailsV = () => {
                               className="text-cyan-600 text-xl"
                             />
                           </a>
-                        </td>
-                        <td className="px-6 py-4 whitespace-no-wrap text-center">
-                          {grn.shipmentStatus ? (
-                            <span className="text-green-500">Complete</span>
-                          ) : (
-                            <span className="text-red-500">Partial</span>
-                          )}
-                        </td>
-                        <td className="px-6 py-4 whitespace-no-wrap text-center">
-                          {grn.comment}
-                        </td>
+                        </td>                        
                       </tr>
                     ))
                   ) : (
