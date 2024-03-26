@@ -38,4 +38,46 @@ fieldset {
     top: -10px;
     left: 10px;
   }
+
+  .menuItemHover:hover {
+    color: white;
+    background-color:var(--hover-color) !important;
+  }
+
+  .white-bold-text {
+    color: white;
+    font-weight: 800;
+  }
   
+  .pagination-button {
+    background-color: #67E8F9;
+    color: #4a5568;
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.25rem;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    transition: background-color 0.2s ease-in-out;
+  }
+  
+  .pagination-button:hover {
+    background-color: #0891B2;
+  }
+  
+  .pagination-button:disabled {
+    background-color: #ECFEFF;
+    color: #a0aec0;
+    cursor: not-allowed;
+  }
+  
+  .pagination-button:first-child {
+    margin-right: 0.5rem;
+  }
+  
+  .pagination-button:last-child {
+    margin-left: 0.5rem;
+  }
+  
+  .pagination-icon {
+    margin-left: 0.25rem;
+    margin-right: 0.25rem;
+  }

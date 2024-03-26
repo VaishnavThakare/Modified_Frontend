@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import Sidebar from "../components/sidebar";
 import { Outlet } from "react-router-dom";
 import Header from "../components/Header";
-import "./Css/VendorDashboard.css";
 
 export default function VendorDashboard() {
   const [isMenuVisible, setMenuVisible] = useState(false);
@@ -40,7 +39,10 @@ export default function VendorDashboard() {
       link: "#",
       bgColor: "bg-cyan-700",
       icon: "ri ri-projector-line text-white",
-      subItems: [{ text: "GRN List", link: "vendor-grnlist" },{ text: "GRN Form", link: "vendor-grnform" }],
+      subItems: [
+        { text: "GRN List", link: "vendor-grnlist" },
+        { text: "GRN Form", link: "vendor-grnform" },
+      ],
     },
     {
       text: "INVOICE",
