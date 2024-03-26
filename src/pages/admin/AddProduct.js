@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { toast } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Test() {
   const [formData, setFormData] = useState([]);
@@ -62,7 +63,7 @@ function Test() {
       );
       console.log(res.data);
       toast.success("New Product added");
-      if (res.status === 200) alert("Product Added");
+      if (res.status === 200);
     } catch (error) {
       toast.error("Error adding product :(");
       console.log(error);
@@ -258,6 +259,7 @@ function Test() {
           </div>
         </form>
       </div>
+      <ToastContainer />
     </>
   );
 }

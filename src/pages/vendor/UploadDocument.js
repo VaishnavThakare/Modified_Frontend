@@ -57,14 +57,13 @@ function UploadDocument() {
         sethide(false);
         setVerified(false);
       }
-      if(vendor.isVerified){
+      if (vendor.isVerified) {
         toast.success("You are  a verified Vendor.");
-      }
-      else{
+      } else {
         toast.error("You are not a verified Vendor.");
       }
     } catch (error) {
-      alert("Error to fetch the data");
+      toast.error("Error to fetch the data");
       console.log(error);
     }
   };
@@ -151,69 +150,65 @@ function UploadDocument() {
           <div className="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 pr-10 lg:px-8 mb-8">
             <div className="align-middle inline-block min-w-full overflow-hidden bg-zinc-50 px-8 pt-3 rounded-lg rounded-br-lg">
               <div className="rounded-lg shadow-lg">
-              <table class="  border-collapse  border-2 border-cyan-500 rounded-lg shadow-lg ">
-                <thead className="bg-white">
-                  <tr>
-                    <th
-                      colSpan={3}
-                      className=" border- p-3   text-left"
-                    >
-                      Upload Following Documents
-                    </th>
-                  </tr>
-                  <tr className=" text-gray-600">
-                    <td colSpan="9" className=" px-4 py-1">
-                      <div style={{ borderTop: "2px solid gray" }}></div>
-                    </td>
-                  </tr>
-                </thead>
-                <tbody>
-                  {docs && docs.length > 0 ? (
-                    docs.map((item, index) => {
-                      return (
-                        item.documentPath == null && (
-                          <tr>
-                            <td className=" border-slate-300   text-left pl-1 pr-1 py-1">
-                              {item.documentName}
-                            </td>
-                            <td className=" border-slate-300    text-left pl-1 pr-1 py-1">
-                              <input
-                                type="file"
-                                name="file"
-                                onChange={handleOnChange}
-                              />
-                            </td>
-                            <td className=" border-cyan-500  font-serif  text-left pl-1 pr-1 py-1">
-                              <button
-                                data-key={item.id}
-                                id={index}
-                                disabled={false}
-                                name="btn"
-                                className="disabled mx-3 px-5 bg-cyan-500 hover:bg-cyan-700 py-2 rounded-3xl"
-                                onClick={handleOnSubmit}
-                              >
-                                Upload
-                              </button>
-                            </td>
-                          </tr>
-                        )
-                      );
-                    })
-                  ) : (
+                <table class="  border-collapse  border-2 border-cyan-500 rounded-lg shadow-lg ">
+                  <thead className="bg-white">
                     <tr>
-                      <td
-                        colSpan={3}
-                        className="border border-slate-300  font-serif font-bold text-left pl-1 pr-1"
-                      >
-                        No Records Found !!
+                      <th colSpan={3} className=" border- p-3   text-left">
+                        Upload Following Documents
+                      </th>
+                    </tr>
+                    <tr className=" text-gray-600">
+                      <td colSpan="9" className=" px-4 py-1">
+                        <div style={{ borderTop: "2px solid gray" }}></div>
                       </td>
                     </tr>
-                  )}
-                </tbody>
-              </table>
+                  </thead>
+                  <tbody>
+                    {docs && docs.length > 0 ? (
+                      docs.map((item, index) => {
+                        return (
+                          item.documentPath == null && (
+                            <tr>
+                              <td className=" border-slate-300   text-left pl-1 pr-1 py-1">
+                                {item.documentName}
+                              </td>
+                              <td className=" border-slate-300    text-left pl-1 pr-1 py-1">
+                                <input
+                                  type="file"
+                                  name="file"
+                                  onChange={handleOnChange}
+                                />
+                              </td>
+                              <td className=" border-cyan-500  font-serif  text-left pl-1 pr-1 py-1">
+                                <button
+                                  data-key={item.id}
+                                  id={index}
+                                  disabled={false}
+                                  name="btn"
+                                  className="disabled mx-3 px-5 bg-cyan-500 hover:bg-cyan-700 py-2 rounded-3xl"
+                                  onClick={handleOnSubmit}
+                                >
+                                  Upload
+                                </button>
+                              </td>
+                            </tr>
+                          )
+                        );
+                      })
+                    ) : (
+                      <tr>
+                        <td
+                          colSpan={3}
+                          className="border border-slate-300  font-serif font-bold text-left pl-1 pr-1"
+                        >
+                          No Records Found !!
+                        </td>
+                      </tr>
+                    )}
+                  </tbody>
+                </table>
               </div>
-              </div>
-            
+            </div>
           </div>
         </>
       )}

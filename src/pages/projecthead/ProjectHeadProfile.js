@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function ProjectHeadProfile() {
   const [edit, setEdit] = useState(false);
@@ -47,7 +49,10 @@ export default function ProjectHeadProfile() {
       fetchData();
 
       if (response.status === 200) {
-        alert("Profile Updated");
+        toast.success("Profile Updated", {
+          position: "top-right",
+        });
+
         setEdit(false);
       }
     } catch (error) {
@@ -117,7 +122,10 @@ export default function ProjectHeadProfile() {
             </div>
           </div>
           <div class="align-middle inline-block min-w-full overflow-hidden px-8 py-3 pb-8">
-            <form onSubmit={handleSubmit} className="max-w-sm mx-auto mt-8 appform">
+            <form
+              onSubmit={handleSubmit}
+              className="max-w-sm mx-auto mt-8 appform"
+            >
               <div class="mb-6">
                 <label
                   for="name"
@@ -164,6 +172,7 @@ export default function ProjectHeadProfile() {
           </div>
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 }

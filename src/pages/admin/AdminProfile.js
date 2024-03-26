@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function AdminProfile() {
   const [edit, setEdit] = useState(false);
@@ -79,15 +81,15 @@ export default function AdminProfile() {
         fetchData();
 
         if (response.status === 200) {
-          alert("Profile Updated");
+          toast.success("Profile Updated");
           setEdit(false);
         }
       } catch (error) {
         console.error("Error updating Admin:", error.response.data);
-        alert(error.response.data);
+        toast.error(error.response.data);
       }
     } else {
-      alert("Select All Documents");
+      toast.warn("Select All Documents");
     }
   };
   return (
@@ -117,9 +119,7 @@ export default function AdminProfile() {
               {profile.phoneNumber}
             </span>
           </h1>
-          <p>
-            {profile.id}
-          </p>
+          <p>{profile.id}</p>
         </div>
         <div class="flex flex-col justify-center">
           <div class="space-x-8 flex justify-between mt-10 md:justify-center">
@@ -147,23 +147,19 @@ export default function AdminProfile() {
             />
 
             <div class="flex flex-col space-y-5">
-
-             
-
               <button
                 type="button"
                 class="text-white py-2 px-4 uppercase rounded bg-gray-700 hover:bg-gray-800 shadow hover:shadow-lg font-medium transition transform hover:-translate-y-0.5"
               >
-
                 Change picture
               </button>
-
-            
-
             </div>
           </div>
           <div class="align-middle inline-block min-w-full overflow-hidden px-8 py-3 pb-8">
-            <form onSubmit={handleSubmit} className="max-w-sm mx-auto mt-8 appform">
+            <form
+              onSubmit={handleSubmit}
+              className="max-w-sm mx-auto mt-8 appform"
+            >
               <div class="mb-6">
                 <label
                   for="name"
@@ -181,7 +177,6 @@ export default function AdminProfile() {
                   required
                 />
               </div>
-
 
               <div class="mb-6">
                 <label
@@ -201,8 +196,6 @@ export default function AdminProfile() {
                 />
               </div>
 
-
-
               <button
                 type="submit"
                 className="bg-cyan-500 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded"
@@ -213,6 +206,7 @@ export default function AdminProfile() {
           </div>
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 }

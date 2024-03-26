@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function VendorProfile() {
   const [edit, setEdit] = useState(false);
@@ -93,15 +95,15 @@ export default function VendorProfile() {
         fetchData();
 
         if (response.status === 200) {
-          alert("Profile Updated");
+          toast.success("Profile Updated");
           setEdit(false);
         }
       } catch (error) {
         console.error("Error updating vendor:", error.response.data);
-        alert(error.response.data);
+        toast.error(error.response.data);
       }
     } else {
-      alert("Select All Documents");
+      toast.warn("Select All Documents");
     }
   };
   return (
@@ -172,7 +174,10 @@ export default function VendorProfile() {
             </div>
           </div>
           <div class="align-middle inline-block min-w-full overflow-hidden px-8 py-3 pb-8">
-            <form onSubmit={handleSubmit} className="max-w-sm mx-auto mt-8 appform">
+            <form
+              onSubmit={handleSubmit}
+              className="max-w-sm mx-auto mt-8 appform"
+            >
               <div class="mb-6">
                 <label
                   for="name"
@@ -331,6 +336,7 @@ export default function VendorProfile() {
           </div>
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 }

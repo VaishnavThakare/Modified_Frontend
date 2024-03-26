@@ -1,6 +1,7 @@
-
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function AllProfile() {
   const [profile, setProfile] = useState([]);
@@ -17,11 +18,16 @@ export default function AllProfile() {
 
   const getAllProfile = async () => {
     try {
-      let res = await axios.get(`${process.env.REACT_APP_API_URL}/ProfileCard/All`);
+      let res = await axios.get(
+        `${process.env.REACT_APP_API_URL}/ProfileCard/All`
+      );
       console.log(res.data);
       let data = [];
       if (res.status == 200 && res.data != null) {
         data = res.data;
+        toast.success("All Profile Loaded", {
+          position: "top-right",
+        });
       }
 
       setProfile(data);
@@ -37,6 +43,9 @@ export default function AllProfile() {
   const handleDelete = async (id, index) => {
     try {
       await axios.delete(`${process.env.REACT_APP_API_URL}/ProfileCard/${id}`);
+      toast.success("Profile Deleted", {
+        position: "top-right",
+      });
       getAllProfile();
     } catch (error) {
       console.error("Error deleting item:", error);
@@ -64,7 +73,11 @@ export default function AllProfile() {
         `${process.env.REACT_APP_API_URL}/ProfileCard/${modal.id}`,
         formDataToSend
       );
-      if (response.status === 200) alert("Profile Updated");
+      if (response.status === 200) {
+        toast.success("Profile Updated", {
+          position: "top-right",
+        });
+      }
 
       toggleEditModal();
       getAllProfile();
@@ -88,29 +101,32 @@ export default function AllProfile() {
   return (
     <>
       <div className="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 pr-10 lg:px-8 mb-8">
-      <div className="mt-4 flex text-2xl font-bold text-gray-500">
-            <h2 className="text-left text-cyan-500">ALL PROFILES</h2>
-          </div>
-          <div className="w-72 bg-cyan-500 h-0.5 mb-1"></div>
-          <div className="w-80 bg-cyan-500 h-0.5 "></div>
+        <div className="mt-4 flex text-2xl font-bold text-gray-500">
+          <h2 className="text-left text-cyan-500">ALL PROFILES</h2>
+        </div>
+        <div className="w-72 bg-cyan-500 h-0.5 mb-1"></div>
+        <div className="w-80 bg-cyan-500 h-0.5 "></div>
         <div className="align-middle inline-block min-w-full overflow-hidden bg-zinc-50 px-8 pt-3 rounded-bl-lg rounded-br-lg">
-        
-
           {currentItems.map((profileItem, index) => (
             <div
               key={profileItem.id}
               className="relative flex flex-col md:flex-row md:space-x-5 space-y-3 md:space-y-0 rounded-xl shadow-lg p-3 max-w-xs md:max-w-xl mx-auto border-2 border-cyan-500 bg-white mb-4"
             >
               <div className="w-full md:w-1/3 grid place-items-center">
-                <img src={profileItem.imagePath} alt={profileItem.name} className="rounded-xl h-[150px] w-[150px]" />
+                <img
+                  src={profileItem.imagePath}
+                  alt={profileItem.name}
+                  className="rounded-xl h-[150px] w-[150px]"
+                />
               </div>
               <div className="w-full md:w-2/3 flex flex-col space-y-2 p-3">
-               
                 <h3 className="font-black text-gray-800 md:text-lg text-lg">
-                  {profileItem.name +" ("+profileItem.position+")"}
+                  {profileItem.name + " (" + profileItem.position + ")"}
                 </h3>
                 <div className="line-clamp-4">
-                  <p className="md:text-sm text-gray-500 text-sm">{profileItem.description}</p>
+                  <p className="md:text-sm text-gray-500 text-sm">
+                    {profileItem.description}
+                  </p>
                 </div>
                 <div>
                   <button
@@ -280,6 +296,7 @@ export default function AllProfile() {
           </div>
         </div>
       )}
+      <ToastContainer />
     </>
   );
 }

@@ -1,8 +1,8 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const EditPurchaseOrderPagePHead = ({ vendors }) => {
   const { orderNo } = useParams();
@@ -13,14 +13,15 @@ const EditPurchaseOrderPagePHead = ({ vendors }) => {
     orderAmount: "",
     expectedDelivery: "",
     document: null,
-    isActive: true // Assuming IsActive should default to true
+    isActive: true, // Assuming IsActive should default to true
   });
 
   useEffect(() => {
     const fetchPurchaseOrderDetails = async () => {
       try {
-        
-        const response = await fetch(`https://localhost:7254/api/PurchaseOrder/${orderNo}`);
+        const response = await fetch(
+          `https://localhost:7254/api/PurchaseOrder/${orderNo}`
+        );
 
         if (!response.ok) {
           throw new Error("Failed to fetch purchase order details");
@@ -53,22 +54,27 @@ const EditPurchaseOrderPagePHead = ({ vendors }) => {
       console.log(orderNo);
 
       var formData = new FormData();
-      formData.append("OrderNo",editedData.orderNo);
-      formData.append("VendorId",editedData.vendorId);
-      formData.append("ExpectedDelivery",editedData.expectedDelivery);
-      formData.append("OrderAmount",editedData.orderAmount);
-      formData.append("Document",editedData.document);
-      formData.append("IsActive",editedData.isActive);
-      const response = await axios.put(`https://localhost:7254/api/PurchaseOrder/${orderNo}`, 
-      formData);
-    
-     
-      alert("Edited PurchaseOrder Successfully!");
+      formData.append("OrderNo", editedData.orderNo);
+      formData.append("VendorId", editedData.vendorId);
+      formData.append("ExpectedDelivery", editedData.expectedDelivery);
+      formData.append("OrderAmount", editedData.orderAmount);
+      formData.append("Document", editedData.document);
+      formData.append("IsActive", editedData.isActive);
+      const response = await axios.put(
+        `https://localhost:7254/api/PurchaseOrder/${orderNo}`,
+        formData
+      );
+
+      if (response.status === 200) {
+        toast.success("Purchase Order Updated", {
+          position: "top-right",
+        });
+      }
       // Call a function to update state or API to save data
-      console.log("Purchase Order updated successfully");
+      //console.log("Purchase Order updated successfully");
       navigate("/projecthead/purchase-order-list-pHead");
     } catch (error) {
-      console.log("Error updating purchase order:",error);
+      console.log("Error updating purchase order:", error);
       // Handle error, show message to user, etc.
     }
   };
@@ -96,10 +102,10 @@ const EditPurchaseOrderPagePHead = ({ vendors }) => {
         </div>
         <div className="mb-4">
           <label className="block text-sm font-medium text-gray-700">
-           Vendor
+            Vendor
           </label>
           <input
-          type="text"
+            type="text"
             name="vendorId"
             value={editedData.vendorId}
             onChange={handleInputChange}
@@ -175,9 +181,8 @@ const EditPurchaseOrderPagePHead = ({ vendors }) => {
           </button>
         </div>
       </form>
-      <ToastContainer/>
+      <ToastContainer />
     </div>
-
   );
 };
 

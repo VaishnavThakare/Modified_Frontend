@@ -100,11 +100,21 @@ const PoDetailsV = () => {
         <table className="table-auto w-full rounded-md border-2 border-cyan-400 mb-5 ">
           <thead>
             <tr className="bg-gray-300 text-gray-600">
-              <th className="px-4 py-2 text-left border">Sr. <p></p> No</th>
-              <th className="px-4 py-2 text-left border">Purchase <p></p>Order No.</th>
-              <th className="px-4 py-2 text-left border">Vendor <p></p>Name</th>
-              <th className="px-4 py-2 text-left border">Release <p></p>On</th>
-              <th className="px-4 py-2 text-left border">PO<p></p> Amount</th>
+              <th className="px-4 py-2 text-left border">
+                Sr. <p></p> No
+              </th>
+              <th className="px-4 py-2 text-left border">
+                Purchase <p></p>Order No.
+              </th>
+              <th className="px-4 py-2 text-left border">
+                Vendor <p></p>Name
+              </th>
+              <th className="px-4 py-2 text-left border">
+                Release <p></p>On
+              </th>
+              <th className="px-4 py-2 text-left border">
+                PO<p></p> Amount
+              </th>
               <th className="px-4 py-2 text-left border">Status</th>
               <th className="px-4 py-2 text-left border">Comments</th>
             </tr>
@@ -156,7 +166,7 @@ const PoDetailsV = () => {
           <tbody>
             <tr className="bg-white">
               <td className="px-4 py-2 border" colSpan="10">
-              <button
+                <button
                   onClick={handlePrevPage}
                   className="pagination-button bg-cyan-500 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded-3xl"
                   disabled={currentPage === 1}

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
-import {ToastContainer,toast} from 'react-toastify';
+import { ToastContainer, toast } from "react-toastify";
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -35,7 +35,7 @@ const Login = () => {
         sessionStorage.setItem("roles", roles);
 
         toast.success("logged in ...");
-        alert("logged in ...");
+        // alert("logged in ...");
         switch (roles) {
           case "Vendor":
             navigate("/vendor");
@@ -50,7 +50,7 @@ const Login = () => {
             break;
         }
       } else {
-        alert("Login failed. Please provide valid credentials.");
+        //alert("Login failed. Please provide valid credentials.");
         toast.error("Login failed. Please provide valid credentials.");
         setError("Login failed. Please provide valid credentials.");
       }
@@ -61,34 +61,27 @@ const Login = () => {
     }
   };
 
-
   const [passwordType, setPasswordType] = useState("password");
   const [passwordInput, setPasswordInput] = useState("");
 
-  const togglePassword =()=>{
-    if(passwordType==="password")
-    {
-     setPasswordType("text")
-     return;
+  const togglePassword = () => {
+    if (passwordType === "password") {
+      setPasswordType("text");
+      return;
     }
-    setPasswordType("password")
-  }
+    setPasswordType("password");
+  };
 
   return (
     <>
-    <div>
-
+      <div>
         <div class="py-2 px-6 bg-cyan-200 flex items-center justify-center shadow-md shadow-black/5 sticky top-0 left-0 z-30">
-            
-            <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-              Welcome to Vendor Portal
-            </h2>
-      
+          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
+            Welcome to Vendor Portal
+          </h2>
         </div>
-    
-    
-        <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
 
+        <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
           <div className="max-w-md w-full space-y-8">
             <div>
               <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
@@ -130,7 +123,7 @@ const Login = () => {
                   />
                 </div>
               </div>
-    
+
               <div>
                 <button
                   type="submit"
@@ -147,7 +140,7 @@ const Login = () => {
             )}
           </div>
         </div>
-    </div>
+      </div>
 
       <ToastContainer></ToastContainer>
     </>
