@@ -84,7 +84,7 @@ import PoDetailsPHead from "./pages/projecthead/PoDetailsPHead";
 import PurchaseOrderFormPHead from "./pages/projecthead/PurchaseOrderFormPHead";
 import EditPurchaseOrderPagePHead from "./pages/projecthead/EditPurchaseOrderPagePHead";
 import PODetailedView from "./pages/projecthead/PODetailedView";
-
+import EditInvoices from "./pages/projecthead/Invoice/EditInvoices.js";
 
 
 import Poactions from "./pages/Purchase Orders/Poactions.js";
@@ -197,6 +197,7 @@ const App = () => {
           <Route path="assigned-project" element={<AssignedProject />} />
           <Route path="grn-list" element={<GrnList />} />
           <Route path="invoice-list" element={<PheadList />} />
+          <Route path="invoice-list/:invoiceId" element={<EditInvoices/>} />
           <Route path="editGrn-List/:grnId" element={<EditGrnDetails />} />
           <Route path="invoice-details-phead/:id" element={<InvoiceDetails />} />
           <Route path="purchase-OrderForm-pHead" element={<PurchaseOrderFormPHead />} />

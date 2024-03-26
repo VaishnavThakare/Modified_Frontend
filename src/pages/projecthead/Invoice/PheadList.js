@@ -7,7 +7,6 @@ import {
   faEye,
   faArrowLeft,
   faArrowRight,
-  faExternalLinkAlt,
 } from "@fortawesome/free-solid-svg-icons";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -28,7 +27,6 @@ const PheadList = () => {
       })
       .catch((error) => {
         console.error("Error fetching Invoice data:", error);
-        toast.error("Error fetching Invoice data");
       });
   };
 
@@ -51,56 +49,12 @@ const PheadList = () => {
     );
   };
 
-  const handleEdit = (item) => {
-    setEditedItem(item);
-    setEditedComment(item.comment || "");
+  const handleEdit = (invoiceId) => {
+    navigate(`/projecthead/invoice-list/${invoiceId}`);
   };
 
   const handleView = (id) => {
-    // console.log(id);
     navigate(`/projecthead/invoice-details-phead/${id}`);
-  };
-
-  const handleAccept = async (id, comment) => {
-    try {
-      await axios.put(
-        `${process.env.REACT_APP_API_URL}/Invoice/AcceptReject/${id}`,
-        {
-          comment: comment,
-          isAccepted: true,
-        }
-      );
-      toast.success("Invoice item accepted successfully");
-      setEditedItem(null);
-      setEditedComment("");
-      getInvoices();
-    } catch (error) {
-      console.error("Error accepting Invoice item:", error);
-      toast.error("Error accepting Invoice item");
-    }
-  };
-
-  const handleReject = async (id, comment) => {
-    try {
-      await axios.put(
-        `${process.env.REACT_APP_API_URL}/Invoice/AcceptReject/${id}`,
-        {
-          comment: comment,
-          isAccepted: false,
-        }
-      );
-      toast.success("Invoice item rejected successfully");
-      setEditedItem(null);
-      setEditedComment("");
-      getInvoices();
-    } catch (error) {
-      console.error("Error rejecting Invoice item:", error);
-      toast.error("Error rejecting Invoice item");
-    }
-  };
-
-  const handleCommentChange = (e, id) => {
-    setEditedComment(e.target.value);
   };
 
   const formatDateTime = (dateTime) => {
@@ -113,10 +67,6 @@ const PheadList = () => {
       second: "2-digit",
     });
     return formattedDateTime;
-  };
-
-  const openDocument = (url) => {
-    window.open(url, "_blank");
   };
 
   return (
@@ -181,27 +131,36 @@ const PheadList = () => {
                         </button>
                       </td>
                       <td className="px-4 py-2">
-                        <button
-                          className={`py-1 px-2 rounded ${
-                            item.isAccepted != null
-                              ? item.isAccepted
-                                ? "bg-green-200 text-green-700"
-                                : "bg-red-200 text-red-600"
-                              : "bg-yellow-200 text-yellow-600"
-                          }`}
-                          style={{ minWidth: "6rem" }}
-                        >
-                          {item.isAccepted != null
-                            ? item.isAccepted
-                              ? "Already Accepted"
-                              : "Already Rejected"
-                            : "Not Accepted/Rejected"}
-                        </button>
-                      </td>
+                          {item.isAccepted === true && (
+                            <button
+                              className="py-1 px-2 rounded bg-green-200 text-green-700"
+                              style={{ minWidth: "6rem" }}
+                            >
+                              Accepted
+                            </button>
+                          )}
+                          {item.isAccepted === false && (
+                            <button
+                              className="py-1 px-2 rounded bg-red-200 text-red-600"
+                              style={{ minWidth: "6rem" }}
+                            >
+                              Rejected
+                            </button>
+                          )}
+                          {item.isAccepted === null && (
+                            <button
+                              className="py-1 px-2 rounded bg-yellow-200 text-yellow-700"
+                              style={{ minWidth: "6rem" }}
+                            >
+                              Pending
+                            </button>
+                          )}
+                        </td>
                       <td className="px-4 py-2 bg-white">
-                        {item.isAccepted == null ? (
+                      {item.isAccepted == false ||
+                              item.isAccepted == null ? (
                           <button
-                            onClick={() => handleEdit(item)}
+                            onClick={() => handleEdit(item.id)}
                             className={`mr-2`}
                           >
                             <FontAwesomeIcon
@@ -209,10 +168,7 @@ const PheadList = () => {
                               className={`text-cyan-600 text-xl`}
                             />
                           </button>
-                        ) : (
-                          ""
-                        )}
-
+                        ) : null}
                         <button
                           onClick={() => handleView(item.id)}
                           className={`mr-2`}
@@ -222,34 +178,6 @@ const PheadList = () => {
                             className={`text-cyan-600 text-xl`}
                           />
                         </button>
-                        {editedItem && editedItem.id === item.id && (
-                          <>
-                            <button
-                              onClick={() =>
-                                handleAccept(item.id, editedComment)
-                              }
-                              className="px-4 py-2 mr-2 bg-green-500 text-white rounded hover:bg-green-600"
-                            >
-                              Accept
-                            </button>
-                            <button
-                              onClick={() =>
-                                handleReject(item.id, editedComment)
-                              }
-                              className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
-                            >
-                              Reject
-                            </button>
-                            <textarea
-                              rows="2"
-                              cols="25"
-                              value={editedComment}
-                              onChange={(e) => handleCommentChange(e, item.id)}
-                              className="border rounded px-2 py-1 w-full focus:outline-none focus:ring focus:border-blue-300"
-                              placeholder="Add comments..."
-                            />
-                          </>
-                        )}
                       </td>
                     </tr>
                   ))

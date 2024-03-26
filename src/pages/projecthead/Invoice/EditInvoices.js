@@ -8,6 +8,7 @@ const EditInvoices = () => {
   const { invoiceId } = useParams();
   const [comment, setComment] = useState("");
   const [isAccepted, setIsAccepted] = useState(null);
+  const [loading, setLoading] = useState(true); // Added loading state
 
   useEffect(() => {
     const fetchInvoiceDetails = async () => {
@@ -18,9 +19,11 @@ const EditInvoices = () => {
         const invoiceData = response.data;
         setIsAccepted(invoiceData.isAccepted);
         setComment(invoiceData.comment || "");
+        setLoading(false); // Set loading to false when data is fetched
       } catch (error) {
         console.error("Error fetching Invoice details:", error);
         toast.error("Failed to fetch Invoice details.");
+        setLoading(false); // Set loading to false on error
       }
     };
 
@@ -29,12 +32,15 @@ const EditInvoices = () => {
 
   const handleAccept = async () => {
     try {
-      await axios.put(`https://localhost:7254/api/Invoice/AcceptReject/${invoiceId}`, {
-        comment: comment,
-        isAccepted: true,
-      });
+      await axios.put(
+        `https://localhost:7254/api/Invoice/AcceptReject/${invoiceId}`,
+        {
+          comment: comment,
+          isAccepted: true,
+        }
+      );
       setIsAccepted(true);
-      toast.success("invoice item accepted successfully");
+      toast.success("Invoice item accepted successfully");
     } catch (error) {
       console.error("Error accepting Invoice item:", error);
       toast.error("Error accepting Invoice item");
@@ -43,20 +49,31 @@ const EditInvoices = () => {
 
   const handleReject = async () => {
     try {
-      await axios.put(`https://localhost:7254/api/Invoice/AcceptReject/${invoiceId}`, {
-        comment: comment,
-        isAccepted: false,
-      });
+      await axios.put(
+        `https://localhost:7254/api/Invoice/AcceptReject/${invoiceId}`,
+        {
+          comment: comment,
+          isAccepted: false,
+        }
+      );
       setIsAccepted(false);
       toast.success("Invoice item rejected successfully");
     } catch (error) {
-      console.error("Error rejecting invoice item:", error);
-      toast.error("Error rejecting invoice item");
+      console.error("Error rejecting Invoice item:", error);
+      toast.error("Error rejecting Invoice item");
     }
   };
 
+  const handleCommentChange = (e) => {
+    setComment(e.target.value);
+  };
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
   return (
-    <div className="align-middle inline-block min-w-full  overflow-hidden bg-zinc-50 px-8 py-3 pb-8 rounded-bl-lg rounded-br-lg">
+    <div className="align-middle inline-block min-w-full overflow-hidden bg-zinc-50 px-8 py-3 pb-8 rounded-bl-lg rounded-br-lg">
       <div className="max-w-sm mx-auto mt-8 appform bg-white">
         <div className="flex text-2xl font-bold text-gray-600 mb-5">
           <h2>Edit Invoice Details</h2>
@@ -84,13 +101,13 @@ const EditInvoices = () => {
             <textarea
               id="comment"
               value={comment}
-              onChange={(e) => setComment(e.target.value)}
+              onChange={handleCommentChange}
               className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
               rows="4"
               required
             ></textarea>
           </div>
-          {isAccepted !== null && (
+          {isAccepted !== null && ( // Adjusted the condition to render even when isAccepted is null
             <>
               {isAccepted ? (
                 <div className="text-green-600 font-bold mb-4">Accepted</div>
