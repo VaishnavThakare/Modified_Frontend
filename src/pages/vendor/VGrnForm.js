@@ -70,7 +70,7 @@ const GRNForm = () => {
           <div className="grid grid-cols-1 gap-4">
           <div className="mb-6 relative">
   <input
-    type="text" 
+    type="number" 
     id="GRNNo"
     name="GRNNo"
     value={formData.GRNNo}
