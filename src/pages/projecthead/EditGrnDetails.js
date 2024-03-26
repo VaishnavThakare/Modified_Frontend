@@ -62,7 +62,35 @@ const EditGrnDetails = () => {
           <h2>Edit GRN Details</h2>
         </div>
         <div className="mb-6">
-          {isAccepted !== null ? (
+          <button
+            onClick={handleAccept}
+            className="px-4 py-2 mr-2 bg-cyan-500 text-white rounded hover:bg-cyan-600"
+          >
+            Accept
+          </button>
+          <button
+            onClick={handleReject}
+            className="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600"
+          >
+            Reject
+          </button>
+          <div className="mb-6 relative">
+            <label
+              htmlFor="comment"
+              className="block mb-2 text-sm font-medium text-gray-900"
+            >
+              Comment:
+            </label>
+            <textarea
+              id="comment"
+              value={comment}
+              onChange={(e) => setComment(e.target.value)}
+              className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+              rows="4"
+              required
+            ></textarea>
+          </div>
+          {isAccepted !== null && (
             <>
               {isAccepted ? (
                 <div className="text-green-600 font-bold mb-4">Accepted</div>
@@ -74,37 +102,6 @@ const EditGrnDetails = () => {
                   <strong>Comment:</strong> {comment}
                 </div>
               )}
-            </>
-          ) : (
-            <>
-              <button
-                onClick={handleAccept}
-                className="px-4 py-2 mr-2 bg-cyan-500 text-white rounded hover:bg-cyan-600"
-              >
-                Accept
-              </button>
-              <button
-                onClick={handleReject}
-                className="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600"
-              >
-                Reject
-              </button>
-              <div className="mb-6 relative">
-                <label
-                  htmlFor="comment"
-                  className="block mb-2 text-sm font-medium text-gray-900"
-                >
-                  Comment:
-                </label>
-                <textarea
-                  id="comment"
-                  value={comment}
-                  onChange={(e) => setComment(e.target.value)}
-                  className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                  rows="4"
-                  required
-                ></textarea>
-              </div>
             </>
           )}
         </div>

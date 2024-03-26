@@ -276,12 +276,17 @@ const GrnList = () => {
                     )}
                   </td>
                   <td className="px-4 py-2 bg-white">
-                    <button onClick={() => handleEdit(item)} className={`mr-2`}>
-                      <FontAwesomeIcon
-                        icon={faEdit}
-                        className={`text-cyan-600 text-xl`}
-                      />
-                    </button>
+                    {item.isAccepted == false || item.isAccepted == null ? (
+                      <button
+                        onClick={() => handleEdit(item)}
+                        className={`mr-2`}
+                      >
+                        <FontAwesomeIcon
+                          icon={faEdit}
+                          className={`text-cyan-600 text-xl`}
+                        />
+                      </button>
+                    ) : null}
                     <button
                       onClick={() => handleView(item.id)}
                       className={`mr-2`}
