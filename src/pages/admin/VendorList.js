@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
 
 const VendorList = () => {
     const [vendors, setVendors] = useState([]);
@@ -94,6 +97,9 @@ const VendorList = () => {
                 <th className="px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-600 tracking-wider">
                   Document List
                 </th>
+                <th className="px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-600 tracking-wider">
+                  Actions
+                </th>
               </tr>
             </thead>
             <tbody className="bg-white">
@@ -159,6 +165,13 @@ const VendorList = () => {
                             </p>
                         )}
                     </div>
+                  </td>
+                  <td className="px-6 py-4 whitespace-no-wrap">
+                      <div className="text-sm text-center leading-5">
+                        <Link to={`/vendor-detailsadm/${vendor.id}`}>
+                          <FontAwesomeIcon icon={faEye} />
+                        </Link>
+                      </div>
                   </td>
                 </tr>
               ))}
