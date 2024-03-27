@@ -56,7 +56,7 @@ export default function AddRFP() {
     e.preventDefault();
     const formData = new FormData();
     formData.append("Title", rfpData.title);
-    formData.append("DocumentFile", rfpData.documentFile);
+    formData.append("Document", rfpData.documentFile);
     formData.append("ProjectId", rfpData.projectId);
     formData.append("VendorCategoryId", rfpData.vendorCategoryId);
     formData.append("EndDate", rfpData.endDate);

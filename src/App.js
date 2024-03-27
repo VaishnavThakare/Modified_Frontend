@@ -91,6 +91,8 @@ import EditInvoices from "./pages/projecthead/Invoice/EditInvoices.js";
 import Poactions from "./pages/Purchase Orders/Poactions.js";
 import VendorList from "./pages/admin/VendorList.js";
 import ProjectHeadList from "./pages/admin/ProjectHeadList.js";
+import RFPEdit from "./pages/admin/RFPEdit.js";
+import RFPView from "./pages/admin/RFPView.js";
 
 const App = () => {
   const [userRole, setuserRole] = useState(sessionStorage.getItem("roles"));
@@ -123,6 +125,8 @@ const App = () => {
           <Route path="details" element={<DETAILEDGRN />} />
           <Route path="create-project" element={<AddProject />} />
           <Route path="rfp" element={<RFPA />} />
+          <Route path="rfp/:id" element={<RFPEdit />} />
+          <Route path="rfp/view/:id" element={<RFPView/>} />
           <Route path="create-rfp" element={<AddRFP />} />
           <Route path="profile" element={<AdminProfile />} />
           <Route path="products" element={<Product />} />
