@@ -97,6 +97,7 @@ import ProjectHeadView from "./pages/admin/ProjectHeadView.js";
 import RFPEdit from "./pages/admin/RFPEdit.js";
 import RFPView from "./pages/admin/RFPView.js";
 import PoDetails from "./pages/Purchase Orders/PoDetails.js";
+import PoGrnView from "./pages/Purchase Orders/PoGrnView.js";
 
 const App = () => {
   const [userRole, setuserRole] = useState(sessionStorage.getItem("roles"));
@@ -118,7 +119,10 @@ const App = () => {
           <Route path="allusers" element={<Users />} />
           <Route path="vendor-list" element={<VendorList />} />
           <Route path="projectHead-list" element={<ProjectHeadList />} />
-          <Route path="view-projecthead/:projectHeadId" element={<ProjectHeadView />} />
+          <Route
+            path="view-projecthead/:projectHeadId"
+            element={<ProjectHeadView />}
+          />
           <Route path="create-vendor" element={<AddVendor />} />
           <Route path="create-project-head" element={<AddProjectHead />} />
           <Route path="add-vendor-category" element={<AddVendorCategory />} />
@@ -164,10 +168,8 @@ const App = () => {
             element={<PurchaseOrderForm />}
           ></Route>
           <Route path="purchase-order-list" element={<PoDetailsA />} />
-          <Route
-            path="purchase-order-list/purchase-orders/:orderId"
-            element={<PoDetails />}
-          />
+          <Route path="purchase-orders/:poId" element={<PoDetails />} />
+          <Route path="purchase-order-Grn/:grnId" element={<PoGrnView />} />
 
           <Route path="edit/:orderNo" element={<EditPurchaseOrderPage />} />
           <Route path="view-invoice" element={<AdminInvoiceList />}></Route>

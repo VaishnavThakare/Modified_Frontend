@@ -62,7 +62,9 @@ const PoDetailsA = () => {
     currentPage * itemsPerPage
   );
 
-  const currentGrns = grn.slice(0, itemsPerPage);
+  const handleViewDetails = (poId) => {
+    navigate(`/admin/purchase-orders/${poId}`);
+  };
 
   return (
     <div className="overflow-x-auto mt-8 ml-2 mr-2 rounded">
@@ -146,13 +148,16 @@ const PoDetailsA = () => {
                       )}
                     </td>
 
-                    <td className="px-4 py-2">
-                      <Link to={`purchase-order-list/purchase-orders/${item.id}`}>
+                    <td className="px-4 py-2 text-center bg-white">
+                      <button
+                        onClick={() => handleViewDetails(item.id)}
+                        className={`mr-2`}
+                      >
                         <FontAwesomeIcon
                           icon={faEye}
                           className={`text-cyan-600 text-xl`}
                         />
-                      </Link>
+                      </button>
                     </td>
                   </tr>
                 ))
