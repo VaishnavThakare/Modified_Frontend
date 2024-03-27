@@ -21,7 +21,7 @@ export default function UpdateInvoiceVendor() {
                 const invoiceDetails = response.data;
                 setInvoiceNo(invoiceDetails.invoiceNo);
                 setAmount(invoiceDetails.amount);
-                setGrnId(invoiceDetails.grnId);
+                setGrnId(invoiceDetails.grn.grnNo);
                 setPaymentStatus(invoiceDetails.paymentStatus);
                 setDueDate(invoiceDetails.dueDate);
                 setDocument(invoiceDetails.documentPath);
@@ -43,7 +43,7 @@ export default function UpdateInvoiceVendor() {
         formData.append('invoiceNo', invoiceNo);
         formData.append('amount', amount);
         formData.append('grnId', grnId);
-        formData.append('paymentStatus', paymentStatus);
+        formData.append('paymentStatus', false);
         formData.append('dueDate', dueDate);
 
         // Append the whole document to the FormData object
@@ -84,21 +84,8 @@ export default function UpdateInvoiceVendor() {
                     />
                 </div>
                 <div className="mb-6 relative">
-                    <label htmlFor="amount" className="block mb-2 text-sm font-medium text-gray-900">
-                        Amount:
-                    </label>
-                    <input
-                        type="number"
-                        id="amount"
-                        value={amount}
-                        onChange={(e) => setAmount(e.target.value)}
-                        className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                        required
-                    />
-                </div>
-                <div className="mb-6 relative">
                     <label htmlFor="grnId" className="block mb-2 text-sm font-medium text-gray-900">
-                        GRN Id:
+                        GRN :
                     </label>
                     <input
                         type="text"
@@ -109,21 +96,6 @@ export default function UpdateInvoiceVendor() {
                         disabled
                         required
                     />
-                </div>
-                <div className="mb-6 relative">
-                    <label htmlFor="paymentStatus" className="block mb-2 text-sm font-medium text-gray-900">
-                        Payment Status:
-                    </label>
-                    <select
-                        id="paymentStatus"
-                        value={paymentStatus}
-                        onChange={(e) => setPaymentStatus(e.target.value === 'true')}
-                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                        required
-                    >
-                        <option value={true}>Paid</option>
-                        <option value={false}>Unpaid</option>
-                    </select>
                 </div>
                 <div className="mb-6 relative">
                     <label htmlFor="dueDate" className="block mb-2 text-sm font-medium text-gray-900">
@@ -145,6 +117,19 @@ export default function UpdateInvoiceVendor() {
                     <input
                         type="file"
                         onChange={(e) => setDocument(e.target.files[0])}
+                        className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                        required
+                    />
+                </div>
+                <div className="mb-6 relative">
+                    <label htmlFor="amount" className="block mb-2 text-sm font-medium text-gray-900">
+                        Amount:
+                    </label>
+                    <input
+                        type="number"
+                        id="amount"
+                        value={amount}
+                        onChange={(e) => setAmount(e.target.value)}
                         className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                         required
                     />
