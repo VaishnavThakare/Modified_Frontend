@@ -15,8 +15,8 @@ export default function ProjectHeadDashboard() {
       textStyle: "font-bold",
     },
     {
-      text: "Users",
-      icon: "bx bx-user text-white",
+      text: "Projects",
+      icon: "ri ri-projector-line text-white",
       link: "#",
       bgColor: "bg-[#09c8e2]",
       subItems: [{ text: "Assigned Project ", link: "assigned-project " }],
