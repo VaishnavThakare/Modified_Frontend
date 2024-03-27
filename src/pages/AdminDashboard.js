@@ -85,6 +85,7 @@ export default function AdminDashboard() {
       icon: "ri ri-product-hunt-line text-white ",
       link: "#",
       subItems: [
+        { text: "Products", link: "products" },
         { text: "Product Category", link: "product-category" },
         { text: "Create Product", link: "create-product" },
         { text: "Create Product Category", link: "add-product-category" },

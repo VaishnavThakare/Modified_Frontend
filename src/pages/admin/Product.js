@@ -1,5 +1,13 @@
 import React, { useState, useEffect } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faEye,
+  faEdit
+  
+} from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+
 
 export default function Products() {
   const [products, setProducts] = useState([]);
@@ -7,6 +15,17 @@ export default function Products() {
   const [filterVal, setFilterVal] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(3);
+  
+  const navigate = useNavigate();
+  const handlePEditDetails = (productId) => {
+    
+    navigate(`/admin/update-products/${productId}`);
+        };
+
+
+  const handlePViewDetails = (productId) => {
+          navigate(`/admin/view-products/${productId}`);
+              };
 
   const getData = async () => {
     try {
@@ -124,6 +143,9 @@ export default function Products() {
                     <th className="px-6 py-3 border-b-2 border-gray-300 text-center leading-4 tracking-wider">
                       Product Sub-category
                     </th>
+                    <th className="px-6 py-3 border-b-2 border-gray-300 text-center leading-4 tracking-wider">
+                      Actions
+                    </th>
                   </tr>
                 </thead>
                 <tbody className="bg-white">
@@ -189,6 +211,26 @@ export default function Products() {
                             {product.subCategory}
                           </div>
                         </td>
+                        <td className="px-4 py-2 text-left flex flex-row ">
+                        <button
+                          className="mr-2"
+                          onClick={() => handlePEditDetails(product.id)}
+                        >
+                          <FontAwesomeIcon
+                            icon={faEdit}
+                            className="text-cyan-600 text-xl"
+                          />
+                        </button>
+                        <button
+                          className="mr-2"
+                          onClick={() => handlePViewDetails(product.id)}
+                        >
+                          <FontAwesomeIcon
+                            icon={faEye}
+                            className="text-cyan-600 text-xl"
+                          />
+                        </button>
+                      </td>
                       </tr>
                     ))
                   )}
