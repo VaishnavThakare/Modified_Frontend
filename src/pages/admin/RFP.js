@@ -172,7 +172,7 @@ export default function RFPA() {
                         <td className="px-6 py-4 whitespace-no-wrap text-center">
                           <button
                           >
-                            <a href={rfp.document} target="_blank">
+                            <a href={rfp.documentPath} target="_blank">
                               <FontAwesomeIcon
                                 icon={faFileDownload}
                                 className="text-cyan-600 text-xl"

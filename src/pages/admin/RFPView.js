@@ -75,7 +75,7 @@ export default function RFPView() {
                             </p>
                             <p>
                                 <strong>Document : &nbsp;</strong>
-                                <a href={RfpData.document} target="_blank">
+                                <a href={RfpData.documentPath} target="_blank">
                                     <FontAwesomeIcon
                                         icon={faFileDownload}
                                         className="text-cyan-600 text-xl"
