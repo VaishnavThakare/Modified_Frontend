@@ -10,34 +10,34 @@ export default function VendorDashboard() {
     {
       text: "DASHBOARD",
       link: "dashboard",
-      bgColor: "bg-[#09c8e2]",
+      bgColor: "bg-[#7fecfa]",
       icon: "ri-home-2-line text-white",
     },
     {
       text: "REQUEST FOR PROPOSAL (RFP)",
       link: "#",
-      bgColor: "bg-[#09c8e2]",
+      bgColor: "bg-[#6ce9f9]",
       subItems: [{ text: "RFP", link: "rfp" }],
       icon: "ri-file-copy-2-line text-white",
     },
     {
       text: "DOCUMENTS",
       link: "#",
-      bgColor: "bg-[#09c8e2]",
+      bgColor: "bg-[#58e6f8]",
       subItems: [{ text: "Upload Documents", link: "upload-document" }],
       icon: "ri-file-copy-2-line text-white",
     },
     {
       text: "PURCHASE ORDER",
       link: "#",
-      bgColor: "bg-[#09c8e2]",
+      bgColor: "bg-[#45e3f8]",
       subItems: [{ text: "Purchase Order", link: "po-check" }],
       icon: "bx bx-category text-white",
     },
     {
       text: "GRN Details",
       link: "#",
-      bgColor: "bg-[#09c8e2]",
+      bgColor: "bg-[#31e0f7]",
       icon: "ri ri-projector-line text-white",
       subItems: [
         { text: "GRN List", link: "vendor-grnlist" },
@@ -47,7 +47,7 @@ export default function VendorDashboard() {
     {
       text: "INVOICE",
       link: "#",
-      bgColor: "bg-[#09c8e2]",
+      bgColor: "bg-[#1dddf6]",
       icon: "bx bx-category text-white",
       subItems: [
         { text: "View", link: "view-invoice" },
