@@ -37,19 +37,19 @@ export default function RFPView() {
             }
         };
 
-        const fetchApplications = async ()=>{
-            try{
+        const fetchApplications = async () => {
+            try {
                 const response = await axios.get(
                     `https://localhost:7254/api/RFPApplication/RFP/${id}`
                 );
                 setApplications(response.data);
                 console.log(response.data);
             }
-            catch(error){
+            catch (error) {
                 console.error("Error fetching project details:", error);
             }
         }
-        
+
         fetchApplications();
         fetchRFPById();
 
@@ -57,15 +57,15 @@ export default function RFPView() {
 
     const formatDateTime = (dateTime) => {
         const formattedDateTime = new Date(dateTime).toLocaleString("en-US", {
-          year: "numeric",
-          month: "2-digit",
-          day: "2-digit",
-          hour: "2-digit",
-          minute: "2-digit",
-          second: "2-digit",
+            year: "numeric",
+            month: "2-digit",
+            day: "2-digit",
+            hour: "2-digit",
+            minute: "2-digit",
+            second: "2-digit",
         });
         return formattedDateTime;
-      };
+    };
 
     return (
         <>
@@ -109,7 +109,7 @@ export default function RFPView() {
                                     <td align="left" className="ml-3">
                                         <button className="text-blue-700">
                                             <a href={RfpData.documentPath} target="_blank">
-                                                {RfpData.title}
+                                                {RfpData.title} &nbsp;&nbsp;
                                                 <FontAwesomeIcon
                                                     icon={faFileDownload}
                                                     className="text-cyan-600 text-xl"
@@ -134,10 +134,10 @@ export default function RFPView() {
                                             Sr.<p></p> No.
                                         </th>
                                         <th className="px-4 py-2 text-center ">
-                                            RFP 
+                                            RFP
                                         </th>
                                         <th className="px-4 py-2 text-center ">
-                                            Vendor 
+                                            Vendor
                                         </th>
                                         <th className="px-4 py-2 text-center ">
                                             Applied Date
@@ -160,41 +160,49 @@ export default function RFPView() {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                {
-                                    applications && applications.length > 0 ?
-                                    applications.map((app,index)=>{
-                                        return (
-                                        <tr>
-                                            <td align="center">{index+1}</td>
-                                            <td align="center">{app.rfp.title}</td>
-                                            <td align="center">{app.vendorName}</td>
-                                            <td align="center">{formatDateTime(app.createdOn)}</td>
-                                            <td align="center">{formatDateTime(app.rfp.endDate)}</td>
-                                            <td align="center">
-                                            <button>
-                                                <a href={app.documentPath} target="_blank">
-                                                    View Doc
-                                                </a>
-                                                </button>
-                                            </td>
-                                            <td align="center">
-                                            <button>
-                                                <a href={app.rfp.documentPath} target="_blank">
-                                                    View Doc
-                                                </a>
-                                                </button>                                                
-                                            </td>
-                                            <td align="center">{app.comment}</td>
-                                        </tr>
-                                        );
-                                    })
-                                    :
-                                    <tr>
-                                        <td  align="center" colSpan={8}>
-                                             No Applicatios Received !! 
-                                        </td>
-                                    </tr>
-                                }
+                                    {
+                                        applications && applications.length > 0 ?
+                                            applications.map((app, index) => {
+                                                return (
+                                                    <tr>
+                                                        <td align="center">{index + 1}</td>
+                                                        <td align="center">{app.rfp.title}</td>
+                                                        <td align="center">{app.vendorName}</td>
+                                                        <td align="center">{formatDateTime(app.createdOn)}</td>
+                                                        <td align="center">{formatDateTime(app.rfp.endDate)}</td>
+                                                        <td align="center">
+                                                            <button className="text-blue-700">
+                                                                <a href={app.documentPath} target="_blank">
+                                                                    View Doc &nbsp;&nbsp;
+                                                                    <FontAwesomeIcon
+                                                                        icon={faFileDownload}
+                                                                        className="text-cyan-600 text-xl"
+                                                                    />
+                                                                </a>
+                                                            </button>
+                                                        </td>
+                                                        <td align="center">
+                                                            <button className="text-blue-700">
+                                                                <a href={app.rfp.documentPath} target="_blank">
+                                                                    View Doc  &nbsp;&nbsp;
+                                                                    <FontAwesomeIcon
+                                                                        icon={faFileDownload}
+                                                                        className="text-cyan-600 text-xl"
+                                                                    />
+                                                                </a>
+                                                            </button>
+                                                        </td>
+                                                        <td align="center">{app.comment}</td>
+                                                    </tr>
+                                                );
+                                            })
+                                            :
+                                            <tr>
+                                                <td align="center" colSpan={8}>
+                                                    No Applicatios Received !!
+                                                </td>
+                                            </tr>
+                                    }
                                 </tbody>
                             </table>
                         </div>

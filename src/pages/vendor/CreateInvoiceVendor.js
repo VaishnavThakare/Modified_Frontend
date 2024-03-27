@@ -79,7 +79,7 @@ function CreateInvoiceVendor() {
         formDataToSend
       );
       console.log("Response:", res.data);
-      if(res.status === 200){
+      if(res.status === 200 || res.data!=null || res.data.length > 0){
         toast.success("Invoice created and sent");   
         setFormData({
           InvoiceNo: "",
@@ -180,10 +180,10 @@ function CreateInvoiceVendor() {
             htmlFor="dueDate"
             className="ml-1 absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-77 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"
           >
-            Due Date & Time:
+            Due Date:
           </label>
           <input
-            type="datetime-local"
+            type="date"
             id="dueDate"
             name="DueDate"
             value={formData.DueDate}
