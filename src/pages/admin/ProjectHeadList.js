@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEye } from "@fortawesome/free-solid-svg-icons";
-import { Link } from "react-router-dom";
+import {
+  faEye,
+  faEdit
+} from "@fortawesome/free-solid-svg-icons";
+import { useNavigate } from "react-router-dom";
 
 const ProjectHeadList = () => {
   const [projectHeads, setProjectHeads] = useState([]);
@@ -52,6 +55,15 @@ const ProjectHeadList = () => {
       };
       fetchProjects();
     }, [projectHead.id]);
+
+    const navigate = useNavigate();
+    const handlePEditDetails = (projectId) => {
+      navigate(`/admin/projects/${projectId}`);
+    };
+  
+    const handlePViewDetails = (projectId) => {
+      navigate(`/admin/projects-view/${projectId}`);
+    };
 
     return (
       <div>
@@ -107,8 +119,9 @@ const ProjectHeadList = () => {
                 <th className="px-4 py-2 text-center">Project Name</th>
                 <th className="px-4 py-2 text-center">Project Head Name</th>
                 <th className="px-4 py-2 text-center">Created On</th>
-                <th className="px-4 py-2 text-center">Status</th>
                 <th className="px-4 py-2 text-center">Comment</th>
+                <th className="px-4 py-2 text-center">Status</th>
+                <th className="px-4 py-2 text-center">Action</th>
               </tr>
               <tr className="text-gray-600">
                 <td colSpan="6" className="px-4 py-1">
@@ -127,12 +140,31 @@ const ProjectHeadList = () => {
                     {formatDateTime(project.createdOn)}
                   </td>
                   <td className="px-4 py-2 text-center">
-                    {project.projectStatus}
-                  </td>
-
-                  <td className="px-4 py-2 text-center">
                     {project.description}
                   </td>
+                  <td className="px-4 py-2 text-center">
+                    {project.projectStatus}
+                  </td>
+                  <td className="px-4 py-2 flex flex-row justify-center ">
+                            <button
+                              className="mr-2"
+                              onClick={() => handlePEditDetails(project.id)}
+                            >
+                              <FontAwesomeIcon
+                                icon={faEdit}
+                                className="text-cyan-600 text-xl"
+                              />
+                            </button>
+                            <button
+                              className="mr-2"
+                              onClick={() => handlePViewDetails(project.id)}
+                            >
+                              <FontAwesomeIcon
+                                icon={faEye}
+                                className="text-cyan-600 text-xl"
+                              />
+                            </button>
+                          </td>
                 </tr>
               ))}
               {projects.length === 0 && (

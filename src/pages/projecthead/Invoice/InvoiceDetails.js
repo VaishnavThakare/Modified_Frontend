@@ -1,103 +1,149 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowLeft, faFilePdf } from "@fortawesome/free-solid-svg-icons";
-import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { useParams } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFileDownload } from "@fortawesome/free-solid-svg-icons";
 
 const InvoiceDetails = () => {
-  const { id } = useParams();
-  const [invoiceDetails, setInvoiceDetails] = useState(null);
+  const { invoiceNo } = useParams();
+  const [invoice, setInvoice] = useState(null);
 
   useEffect(() => {
-    const fetchInvoiceDetails = async () => {
+    const fetchInvoice = async () => {
       try {
         const response = await axios.get(
-          `${process.env.REACT_APP_API_URL}/Invoice/${id}`
+          `${process.env.REACT_APP_API_URL}/Invoice/${invoiceNo}`
         );
-        setInvoiceDetails(response.data);
+        setInvoice(response.data);
       } catch (error) {
-        console.error("Error fetching Invoice details:", error);
-        toast.error("Error fetching Invoice details");
+        console.error("Error fetching invoice:", error);
       }
     };
-    fetchInvoiceDetails();
-  }, [id]);
 
-  const openDocument = (url) => {
-    window.open(url, "_blank");
-  };
+    fetchInvoice();
+  }, [invoiceNo]);
+
+  if (!invoice) {
+    return <div>Loading...</div>;
+  }
 
   return (
-    <div className="ml-96 items-center justify-center h-screen">
-      <div className="rounded-lg border-2 border-cyan-400 bg-white shadow-lg p-4 max-w-lg w-full mt-2">
-        <div className="flex justify-center">
-          <h3 className="text-2xl font-medium text-gray-600 mb-2">
-            Invoice Details
-          </h3>
-        </div>
-        {invoiceDetails ? (
-          <div className="space-y-4">
-            <div>
-              <span className="font-bold">Invoice No.:</span>{" "}
-              {invoiceDetails.invoiceNo}
-            </div>
-            <div>
-              <span className="font-bold">Amount:</span> {invoiceDetails.amount}
-            </div>
-            <div>
-              <span className="font-bold">Sent On:</span>{" "}
-              {new Date(invoiceDetails.sendOn).toLocaleString()}
-            </div>
-            <div>
-              <span className="font-bold">Due Date:</span>{" "}
-              {new Date(invoiceDetails.dueDate).toLocaleString()}
-            </div>
-            <div>
-              <span className="font-bold">Payment Status:</span>{" "}
-              {invoiceDetails.paymentStatus ? "Paid" : "Unpaid"}
-            </div>
-            <div>
-              <span className="font-bold">Document:</span>{" "}
-              {invoiceDetails.documentPath && (
-                <button
-                  className="text-blue-500"
-                  onClick={() => openDocument(invoiceDetails.documentPath)}
-                >
-                  <FontAwesomeIcon icon={faFilePdf} className="mr-2" />
-                  View Document
-                </button>
-              )}
-            </div>
-            <div>
-              <span className="font-bold">Comment:</span>{" "}
-              {invoiceDetails.comment}
-            </div>
-            <div>
-              <span className="font-bold">Created On:</span>{" "}
-              {new Date(invoiceDetails.createdOn).toLocaleString()}
-            </div>
-            <div>
-              <span className="font-bold">Last Modified On:</span>{" "}
-              {new Date(invoiceDetails.lastModifiedOn).toLocaleString()}
-            </div>
-          </div>
-        ) : (
-          <div>Loading...</div>
-        )}
-        <div className="flex justify-end mt-4">
-          <button
-            className="bg-cyan-600 hover:bg-cyan-700 mr-4 text-white font-bold py-2 px-4 rounded"
-            onClick={() => window.history.back()}
-          >
-            <FontAwesomeIcon icon={faArrowLeft} className="mr-2" />
-            Back
-          </button>
-        </div>
+    <>
+      <div className="grid grid-cols-2 mt-4 text-2xl font-bold text-gray-500">
+        <h2 className="text-left text-cyan-500">Invoice Details</h2>
+        <button
+          className="items-right mr-1 bg-cyan-500 text-white text-sm px-4 py-[1px] rounded block mx-auto h-8"
+          onClick={() => {
+            window.history.back();
+          }}
+        >
+          Close
+        </button>
       </div>
-      <ToastContainer />
-    </div>
+      <div className="w-72 bg-cyan-500 h-0.5 mb-1"></div>
+      <div className="w-80 bg-cyan-500 h-0.5 "></div>
+      <div className="bg-white mt-3 border-2 border-cyan-500 p-4 w-[70%] rounded-lg shadow-lg">
+        <table className="w-[100%] bg-white">
+          <tbody>
+            <tr>
+              <th className="text-left px-6 py-3  leading-4 text-gray-600 tracking-wider">
+                Invoice No
+              </th>
+              <td className="text-left px-6 py-4 whitespace-no-wrap text-sm">
+                {invoice.invoiceNo}
+              </td>
+              <th className="text-left px-6 py-3  leading-4 text-gray-600 tracking-wider">
+                Date Sent On
+              </th>
+              <td className="px-6 py-4 whitespace-no-wrap text-left  text-sm">
+                {new Date(invoice.dateSentOn).toLocaleDateString("es-CL")}
+              </td>
+            </tr>
+            <tr>
+              <th className="text-left px-6 py-3  leading-4 text-gray-600 tracking-wider">
+                Amount
+              </th>
+              <td className="px-6 py-4 whitespace-no-wrap text-left  text-sm">
+                {invoice.amount}
+              </td>
+              <th className="text-left px-6 py-3  leading-4 text-gray-600 tracking-wider">
+                GRN Number
+              </th>
+              <td className="px-6 py-4 whitespace-no-wrap text-left  text-sm">
+                {invoice.grn.grnNo}
+              </td>
+            </tr>
+            <tr>
+              <th className="text-left px-6 py-3  leading-4 text-gray-600 tracking-wider">
+                PO Number
+              </th>
+              <td className="px-6 py-4 whitespace-no-wrap text-left  text-sm">
+                {invoice.grn.purchaseOrder.orderNo}
+              </td>
+              <th className="text-left px-6 py-3  leading-4 text-gray-600 tracking-wider">
+                Status
+              </th>
+              <td className="px-6 py-4 whitespace-no-wrap text-left  text-sm">
+                {invoice.s == "Rejected" ? (
+                  <span className="bg-red-300 py-1 px-3 rounded text-red-700">
+                    Rejected
+                  </span>
+                ) : (
+                  <span className="bg-green-400 py-1 px-3 rounded text-green-700">
+                    Approved
+                  </span>
+                )}
+              </td>
+            </tr>
+            <tr>
+              <th className="text-left px-6 py-3   leading-4 text-gray-600 tracking-wider">
+                Payment Status
+              </th>
+              <td className="px-6 py-4 whitespace-no-wrap text-left  text-sm">
+                {invoice.paymentStatus == "Unpaid" ? (
+                  <span className="bg-yellow-300 py-1 px-3 rounded text-yellow-700">
+                    UnPaid
+                  </span>
+                ) : (
+                  <span className="bg-green-400 py-1 px-3 rounded text-green-700">
+                    PAID
+                  </span>
+                )}
+              </td>
+              <th className="text-left px-6 py-3   leading-4 text-gray-600 tracking-wider">
+                Due Date
+              </th>
+              <td className="px-6 py-4 whitespace-no-wrap text-left  text-sm">
+                {new Date(invoice.dueDate).toLocaleDateString("es-CL")}
+              </td>
+            </tr>
+            <tr>
+              <th className="px-6 py-3 text-left leading-4 text-gray-600 tracking-wider">
+                View
+              </th>
+              <td className="px-6 py-2 text-left  whitespace-no-wrap text-sm">
+                <a
+                  href={invoice.documentPath}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <FontAwesomeIcon
+                    icon={faFileDownload}
+                    className="text-cyan-600 text-xl"
+                  />
+                </a>
+              </td>
+              <th className="px-6 py-3 text-left leading-4 text-gray-600 tracking-wider">
+                Comment
+              </th>
+              <td className="px-6 py-2 text-left  whitespace-no-wrap text-sm">
+                {invoice.comment}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </>
   );
 };
 
