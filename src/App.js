@@ -43,6 +43,7 @@ import PurchaseOrderForm from "./pages/Purchase Orders/PurchaseOrderForm";
 import EditPurchaseOrderPage from "./pages/Purchase Orders/EditPurchaseOrderPage";
 import ProjectEdit from "./pages/admin/ProjectEdit";
 import VendorDetailsAdm from "./pages/admin/VendorDetailsAdm.js";
+import AdminGrnDetailsView from "./pages/Purchase Orders/AdminGrnDetailsView";
 
 //Vendor
 import VendorDash from "./pages/vendor/VendorDash";
@@ -86,7 +87,6 @@ import EditPurchaseOrderPagePHead from "./pages/projecthead/EditPurchaseOrderPag
 import PODetailedView from "./pages/projecthead/PODetailedView";
 import EditInvoices from "./pages/projecthead/Invoice/EditInvoices.js";
 
-
 import Poactions from "./pages/Purchase Orders/Poactions.js";
 import VendorList from "./pages/admin/VendorList.js";
 import ProjectHeadList from "./pages/admin/ProjectHeadList.js";
@@ -109,8 +109,8 @@ const App = () => {
           <Route index element={<AdminDash />} />
           <Route path="dashboard" index element={<AdminDash />} />
           <Route path="allusers" element={<Users />} />
-          <Route path="vendor-list" element={<VendorList/>} />
-          <Route path="projectHead-list" element={<ProjectHeadList/>} />
+          <Route path="vendor-list" element={<VendorList />} />
+          <Route path="projectHead-list" element={<ProjectHeadList />} />
           <Route path="create-vendor" element={<AddVendor />} />
           <Route path="create-project-head" element={<AddProjectHead />} />
           <Route path="add-vendor-category" element={<AddVendorCategory />} />
@@ -153,6 +153,7 @@ const App = () => {
             element={<PurchaseOrderForm />}
           ></Route>
           <Route path="purchase-order-list" element={<PoDetailsA />}></Route>
+          {/* <Route path="details/:grns" element={<AdminGrnDetailsView />}></Route> */}
           <Route
             path="edit/:orderNo"
             element={<EditPurchaseOrderPage />}
@@ -161,9 +162,11 @@ const App = () => {
           <Route
             path="details/:invoiceNo"
             element={<AdminDetailsView />}
-
           ></Route>
-          <Route path="vendor-detailsadm/:id" element={<VendorDetailsAdm />}></Route>
+          <Route
+            path="vendor-detailsadm/:id"
+            element={<VendorDetailsAdm />}
+          ></Route>
         </Route>
 
         <Route path="/vendor" element={<VendorDashboard />}>
@@ -178,7 +181,7 @@ const App = () => {
             path="update-invoice/:invoiceId"
             element={<UpdateInvoiceVendor />}
           />
-          <Route path="po-check" element={<PoDetailsV/>} />
+          <Route path="po-check" element={<PoDetailsV />} />
           {/* Add this Route for Poactions */}
           <Route path="po-check/:orderId" element={<Poactions />} />
           <Route path="changePassword" element={<ChangePassword />} />
@@ -197,13 +200,25 @@ const App = () => {
           <Route path="assigned-project" element={<AssignedProject />} />
           <Route path="grn-list" element={<GrnList />} />
           <Route path="invoice-list" element={<PheadList />} />
-          <Route path="invoice-list/:invoiceId" element={<EditInvoices/>} />
+          <Route path="invoice-list/:invoiceId" element={<EditInvoices />} />
           <Route path="editGrn-List/:grnId" element={<EditGrnDetails />} />
-          <Route path="invoice-details-phead/:id" element={<InvoiceDetails />} />
-          <Route path="purchase-OrderForm-pHead" element={<PurchaseOrderFormPHead />} />
-          <Route path="purchase-order-list-pHead" element={<PoDetailsPHead />} />
+          <Route
+            path="invoice-details-phead/:id"
+            element={<InvoiceDetails />}
+          />
+          <Route
+            path="purchase-OrderForm-pHead"
+            element={<PurchaseOrderFormPHead />}
+          />
+          <Route
+            path="purchase-order-list-pHead"
+            element={<PoDetailsPHead />}
+          />
           <Route path="po-details-phead/:id" element={<PODetailedView />} />
-          <Route path="edit/:orderNo" element={<EditPurchaseOrderPagePHead />} />
+          <Route
+            path="edit/:orderNo"
+            element={<EditPurchaseOrderPagePHead />}
+          />
           <Route path="changePassword" element={<ChangePassword />} />
         </Route>
 

@@ -76,20 +76,7 @@ const Poactions = () => {
           <h2>Edit Purchase Order:</h2>
         </div>
         <h1>Accept or Reject Purchase Order:</h1>
-        <div className="mb-6 mt-4">
-          <button
-            onClick={handleAccept}
-            className="px-4 py-2 mr-2 bg-cyan-500 text-white rounded hover:bg-green-600"
-          >
-            Accept
-          </button>
-          <button
-            onClick={handleReject}
-            className="px-4 py-2 bg-gray-500 text-white rounded hover:bg-red-600"
-          >
-            Reject
-          </button>
-        </div>
+
         <div className="mb-6 relative">
           <label
             htmlFor="comment"
@@ -106,16 +93,34 @@ const Poactions = () => {
             required
           ></textarea>
         </div>
+        <div className="mb-6 mt-4">
+          <button
+            onClick={handleAccept}
+            className="px-4 py-2 mr-2 bg-cyan-500 text-white rounded hover:bg-green-600"
+          >
+            Accept
+          </button>
+          <button
+            onClick={handleReject}
+            className="px-4 py-2 bg-gray-500 text-white rounded hover:bg-red-600"
+          >
+            Reject
+          </button>
+        </div>
         {purchaseOrder.isAccepted !== null && (
           <>
-            {purchaseOrder.isAccepted ? (
-              <div className="text-green-600 font-bold mb-4">Already Accepted</div>
-            ) : (
-              <div className="text-red-600 font-bold mb-4">Already Rejected</div>
-            )}
             {purchaseOrder.comment && (
               <div className="mb-4">
                 <strong>Comment:</strong> {purchaseOrder.comment}
+              </div>
+            )}
+            {purchaseOrder.isAccepted ? (
+              <div className="text-green-600 font-bold mb-4">
+                Purchase order Accepted
+              </div>
+            ) : (
+              <div className="text-red-600 font-bold mb-4">
+                Purchase order Rejected
               </div>
             )}
           </>
