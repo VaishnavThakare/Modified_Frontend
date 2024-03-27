@@ -140,7 +140,7 @@ export default function RFPA() {
                         colSpan="6"
                         className="px-6 py-4 whitespace-no-wrap text-center"
                       >
-                        No data available
+                        Loading ...
                       </td>
                     </tr>
                   ) : (

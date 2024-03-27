@@ -93,6 +93,7 @@ import EditInvoices from "./pages/projecthead/Invoice/EditInvoices.js";
 import Poactions from "./pages/Purchase Orders/Poactions.js";
 import VendorList from "./pages/admin/VendorList.js";
 import ProjectHeadList from "./pages/admin/ProjectHeadList.js";
+import ProjectHeadView from "./pages/admin/ProjectHeadView.js";
 import RFPEdit from "./pages/admin/RFPEdit.js";
 import RFPView from "./pages/admin/RFPView.js";
 import PoDetails from "./pages/Purchase Orders/PoDetails.js";
@@ -117,6 +118,7 @@ const App = () => {
           <Route path="allusers" element={<Users />} />
           <Route path="vendor-list" element={<VendorList />} />
           <Route path="projectHead-list" element={<ProjectHeadList />} />
+          <Route path="view-projecthead/:projectHeadId" element={<ProjectHeadView />} />
           <Route path="create-vendor" element={<AddVendor />} />
           <Route path="create-project-head" element={<AddProjectHead />} />
           <Route path="add-vendor-category" element={<AddVendorCategory />} />
@@ -136,7 +138,7 @@ const App = () => {
           <Route path="create-product" element={<AddProduct />} />
           <Route path="add-product-category" element={<AddProductCategory />} />
           <Route path="projects/:projectId" element={<ProjectEdit />} />
-          <Route path="projects-view/:projectId" element={<ProjectView />} />
+          <Route path="view-projects/:projectId" element={<ProjectView />} />
           <Route path="product-category" element={<ProductCategory />} />
           <Route path="vendor-verfication" element={<VendorVerification />} />
           <Route path="changePassword" element={<ChangePassword />} />

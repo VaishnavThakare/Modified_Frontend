@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -12,7 +12,7 @@ const ProjectView = () => {
   const itemsPerPage = 5;
   const [purchaseOrders, setPurchaseOrders] = useState([]);
   const [projectData, setProject] = useState([]);
-
+  const navigate = useNavigate();
 
   const fetchPurchaseOrders = async () => {
     try {
@@ -20,7 +20,6 @@ const ProjectView = () => {
         `${process.env.REACT_APP_API_URL}/PurchaseOrder/Project/${projectId}`
       );
       setPurchaseOrders(response.data);
-      console.log(purchaseOrders);
     } catch (error) {
       console.error("Error fetching purchase orders:", error.message);
       toast.error("Failed to fetch purchase orders");
@@ -62,7 +61,9 @@ const ProjectView = () => {
       Math.min(prevPage + 1, Math.ceil(purchaseOrders.length / itemsPerPage))
     );
   };
-
+  const backButton = () => {
+    navigate(-1);
+  };
   const formatDateTime = (dateTime) => {
     const formattedDateTime = new Date(dateTime).toLocaleString("en-US", {
       year: "numeric",
@@ -87,12 +88,15 @@ const ProjectView = () => {
             <div className="w-96 bg-cyan-500 h-0.5 mb-5"></div>
           </div>
           <div>
+          <div className="flex justify-center">
             <button
-              className="mt-4 bg-cyan-500 text-white px-4 py-2 rounded block mx-auto"
-            >
+              className=" bg-cyan-500 text-white px-4 py-2 rounded"
+              onClick={backButton}
+              >
               Back
             </button>
           </div>
+        </div>
         </div>
         <div className="min-w-full border-2 border-cyan-500 rounded-lg mb-5 bg-white">
           <div
@@ -205,6 +209,13 @@ const ProjectView = () => {
                   </td>
                 </tr>
               ))}
+              {purchaseOrders.length === 0 && (
+              <tr>
+                <td colSpan="6" className="px-4 py-2 text-center bg-white">
+                  No Purchase Orders found.
+                </td>
+              </tr>
+            )}
             </tbody>
           </table>
         </div>
