@@ -44,7 +44,7 @@ import EditPurchaseOrderPage from "./pages/Purchase Orders/EditPurchaseOrderPage
 import ProjectEdit from "./pages/admin/ProjectEdit";
 import ProjectView from "./pages/admin/ProjectView";
 import VendorDetailsAdm from "./pages/admin/VendorDetailsAdm.js";
-import AdminGrnDetailsView from "./pages/Purchase Orders/AdminGrnDetailsView";
+
 import UpdateProduct from "./pages/admin/UpdateProduct";
 import ViewProduct from "./pages/admin/ViewProduct";
 
@@ -95,6 +95,7 @@ import VendorList from "./pages/admin/VendorList.js";
 import ProjectHeadList from "./pages/admin/ProjectHeadList.js";
 import RFPEdit from "./pages/admin/RFPEdit.js";
 import RFPView from "./pages/admin/RFPView.js";
+import PoDetails from "./pages/Purchase Orders/PoDetails.js";
 
 const App = () => {
   const [userRole, setuserRole] = useState(sessionStorage.getItem("roles"));
@@ -128,7 +129,7 @@ const App = () => {
           <Route path="create-project" element={<AddProject />} />
           <Route path="rfp" element={<RFPA />} />
           <Route path="rfp/:id" element={<RFPEdit />} />
-          <Route path="rfp/view/:id" element={<RFPView/>} />
+          <Route path="rfp/view/:id" element={<RFPView />} />
           <Route path="create-rfp" element={<AddRFP />} />
           <Route path="profile" element={<AdminProfile />} />
           <Route path="products" element={<Product />} />
@@ -160,12 +161,13 @@ const App = () => {
             path="purchase-OrderForm"
             element={<PurchaseOrderForm />}
           ></Route>
-          <Route path="purchase-order-list" element={<PoDetailsA />}></Route>
-          {/* <Route path="details/:grns" element={<AdminGrnDetailsView />}></Route> */}
+          <Route path="purchase-order-list" element={<PoDetailsA />} />
           <Route
-            path="edit/:orderNo"
-            element={<EditPurchaseOrderPage />}
-          ></Route>
+            path="purchase-order-list/purchase-orders/:orderId"
+            element={<PoDetails />}
+          />
+
+          <Route path="edit/:orderNo" element={<EditPurchaseOrderPage />} />
           <Route path="view-invoice" element={<AdminInvoiceList />}></Route>
           <Route
             path="details/:invoiceNo"
@@ -175,8 +177,14 @@ const App = () => {
             path="vendor-detailsadm/:id"
             element={<VendorDetailsAdm />}
           ></Route>
-          <Route path="update-products/:productId" element={<UpdateProduct />}></Route>
-          <Route path="view-products/:productId" element={<ViewProduct />}></Route>
+          <Route
+            path="update-products/:productId"
+            element={<UpdateProduct />}
+          ></Route>
+          <Route
+            path="view-products/:productId"
+            element={<ViewProduct />}
+          ></Route>
         </Route>
 
         <Route path="/vendor" element={<VendorDashboard />}>
