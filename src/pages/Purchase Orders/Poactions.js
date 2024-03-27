@@ -48,7 +48,7 @@ const Poactions = () => {
   const handleReject = async () => {
     try {
       await axios.put(
-        `https://localhost:7254/api/PurchaseOrder/AcceptReject/${orderId}`,
+        `${process.env.REACT_APP_API_URL}/PurchaseOrder/AcceptReject/${orderId}`,
         {
           isAccepted: false,
           comment: comment,
