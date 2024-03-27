@@ -45,6 +45,8 @@ import ProjectEdit from "./pages/admin/ProjectEdit";
 import ProjectView from "./pages/admin/ProjectView";
 import VendorDetailsAdm from "./pages/admin/VendorDetailsAdm.js";
 import AdminGrnDetailsView from "./pages/Purchase Orders/AdminGrnDetailsView";
+import UpdateProduct from "./pages/admin/UpdateProduct";
+import ViewProduct from "./pages/admin/ViewProduct";
 
 //Vendor
 import VendorDash from "./pages/vendor/VendorDash";
@@ -169,6 +171,8 @@ const App = () => {
             path="vendor-detailsadm/:id"
             element={<VendorDetailsAdm />}
           ></Route>
+          <Route path="update-products/:productId" element={<UpdateProduct />}></Route>
+          <Route path="view-products/:productId" element={<ViewProduct />}></Route>
         </Route>
 
         <Route path="/vendor" element={<VendorDashboard />}>
