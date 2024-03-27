@@ -473,7 +473,7 @@ const PoDetailsV = () => {
       {
         grnView &&
         <>
-          <div className="w-full max-w-2xl  p-8 ">
+          <div className="w-full max-w-2xl mx-auto p-8 ">
             <h1 className="text-cyan-500 text-2xl font-bold mb-4 ">
               <span className="border-b-2 border-cyan-500 inline-block">GRN DETAILS</span>
             </h1>
@@ -481,20 +481,20 @@ const PoDetailsV = () => {
               <table border="1px" className="w-full">
                 <tbody>
                   <tr>
-                    <th className="text-left text-gray-600">GRN No</th>
-                    <td className="text-left text-gray-600">{GRN.grnNo}</td>
+                    <th className="text-left">GRN No</th>
+                    <td className="text-left">{GRN.grnNo}</td>
                   </tr>
                   <tr>
-                    <th className="text-left text-gray-600">PurchaseOrder No</th>
-                    <td className="text-left text-gray-600">{GRN.grnNo}</td>
+                    <th className="text-left">PurchaseOrder No</th>
+                    <td className="text-left">{GRN.grnNo}</td>
                   </tr>
                   <tr>
-                    <th className="text-left text-gray-600">Sent On</th>
-                    <td className="text-left text-gray-600">{formatDateTime(GRN.sendOn)}</td>
+                    <th className="text-left">Sent On</th>
+                    <td className="text-left">{formatDateTime(GRN.sendOn)}</td>
                   </tr>
                   <tr>
-                    <th className="text-left text-gray-600">Shipment Type</th>
-                    <td className="text-left text-gray-600">
+                    <th className="text-left">Shipment Type</th>
+                    <td className="text-left">
                       {GRN.shipmentStatus ? (
                         <span className="text-green-500">Complete</span>
                       ) : (
@@ -503,12 +503,12 @@ const PoDetailsV = () => {
                     </td>
                   </tr>
                   <tr>
-                    <th className="text-left text-gray-600">Comment</th>
-                    <td className="text-left text-gray-600">{GRN.comment}</td>
+                    <th className="text-left">Comment</th>
+                    <td className="text-left">{GRN.comment}</td>
                   </tr>
                   <tr>
-                    <th className="text-left text-gray-600">Status</th>
-                    <td className="text-left text-gray-600">
+                    <th className="text-left">Status</th>
+                    <td className="text-left">
                       <button
                         className={`py-1 px-2 rounded ${GRN.isAccepted
                           ? "bg-green-200 text-green-700"
@@ -521,9 +521,9 @@ const PoDetailsV = () => {
                     </td>
                   </tr>
                   <tr>
-                    <th className="text-left text-gray-600">View</th>
-                    <td className="text-left text-gray-600">
-                      <a 
+                    <th className="text-left">View</th>
+                    <td className="text-left">
+                      <a
                         href={GRN.documentPath}
                         target="_blank"
                         rel="noopener noreferrer"

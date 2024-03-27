@@ -84,8 +84,8 @@ const EditPurchaseOrderPagePHead = ({ vendors }) => {
   };
 
   return (
-    <div className="max-w-md mx-auto mt-8 p-6 bg-white border-2 border-cyan-500 shadow-lg rounded-md">
-      <h2 className="text-xl font-semibold mb-4">Edit Purchase Order</h2>
+    <div className="max-w-lg margin-left mt-8 p-6 bg-white border-2 border-cyan-500 shadow-lg rounded-md">
+      <h2 className="text-2xl font-semibold mb-4 text-center text-gray-500">Edit Purchase Order</h2>
       <form>
         <div className="mb-4">
           <label className="block text-sm font-medium text-gray-700">
@@ -147,7 +147,7 @@ const EditPurchaseOrderPagePHead = ({ vendors }) => {
             className="mt-1 p-2 border border-gray-300 rounded-md w-full"
           />
         </div>
-        <div className="mb-4">
+        <div className="mb-4 flex flex-row">
           <label className="block text-sm font-medium text-gray-700">
             IsActive
           </label>
@@ -161,10 +161,10 @@ const EditPurchaseOrderPagePHead = ({ vendors }) => {
                 isActive: !prevData.isActive,
               }))
             }
-            className="mt-1 p-2 border border-gray-300 rounded-md w-full"
+            className="mt-1 mb-1 ml-2 p-2 border border-gray-300 rounded-md"
           />
         </div>
-        <div className="flex justify-end">
+        <div className="flex justify-center">
           <button
             type="button"
             onClick={handleSave}
