@@ -30,7 +30,7 @@ const PoDetailsA = () => {
   const fetchPurchaseOrders = async () => {
     try {
       const response = await axios.get(
-        "https://localhost:7254/api/PurchaseOrder/All"
+        `${process.env.REACT_APP_API_URL}/PurchaseOrder/All`
       );
       setPurchaseOrders(response.data);
     } catch (error) {
@@ -41,7 +41,7 @@ const PoDetailsA = () => {
   const handleView = async (id) => {
     try {
       const response = await axios.get(
-        `${process.env.REACT_APP_API_URL}PurchaseOrder/${id}`
+        `${process.env.REACT_APP_API_URL}/PurchaseOrder/${id}`
       );
       setSelectedPurchaseOrder(response.data);
       setShowDetails(true);
@@ -54,7 +54,7 @@ const PoDetailsA = () => {
   const fetchGrns = async (id) => {
     try {
       const response = await axios.get(
-        `https://localhost:7254/api/GRN/PurchaseOrder/${id}`
+        `${process.env.REACT_APP_API_URL}/GRN/PurchaseOrder/${id}`
       );
       setGrn(response.data);
     } catch (error) {
@@ -64,7 +64,9 @@ const PoDetailsA = () => {
 
   const handleViewGrn = async (id) => {
     try {
-      const response = await axios.get(`https://localhost:7254/api/GRN/${id}`);
+      const response = await axios.get(
+        `${process.env.REACT_APP_API_URL}/GRN/${id}`
+      );
       setSelectedGrn(response.data);
       setShowGrnDetails(true);
     } catch (error) {
