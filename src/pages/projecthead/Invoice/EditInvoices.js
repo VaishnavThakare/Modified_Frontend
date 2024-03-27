@@ -78,6 +78,7 @@ const EditInvoices = () => {
         <div className="flex text-2xl font-bold text-gray-600 mb-5">
           <h2>Edit Invoice Details</h2>
         </div>
+        <h1>Accept or Reject Invoice's:</h1>
         <div className="mb-6">
           <div className="mb-6 relative">
             <label
