@@ -11,7 +11,7 @@ import { useNavigate, useParams } from "react-router-dom";
 export default function RFPView() {
     const { id } = useParams();
     const [rfpDetails, setRfpDetails] = useState(true);
-    const [display, setDisplay] = useState("none");
+    const [applications, setApplications] = useState([]);
     const [RfpData, setRfpData] = useState(
         {
             title: "",
@@ -37,9 +37,35 @@ export default function RFPView() {
             }
         };
 
+        const fetchApplications = async ()=>{
+            try{
+                const response = await axios.get(
+                    `https://localhost:7254/api/RFPApplication/RFP/${id}`
+                );
+                setApplications(response.data);
+                console.log(response.data);
+            }
+            catch(error){
+                console.error("Error fetching project details:", error);
+            }
+        }
+        
+        fetchApplications();
         fetchRFPById();
 
     }, [id]);
+
+    const formatDateTime = (dateTime) => {
+        const formattedDateTime = new Date(dateTime).toLocaleString("en-US", {
+          year: "numeric",
+          month: "2-digit",
+          day: "2-digit",
+          hour: "2-digit",
+          minute: "2-digit",
+          second: "2-digit",
+        });
+        return formattedDateTime;
+      };
 
     return (
         <>
@@ -61,27 +87,116 @@ export default function RFPView() {
                             </button>
                         </div>
                         <div className="bg-white mt-3 border-2 border-cyan-500 p-4 w-1/2 rounded-lg shadow-lg">
-                            <p>
-                                <strong>Title : &nbsp;</strong>{RfpData.title}
-                            </p>
-                            <p>
-                                <strong>Project Name :  &nbsp;</strong>{RfpData.project.name}
-                            </p>
-                            <p>
-                                <strong>Category : &nbsp;</strong>{RfpData.vendorCategory.name}
-                            </p>
-                            <p>
-                                <strong>End Date : &nbsp;</strong> {new Date(RfpData.endDate).toLocaleDateString("es-CL")}
-                            </p>
-                            <p>
-                                <strong>Document : &nbsp;</strong>
-                                <a href={RfpData.documentPath} target="_blank">
-                                    <FontAwesomeIcon
-                                        icon={faFileDownload}
-                                        className="text-cyan-600 text-xl"
-                                    />
-                                </a>
-                            </p>
+                            <table className="w-[50%]">
+                                <tr>
+                                    <th align="left">Title : </th>
+                                    <td align="left" className="ml-3">{RfpData.title}</td>
+                                </tr>
+                                <tr>
+                                    <th align="left">Project Name : </th>
+                                    <td align="left" className="ml-3">{RfpData.project.name}</td>
+                                </tr>
+                                <tr>
+                                    <th align="left">Category : </th>
+                                    <td align="left" className="ml-3">{RfpData.vendorCategory.name}</td>
+                                </tr>
+                                <tr>
+                                    <th align="left">End Date: </th>
+                                    <td align="left" className="ml-3">{formatDateTime(RfpData.endDate)}</td>
+                                </tr>
+                                <tr>
+                                    <th align="left">Document : </th>
+                                    <td align="left" className="ml-3">
+                                        <button className="text-blue-700">
+                                            <a href={RfpData.documentPath} target="_blank">
+                                                {RfpData.title}
+                                                <FontAwesomeIcon
+                                                    icon={faFileDownload}
+                                                    className="text-cyan-600 text-xl"
+                                                />
+                                            </a>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <div className="flex text-2xl mt-10 font-bold text-gray-500">
+                            <h2 className="text-left text-cyan-500">ALL Applications</h2>
+                        </div>
+                        <div className="w-1/5 bg-cyan-500 h-0.5 mb-1"></div>
+                        <div className="w-1/3 bg-cyan-500 h-0.5 mb-5"></div>
+                        <div className=" overflow-x-auto border-2 border-cyan-500 mb-5 shadow-lg rounded-lg p-1">
+                            <table className="table-auto w-full 0 bg-white">
+                                <thead>
+                                    <tr className="text-gray-600">
+                                        <th className="px-4 py-2 text-center ">
+                                            Sr.<p></p> No.
+                                        </th>
+                                        <th className="px-4 py-2 text-center ">
+                                            RFP 
+                                        </th>
+                                        <th className="px-4 py-2 text-center ">
+                                            Vendor 
+                                        </th>
+                                        <th className="px-4 py-2 text-center ">
+                                            Applied Date
+                                        </th>
+                                        <th className="px-4 py-2 text-center ">
+                                            Due Date
+                                        </th>
+                                        <th className="px-4 py-2 text-center ">
+                                            RFP<p></p>Document
+                                        </th>
+                                        <th className="px-4 py-2 text-center ">
+                                            Received Application
+                                        </th>
+                                        <th className="px-4 py-2 text-center ">Comments</th>
+                                    </tr>
+                                    <tr className=" text-gray-600">
+                                        <td colSpan="9" className=" px-4 py-1">
+                                            <div style={{ borderTop: "2px solid gray" }}></div>
+                                        </td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {
+                                    applications && applications.length > 0 ?
+                                    applications.map((app,index)=>{
+                                        return (
+                                        <tr>
+                                            <td align="center">{index+1}</td>
+                                            <td align="center">{app.rfp.title}</td>
+                                            <td align="center">{app.vendorName}</td>
+                                            <td align="center">{formatDateTime(app.createdOn)}</td>
+                                            <td align="center">{formatDateTime(app.rfp.endDate)}</td>
+                                            <td align="center">
+                                            <button>
+                                                <a href={app.documentPath} target="_blank">
+                                                    View Doc
+                                                </a>
+                                                </button>
+                                            </td>
+                                            <td align="center">
+                                            <button>
+                                                <a href={app.rfp.documentPath} target="_blank">
+                                                    View Doc
+                                                </a>
+                                                </button>                                                
+                                            </td>
+                                            <td align="center">{app.comment}</td>
+                                        </tr>
+                                        );
+                                    })
+                                    :
+                                    <tr>
+                                        <td  align="center" colSpan={8}>
+                                             No Applicatios Received !! 
+                                        </td>
+                                    </tr>
+                                }
+                                </tbody>
+                            </table>
                         </div>
 
                         <br />
@@ -91,14 +206,6 @@ export default function RFPView() {
                 ) : (
                     <p>Loading RFP details...</p>
                 )}
-            </div>
-
-            <div style={{ 'display': display }} className="absolute top-[110px] right-[60px] grid grid-rows-2 bg-gray-500 w-[400px] h-[120px] p-[20px]">
-                <input type="text" placeholder="Add comment here" className="w-full h-[30px] border border-solid border-black border-2 pl-2" />
-                <div className="flex items-center justify-center">
-                    <button className=" bg-red-400 w-[180px] h-[30px] rounded-[10px] border border-solid border-black">Reject</button>
-                    <button className=" bg-red-400 w-[180px] h-[30px] ml-[5px] rounded-[10px] border border-solid border-black">Cancel</button>
-                </div>
             </div>
 
         </>
