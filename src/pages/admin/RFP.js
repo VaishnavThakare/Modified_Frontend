@@ -144,7 +144,7 @@ export default function RFPA() {
                         </td>
                         <td className="px-6 py-4 whitespace-no-wrap text-center">
                           <div className="text-sm leading-5">
-                            <a href={rfp.documentPath}>Download</a>
+                            <a href={rfp.document}>Download</a>
                           </div>
                         </td>
                         <td className="px-6 py-4 whitespace-no-wrap text-center">

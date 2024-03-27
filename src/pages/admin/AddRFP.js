@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function AddRFP() {
   const [rfpData, setRFPData] = useState({
@@ -56,7 +56,7 @@ export default function AddRFP() {
     e.preventDefault();
     const formData = new FormData();
     formData.append("Title", rfpData.title);
-    formData.append("Document", rfpData.documentFile);
+    formData.append("DocumentFile", rfpData.documentFile);
     formData.append("ProjectId", rfpData.projectId);
     formData.append("VendorCategoryId", rfpData.vendorCategoryId);
     formData.append("EndDate", rfpData.endDate);
@@ -65,12 +65,12 @@ export default function AddRFP() {
         `${process.env.REACT_APP_API_URL}/RFP/Add`,
         formData
       );
-      if (response.status === 200) {
-        toast.success("RFP Added", {
-          position: "top-right",
+      if (response.status === 200){
+        toast.success("RFP Added",{
+          position:"top-right"
         });
-      }
-
+      } 
+      
       setRFPData({
         title: "",
         projectId: "",
@@ -85,31 +85,29 @@ export default function AddRFP() {
   return (
     <>
       <div class="align-middle inline-block min-w-full overflow-hidden bg-zinc-50 px-8 py-3 pb-8 rounded-bl-lg rounded-br-lg">
-        <form
-          onSubmit={handleSubmit}
-          className="max-w-sm mx-auto mt-8 appform bg-white"
-        >
+        <form onSubmit={handleSubmit} className="max-w-sm mx-auto mt-8 appform bg-white">
           <div className="flex text-2xl font-bold text-gray-500 mb-5">
             <h2>Create RFP/RFQ</h2>
           </div>
           <div className="mb-6 relative">
-            <input
-              type="text"
-              id="title"
-              name="title"
-              placeholder=" "
-              value={rfpData.title}
-              onChange={handleChange}
-              className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-              required
-            />
-            <label
-              htmlFor="title"
-              className="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"
-            >
-              Title
-            </label>
-          </div>
+  <input
+    type="text"
+    id="title"
+    name="title"
+    placeholder=" "
+    value={rfpData.title}
+    onChange={handleChange}
+    className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+    required
+  />
+  <label
+    htmlFor="title"
+    className="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"
+  >
+    Title
+  </label>
+</div>
+
 
           <div class="mb-6">
             <label
@@ -200,16 +198,16 @@ export default function AddRFP() {
             </p>
           </div>
           <div className="flex justify-center">
-            <button
-              type="submit"
-              className="bg-cyan-500 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded"
-            >
-              Add RFP
-            </button>
+          <button
+            type="submit"
+            className="bg-cyan-500 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded"
+          >
+            Add RFP
+          </button>
           </div>
         </form>
       </div>
-      <ToastContainer />
+      <ToastContainer/>
     </>
   );
 }
