@@ -175,9 +175,9 @@ export default function RFP() {
       {
         showEditModal && <>
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-          <div className="bg-white p-2 max-w-md rounded-lg shadow-md">
+          <div className="bg-white p-2 max-w-md rounded-lg">
             <form onSubmit={applyRFP} className="appform">
-              <div className="flex text-2xl font-bold text-gray-500 mb-2">
+              <div className="flex text-2xl justify-center mb-7 font-bold text-gray-500 ">
                 <h2>Apply for RFP</h2>
               </div>
 
@@ -214,7 +214,7 @@ export default function RFP() {
                   class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 />
               </div>
-
+              <div className="flex justify-center">
               <button
                 type="submit"
                 className="bg-cyan-500 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded"
@@ -228,6 +228,7 @@ export default function RFP() {
               >
                 Close
               </button>
+              </div>
             </form>
           </div>
         </div>

@@ -102,11 +102,12 @@ const PurchaseOrderFormPHead = () => {
     fetchProjects();
   }, []);
   return (
-    <div className="py-10 flex justify-center items-center bg-zinc-50 font-poppins">
+    <div className="py-10 margin-left items-center bg-zinc-50 font-poppins">
       <div className="bg-white border-2 border-cyan-400 rounded-lg shadow-lg p-8 w-full max-w-lg mt">
-        <form onSubmit={handleSubmit} className="p-10">
+      <h2 className="text-2xl font-semibold mb-4 text-center text-gray-500">Purchase Order Form</h2>
+        <form onSubmit={handleSubmit} className="p-5">
           <div className="grid grid-cols-1 gap-4">
-          <div className="mb-6 relative">
+          <div className=" relative">
   <input
     type="text"
     id="OrderNo"
@@ -119,7 +120,7 @@ const PurchaseOrderFormPHead = () => {
   />
   <label
     htmlFor="OrderNo"
-    className="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"
+    className="ml-1 absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"
   >
     Order No
   </label>
@@ -214,14 +215,14 @@ const PurchaseOrderFormPHead = () => {
   />
   <label
     htmlFor="OrderAmount"
-    className="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"
+    className="ml-1 absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"
   >
     PO Amount
   </label>
 </div>
 
 
-            <div>
+            <div className="flex flex-row">
               <label
                 htmlFor="IsActive"
                 className="block mb-2 text-sm font-medium text-gray-900"
@@ -232,7 +233,7 @@ const PurchaseOrderFormPHead = () => {
                 type="checkbox"
                 name="IsActive"
                 id="IsActive"
-                className="peer"
+                className="peer mb-2 ml-2"
                 value={formData.IsActive}
                 onChange={handleChange}
               />

@@ -71,7 +71,9 @@ const LoginModal = ({ onClose }) => {
     <>
       <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
         <div className="bg-white p-8 rounded-md shadow-md shadow-cyan-900 w-96 border-4 border-cyan-500">
-          <h2 className="text-2xl font-semibold mb-4">Login</h2>
+          <div className="flex justify-center">
+          <h2 className="text-3xl font-bold mb-4 text-cyan-500 ">Login</h2>
+          </div>
           <form onSubmit={(e) => e.preventDefault()} className="pd-4">
             <div className="mb-6 relative">
               <input
@@ -86,7 +88,7 @@ const LoginModal = ({ onClose }) => {
               />
               <label
                 htmlFor="username"
-                className="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"
+                className="ml-1 absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"
               >
                 User Id
               </label>
@@ -104,7 +106,7 @@ const LoginModal = ({ onClose }) => {
               />
               <label
                 htmlFor="password"
-                className="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"
+                className="ml-1 absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"
               >
                 Password
               </label>

@@ -67,9 +67,9 @@ function CreateInvoiceVendor() {
     <div className="align-middle inline-block min-w-full  overflow-hidden bg-zinc-50 px-8 py-3 pb-8 rounded-bl-lg rounded-br-lg">
       <form
         onSubmit={handleSubmit}
-        className="max-w-sm mx-auto mt-8 appform bg-white"
+        className="max-w-lg margin-left mt-8 appform bg-white"
       >
-        <div className="flex text-2xl font-bold text-gray-500 mb-5">
+        <div className="flex text-2xl font-bold text-gray-500 mb-5 justify-center">
           <h2>Create Invoice</h2>
         </div>
         <div className="mb-6 relative">
@@ -85,7 +85,7 @@ function CreateInvoiceVendor() {
   />
   <label
     htmlFor="invoiceNo"
-    className="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"
+    className="ml-1 absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"
   >
     Invoice No
   </label>
@@ -104,7 +104,7 @@ function CreateInvoiceVendor() {
   />
   <label
     htmlFor="Amount"
-    className="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"
+    className="ml-1 absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"
   >
     Amount
   </label>

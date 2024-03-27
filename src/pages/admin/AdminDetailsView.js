@@ -29,13 +29,13 @@ const AdminDetailsView = () => {
   }
 
   return (
-    <div className="w-full max-w-2xl mx-auto p-8 ">
+    <div className="w-full max-w-2xl p-8 ">
       <h1 className="text-cyan-500 text-2xl font-bold mb-4 ">
       <span className="border-b-2 border-cyan-500 inline-block">ADMIN INVOICE DETAILS</span>
       </h1>
       <div className="bg-white shadow-md rounded-lg p-6 border-2 border-cyan-500">
         <form className="flex flex-col">
-          <div className="flex flex-row justify-between mb-4">
+          <div className="flex flex-row justify-between">
             <div className="w-1/4">
               <p className="text-lg font-bold  text-gray-600">Invoice No.</p>
             </div>
@@ -43,7 +43,7 @@ const AdminDetailsView = () => {
               <p className="text-gray-500">{invoice.invoiceNo}</p>
             </div>
           </div>
-          <div className="flex flex-row justify-between mb-4">
+          <div className="flex flex-row justify-between ">
             <div className="w-1/4">
               <p className="text-lg font-bold  text-gray-600">GRN No.</p>
             </div>
@@ -51,7 +51,7 @@ const AdminDetailsView = () => {
               <p className="text-gray-500">{invoice.grn.grnNo}</p>
             </div>
           </div>
-          <div className="flex flex-row justify-between mb-4">
+          <div className="flex flex-row justify-between">
             <div className="w-1/4">
               <p className="text-lg font-bold text-gray-600">Amount</p>
             </div>
@@ -59,7 +59,7 @@ const AdminDetailsView = () => {
               <p className="text-gray-500">{invoice.amount}</p>
             </div>
           </div>
-          <div className="flex flex-row justify-between mb-4">
+          <div className="flex flex-row justify-between">
             <div className="w-1/4">
               <p className="text-lg font-bold  text-gray-600">Status</p>
             </div>
@@ -67,7 +67,7 @@ const AdminDetailsView = () => {
               <p className="text-gray-500">{invoice.isAccepted ? 'Accepted' : 'Rejected'}</p>
             </div>
           </div>
-          <div className="flex flex-row justify-between mb-4">
+          <div className="flex flex-row justify-between">
             <div className="w-1/4">
               <p className="text-lg font-bold  text-gray-600">Payment Status</p>
             </div>

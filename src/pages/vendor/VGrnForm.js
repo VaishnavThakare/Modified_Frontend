@@ -86,6 +86,9 @@ const GRNForm = () => {
   return (
     <div className="py-10 flex justify-center items-center bg-zinc-50 font-poppins">
       <div className="bg-white border-2 border-cyan-400 rounded-lg shadow-lg p-8 w-full max-w-lg mt">
+      <div className="flex text-2xl font-bold justify-center text-gray-500 mb-5">
+                    <h2>GRN Form</h2>
+                </div>
         <form onSubmit={handleSubmit} className="p-10">
           <div className="grid grid-cols-1 gap-4">
           <div className="mb-6 relative">
@@ -101,7 +104,7 @@ const GRNForm = () => {
   />
   <label
     htmlFor="GRNNo"
-    className="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"
+    className=" ml-1 absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"
   >
     GRN No.
   </label>

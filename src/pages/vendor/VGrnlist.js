@@ -276,6 +276,7 @@ const GrnDetails = () => {
                     {formatDateTime(invoice.dueDate)}
                   </td>
                   <td className="px-6 py-4 whitespace-no-wrap text-center ">
+                    
                     <a
                       href={invoice.documentPath}
                       target="_blank"
