@@ -77,8 +77,9 @@ export default function ViewInvoiceVendor() {
                       <th className="px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-600 tracking-wider">PO Number</th>
                       <th className="px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-600 tracking-wider">Due Date</th>
                       <th className="px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-600 tracking-wider">View </th>
-                      <th className="px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-600 tracking-wider">Status</th>
+                      
                       <th className="px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-600 tracking-wider">Payment Status</th>
+                      <th className="px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-600 tracking-wider">Status</th>
                       <th className="px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-600 tracking-wider">Action</th>
                     </tr>
                   </thead>
@@ -99,19 +100,20 @@ export default function ViewInvoiceVendor() {
                             />
                           </a>
                         </td>
+                        
+                        <td className="px-6 py-4 whitespace-no-wrap text-center text-sm">
+                          {invoice.paymentStatus == "Unpaid" ?
+                            <span className="bg-yellow-300 py-1 px-3 rounded text-yellow-700">UnPaid</span>
+                            :
+                            <span className="bg-green-400 py-1 px-3 rounded text-green-700">PAID</span>
+                          }
+                        </td>
                         <td className="px-6 py-4 whitespace-no-wrap text-center text-sm">
                           {
                             invoice.s == "Rejected" ?
                               <span className="bg-red-300 py-1 px-3 rounded text-red-700">Rejected</span>
                               :
                               <span className="bg-green-400 py-1 px-3 rounded text-green-700">Approved</span>
-                          }
-                        </td>
-                        <td className="px-6 py-4 whitespace-no-wrap text-center text-sm">
-                          {invoice.paymentStatus == "Unpaid" ?
-                            <span className="bg-yellow-300 py-1 px-3 rounded text-yellow-700">UnPaid</span>
-                            :
-                            <span className="bg-green-400 py-1 px-3 rounded text-green-700">PAID</span>
                           }
                         </td>
                         <td className="flex items-center px-6 py-4 whitespace-no-wrap text-center text-sm">
@@ -218,12 +220,14 @@ export default function ViewInvoiceVendor() {
                 <tr>
                   <th className="px-6 py-3 text-left leading-4 text-gray-600 tracking-wider">View</th>
                   <td className="px-6 py-2 text-left  whitespace-no-wrap text-sm">
-                    <a href={invoice.documentPath} target="_blank" rel="noopener noreferrer">
+                    <a href={invoice.documentPath} target="_blank" rel="noopener noreferrer" className="text-cyan-600">
                       <FontAwesomeIcon
                         icon={faFileDownload}
-                        className="text-cyan-600 text-xl"
+                        className="text-cyan-600 text-xl mr-2"
                       />
+                      View Doc
                     </a>
+                    
                   </td>
                   <th className="px-6 py-3 text-left leading-4 text-gray-600 tracking-wider">Comment</th>
                   <td className="px-6 py-2 text-left  whitespace-no-wrap text-sm">{invoice.comment}</td>

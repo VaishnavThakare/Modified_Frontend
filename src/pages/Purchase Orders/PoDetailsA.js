@@ -219,7 +219,7 @@ const PoDetailsA = () => {
                     <th className="px-4 py-2 text-center">Comments</th>
                     <th className="px-4 py-2 text-center">Acceptance</th>
                     <th className="px-4 py-2 text-center">Payment Status</th>
-                    <th className="px-4 py-2 text-center">Actions</th>
+                    {/* <th className="px-4 py-2 text-center">Actions</th> */}
                   </tr>
                   <tr className="text-gray-600">
                     <td colSpan="7" className="px-4 py-1">
@@ -266,7 +266,7 @@ const PoDetailsA = () => {
                           {grnItem.paymentStatus ? "Approved" : "Rejected"}
                         </button>
                       </td>
-                      <td className="px-4 py-2 text-center text-sm">
+                      {/* <td className="px-4 py-2 text-center text-sm">
                         <button
                           onClick={() => handleViewGrn(grnItem.id)}
                           className={`mr-2`}
@@ -276,7 +276,7 @@ const PoDetailsA = () => {
                             className={`text-cyan-600 text-xl`}
                           />
                         </button>
-                      </td>
+                      </td> */}
                     </tr>
                   ))}
                 </tbody>
