@@ -203,7 +203,7 @@ const App = () => {
           <Route path="invoice-list/:invoiceId" element={<EditInvoices />} />
           <Route path="editGrn-List/:grnId" element={<EditGrnDetails />} />
           <Route
-            path="invoice-details-phead/:invoiceNo"
+            path="invoice-details-phead/:id"
             element={<InvoiceDetails />}
           />
           <Route

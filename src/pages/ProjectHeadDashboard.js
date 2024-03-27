@@ -11,21 +11,21 @@ export default function ProjectHeadDashboard() {
       text: "Dashboard",
       icon: "ri-home-2-line text-white font-",
       link: "dashboard",
-      bgColor: "bg-[#7fecfa]",
+      bgColor: "bg-[#09c8e2]",
       textStyle: "font-bold",
     },
     {
       text: "Users",
       icon: "bx bx-user text-white",
       link: "#",
-      bgColor: "bg-[#6ce9f9]",
+      bgColor: "bg-[#09c8e2]",
       subItems: [{ text: "Assigned Project ", link: "assigned-project " }],
     },
     {
       text: "GRN",
       icon: "bx bx-user text-white font-",
       link: "#",
-      bgColor: "bg-[#58e6f8]",
+      bgColor: "bg-[#09c8e2]",
       subItems: [
         { text: "GRN Listing", link: "grn-List" },
         // {  link: "editGrn-List/:grnId" },
@@ -36,7 +36,7 @@ export default function ProjectHeadDashboard() {
       text: "Purchase Order",
       icon: "bx bx-category text-white",
       link: "#",
-      bgColor: "bg-[#45e3f8]",
+      bgColor: "bg-[#09c8e2]",
       subItems: [
         { text: "Purchase Order Form", link: "purchase-OrderForm-pHead" },
         { text: "Purchase Order View", link: "purchase-order-list-pHead" },
@@ -47,7 +47,7 @@ export default function ProjectHeadDashboard() {
       text: "Invoices",
       icon: "bx bx-user text-white font-",
       link: "#",
-      bgColor: "bg-[#31e0f7]",
+      bgColor: "bg-[#09c8e2]",
       subItems: [{ text: "All Invoices", link: "invoice-list" }],
     },
   ];

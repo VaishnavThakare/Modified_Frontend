@@ -130,11 +130,24 @@ const PoDetailsV = () => {
 
       {showDetails && !grnView && selectedPurchaseOrder && (
         <>
+        <div className="flex justify-between">
+          <div>
           <div className="flex text-2xl font-bold text-gray-500">
-            <h2 className="text-left text-cyan-500">Purchase Order Details:</h2>
+            <h2 className="text-left text-cyan-500">Purchase Order Details</h2>
           </div>
           <div className="w-64 bg-cyan-500 h-0.5 mb-1"></div>
           <div className="w-72 bg-cyan-500 h-0.5 mb-5"></div>
+          </div>
+          <div>
+          <button
+                onClick={handleCloseDetails}
+                className="bg-cyan-600 hover:bg-cyan-700 mr-4 text-white font-bold py-2 px-4 rounded"
+              >
+                Back
+              </button>
+          </div>
+          </div>
+
           <div className="rounded-lg border-2 border-cyan-400 bg-white shadow-lg p-4  w-full mt-2">
             <table className="w-full">
               <tbody>
@@ -196,12 +209,7 @@ const PoDetailsV = () => {
             </table>
 
             <div className="mt-4 flex justify-end">
-              <button
-                onClick={handleCloseDetails}
-                className="bg-cyan-600 hover:bg-cyan-700 mr-4 text-white font-bold py-2 px-4 rounded"
-              >
-                Close
-              </button>
+              
               {selectedPurchaseOrder.documentPath && (
                 <button
                   className="bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded"
@@ -233,8 +241,9 @@ const PoDetailsV = () => {
                     <th className="px-4 py-2 text-center">SENT ON (DATE)</th>
                     <th className="px-4 py-2 text-center">SHIPMENT TYPE</th>
                     <th className="px-4 py-2 text-center">COMMENT</th>
-                    <th className="px-4 py-2 text-center">STATUS</th>
+                    
                     <th className="px-4 py-2 text-center">View/Download</th>
+                    <th className="px-4 py-2 text-center">STATUS</th>
                     <th className="px-4 py-2 text-center">Action</th>
                     {/* <th className="px-4 py-2 text-left">ACTION</th> */}
                   </tr>
@@ -267,18 +276,7 @@ const PoDetailsV = () => {
                         <td className="px-6 py-4 whitespace-no-wrap text-center">
                           {grn.comment}
                         </td>
-                        <td className="px-6 py-4 whitespace-no-wrap text-center">
-                          <button
-                            className={`py-1 px-2 rounded ${
-                              grn.isAccepted
-                                ? "bg-green-200 text-green-700"
-                                : "bg-red-200 text-red-600"
-                            }`}
-                            style={{ minWidth: "6rem" }}
-                          >
-                            {grn.isAccepted ? "Accepted" : "Pending"}
-                          </button>
-                        </td>
+                        
                         <td className="px-6 py-4 whitespace-no-wrap text-center">
                           <a
                             href={grn.documentPath}
@@ -290,6 +288,18 @@ const PoDetailsV = () => {
                               className="text-cyan-600 text-xl"
                             />
                           </a>
+                        </td>
+                        <td className="px-6 py-4 whitespace-no-wrap text-center">
+                          <button
+                            className={`py-1 px-2 rounded ${
+                              grn.isAccepted
+                                ? "bg-green-200 text-green-700"
+                                : "bg-red-200 text-red-600"
+                            }`}
+                            style={{ minWidth: "6rem" }}
+                          >
+                            {grn.isAccepted ? "Accepted" : "Pending"}
+                          </button>
                         </td>
                         <td className="px-6 py-4 whitespace-no-wrap text-center">
                           <button>
@@ -538,12 +548,12 @@ const PoDetailsV = () => {
                     </td>
                   </tr>
                   <tr>
-                    <td align="right" colSpan={2}>
+                    <td align="middle" colSpan={2}>
                       <button
                         onClick={() => {
                           setGrnView(false);
                         }}
-                        className="bg-cyan-600 hover:bg-cyan-700 mr-4 text-white font-bold py-2 px-4 rounded"
+                        className="bg-cyan-600 hover:bg-cyan-700 mr-4 text-white font-bold py-2 px-4 rounded mt-10"
                       >
                         Back
                       </button>

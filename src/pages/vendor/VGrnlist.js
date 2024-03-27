@@ -197,7 +197,7 @@ const GrnDetails = () => {
         </div>
         <div className="w-1/5 bg-cyan-500 h-0.5 mb-1"></div>
         <div className="w-1/3 bg-cyan-500 h-0.5 mb-5"></div>
-        <div className="border-2 border-cyan-500 mb-5 shadow-lg rounded-lg p-0.5">
+        <div className="overflow-x-scroll border-2 border-cyan-500 mb-5 shadow-lg rounded-lg p-0.5">
           <table className="min-w-full  rounded-lg bg-white">
             <thead>
               <tr>
@@ -216,9 +216,7 @@ const GrnDetails = () => {
                 <th className="px-6 py-3  text-center text-sm leading-4 text-gray-600 tracking-wider">
                   PO NO
                 </th>
-                <th className="px-6 py-3  text-center text-sm leading-4 text-gray-600 tracking-wider">
-                  S (APPROVED/REJECTED)
-                </th>
+                
                 <th className="px-6 py-3  text-center text-sm leading-4 text-gray-600 tracking-wider">
                   COMMENT
                 </th>
@@ -230,6 +228,9 @@ const GrnDetails = () => {
                 </th>
                 <th className="px-6 py-3  text-center text-sm leading-4 text-gray-600 tracking-wider">
                   VIEW/DOWNLOAD DOCUMENTS
+                </th>
+                <th className="px-6 py-3  text-center text-sm leading-4 text-gray-600 tracking-wider">
+                  STATUS
                 </th>
               </tr>
               <tr className=" text-gray-600">
@@ -256,18 +257,7 @@ const GrnDetails = () => {
                   <td className="px-6 py-4 whitespace-no-wrap text-center ">
                     {invoice.grn.purchaseOrder.orderNo}
                   </td>
-                  <td className="px-6 py-4 whitespace-no-wrap text-center ">
-                    <button
-                      className={`py-1 px-2 rounded ${
-                        invoice.isAccepted
-                          ? "bg-green-200 text-green-700"
-                          : "bg-red-200 text-red-600"
-                      }`}
-                      style={{ minWidth: "6rem" }}
-                    >
-                      {invoice.isAccepted ? "Accepted" : "Pending"}
-                    </button>
-                  </td>
+                  
                   <td className="px-6 py-4 whitespace-no-wrap text-center">
                     {invoice.comment}
                   </td>
@@ -289,6 +279,18 @@ const GrnDetails = () => {
                         className="text-cyan-600 text-xl"
                       />
                     </a>
+                  </td>
+                  <td className="px-6 py-4 whitespace-no-wrap text-center ">
+                    <button
+                      className={`py-1 px-2 rounded ${
+                        invoice.isAccepted
+                          ? "bg-green-200 text-green-700"
+                          : "bg-red-200 text-red-600"
+                      }`}
+                      style={{ minWidth: "6rem" }}
+                    >
+                      {invoice.isAccepted ? "Accepted" : "Pending"}
+                    </button>
                   </td>
                 </tr>
               ))}
@@ -405,7 +407,7 @@ const GrnDetails = () => {
                           {grn.isAccepted ? "Accepted" : "Pending"}
                         </button>
                       </td>
-                      <td className="px-4 py-2 text-left flex flex-row ">
+                      <td className="px-4 py-2 text-left flex flex-row mt-3 ">
                         <button
                           className="mr-2"
                           onClick={() => handleEditDetails(grn.id)}
