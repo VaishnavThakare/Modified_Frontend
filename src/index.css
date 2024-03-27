@@ -85,3 +85,7 @@ fieldset {
   .margin-left{
     margin-left: 20%;
   }
+
+  .page-heading{
+    font-size: 18px;
+  }

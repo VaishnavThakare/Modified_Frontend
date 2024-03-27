@@ -121,7 +121,7 @@ export default function Project() {
     const fetchPurchaseOrders = async () => {
       try {
         const response = await axios.get(
-          "https://localhost:7254/api/PurchaseOrder/All"
+          `${process.env.REACT_APP_API_URL}/PurchaseOrder/Project/${grnDetails.id}`
         );
         setPurchaseOrders(response.data);
       } catch (error) {

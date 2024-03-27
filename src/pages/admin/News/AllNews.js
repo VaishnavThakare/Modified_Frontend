@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function AllNews() {
   const [news, setnews] = useState([]);
@@ -23,7 +23,6 @@ export default function AllNews() {
       let data = [];
       if (res.status == 200 && res.data != null) {
         data = res.data;
-
       }
 
       setnews(data);
@@ -39,7 +38,7 @@ export default function AllNews() {
     try {
       await axios.delete(`${process.env.REACT_APP_API_URL}/News/${id}`);
       toast.success("News Deleted", {
-        position: "top-right"
+        position: "top-right",
       });
       getAllNews();
     } catch (error) {
@@ -69,7 +68,7 @@ export default function AllNews() {
       );
       if (response.status === 200) {
         toast.success("News Updated", {
-          position: "top-right"
+          position: "top-right",
         });
       }
 
@@ -116,9 +115,7 @@ export default function AllNews() {
                   <h5 className="mb-2 text-lg font-bold tracking-tight">
                     {news.title}
                   </h5>
-                  <p className="mb-2">
-                    Description: {news.content}
-                  </p>
+                  <p className="mb-2 truncate">{news.content}</p>
                   <p className="mb-2">
                     Status: {news.isActive ? "Active" : "Inactive"}
                   </p>
@@ -176,10 +173,11 @@ export default function AllNews() {
           (_, index) => (
             <button
               key={index}
-              className={`mx-1 px-4 py-2 ${currentPage === index + 1
-                ? "bg-cyan-500 text-white"
-                : "bg-gray-300"
-                }`}
+              className={`mx-1 px-4 py-2 ${
+                currentPage === index + 1
+                  ? "bg-cyan-500 text-white"
+                  : "bg-gray-300"
+              }`}
               onClick={() => paginate(index + 1)}
             >
               {index + 1}
@@ -292,4 +290,3 @@ export default function AllNews() {
     </>
   );
 }
-

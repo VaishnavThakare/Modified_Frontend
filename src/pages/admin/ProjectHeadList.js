@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faEye,
-  faEdit
-} from "@fortawesome/free-solid-svg-icons";
+import { faEye, faEdit } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
 
 const ProjectHeadList = () => {
@@ -60,7 +57,7 @@ const ProjectHeadList = () => {
     const handlePEditDetails = (projectId) => {
       navigate(`/admin/projects/${projectId}`);
     };
-  
+
     const handlePViewDetails = (projectId) => {
       navigate(`/admin/projects-view/${projectId}`);
     };
@@ -146,25 +143,25 @@ const ProjectHeadList = () => {
                     {project.projectStatus}
                   </td>
                   <td className="px-4 py-2 flex flex-row justify-center ">
-                            <button
-                              className="mr-2"
-                              onClick={() => handlePEditDetails(project.id)}
-                            >
-                              <FontAwesomeIcon
-                                icon={faEdit}
-                                className="text-cyan-600 text-xl"
-                              />
-                            </button>
-                            <button
-                              className="mr-2"
-                              onClick={() => handlePViewDetails(project.id)}
-                            >
-                              <FontAwesomeIcon
-                                icon={faEye}
-                                className="text-cyan-600 text-xl"
-                              />
-                            </button>
-                          </td>
+                    <button
+                      className="mr-2"
+                      onClick={() => handlePEditDetails(project.id)}
+                    >
+                      <FontAwesomeIcon
+                        icon={faEdit}
+                        className="text-cyan-600 text-xl"
+                      />
+                    </button>
+                    <button
+                      className="mr-2"
+                      onClick={() => handlePViewDetails(project.id)}
+                    >
+                      <FontAwesomeIcon
+                        icon={faEye}
+                        className="text-cyan-600 text-xl"
+                      />
+                    </button>
+                  </td>
                 </tr>
               ))}
               {projects.length === 0 && (
@@ -193,7 +190,9 @@ const ProjectHeadList = () => {
           ) : (
             <>
               <div className="flex text-2xl font-bold text-gray-500 ">
-                <h2 className="text-left text-cyan-500">PROJECT HEADS LIST</h2>
+                <p className="text-left text-cyan-500 page-heading">
+                  PROJECT HEADS LIST
+                </p>
               </div>
               <div className="w-1/5 bg-cyan-400 h-0.5 mb-1"></div>
               <div className="w-1/3 bg-cyan-400 h-0.5 mb-5"></div>

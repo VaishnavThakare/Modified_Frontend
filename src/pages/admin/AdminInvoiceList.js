@@ -81,13 +81,10 @@ const AdminInvoiceList = () => {
                 </th>
                 <th className="px-4 py-2 text-center">Amount</th>
                 <th className="px-4 py-2 text-center">Comment</th>
-                
                 <th className="px-4 py-2 text-center">
-                  Payment<p></p> Status
+                  View/Download Documents
                 </th>
-                <th className="px-4 py-2 text-center">
-                  View/Download<p></p> Documents
-                </th>
+                <th className="px-4 py-2 text-center">Payment Status</th>
                 <th className="px-4 py-2 text-center">Status</th>
                 <th className="px-4 py-2 text-center">Actions</th>
               </tr>
@@ -125,10 +122,6 @@ const AdminInvoiceList = () => {
                     <td className="px-4 py-2 text-center text-sm">
                       {invoice.comment}
                     </td>
-                    
-                    <td className="px-4 py-2 text-center text-sm">
-                      {invoice.paymentStatus ? "Paid" : "Unpaid"}
-                    </td>
                     <td className="px-6 py-2 text-center whitespace-no-wrap">
                       <a
                         href={invoice.documentPath}
@@ -140,6 +133,18 @@ const AdminInvoiceList = () => {
                           className="text-cyan-600 text-xl"
                         />
                       </a>
+                    </td>
+                    <td className="px-4 py-2 text-center text-sm">
+                      <button
+                        className={`py-1 px-2 rounded ${
+                          invoice.paymentStatus
+                            ? "bg-green-200 text-green-700"
+                            : "bg-red-200 text-red-600"
+                        }`}
+                        style={{ minWidth: "6rem" }}
+                      >
+                        {invoice.paymentStatus ? "Paid" : "Unpaid"}
+                      </button>
                     </td>
                     <td className="px-4 py-2 text-center text-sm">
                       <button

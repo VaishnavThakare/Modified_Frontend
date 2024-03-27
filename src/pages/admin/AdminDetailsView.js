@@ -84,13 +84,13 @@ const AdminDetailsView = () => {
                 Status
               </th>
               <td className="px-6 py-4 whitespace-no-wrap text-left  text-sm">
-                {invoice.s == "Rejected" ? (
-                  <span className="bg-red-300 py-1 px-3 rounded text-red-700">
-                    Rejected
-                  </span>
-                ) : (
+                {invoice.isAccepted ? (
                   <span className="bg-green-400 py-1 px-3 rounded text-green-700">
                     Approved
+                  </span>
+                ) : (
+                  <span className="bg-red-300 py-1 px-3 rounded text-red-700">
+                    Rejected
                   </span>
                 )}
               </td>
@@ -100,13 +100,13 @@ const AdminDetailsView = () => {
                 Payment Status
               </th>
               <td className="px-6 py-4 whitespace-no-wrap text-left  text-sm">
-                {invoice.paymentStatus == "Unpaid" ? (
-                  <span className="bg-yellow-300 py-1 px-3 rounded text-yellow-700">
-                    UnPaid
+                {invoice.paymentStatus ? (
+                  <span className="bg-green-200 py-1 px-3 rounded text-green-700">
+                    Paid
                   </span>
                 ) : (
-                  <span className="bg-green-400 py-1 px-3 rounded text-green-700">
-                    PAID
+                  <span className="bg-red-200 py-1 px-3 rounded text-red-600">
+                    UnPaid
                   </span>
                 )}
               </td>
