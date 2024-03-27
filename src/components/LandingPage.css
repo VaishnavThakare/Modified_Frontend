@@ -1,0 +1,68 @@
+.landing-page {
+    font-family: 'Helvetica', sans-serif;
+  }
+  
+  .navbar {
+    padding: 10px;
+  }
+  
+  .logo {
+    width: 80px;
+    height: 35px;
+    margin-left: 30px;
+  }
+  
+  .login-button {
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    font-weight: normal;
+    margin-right: 15px;
+  }
+  
+  .contact-button {
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    font-weight: normal;
+  }
+  
+  .content {
+    width: 100%;
+  }
+  
+  .upper-content {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  
+  .carousel-container {
+    width: 120%; /* Adjust width as needed */
+    height: 300px; /* Adjust height as needed */
+}
+  
+  .info-container {
+    width: 70%; /* Adjust width as needed */
+    height: 300px; /* Adjust height as needed */
+
+  }
+  
+  .lower-content {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  
+  .policies-container, .news-container, .event-container {
+    margin: 0 10px;
+    width: 100%;
+  }
+  
+
+  
+  .info-container {
+    margin-left: 178px; /* Adjust margin as needed */
+  }
+
+
+  @media (min-width: 1024px) {
+    .policies-container, .news-container, .event-container {
+      width: calc(100% - 20px); /* Adjust margin for larger screens */
+    }
+  }
+  
