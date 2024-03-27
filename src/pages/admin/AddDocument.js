@@ -41,7 +41,7 @@ export default function AddDocument() {
   return (
     <>
       <div className="align-middle inline-block min-w-full overflow-hidden bg-zinc-50px-8 py-3 pb-8 rounded-bl-lg rounded-br-lg">
-        <form onSubmit={handleSubmit} className="max-w-sm mx-auto mt-8 appform bg-white">
+        <form onSubmit={handleSubmit} className=" margin-left max-w-lg  mt-8 appform bg-white">
           <div className="flex text-2xl font-bold text-gray-500 mb-4 justify-center items-center">
             <h2>Add Document</h2>
           </div>
@@ -58,7 +58,7 @@ export default function AddDocument() {
   />
   <label
     htmlFor="name"
-    className="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"
+    className="ml-1 absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"
   >
     Document Name
   </label>
@@ -77,7 +77,7 @@ export default function AddDocument() {
   />
   <label
     htmlFor="description"
-    className="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"
+    className="ml-1 absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"
   >
     Description
   </label>

@@ -7,15 +7,18 @@ import {
   faArrowRight,
   faExternalLinkAlt,
 } from "@fortawesome/free-solid-svg-icons";
-import { toast, ToastContainer } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 const PoDetailsA = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [purchaseOrders, setPurchaseOrders] = useState([]);
   const [selectedPurchaseOrder, setSelectedPurchaseOrder] = useState(null);
   const [showDetails, setShowDetails] = useState(false);
+  const [grn, setGrn] = useState([]);
+  const [selectedGrn, setSelectedGrn] = useState(null);
+  const [showGrnDetails, setShowGrnDetails] = useState(false);
 
   const navigate = useNavigate();
   const itemsPerPage = 5;
@@ -38,12 +41,34 @@ const PoDetailsA = () => {
   const handleView = async (id) => {
     try {
       const response = await axios.get(
-        `https://localhost:7254/api/PurchaseOrder/${id}`
+        `${process.env.REACT_APP_API_URL}PurchaseOrder/${id}`
       );
       setSelectedPurchaseOrder(response.data);
       setShowDetails(true);
+      fetchGrns(id);
     } catch (error) {
       console.error("Error fetching Purchase order:", error);
+    }
+  };
+
+  const fetchGrns = async (id) => {
+    try {
+      const response = await axios.get(
+        `https://localhost:7254/api/GRN/PurchaseOrder/${id}`
+      );
+      setGrn(response.data);
+    } catch (error) {
+      console.error("Error fetching GRNs:", error.message);
+    }
+  };
+
+  const handleViewGrn = async (id) => {
+    try {
+      const response = await axios.get(`https://localhost:7254/api/GRN/${id}`);
+      setSelectedGrn(response.data);
+      setShowGrnDetails(true);
+    } catch (error) {
+      console.error("Error fetching GRN:", error);
     }
   };
 
@@ -54,6 +79,12 @@ const PoDetailsA = () => {
   const handleCloseDetails = () => {
     setShowDetails(false);
     setSelectedPurchaseOrder(null);
+    setGrn([]);
+  };
+
+  const handleCloseGrnDetails = () => {
+    setShowGrnDetails(false);
+    setSelectedGrn(null);
   };
 
   const handlePrevPage = () => {
@@ -83,94 +114,173 @@ const PoDetailsA = () => {
     currentPage * itemsPerPage
   );
 
+  const currentGrns = grn.slice(0, itemsPerPage);
+
   return (
     <div className="relative">
       <ToastContainer />
       {showDetails && selectedPurchaseOrder && (
         <>
-          <div className="flex text-2xl font-bold text-gray-500">
-            <h2 className="text-left text-cyan-500">Purchase Order Details</h2>
-          </div>
-          <div className="w-64 bg-cyan-500 h-0.5 mb-1"></div>
-          <div className="w-72 bg-cyan-500 h-0.5 mb-5"></div>
-          <div className="ml-52 align-middle inline-block rounded-lg border-2 border-cyan-400 bg-white shadow-lg p-4 max-w-lg w-full mt-2">
-            <table className="w-full">
-              <tbody>
-                <tr>
-                  <td className="py-2">
-                    <span className="font-bold">Purchase Order No.:</span>
-                  </td>
-                  <td className="py-2">{selectedPurchaseOrder.orderNo}</td>
-                </tr>
-                <tr>
-                  <td className="py-2">
-                    <span className="font-bold">Vendor Name.:</span>
-                  </td>
-                  <td className="py-2">{selectedPurchaseOrder.vendorName}</td>
-                </tr>
-                <tr>
-                  <td className="py-2">
-                    <span className="font-bold">Created On:</span>
-                  </td>
-                  <td className="py-2">
-                    {selectedPurchaseOrder.createdOn
-                      ? formatDateTime(selectedPurchaseOrder.createdOn)
-                      : "-"}
-                  </td>
-                </tr>
-                <tr>
-                  <td className="py-2">
-                    <span className="font-bold">Expected Delivery On:</span>
-                  </td>
-                  <td className="py-2">
-                    {selectedPurchaseOrder.expectedDelivery
-                      ? formatDateTime(selectedPurchaseOrder.expectedDelivery)
-                      : "-"}
-                  </td>
-                </tr>
-                <tr>
-                  <td className="py-2">
-                    <span className="font-bold">Sent On:</span>
-                  </td>
-                  <td className="py-2">
-                    {selectedPurchaseOrder.releaseDate
-                      ? formatDateTime(selectedPurchaseOrder.releaseDate)
-                      : "-"}
-                  </td>
-                </tr>
-                <tr>
-                  <td className="py-2">
-                    <span className="font-bold">Po Amount:</span>
-                  </td>
-                  <td className="py-2">{selectedPurchaseOrder.orderAmount}</td>
-                </tr>
-                <tr>
-                  <td className="py-2">
-                    <span className="font-bold">Comments:</span>
-                  </td>
-                  <td className="py-2">{selectedPurchaseOrder.comment}</td>
-                </tr>
-              </tbody>
-            </table>
+          <div>
+            <div className="flex justify-between">
+              <div>
+                <div className="flex text-2xl font-bold text-gray-500 ">
+                  <h2 className="text-left text-cyan-500">
+                    Purchase Order Details
+                  </h2>
+                </div>
+                <div className="w-52 bg-cyan-400 h-0.5 mb-1"></div>
+                <div className="w-96 bg-cyan-400 h-0.5 mb-5"></div>
+              </div>
+              <div>
+                <div className="flex justify-center">
+                  <button
+                    className="bg-cyan-600 hover:bg-cyan-700 mr-4 text-white font-bold py-2 px-4 rounded"
+                    onClick={handleCloseDetails}
+                  >
+                    Back
+                  </button>
+                </div>
+              </div>
+            </div>
 
-            <div className="mt-4 flex justify-center">
-              <button
-                onClick={handleCloseDetails}
-                className="bg-cyan-600 hover:bg-cyan-700 mr-4 text-white font-bold py-2 px-4 rounded"
+            <div className="min-w-full border-2 border-cyan-500 rounded-lg mb-5 bg-white">
+              <div
+                className="bg-white p-6 rounded-md shadow-md"
+                style={{ height: "fit-content" }}
               >
-                Back
-              </button>
-              {selectedPurchaseOrder.documentPath && (
-                <button
-                  className="bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded"
-                  onClick={() =>
-                    openDocument(selectedPurchaseOrder.documentPath)
-                  }
-                >
-                  <FontAwesomeIcon icon={faExternalLinkAlt} className="mr-2" />
-                  View Document
-                </button>
-              )}
+                <div className="relative">
+                  <p className="text-gray-900">
+                    <span className="font-bold">Purchase Order No.:</span>:{" "}
+                    {selectedPurchaseOrder.orderNo}
+                  </p>
+                  <p></p>
+                  <p className="text-gray-900">
+                    <span className="font-bold">Vendor Name.:</span>:{" "}
+                    {selectedPurchaseOrder.vendorName}
+                  </p>
+                  <p></p>
+                  <p className="text-gray-900">
+                    <span className="font-bold">Created On: </span>:{" "}
+                    {formatDateTime(selectedPurchaseOrder.createdOn)}
+                  </p>
+                  <p></p>
+                  <p className="text-gray-900">
+                    <span className="font-bold">Expected Delivery On:</span>:{" "}
+                    {formatDateTime(selectedPurchaseOrder.expectedDelivery)}
+                  </p>
+                  <p></p>
+                  <p className="text-gray-900">
+                    <span className="font-bold">Sent On:</span>:{" "}
+                    {formatDateTime(selectedPurchaseOrder.releaseDate)}
+                  </p>
+                  <p></p>
+                  <p className="text-gray-900">
+                    <span className="font-bold">Po Amount:</span>:{" "}
+                    {selectedPurchaseOrder.orderAmount}
+                  </p>
+                  <p></p>
+                  <p className="text-gray-900">
+                    <span className="font-bold">Comments:</span>:{" "}
+                    {selectedPurchaseOrder.comment}
+                  </p>
+                  <p></p>
+                  <p className="text-gray-900">
+                    {selectedPurchaseOrder.documentPath && (
+                      <button
+                        className="bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded"
+                        onClick={() =>
+                          openDocument(selectedPurchaseOrder.documentPath)
+                        }
+                      >
+                        <FontAwesomeIcon
+                          icon={faExternalLinkAlt}
+                          className="mr-2"
+                        />
+                        View Document
+                      </button>
+                    )}
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div className="flex text-2xl font-bold text-gray-500 mt-14">
+              <h2 className="text-left text-cyan-500 ">GRN List</h2>
+            </div>
+            <div className="w-1/5 bg-cyan-400 h-0.5 mb-1"></div>
+            <div className="w-1/3 bg-cyan-400 h-0.5 mb-5"></div>
+            <div className="overflow-x-auto mt-8 ml-2 mr-2 border-2 border-cyan-500 p-0.5 rounded-lg shadow-lg">
+              <table className="table-auto w-full rounded-lg bg-white ">
+                <thead>
+                  <tr className="text-gray-600">
+                    <th className="px-4 py-2 text-center">GRN NO.</th>
+                    <th className="px-4 py-2 text-center">PO Amount</th>
+                    <th className="px-4 py-2 text-center">Send On</th>
+                    <th className="px-4 py-2 text-center">Comments</th>
+                    <th className="px-4 py-2 text-center">Acceptance</th>
+                    <th className="px-4 py-2 text-center">Payment Status</th>
+                    {/* <th className="px-4 py-2 text-center">Actions</th> */}
+                  </tr>
+                  <tr className="text-gray-600">
+                    <td colSpan="7" className="px-4 py-1">
+                      <div style={{ borderTop: "2px solid gray" }}></div>
+                    </td>
+                  </tr>
+                </thead>
+                <tbody>
+                  {grn.map((grnItem) => (
+                    <tr key={grnItem.id} className="bg-white">
+                      <td className="px-4 py-2 text-center text-sm">
+                        {grnItem.grnNo}
+                      </td>
+                      <td className="px-4 py-2 text-center text-sm">
+                        {grnItem.purchaseOrder.orderAmount}
+                      </td>
+                      <td className="px-4 py-2 text-center text-sm">
+                        {formatDateTime(grnItem.sendOn)}
+                      </td>
+                      <td className="px-4 py-2 text-center text-sm">
+                        {grnItem.comment}
+                      </td>
+                      <td className="px-4 py-2 text-center text-sm">
+                        <button
+                          className={`py-1 px-2 rounded ${
+                            grnItem.isAccepted
+                              ? "bg-green-200 text-green-700"
+                              : "bg-red-200 text-red-600"
+                          }`}
+                          style={{ minWidth: "6rem" }}
+                        >
+                          {grnItem.isAccepted ? "Approved" : "Rejected"}
+                        </button>
+                      </td>
+                      <td className="px-4 py-2 text-center text-sm">
+                        <button
+                          className={`py-1 px-2 rounded ${
+                            grnItem.paymentStatus
+                              ? "bg-green-200 text-green-700"
+                              : "bg-red-200 text-red-600"
+                          }`}
+                          style={{ minWidth: "6rem" }}
+                        >
+                          {grnItem.paymentStatus ? "Approved" : "Rejected"}
+                        </button>
+                      </td>
+                      {/* <td className="px-4 py-2 text-center text-sm">
+                        <button
+                          onClick={() => handleViewGrn(grnItem.id)}
+                          className={`mr-2`}
+                        >
+                          <FontAwesomeIcon
+                            icon={faEye}
+                            className={`text-cyan-600 text-xl`}
+                          />
+                        </button>
+                      </td> */}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
           </div>
         </>
@@ -197,8 +307,8 @@ const PoDetailsA = () => {
                     <th className="px-4 py-2 text-center">Release On</th>
                     <th className="px-4 py-2 text-center">Accepted On</th>
                     <th className="px-4 py-2 text-center">PO Amount</th>
-                    <th className="px-4 py-2 text-center">Status</th>
                     <th className="px-4 py-2 text-center">Comments</th>
+                    <th className="px-4 py-2 text-center">Status</th>
                     <th className="px-4 py-2 text-center">Actions</th>
                   </tr>
                   <tr className="text-gray-600">
@@ -232,6 +342,9 @@ const PoDetailsA = () => {
                         <td className="px-4 py-2 text-center text-sm">
                           {item.orderAmount}
                         </td>
+                        <td className="px-4 py-2 text-center text-sm">
+                          {item.comment}
+                        </td>
                         <td className="px-4 py-2">
                           {item.isAccepted === true && (
                             <button
@@ -259,9 +372,6 @@ const PoDetailsA = () => {
                           )}
                         </td>
 
-                        <td className="px-4 py-2 text-center text-sm">
-                          {item.comment}
-                        </td>
                         <td className="px-4 py-2 text-center bg-white">
                           <button
                             onClick={() => handleView(item.id)}
@@ -327,7 +437,86 @@ const PoDetailsA = () => {
         </div>
       )}
 
-      {/* Pagination */}
+      {/* GRN Details */}
+      {showGrnDetails && selectedGrn && (
+        <>
+          <div>
+            <div className="flex justify-between">
+              <div>
+                <div className="flex text-2xl font-bold text-gray-500 ">
+                  <h2 className="text-left text-cyan-500">GRN Details</h2>
+                </div>
+                <div className="w-52 bg-cyan-400 h-0.5 mb-1"></div>
+                <div className="w-96 bg-cyan-400 h-0.5 mb-5"></div>
+              </div>
+              <div>
+                <div className="flex justify-center">
+                  <button
+                    className="bg-cyan-600 hover:bg-cyan-700 mr-4 text-white font-bold py-2 px-4 rounded"
+                    onClick={handleCloseGrnDetails}
+                  >
+                    Back
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div className="min-w-full border-2 border-cyan-500 rounded-lg mb-5 bg-white">
+              <div
+                className="bg-white p-6 rounded-md shadow-md"
+                style={{ height: "fit-content" }}
+              >
+                <div className="relative">
+                  <p className="text-gray-900">
+                    <span className="font-bold">GRN No.:</span>:{" "}
+                    {selectedGrn.grnNo}
+                  </p>
+                  <p></p>
+                  <p className="text-gray-900">
+                    <span className="font-bold">PO Amount:</span>:{" "}
+                    {selectedGrn.purchaseOrder.orderAmount}
+                  </p>
+                  <p></p>
+                  <p className="text-gray-900">
+                    <span className="font-bold">Send On: </span>:{" "}
+                    {formatDateTime(selectedGrn.sendOn)}
+                  </p>
+                  <p></p>
+                  <p className="text-gray-900">
+                    <span className="font-bold">Comments:</span>:{" "}
+                    {selectedGrn.comment}
+                  </p>
+                  <p></p>
+                  <p className="text-gray-900">
+                    <span className="font-bold">Is Accepted:</span>:{" "}
+                    {selectedGrn.isAccepted ? "Yes" : "No"}
+                  </p>
+                  <p></p>
+                  <p className="text-gray-900">
+                    <span className="font-bold">Payment Status:</span>:{" "}
+                    {selectedGrn.paymentStatus ? "Paid" : "Unpaid"}
+                  </p>
+                  <p></p>
+                  <p className="text-gray-900">
+                    {selectedGrn.documentPath && (
+                      <button
+                        className="bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded"
+                        onClick={() => openDocument(selectedGrn.documentPath)}
+                      >
+                        <FontAwesomeIcon
+                          icon={faExternalLinkAlt}
+                          className="mr-2"
+                        />
+                        View Document
+                      </button>
+                    )}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </>
+      )}
     </div>
   );
 };

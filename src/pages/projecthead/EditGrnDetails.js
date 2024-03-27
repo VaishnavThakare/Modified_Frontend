@@ -13,7 +13,7 @@ const EditGrnDetails = () => {
     const fetchGrnDetails = async () => {
       try {
         const response = await axios.get(
-          `https://localhost:7254/api/GRN/${grnId}`
+          `${process.env.REACT_APP_API_URL}/GRN/${grnId}`
         );
         const grnData = response.data;
         setIsAccepted(grnData.isAccepted);
@@ -29,10 +29,13 @@ const EditGrnDetails = () => {
 
   const handleAccept = async () => {
     try {
-      await axios.put(`https://localhost:7254/api/GRN/AcceptReject/${grnId}`, {
-        comment: comment,
-        isAccepted: true,
-      });
+      await axios.put(
+        `${process.env.REACT_APP_API_URL}/GRN/AcceptReject/${grnId}`,
+        {
+          comment: comment,
+          isAccepted: true,
+        }
+      );
       setIsAccepted(true);
       toast.success("GRN item accepted successfully");
     } catch (error) {
@@ -43,10 +46,13 @@ const EditGrnDetails = () => {
 
   const handleReject = async () => {
     try {
-      await axios.put(`https://localhost:7254/api/GRN/AcceptReject/${grnId}`, {
-        comment: comment,
-        isAccepted: false,
-      });
+      await axios.put(
+        `${process.env.REACT_APP_API_URL}/GRN/AcceptReject/${grnId}`,
+        {
+          comment: comment,
+          isAccepted: false,
+        }
+      );
       setIsAccepted(false);
       toast.success("GRN item rejected successfully");
     } catch (error) {
@@ -61,19 +67,8 @@ const EditGrnDetails = () => {
         <div className="flex text-2xl font-bold text-gray-600 mb-5">
           <h2>Edit GRN Details</h2>
         </div>
+        <h1>Accept or Reject GRNs:</h1>
         <div className="mb-6">
-          <button
-            onClick={handleAccept}
-            className="px-4 py-2 mr-2 bg-cyan-500 text-white rounded hover:bg-cyan-600"
-          >
-            Accept
-          </button>
-          <button
-            onClick={handleReject}
-            className="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600"
-          >
-            Reject
-          </button>
           <div className="mb-6 relative">
             <label
               htmlFor="comment"
@@ -90,17 +85,31 @@ const EditGrnDetails = () => {
               required
             ></textarea>
           </div>
+          <button
+            onClick={handleAccept}
+            className="px-4 py-2 mr-2 bg-cyan-500 text-white rounded hover:bg-cyan-600"
+          >
+            Accept
+          </button>
+          <button
+            onClick={handleReject}
+            className="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600"
+          >
+            Reject
+          </button>
+
           {isAccepted !== null && (
             <>
-              {isAccepted ? (
-                <div className="text-green-600 font-bold mb-4">Accepted</div>
-              ) : (
-                <div className="text-red-600 font-bold mb-4">Rejected</div>
-              )}
+              
               {comment && (
                 <div className="mb-4">
                   <strong>Comment:</strong> {comment}
                 </div>
+              )}
+              {isAccepted ? (
+                <div className="text-green-600 font-bold mb-4">GRN is Accepted</div>
+              ) : (
+                <div className="text-red-600 font-bold mb-4">GRN is Rejected</div>
               )}
             </>
           )}

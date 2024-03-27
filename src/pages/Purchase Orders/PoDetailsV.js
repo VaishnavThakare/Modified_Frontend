@@ -41,7 +41,7 @@ const PoDetailsV = () => {
     const fetchPurchaseOrders = async () => {
       try {
         const response = await axios.get(
-          `https://localhost:7254/api/PurchaseOrder/Vendor/${sid}`
+          `${process.env.REACT_APP_API_URL}/PurchaseOrder/Vendor/${sid}`
         );
         setPurchaseOrders(response.data);
         console.log(response.data);
@@ -62,10 +62,10 @@ const PoDetailsV = () => {
   const handleView = async (id) => {
     try {
       const response = await axios.get(
-        `https://localhost:7254/api/PurchaseOrder/${id}`
+        `${process.env.REACT_APP_API_URL}/PurchaseOrder/${id}`
       );
       const responseGRNs = await axios.get(
-        `https://localhost:7254/api/GRN/PurchaseOrder/${id}`
+        `${process.env.REACT_APP_API_URL}/GRN/PurchaseOrder/${id}`
       );
       setSelectedPurchaseOrder(response.data);
       setGRNs(responseGRNs.data);
@@ -79,14 +79,12 @@ const PoDetailsV = () => {
 
   const fetchGRN = async (id) => {
     try {
-      const res = await axios.get(
-        `${process.env.REACT_APP_API_URL}/GRN/${id}`
-      );
+      const res = await axios.get(`${process.env.REACT_APP_API_URL}/GRN/${id}`);
       setGRN(res.data);
     } catch (error) {
       console.log(error);
     }
-  }
+  };
 
   const openDocument = (url) => {
     window.open(url, "_blank");
@@ -132,11 +130,24 @@ const PoDetailsV = () => {
 
       {showDetails && !grnView && selectedPurchaseOrder && (
         <>
+        <div className="flex justify-between">
+          <div>
           <div className="flex text-2xl font-bold text-gray-500">
-            <h2 className="text-left text-cyan-500">Purchase Order Details:</h2>
+            <h2 className="text-left text-cyan-500">Purchase Order Details</h2>
           </div>
           <div className="w-64 bg-cyan-500 h-0.5 mb-1"></div>
           <div className="w-72 bg-cyan-500 h-0.5 mb-5"></div>
+          </div>
+          <div>
+          <button
+                onClick={handleCloseDetails}
+                className="bg-cyan-600 hover:bg-cyan-700 mr-4 text-white font-bold py-2 px-4 rounded"
+              >
+                Back
+              </button>
+          </div>
+          </div>
+
           <div className="rounded-lg border-2 border-cyan-400 bg-white shadow-lg p-4  w-full mt-2">
             <table className="w-full">
               <tbody>
@@ -198,12 +209,7 @@ const PoDetailsV = () => {
             </table>
 
             <div className="mt-4 flex justify-end">
-              <button
-                onClick={handleCloseDetails}
-                className="bg-cyan-600 hover:bg-cyan-700 mr-4 text-white font-bold py-2 px-4 rounded"
-              >
-                Close
-              </button>
+              
               {selectedPurchaseOrder.documentPath && (
                 <button
                   className="bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded"
@@ -235,13 +241,10 @@ const PoDetailsV = () => {
                     <th className="px-4 py-2 text-center">SENT ON (DATE)</th>
                     <th className="px-4 py-2 text-center">SHIPMENT TYPE</th>
                     <th className="px-4 py-2 text-center">COMMENT</th>
+                    
+                    <th className="px-4 py-2 text-center">View/Download</th>
                     <th className="px-4 py-2 text-center">STATUS</th>
-                    <th className="px-4 py-2 text-center">
-                      View/Download
-                    </th>
-                    <th className="px-4 py-2 text-center">
-                      Action
-                    </th>
+                    <th className="px-4 py-2 text-center">Action</th>
                     {/* <th className="px-4 py-2 text-left">ACTION</th> */}
                   </tr>
                   <tr className="text-gray-600">
@@ -273,17 +276,7 @@ const PoDetailsV = () => {
                         <td className="px-6 py-4 whitespace-no-wrap text-center">
                           {grn.comment}
                         </td>
-                        <td className="px-6 py-4 whitespace-no-wrap text-center">
-                          <button
-                            className={`py-1 px-2 rounded ${grn.isAccepted
-                              ? "bg-green-200 text-green-700"
-                              : "bg-red-200 text-red-600"
-                              }`}
-                            style={{ minWidth: "6rem" }}
-                          >
-                            {grn.isAccepted ? "Accepted" : "Pending"}
-                          </button>
-                        </td>
+                        
                         <td className="px-6 py-4 whitespace-no-wrap text-center">
                           <a
                             href={grn.documentPath}
@@ -298,11 +291,25 @@ const PoDetailsV = () => {
                         </td>
                         <td className="px-6 py-4 whitespace-no-wrap text-center">
                           <button
+                            className={`py-1 px-2 rounded ${
+                              grn.isAccepted
+                                ? "bg-green-200 text-green-700"
+                                : "bg-red-200 text-red-600"
+                            }`}
+                            style={{ minWidth: "6rem" }}
                           >
+                            {grn.isAccepted ? "Accepted" : "Pending"}
+                          </button>
+                        </td>
+                        <td className="px-6 py-4 whitespace-no-wrap text-center">
+                          <button>
                             <FontAwesomeIcon
                               icon={faEye}
                               className="text-cyan-600 text-xl"
-                              onClick={() => { setGrnView(true); fetchGRN(grn.id); }}
+                              onClick={() => {
+                                setGrnView(true);
+                                fetchGRN(grn.id);
+                              }}
                             />
                           </button>
                         </td>
@@ -415,7 +422,7 @@ const PoDetailsV = () => {
                               />
                             </button>
                             {order.isAccepted == false ||
-                              order.isAccepted == null ? (
+                            order.isAccepted == null ? (
                               <button onClick={() => handleEdit(order.id)}>
                                 <FontAwesomeIcon
                                   icon={faEdit}
@@ -470,12 +477,13 @@ const PoDetailsV = () => {
         </div>
       )}
 
-      {
-        grnView &&
+      {grnView && (
         <>
           <div className="w-full max-w-2xl mx-auto p-8 ">
             <h1 className="text-cyan-500 text-2xl font-bold mb-4 ">
-              <span className="border-b-2 border-cyan-500 inline-block">GRN DETAILS</span>
+              <span className="border-b-2 border-cyan-500 inline-block">
+                GRN DETAILS
+              </span>
             </h1>
             <div className="bg-white shadow-md rounded-lg p-6 border-2 border-cyan-500">
               <table border="1px" className="w-full">
@@ -510,10 +518,11 @@ const PoDetailsV = () => {
                     <th className="text-left">Status</th>
                     <td className="text-left">
                       <button
-                        className={`py-1 px-2 rounded ${GRN.isAccepted
-                          ? "bg-green-200 text-green-700"
-                          : "bg-red-200 text-red-600"
-                          }`}
+                        className={`py-1 px-2 rounded ${
+                          GRN.isAccepted
+                            ? "bg-green-200 text-green-700"
+                            : "bg-red-200 text-red-600"
+                        }`}
                         style={{ minWidth: "6rem" }}
                       >
                         {GRN.isAccepted ? "Accepted" : "Pending"}
@@ -532,15 +541,19 @@ const PoDetailsV = () => {
                           icon={faFileDownload}
                           className="text-cyan-600 text-xl"
                         />
-                        <span className="ml-1 text-blue-700">View Document</span>
+                        <span className="ml-1 text-blue-700">
+                          View Document
+                        </span>
                       </a>
                     </td>
                   </tr>
                   <tr>
-                    <td align="right" colSpan={2}>
+                    <td align="middle" colSpan={2}>
                       <button
-                        onClick={() => { setGrnView(false) }}
-                        className="bg-cyan-600 hover:bg-cyan-700 mr-4 text-white font-bold py-2 px-4 rounded"
+                        onClick={() => {
+                          setGrnView(false);
+                        }}
+                        className="bg-cyan-600 hover:bg-cyan-700 mr-4 text-white font-bold py-2 px-4 rounded mt-10"
                       >
                         Back
                       </button>
@@ -551,7 +564,7 @@ const PoDetailsV = () => {
             </div>
           </div>
         </>
-      }
+      )}
       <ToastContainer />
     </div>
   );

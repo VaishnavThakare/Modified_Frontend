@@ -23,34 +23,36 @@ const GrnDetails = () => {
   const [pos, setpos] = useState([]);
   const [invoices, setInvoices] = useState([]);
 
-  const checkVerified = async()=>{
-    try{
-        const sid = sessionStorage.getItem("sid");
-        const vendorCatRes = await axios.get(
-          `${process.env.REACT_APP_API_URL}/Vendor/${sid}`
-        );
-        console.log(vendorCatRes);
-        if (!vendorCatRes.data.isVerified) navigate("/vendor/upload-document");  
-        else return true;
-    }
-    catch(error){
+  const checkVerified = async () => {
+    try {
+      const sid = sessionStorage.getItem("sid");
+      const vendorCatRes = await axios.get(
+        `${process.env.REACT_APP_API_URL}/Vendor/${sid}`
+      );
+      console.log(vendorCatRes);
+      if (!vendorCatRes.data.isVerified) navigate("/vendor/upload-document");
+      else return true;
+    } catch (error) {
       console.log(error);
     }
-  }
+  };
 
   useEffect(() => {
     const fetchGrns = async () => {
       try {
-        const response = await axios.get("https://localhost:7254/api/GRN/All");
+        const sid = sessionStorage.getItem("sid");
+        const response = await axios.get(
+          `${process.env.REACT_APP_API_URL}/GRN/Vendor/${sid}`
+        );
         setGrns(response.data);
       } catch (error) {
         console.error("Error fetching GRNs:", error.message);
         toast.error("Failed to fetch GRNs");
       }
     };
-    
+
     checkVerified();
-      fetchGrns();
+    fetchGrns();
   }, []);
 
   const indexOfLastItem = currentPage * itemsPerPage;
@@ -82,7 +84,6 @@ const GrnDetails = () => {
   // View
   const DetailsView = ({ grnDetails, onCancel }) => {
     const [currentItems, setCurrentItems] = useState([]);
-
 
     useEffect(() => {
       const fetchData = async () => {
@@ -196,7 +197,7 @@ const GrnDetails = () => {
         </div>
         <div className="w-1/5 bg-cyan-500 h-0.5 mb-1"></div>
         <div className="w-1/3 bg-cyan-500 h-0.5 mb-5"></div>
-        <div className="border-2 border-cyan-500 mb-5 shadow-lg rounded-lg p-0.5">
+        <div className="overflow-x-scroll border-2 border-cyan-500 mb-5 shadow-lg rounded-lg p-0.5">
           <table className="min-w-full  rounded-lg bg-white">
             <thead>
               <tr>
@@ -215,9 +216,7 @@ const GrnDetails = () => {
                 <th className="px-6 py-3  text-center text-sm leading-4 text-gray-600 tracking-wider">
                   PO NO
                 </th>
-                <th className="px-6 py-3  text-center text-sm leading-4 text-gray-600 tracking-wider">
-                  S (APPROVED/REJECTED)
-                </th>
+                
                 <th className="px-6 py-3  text-center text-sm leading-4 text-gray-600 tracking-wider">
                   COMMENT
                 </th>
@@ -229,6 +228,9 @@ const GrnDetails = () => {
                 </th>
                 <th className="px-6 py-3  text-center text-sm leading-4 text-gray-600 tracking-wider">
                   VIEW/DOWNLOAD DOCUMENTS
+                </th>
+                <th className="px-6 py-3  text-center text-sm leading-4 text-gray-600 tracking-wider">
+                  STATUS
                 </th>
               </tr>
               <tr className=" text-gray-600">
@@ -255,18 +257,7 @@ const GrnDetails = () => {
                   <td className="px-6 py-4 whitespace-no-wrap text-center ">
                     {invoice.grn.purchaseOrder.orderNo}
                   </td>
-                  <td className="px-6 py-4 whitespace-no-wrap text-center ">
-                    <button
-                      className={`py-1 px-2 rounded ${
-                        invoice.isAccepted
-                          ? "bg-green-200 text-green-700"
-                          : "bg-red-200 text-red-600"
-                      }`}
-                      style={{ minWidth: "6rem" }}
-                    >
-                      {invoice.isAccepted ? "Accepted" : "Pending"}
-                    </button>
-                  </td>
+                  
                   <td className="px-6 py-4 whitespace-no-wrap text-center">
                     {invoice.comment}
                   </td>
@@ -288,6 +279,18 @@ const GrnDetails = () => {
                         className="text-cyan-600 text-xl"
                       />
                     </a>
+                  </td>
+                  <td className="px-6 py-4 whitespace-no-wrap text-center ">
+                    <button
+                      className={`py-1 px-2 rounded ${
+                        invoice.isAccepted
+                          ? "bg-green-200 text-green-700"
+                          : "bg-red-200 text-red-600"
+                      }`}
+                      style={{ minWidth: "6rem" }}
+                    >
+                      {invoice.isAccepted ? "Accepted" : "Pending"}
+                    </button>
                   </td>
                 </tr>
               ))}
@@ -333,12 +336,11 @@ const GrnDetails = () => {
                   <th className="px-4 py-2 text-center">GRN No.</th>
                   <th className="px-4 py-2 text-center">PO No.</th>
                   <th className="px-4 py-2 text-center">SENT ON (DATE)</th>
-                  <th className="px-4 py-2 text-center">STATUS</th>
-                  <th className="px-4 py-2 text-center">
-                    VIEW & DOWNLOAD DOCUMENT
-                  </th>
+
+                  <th className="px-4 py-2 text-center">VIEW DOCUMENT</th>
                   <th className="px-4 py-2 text-center">SHIPMENT TYPE</th>
                   <th className="px-4 py-2 text-center">COMMENT</th>
+                  <th className="px-4 py-2 text-center">STATUS</th>
                   <th className="px-4 py-2 text-left">ACTION</th>
                 </tr>
                 <tr className="text-gray-600">
@@ -367,6 +369,32 @@ const GrnDetails = () => {
                       <td className="px-4 py-2 text-center">
                         {formatDateTime(grn.sendOn)}
                       </td>
+
+                      <td className="px-4 py-2 text-center">
+                        <div className="items-center">
+                          <FontAwesomeIcon
+                            icon={faFileDownload}
+                            className="text-cyan-600 text-xl mr-2"
+                          />
+                          <a
+                            href={grn.documentPath}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-blue-500 hover:underline"
+                          >
+                            View Doc
+                          </a>
+                        </div>
+                      </td>
+
+                      <td className="px-4 py-2 bg-white text-center">
+                        {grn.shipmentStatus ? (
+                          <span className="text-green-500">Complete</span>
+                        ) : (
+                          <span className="text-red-500">Partial</span>
+                        )}
+                      </td>
+                      <td className="px-4 py-2 text-center">{grn.comment}</td>
                       <td className="px-4 py-2 text-center">
                         <button
                           className={`py-1 px-2 rounded ${
@@ -379,27 +407,7 @@ const GrnDetails = () => {
                           {grn.isAccepted ? "Accepted" : "Pending"}
                         </button>
                       </td>
-                      <td className="px-4 py-2 text-center">
-                        <a
-                          href={grn.documentPath}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          <FontAwesomeIcon
-                            icon={faFileDownload}
-                            className="text-cyan-600 text-xl"
-                          />
-                        </a>
-                      </td>
-                      <td className="px-4 py-2 bg-white text-center">
-                        {grn.shipmentStatus ? (
-                          <span className="text-green-500">Complete</span>
-                        ) : (
-                          <span className="text-red-500">Partial</span>
-                        )}
-                      </td>
-                      <td className="px-4 py-2 text-center">{grn.comment}</td>
-                      <td className="px-4 py-2 text-left flex flex-row ">
+                      <td className="px-4 py-2 text-left flex flex-row mt-3 ">
                         <button
                           className="mr-2"
                           onClick={() => handleEditDetails(grn.id)}

@@ -14,7 +14,7 @@ const EditInvoices = () => {
     const fetchInvoiceDetails = async () => {
       try {
         const response = await axios.get(
-          `https://localhost:7254/api/Invoice/${invoiceId}`
+          `${process.env.REACT_APP_API_URL}/Invoice/${invoiceId}`
         );
         const invoiceData = response.data;
         setIsAccepted(invoiceData.isAccepted);
@@ -33,7 +33,7 @@ const EditInvoices = () => {
   const handleAccept = async () => {
     try {
       await axios.put(
-        `https://localhost:7254/api/Invoice/AcceptReject/${invoiceId}`,
+        `${process.env.REACT_APP_API_URL}/Invoice/AcceptReject/${invoiceId}`,
         {
           comment: comment,
           isAccepted: true,
@@ -50,7 +50,7 @@ const EditInvoices = () => {
   const handleReject = async () => {
     try {
       await axios.put(
-        `https://localhost:7254/api/Invoice/AcceptReject/${invoiceId}`,
+        `${process.env.REACT_APP_API_URL}/Invoice/AcceptReject/${invoiceId}`,
         {
           comment: comment,
           isAccepted: false,
@@ -78,19 +78,8 @@ const EditInvoices = () => {
         <div className="flex text-2xl font-bold text-gray-600 mb-5">
           <h2>Edit Invoice Details</h2>
         </div>
+        <h1>Accept or Reject Invoice's:</h1>
         <div className="mb-6">
-          <button
-            onClick={handleAccept}
-            className="px-4 py-2 mr-2 bg-cyan-500 text-white rounded hover:bg-cyan-600"
-          >
-            Accept
-          </button>
-          <button
-            onClick={handleReject}
-            className="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600"
-          >
-            Reject
-          </button>
           <div className="mb-6 relative">
             <label
               htmlFor="comment"
@@ -107,16 +96,33 @@ const EditInvoices = () => {
               required
             ></textarea>
           </div>
+          <button
+            onClick={handleAccept}
+            className="px-4 py-2 mr-2 bg-cyan-500 text-white rounded hover:bg-cyan-600"
+          >
+            Accept
+          </button>
+          <button
+            onClick={handleReject}
+            className="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600"
+          >
+            Reject
+          </button>
+
           {isAccepted !== null && ( // Adjusted the condition to render even when isAccepted is null
             <>
-              {isAccepted ? (
-                <div className="text-green-600 font-bold mb-4">Accepted</div>
-              ) : (
-                <div className="text-red-600 font-bold mb-4">Rejected</div>
-              )}
               {comment && (
                 <div className="mb-4">
                   <strong>Comment:</strong> {comment}
+                </div>
+              )}
+              {isAccepted ? (
+                <div className="text-green-600 font-bold mb-4">
+                  Invoice Accepted
+                </div>
+              ) : (
+                <div className="text-red-600 font-bold mb-4">
+                  Invoice Rejected
                 </div>
               )}
             </>

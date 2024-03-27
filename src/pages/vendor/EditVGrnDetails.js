@@ -104,8 +104,11 @@ const EditVGrnDetails = () => {
     <div className="py-10 flex justify-center items-center bg-zinc-50 font-poppins">
       
       <div className="bg-white border-2 border-cyan-400 rounded-lg shadow-lg p-8 w-full max-w-lg mt">
-      
+      <div className="flex text-2xl font-bold text-gray-500 mb-5 justify-center">
+          <h2>Edit Grn Details</h2>
+        </div>
         <form onSubmit={handleSubmit} className="p-10">
+        
           <div className="grid grid-cols-1 gap-4">
             <div>
               <label htmlFor="grnNo" className="block text-sm font-medium text-gray-700">GRN No.</label>
@@ -116,6 +119,7 @@ const EditVGrnDetails = () => {
                 value={grnData.grnNo}
                 onChange={handleInputChange}
                 className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                readOnly
               />
             </div>
             <div>

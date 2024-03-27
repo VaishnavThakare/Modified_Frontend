@@ -17,7 +17,7 @@ export default function VendorDashboard() {
       text: "REQUEST FOR PROPOSAL (RFP)",
       link: "#",
       bgColor: "bg-[#09c8e2]",
-      subItems: [{ text: "For You", link: "rfp" }],
+      subItems: [{ text: "RFP", link: "rfp" }],
       icon: "ri-file-copy-2-line text-white",
     },
     {

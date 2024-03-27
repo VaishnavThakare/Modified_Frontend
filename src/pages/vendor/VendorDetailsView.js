@@ -29,7 +29,7 @@ const VendorDetailsView = () => {
   }
 
   return (
-    <div className="w-full max-w-2xl mx-auto p-8 ">
+    <div className="w-full max-w-2xl margin-left p-8 ">
       <h1 className="text-cyan-500 text-2xl font-bold mb-4 ">
       <span className="border-b-2 border-cyan-500 inline-block">VENDOR INVOICE DETAILS</span>
       </h1>
