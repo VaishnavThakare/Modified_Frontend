@@ -334,12 +334,11 @@ const GrnDetails = () => {
                   <th className="px-4 py-2 text-center">GRN No.</th>
                   <th className="px-4 py-2 text-center">PO No.</th>
                   <th className="px-4 py-2 text-center">SENT ON (DATE)</th>
-                  <th className="px-4 py-2 text-center">STATUS</th>
-                  <th className="px-4 py-2 text-center">
-                    VIEW & DOWNLOAD DOCUMENT
-                  </th>
+
+                  <th className="px-4 py-2 text-center">VIEW DOCUMENT</th>
                   <th className="px-4 py-2 text-center">SHIPMENT TYPE</th>
                   <th className="px-4 py-2 text-center">COMMENT</th>
+                  <th className="px-4 py-2 text-center">STATUS</th>
                   <th className="px-4 py-2 text-left">ACTION</th>
                 </tr>
                 <tr className="text-gray-600">
@@ -368,6 +367,32 @@ const GrnDetails = () => {
                       <td className="px-4 py-2 text-center">
                         {formatDateTime(grn.sendOn)}
                       </td>
+
+                      <td className="px-4 py-2 text-center">
+                        <div className="items-center">
+                          <FontAwesomeIcon
+                            icon={faFileDownload}
+                            className="text-cyan-600 text-xl mr-2"
+                          />
+                          <a
+                            href={grn.documentPath}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-blue-500 hover:underline"
+                          >
+                            View Doc
+                          </a>
+                        </div>
+                      </td>
+
+                      <td className="px-4 py-2 bg-white text-center">
+                        {grn.shipmentStatus ? (
+                          <span className="text-green-500">Complete</span>
+                        ) : (
+                          <span className="text-red-500">Partial</span>
+                        )}
+                      </td>
+                      <td className="px-4 py-2 text-center">{grn.comment}</td>
                       <td className="px-4 py-2 text-center">
                         <button
                           className={`py-1 px-2 rounded ${
@@ -380,26 +405,6 @@ const GrnDetails = () => {
                           {grn.isAccepted ? "Accepted" : "Pending"}
                         </button>
                       </td>
-                      <td className="px-4 py-2 text-center">
-                        <a
-                          href={grn.documentPath}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          <FontAwesomeIcon
-                            icon={faFileDownload}
-                            className="text-cyan-600 text-xl"
-                          />
-                        </a>
-                      </td>
-                      <td className="px-4 py-2 bg-white text-center">
-                        {grn.shipmentStatus ? (
-                          <span className="text-green-500">Complete</span>
-                        ) : (
-                          <span className="text-red-500">Partial</span>
-                        )}
-                      </td>
-                      <td className="px-4 py-2 text-center">{grn.comment}</td>
                       <td className="px-4 py-2 text-left flex flex-row ">
                         <button
                           className="mr-2"
