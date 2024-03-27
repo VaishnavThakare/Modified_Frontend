@@ -23,34 +23,36 @@ const GrnDetails = () => {
   const [pos, setpos] = useState([]);
   const [invoices, setInvoices] = useState([]);
 
-  const checkVerified = async()=>{
-    try{
-        const sid = sessionStorage.getItem("sid");
-        const vendorCatRes = await axios.get(
-          `${process.env.REACT_APP_API_URL}/Vendor/${sid}`
-        );
-        console.log(vendorCatRes);
-        if (!vendorCatRes.data.isVerified) navigate("/vendor/upload-document");  
-        else return true;
-    }
-    catch(error){
+  const checkVerified = async () => {
+    try {
+      const sid = sessionStorage.getItem("sid");
+      const vendorCatRes = await axios.get(
+        `${process.env.REACT_APP_API_URL}/Vendor/${sid}`
+      );
+      console.log(vendorCatRes);
+      if (!vendorCatRes.data.isVerified) navigate("/vendor/upload-document");
+      else return true;
+    } catch (error) {
       console.log(error);
     }
-  }
+  };
 
   useEffect(() => {
     const fetchGrns = async () => {
       try {
-        const response = await axios.get("https://localhost:7254/api/GRN/All");
+        const sid = sessionStorage.getItem("sid");
+        const response = await axios.get(
+          `${process.env.REACT_APP_API_URL}/GRN/Vendor/${sid}`
+        );
         setGrns(response.data);
       } catch (error) {
         console.error("Error fetching GRNs:", error.message);
         toast.error("Failed to fetch GRNs");
       }
     };
-    
+
     checkVerified();
-      fetchGrns();
+    fetchGrns();
   }, []);
 
   const indexOfLastItem = currentPage * itemsPerPage;
@@ -82,7 +84,6 @@ const GrnDetails = () => {
   // View
   const DetailsView = ({ grnDetails, onCancel }) => {
     const [currentItems, setCurrentItems] = useState([]);
-
 
     useEffect(() => {
       const fetchData = async () => {
@@ -278,7 +279,6 @@ const GrnDetails = () => {
                     {formatDateTime(invoice.dueDate)}
                   </td>
                   <td className="px-6 py-4 whitespace-no-wrap text-center ">
-                    
                     <a
                       href={invoice.documentPath}
                       target="_blank"

@@ -20,7 +20,7 @@ const PurchaseOrderFormPHead = () => {
     const fetchVendors = async () => {
       try {
         const response = await axios.get(
-          "https://localhost:7254/api/Vendor/All"
+          `${process.env.REACT_APP_API_URL}/Vendor/All`
         );
         setVendors(response.data); // Store entire vendor objects
       } catch (error) {
@@ -62,7 +62,7 @@ const PurchaseOrderFormPHead = () => {
 
     try {
       const response = await axios.post(
-        "https://localhost:7254/api/PurchaseOrder/Add",
+        `${process.env.REACT_APP_API_URL}/PurchaseOrder/Add`,
         formDataToSend
       );
 
@@ -91,7 +91,7 @@ const PurchaseOrderFormPHead = () => {
       try {
         const sid = sessionStorage.getItem("sid");
         const response = await axios.get(
-          `https://localhost:7254/api/Project/ProjectHead/${sid}`
+          `${process.env.REACT_APP_API_URL}/Project/ProjectHead/${sid}`
         );
         setProjects(response.data);
       } catch (error) {
@@ -104,27 +104,29 @@ const PurchaseOrderFormPHead = () => {
   return (
     <div className="py-10 margin-left items-center bg-zinc-50 font-poppins">
       <div className="bg-white border-2 border-cyan-400 rounded-lg shadow-lg p-8 w-full max-w-lg mt">
-      <h2 className="text-2xl font-semibold mb-4 text-center text-gray-500">Purchase Order Form</h2>
+        <h2 className="text-2xl font-semibold mb-4 text-center text-gray-500">
+          Purchase Order Form
+        </h2>
         <form onSubmit={handleSubmit} className="p-5">
           <div className="grid grid-cols-1 gap-4">
-          <div className=" relative">
-  <input
-    type="text"
-    id="OrderNo"
-    name="OrderNo"
-    value={formData.OrderNo}
-    onChange={handleChange}
-    className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-    placeholder=" "
-    required
-  />
-  <label
-    htmlFor="OrderNo"
-    className="ml-1 absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"
-  >
-    Order No
-  </label>
-</div>
+            <div className=" relative">
+              <input
+                type="text"
+                id="OrderNo"
+                name="OrderNo"
+                value={formData.OrderNo}
+                onChange={handleChange}
+                className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                placeholder=" "
+                required
+              />
+              <label
+                htmlFor="OrderNo"
+                className="ml-1 absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"
+              >
+                Order No
+              </label>
+            </div>
 
             <div>
               <label
@@ -203,24 +205,23 @@ const PurchaseOrderFormPHead = () => {
               />
             </div>
             <div className="mb-6 relative">
-  <input
-    type="number"
-    id="OrderAmount"
-    name="OrderAmount"
-    value={formData.OrderAmount}
-    onChange={handleChange}
-    className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-    placeholder=" "
-    required
-  />
-  <label
-    htmlFor="OrderAmount"
-    className="ml-1 absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"
-  >
-    PO Amount
-  </label>
-</div>
-
+              <input
+                type="number"
+                id="OrderAmount"
+                name="OrderAmount"
+                value={formData.OrderAmount}
+                onChange={handleChange}
+                className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                placeholder=" "
+                required
+              />
+              <label
+                htmlFor="OrderAmount"
+                className="ml-1 absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"
+              >
+                PO Amount
+              </label>
+            </div>
 
             <div className="flex flex-row">
               <label

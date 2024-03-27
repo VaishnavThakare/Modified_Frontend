@@ -38,7 +38,7 @@ const PoDetailsA = () => {
   const handleView = async (id) => {
     try {
       const response = await axios.get(
-        `https://localhost:7254/api/PurchaseOrder/${id}`
+        `${process.env.REACT_APP_API_URL}PurchaseOrder/${id}`
       );
       setSelectedPurchaseOrder(response.data);
       setShowDetails(true);

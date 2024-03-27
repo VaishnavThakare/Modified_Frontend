@@ -13,7 +13,7 @@ const EditGrnDetails = () => {
     const fetchGrnDetails = async () => {
       try {
         const response = await axios.get(
-          `https://localhost:7254/api/GRN/${grnId}`
+          `${process.env.REACT_APP_API_URL}/GRN/${grnId}`
         );
         const grnData = response.data;
         setIsAccepted(grnData.isAccepted);
@@ -29,10 +29,13 @@ const EditGrnDetails = () => {
 
   const handleAccept = async () => {
     try {
-      await axios.put(`https://localhost:7254/api/GRN/AcceptReject/${grnId}`, {
-        comment: comment,
-        isAccepted: true,
-      });
+      await axios.put(
+        `${process.env.REACT_APP_API_URL}/GRN/AcceptReject/${grnId}`,
+        {
+          comment: comment,
+          isAccepted: true,
+        }
+      );
       setIsAccepted(true);
       toast.success("GRN item accepted successfully");
     } catch (error) {
@@ -43,10 +46,13 @@ const EditGrnDetails = () => {
 
   const handleReject = async () => {
     try {
-      await axios.put(`https://localhost:7254/api/GRN/AcceptReject/${grnId}`, {
-        comment: comment,
-        isAccepted: false,
-      });
+      await axios.put(
+        `${process.env.REACT_APP_API_URL}/GRN/AcceptReject/${grnId}`,
+        {
+          comment: comment,
+          isAccepted: false,
+        }
+      );
       setIsAccepted(false);
       toast.success("GRN item rejected successfully");
     } catch (error) {

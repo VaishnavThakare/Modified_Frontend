@@ -15,14 +15,14 @@ import { Link } from "react-router-dom";
 const AdminInvoiceList = () => {
   const [invoices, setInvoices] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  
+
   const itemsPerPage = 5;
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "https://localhost:7254/api/Invoice/All" 
+          `${process.env.REACT_APP_API_URL}/Invoice/All`
         );
         console.log(response.data);
         setInvoices(response.data);
@@ -35,8 +35,6 @@ const AdminInvoiceList = () => {
     fetchData();
   }, []);
 
-  
-
   const handlePrevPage = () => {
     setCurrentPage((prevPage) => Math.max(prevPage - 1, 1));
   };
@@ -46,8 +44,6 @@ const AdminInvoiceList = () => {
       Math.min(prevPage + 1, Math.ceil(invoices.length / itemsPerPage))
     );
   };
-
-  
 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
@@ -65,17 +61,33 @@ const AdminInvoiceList = () => {
           <table className="table-auto w-full rounded-lg">
             <thead>
               <tr className="text-gray-600 bg-white">
-                <th className="px-4 py-2 text-center">Sr.<p></p> No.</th>
-                <th className="px-4 py-2 text-center">Invoice<p></p> No.</th>
-                <th className="px-4 py-2 text-center">GRN<p></p> No.</th>
-                <th className="px-4 py-2 text-center">PO<p></p> No.</th>
-                <th className="px-4 py-2 text-center">Release<p></p> Date</th>
-                <th className="px-4 py-2 text-center">Due<p></p> Date</th>
+                <th className="px-4 py-2 text-center">
+                  Sr.<p></p> No.
+                </th>
+                <th className="px-4 py-2 text-center">
+                  Invoice<p></p> No.
+                </th>
+                <th className="px-4 py-2 text-center">
+                  GRN<p></p> No.
+                </th>
+                <th className="px-4 py-2 text-center">
+                  PO<p></p> No.
+                </th>
+                <th className="px-4 py-2 text-center">
+                  Release<p></p> Date
+                </th>
+                <th className="px-4 py-2 text-center">
+                  Due<p></p> Date
+                </th>
                 <th className="px-4 py-2 text-center">Amount</th>
                 <th className="px-4 py-2 text-center">Comment</th>
                 <th className="px-4 py-2 text-center">Status</th>
-                <th className="px-4 py-2 text-center">Payment<p></p> Status</th>
-                <th className="px-4 py-2 text-center">View/Download<p></p> Documents</th>
+                <th className="px-4 py-2 text-center">
+                  Payment<p></p> Status
+                </th>
+                <th className="px-4 py-2 text-center">
+                  View/Download<p></p> Documents
+                </th>
                 <th className="px-4 py-2 text-center">Actions</th>
               </tr>
               <tr className=" text-gray-600 bg-white">
@@ -88,13 +100,27 @@ const AdminInvoiceList = () => {
               {currentItems.length > 0 ? (
                 currentItems.map((invoice, index) => (
                   <tr key={invoice.id} className="bg-white">
-                    <td className="px-4 py-2 text-center text-sm">{indexOfFirstItem + index + 1}</td>
-                    <td className="px-4 py-2 text-center text-sm">{invoice.invoiceNo}</td>
-                    <td className="px-4 py-2 text-center text-sm">{invoice.grn.grnNo}</td>
-                    <td className="px-4 py-2 text-center text-sm">{invoice.grn.purchaseOrder.orderNo}</td>
-                    <td className="px-4 py-2 text-center text-sm">{invoice.createdOn}</td>
-                    <td className="px-4 py-2 text-center text-sm">{invoice.dueDate}</td>
-                    <td className="px-4 py-2 text-center text-sm">{invoice.amount}</td>
+                    <td className="px-4 py-2 text-center text-sm">
+                      {indexOfFirstItem + index + 1}
+                    </td>
+                    <td className="px-4 py-2 text-center text-sm">
+                      {invoice.invoiceNo}
+                    </td>
+                    <td className="px-4 py-2 text-center text-sm">
+                      {invoice.grn.grnNo}
+                    </td>
+                    <td className="px-4 py-2 text-center text-sm">
+                      {invoice.grn.purchaseOrder.orderNo}
+                    </td>
+                    <td className="px-4 py-2 text-center text-sm">
+                      {invoice.createdOn}
+                    </td>
+                    <td className="px-4 py-2 text-center text-sm">
+                      {invoice.dueDate}
+                    </td>
+                    <td className="px-4 py-2 text-center text-sm">
+                      {invoice.amount}
+                    </td>
                     <td className="px-4 py-2 text-center text-sm">
                       {invoice.comment}
                     </td>
@@ -110,9 +136,15 @@ const AdminInvoiceList = () => {
                         {invoice.isAccepted ? "Accepted" : "Rejected"}
                       </button>
                     </td>
-                    <td className="px-4 py-2 text-center text-sm">{invoice.paymentStatus ? 'Paid' : 'Unpaid'}</td>
+                    <td className="px-4 py-2 text-center text-sm">
+                      {invoice.paymentStatus ? "Paid" : "Unpaid"}
+                    </td>
                     <td className="px-6 py-2 text-center whitespace-no-wrap">
-                      <a href={invoice.documentPath} target="_blank" rel="noopener noreferrer">
+                      <a
+                        href={invoice.documentPath}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
                         <FontAwesomeIcon
                           icon={faFileDownload}
                           className="text-cyan-600 text-xl"
@@ -120,7 +152,10 @@ const AdminInvoiceList = () => {
                       </a>
                     </td>
                     <td className="px-4 py-2 bg-white text-center">
-                      <Link className={`mr-2`} to={`/admin/details/${invoice.id}`}>
+                      <Link
+                        className={`mr-2`}
+                        to={`/admin/details/${invoice.id}`}
+                      >
                         <FontAwesomeIcon
                           icon={faEye}
                           className={`text-cyan-600 text-xl`}
@@ -175,8 +210,8 @@ const AdminInvoiceList = () => {
         </table>
       </div>
       <ToastContainer />
-      </div>
-    );
-  };
-  
-  export default AdminInvoiceList; 
+    </div>
+  );
+};
+
+export default AdminInvoiceList;

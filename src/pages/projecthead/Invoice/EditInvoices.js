@@ -14,7 +14,7 @@ const EditInvoices = () => {
     const fetchInvoiceDetails = async () => {
       try {
         const response = await axios.get(
-          `https://localhost:7254/api/Invoice/${invoiceId}`
+          `${process.env.REACT_APP_API_URL}/Invoice/${invoiceId}`
         );
         const invoiceData = response.data;
         setIsAccepted(invoiceData.isAccepted);
@@ -33,7 +33,7 @@ const EditInvoices = () => {
   const handleAccept = async () => {
     try {
       await axios.put(
-        `https://localhost:7254/api/Invoice/AcceptReject/${invoiceId}`,
+        `${process.env.REACT_APP_API_URL}/Invoice/AcceptReject/${invoiceId}`,
         {
           comment: comment,
           isAccepted: true,
@@ -50,7 +50,7 @@ const EditInvoices = () => {
   const handleReject = async () => {
     try {
       await axios.put(
-        `https://localhost:7254/api/Invoice/AcceptReject/${invoiceId}`,
+        `${process.env.REACT_APP_API_URL}/Invoice/AcceptReject/${invoiceId}`,
         {
           comment: comment,
           isAccepted: false,

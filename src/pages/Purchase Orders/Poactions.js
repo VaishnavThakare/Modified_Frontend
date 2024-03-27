@@ -12,7 +12,7 @@ const Poactions = () => {
   const fetchPurchaseOrder = async () => {
     try {
       const response = await axios.get(
-        `https://localhost:7254/api/PurchaseOrder/${orderId}`
+        `${process.env.REACT_APP_API_URL}/PurchaseOrder/${orderId}`
       );
       setPurchaseOrder(response.data);
     } catch (error) {
@@ -28,7 +28,7 @@ const Poactions = () => {
   const handleAccept = async () => {
     try {
       await axios.put(
-        `https://localhost:7254/api/PurchaseOrder/AcceptReject/${orderId}`,
+        `${process.env.REACT_APP_API_URL}/PurchaseOrder/AcceptReject/${orderId}`,
         {
           isAccepted: true,
           comment: comment,
@@ -109,9 +109,13 @@ const Poactions = () => {
         {purchaseOrder.isAccepted !== null && (
           <>
             {purchaseOrder.isAccepted ? (
-              <div className="text-green-600 font-bold mb-4">Already Accepted</div>
+              <div className="text-green-600 font-bold mb-4">
+                Already Accepted
+              </div>
             ) : (
-              <div className="text-red-600 font-bold mb-4">Already Rejected</div>
+              <div className="text-red-600 font-bold mb-4">
+                Already Rejected
+              </div>
             )}
             {purchaseOrder.comment && (
               <div className="mb-4">

@@ -29,8 +29,9 @@ const GrnList = () => {
   const itemsPerPage = 5;
 
   useEffect(() => {
+    const sid = sessionStorage.getItem("sid");
     axios
-      .get("https://localhost:7254/api/GRN/All")
+      .get(`${process.env.REACT_APP_API_URL}/GRN/ProjectHead/${sid}`)
       .then((response) => {
         setGrnData(response.data);
       })
@@ -62,13 +63,15 @@ const GrnList = () => {
 
   const handleView = async (id) => {
     try {
-      const response = await axios.get(`https://localhost:7254/api/GRN/${id}`);
+      const response = await axios.get(
+        `${process.env.REACT_APP_API_URL}/GRN/${id}`
+      );
       setSelectedGrnDetails(response.data);
       setShowDetails(true);
 
       // Fetch associated invoices for the GRN
       const invoiceResponse = await axios.get(
-        `https://localhost:7254/api/Invoice/GRN/${id}`
+        `${process.env.REACT_APP_API_URL}/Invoice/GRN/${id}`
       );
       setSelectedInvoiceData(invoiceResponse.data);
     } catch (error) {

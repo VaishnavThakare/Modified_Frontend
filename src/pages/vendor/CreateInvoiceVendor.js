@@ -16,8 +16,9 @@ function CreateInvoiceVendor() {
 
   const getAllGRNNumbers = async () => {
     try {
+      const sid = sessionStorage.getItem("sid");
       const grnRes = await axios.get(
-        `${process.env.REACT_APP_API_URL}/GRN/All`
+        `${process.env.REACT_APP_API_URL}/GRN/Vendor/${sid}`
       );
       setGRNNumbers(grnRes.data);
     } catch (error) {
@@ -73,42 +74,42 @@ function CreateInvoiceVendor() {
           <h2>Create Invoice</h2>
         </div>
         <div className="mb-6 relative">
-  <input
-    type="number"
-    id="invoiceNo"
-    name="InvoiceNo"
-    value={formData.InvoiceNo}
-    onChange={handleInputChange}
-    className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-    placeholder=" "
-    required
-  />
-  <label
-    htmlFor="invoiceNo"
-    className="ml-1 absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"
-  >
-    Invoice No
-  </label>
-</div>
+          <input
+            type="number"
+            id="invoiceNo"
+            name="InvoiceNo"
+            value={formData.InvoiceNo}
+            onChange={handleInputChange}
+            className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+            placeholder=" "
+            required
+          />
+          <label
+            htmlFor="invoiceNo"
+            className="ml-1 absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"
+          >
+            Invoice No
+          </label>
+        </div>
 
-<div className="mb-6 relative">
-  <input
-    type="number"
-    id="Amount"
-    name="Amount"
-    value={formData.Amount}
-    onChange={handleInputChange}
-    className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-    placeholder=" "
-    required
-  />
-  <label
-    htmlFor="Amount"
-    className="ml-1 absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"
-  >
-    Amount
-  </label>
-</div>
+        <div className="mb-6 relative">
+          <input
+            type="number"
+            id="Amount"
+            name="Amount"
+            value={formData.Amount}
+            onChange={handleInputChange}
+            className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+            placeholder=" "
+            required
+          />
+          <label
+            htmlFor="Amount"
+            className="ml-1 absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"
+          >
+            Amount
+          </label>
+        </div>
 
         <div className="mb-6 relative">
           <label
@@ -128,31 +129,12 @@ function CreateInvoiceVendor() {
             <option value="">Select GRN ID</option>
             {grnNumbers.map((grn) => (
               <option key={grn.id} value={grn.id}>
-                {grn.id}
+                {grn.grnNo}
               </option>
             ))}
           </select>
         </div>
-        <div className="mb-6 relative">
-          <label
-            htmlFor="paymentStatus"
-            className="block mb-2 text-sm font-medium text-gray-900"
-          >
-            Payment Status:
-          </label>
-          <select
-            id="paymentStatus"
-            name="PaymentStatus"
-            value={formData.PaymentStatus}
-            onChange={handleInputChange}
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-            required
-          >
-            <option value="">Select Payment Status</option>
-            <option value={true}>Paid</option>
-            <option value={false}>Unpaid</option>
-          </select>
-        </div>
+
         <div className="mb-6 relative">
           <label
             htmlFor="dueDate"
