@@ -319,10 +319,10 @@ const GrnList = () => {
                 SR. NO.
               </th>
               <th className="font-semibold text-sm text-transform: uppercase px-4 py-2 text-left">
-                GRN No.
+                GRN Number
               </th>
               <th className="font-semibold text-sm text-transform: uppercase px-4 py-2 text-left">
-                PO No.
+                PO Number
               </th>
               <th className="font-semibold text-sm text-transform: uppercase px-4 py-2 text-left">
                 SENT ON (date)
