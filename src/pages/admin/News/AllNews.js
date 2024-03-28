@@ -21,7 +21,6 @@ export default function AllNews() {
   const getAllNews = async () => {
     try {
       let res = await axios.get(`${process.env.REACT_APP_API_URL}/News/All`);
-      console.log(res.data);
       let data = [];
       if (res.status == 200 && res.data != null) {
         data = res.data;
