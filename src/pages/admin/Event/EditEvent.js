@@ -76,7 +76,9 @@ export default function EditEvent() {
     }
   };
 
-
+  const back = () => {
+    navigate(-1);
+  };
   return (
     <>
       <div class="align-middle inline-block min-w-full overflow-hidden bg-zinc-50 px-8 py-3 pb-8 rounded-bl-lg rounded-br-lg">
@@ -181,6 +183,7 @@ export default function EditEvent() {
               Update Event
             </button>
             <button
+            type="button"
                 onClick={()=>{navigate(-1)}}
                 className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded ml-2"
               >
