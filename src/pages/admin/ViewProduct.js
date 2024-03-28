@@ -24,90 +24,53 @@ const ProductDetailsView = () => {
   }
 
   return (
-    <div className="bg-zinc-50">
+    <div className="overflow-x-auto mt-8 ml-2 mr-2 rounded">
       <div className="flex text-2xl font-bold text-gray-500">
         <h2 className="text-left text-cyan-500">PRODUCT DETAILS</h2>
       </div>
-      <div className="w-1/5 bg-cyan-500 h-0.5 mb-1"></div>
-      <div className="w-1/3 bg-cyan-500 h-0.5 mb-5"></div>
-      <div className="py-10 margin-left items-center bg-zinc-50 font-poppins">
-        <div className="bg-white border-2 border-cyan-500 rounded-lg shadow-xl p-8 w-full max-w-lg">
-          <div className="grid grid-cols-1 gap-4">
-            <form className="flex flex-col">
-              <div className="flex flex-row justify-between mb-4">
-                <div className="w-2/4">
-                  <p className="text-lg font-bold text-gray-600">Product Name:</p>
-                </div>
-                <div className="w-2/4">
-                  <p className="text-gray-500">{product.name}</p>
-                </div>
-              </div>
-              
-              <div className="flex flex-row justify-between mb-4">
-                <div className="w-2/4">
-                  <p className="text-lg font-bold text-gray-600">Short Description:</p>
-                </div>
-                <div className="w-2/4">
-                  <p className="text-gray-500">{product.shortDescription}</p>
-                </div>
-              </div> 
 
-              <div className="flex flex-row justify-between mb-4">
-                <div className="w-2/4">
-                  <p className="text-lg font-bold text-gray-600">Long Description:</p>
-                </div>
-                <div className="w-2/4">
-                  <p className="text-gray-500">{product.longDescription}</p>
-                </div>
-              </div>
-
-              <div className="flex flex-row justify-between mb-4">
-                <div className="w-2/4">
-                  <p className="text-lg font-bold text-gray-600">Unit Type:</p>
-                </div>
-                <div className="w-2/4">
-                  <p className="text-gray-500">{product.unitType}</p>
-                </div>
-              </div>
-
-              <div className="flex flex-row justify-between mb-4">
-                <div className="w-1/4">
-                  <p className="text-lg font-bold text-gray-600">Size:</p>
-                </div>
-                <div className="w-2/4">
-                  <p className="text-gray-500">{product.size}</p>
-                </div>
-              </div>
-
-              <div className="flex flex-row justify-between mb-4">
-                <div className="w-1/4">
-                  <p className="text-lg font-bold text-gray-600">Specification:</p>
-                </div>
-                <div className="w-2/4">
-                  <p className="text-gray-500">{product.specification}</p>
-                </div>
-              </div>
-
-              <div className="flex flex-row justify-between mb-4">
-                <div className="w-2/4">
-                  <p className="text-lg font-bold text-gray-600">Product Category:</p>
-                </div>
-                <div className="w-2/4">
-                  <p className="text-gray-500">{product.category}</p>
-                </div>
-              </div>
-
-              <div className="flex flex-row justify-between mb-4">
-                <div className="w-2/4">
-                  <p className="text-lg font-bold text-gray-600">Product SubCategory:</p>
-                </div>
-                <div className="w-2/4">
-                  <p className="text-gray-500">{product.subCategory}</p>
-                </div>
-              </div>
-              
-            </form>
-          </div>
+      <div className="w-64 bg-cyan-500 h-0.5 mb-1"></div>
+      <div className="w-72 bg-cyan-500 h-0.5 mb-5"></div>
+      <div className="border-2 border-cyan-500 rounded-lg shadow-md p-4">
+        <div className="grid grid-cols-1 gap-4">
+          <form className="flex flex-col">
+            <div className="flex flex-row mb-2">
+              <p className="text-base font-bold text-gray-600 mr-2">Product Name:</p>
+              <p className="text-base text-gray-500">{product.name}</p>
+            </div>
+            <div className="flex flex-row mb-2">
+              <p className="text-base font-bold text-gray-600 mr-2">Short Description:</p>
+              <p className="text-base text-gray-500">{product.shortDescription}</p>
+            </div>
+            <div className="flex flex-row mb-2">
+              <p className="text-base font-bold text-gray-600 mr-2">Long Description:</p>
+              <p className="text-base text-gray-500">{product.longDescription}</p>
+            </div>
+            <div className="flex flex-row mb-2">
+              <p className="text-base font-bold text-gray-600 mr-2">Unit Type:</p>
+              <p className="text-base text-gray-500">{product.unitType}</p>
+            </div>
+            <div className="flex flex-row mb-2">
+              <p className="text-base font-bold text-gray-600 mr-2">Size:</p>
+              <p className="text-base text-gray-500">{product.size}</p>
+            </div>
+            <div className="flex flex-row mb-2">
+              <p className="text-base font-bold text-gray-600 mr-2">Specification:</p>
+              <p className="text-base text-gray-500">{product.specification}</p>
+            </div>
+            <div className="flex flex-row mb-2">
+              <p className="text-base font-bold text-gray-600 mr-2">Product Category:</p>
+              <p className="text-base text-gray-500">{product.category}</p>
+            </div>
+            <div className="flex flex-row mb-2">
+              <p className="text-base font-bold text-gray-600 mr-2">Product SubCategory:</p>
+              <p className="text-base text-gray-500">{product.subCategory}</p>
+            </div>
+            <div className="flex flex-row mb-2">
+              <p className="text-base font-bold text-gray-600 mr-2">Product Image:</p>
+              <img src={product.imagePath} alt="Product Thumbnail" className="w-20 h-20" />
+            </div>
+          </form>
         </div>
       </div>
     </div>

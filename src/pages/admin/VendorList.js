@@ -123,8 +123,10 @@ const VendorList = () => {
                       </div>
                     </td>
 
+
                     <td class="px-6 py-4 whitespace-no-wrap">
                       <div class="text-sm text-center leading-5">
+                        {`${vendor.address}, ${vendor.city}, ${vendor.state}`}
                         {`${vendor.address}, ${vendor.city}, ${vendor.state}`}
                       </div>
                     </td>
@@ -148,7 +150,10 @@ const VendorList = () => {
                     <td className="px-6 py-4 whitespace-no-wrap">
                       <div className="text-sm text-center leading-5">
                         <Link to={`/admin/vendor-detailsadm/${vendor.id}`}>
-                          <FontAwesomeIcon icon={faEye} />
+                          <FontAwesomeIcon
+                            icon={faEye}
+                            className="text-cyan-500 text-lg"
+                          />
                         </Link>
                       </div>
                     </td>

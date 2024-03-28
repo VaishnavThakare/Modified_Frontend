@@ -154,57 +154,51 @@ export default function Products() {
                   ) : (
                     currentItems.map((product, index) => (
                       <tr key={product.id}>
-                        <td className="px-6 py-4 whitespace-no-wrap">
-                          <div className="text-sm leading-5 ">{index + 1}</div>
+                        <td className="px-6 py-4 whitespace-no-wrap text-center align-middle">
+                          <div className="text-sm leading-5">{index + 1}</div>
                         </td>
-                        <td className="px-6 py-4 whitespace-no-wrap">
-                          <div className="text-sm leading-5 ">
+                        <td className="px-6 py-4 whitespace-no-wrap text-center align-middle">
+                          <div className="text-sm leading-5">
                             {product.name}
                           </div>
                         </td>
-                        <td className="px-6 py-4 whitespace-no-wrap">
-                          <div className="text-sm leading-5 ">
-                            {product.imagePath}
+                        <td className="px-6 py-4 whitespace-no-wrap text-center align-middle">
+                          <div className="text-sm leading-5">
+                            {/* Render thumbnail */}
+                            <img
+                              src={product.imagePath} // Assuming imagePath is the URL of the image
+                              alt={product.name} // Provide appropriate alt text for accessibility
+                              className="h-16 w-auto object-cover" // Adjust the dimensions and styling as needed
+                            />
                           </div>
                         </td>
-                        <td className="px-6 py-4 whitespace-no-wrap">
-                          <div className="text-sm leading-5 ">
+                        <td className="px-6 py-4 whitespace-no-wrap text-center align-middle">
+                          <div className="text-sm leading-5">
                             {product.shortDescription}
                           </div>
                         </td>
-                        <td className="px-6 py-4 whitespace-no-wrap">
-                          <div className="text-sm leading-5 ">
-                            {product.longDescription}
-                          </div>
-                        </td>
-                        <td className="px-6 py-4 whitespace-no-wrap">
-                          <div className="text-sm leading-5 ">
-                            {/* Add your unit type rendering logic here */}
+                        <td className="px-6 py-4 whitespace-no-wrap text-center align-middle">
+                          <div className="text-sm leading-5">
                             {product.unitType}
                           </div>
                         </td>
-                        <td className="px-6 py-4 whitespace-no-wrap">
-                          <div className="text-sm leading-5 ">
-                            {/* Add your size rendering logic here */}
+                        <td className="px-6 py-4 whitespace-no-wrap text-center align-middle">
+                          <div className="text-sm leading-5">
                             {product.size}
                           </div>
                         </td>
-                        <td className="px-6 py-4 whitespace-no-wrap">
-                          <div className="text-sm leading-5 ">
+                        <td className="px-6 py-4 whitespace-no-wrap text-center align-middle">
+                          <div className="text-sm leading-5">
                             {product.specification}
                           </div>
                         </td>
-                        <td className="px-6 py-4 whitespace-no-wrap">
-                          <div className="text-sm leading-5 ">
+                        <td className="px-6 py-4 whitespace-no-wrap text-center align-middle">
+                          <div className="text-sm leading-5">
                             {product.category}
                           </div>
                         </td>
-                        <td className="px-6 py-4 whitespace-no-wrap">
-                          <div className="text-sm leading-5 ">
-                            {product.subCategory}
-                          </div>
-                        </td>
-                        <td className="px-4 py-2 text-left flex flex-row ">
+
+                        <td className="px-6 py-4 whitespace-no-wrap text-center align-middle ">
                           <button
                             className="mr-2"
                             onClick={() => handlePEditDetails(product.id)}
