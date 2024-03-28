@@ -93,37 +93,37 @@ const PoGrnView = () => {
         <div className="bg-white p-6 rounded-md shadow-md">
           <div className="relative">
             <p className="text-gray-900">
-              <span className="text-sm text-transform: uppercase font-bold">
+              <span className="text-sm text-transform: uppercase font-semibold">
                 GRN No.:
               </span>{" "}
               {grnDetails.grnNo}
             </p>
             <p className="text-gray-900">
-              <span className="text-sm text-transform: uppercase font-bold">
+              <span className="text-sm text-transform: uppercase font-semibold">
                 PO Amount:
               </span>{" "}
               {grnDetails.purchaseOrder.orderAmount}
             </p>
             <p className="text-gray-900">
-              <span className="text-sm text-transform: uppercase font-bold">
+              <span className="text-sm text-transform: uppercase font-semibold">
                 Send On:
               </span>{" "}
               {formatDateTime(grnDetails.sendOn)}
             </p>
             <p className="text-gray-900">
-              <span className="text-sm text-transform: uppercase font-bold">
+              <span className="text-sm text-transform: uppercase font-semibold">
                 Comment:
               </span>{" "}
               {grnDetails.comment}
             </p>
             <p className="text-gray-900">
-              <span className="text-sm text-transform: uppercase font-bold">
+              <span className="text-sm text-transform: uppercase font-semibold">
                 Shipment Status:
               </span>{" "}
               {grnDetails.shipmentStatus ? "Shipped" : "Not Shipped"}
             </p>
             <p className="text-gray-900">
-              <span className="text-sm text-transform: uppercase font-bold">
+              <span className="text-sm text-transform: uppercase font-semibold">
                 Invoice Status:
               </span>{" "}
               {grnDetails.invoiceStatus ? "Invoiced" : "Not Invoiced"}
@@ -151,25 +151,25 @@ const PoGrnView = () => {
         <table className="table-auto w-full rounded-lg  bg-white ">
           <thead>
             <tr className="text-gray-600">
-              <th className="text-sm text-transform: uppercase px-4 py-2 text-center">
+              <th className="font-semibold text-sm text-transform: uppercase px-4 py-2 text-center">
                 INVOICE NO.
               </th>
-              <th className="text-sm text-transform: uppercase px-4 py-2 text-center">
+              <th className="font-semibold text-sm text-transform: uppercase px-4 py-2 text-center">
                 AMOUNT
               </th>
-              <th className="text-sm text-transform: uppercase px-4 py-2 text-center">
+              <th className="font-semibold text-sm text-transform: uppercase px-4 py-2 text-center">
                 SENT ON (DATE)
               </th>
-              <th className="text-sm text-transform: uppercase px-4 py-2 text-center">
+              <th className="font-semibold text-sm text-transform: uppercase px-4 py-2 text-center">
                 COMMENT
               </th>
-              <th className="text-sm text-transform: uppercase px-4 py-2 text-center">
+              <th className="font-semibold text-sm text-transform: uppercase px-4 py-2 text-center">
                 STATUS
               </th>
-              <th className="text-sm text-transform: uppercase px-4 py-2 text-center">
+              <th className="font-semibold text-sm text-transform: uppercase px-4 py-2 text-center">
                 PAYMENT STATUS
               </th>
-              <th className="text-sm text-transform: uppercase px-4 py-2 text-center">
+              <th className="font-semibold text-sm text-transform: uppercase px-4 py-2 text-center">
                 ACTIONS
               </th>
             </tr>

@@ -21,7 +21,7 @@ const ProjectView = () => {
   const fetchPurchaseOrders = async () => {
     try {
       const response = await axios.get(
-        `${process.env.REACT_APP_API_URL}/PurchaseOrder/Project/${projectId}`,
+        `${process.env.REACT_APP_API_URL}/PurchaseOrder/Project/${projectId}`
       );
       setPurchaseOrders(response.data);
     } catch (error) {
@@ -33,7 +33,7 @@ const ProjectView = () => {
   const fetchProject = async () => {
     try {
       const response = await axios.get(
-        `${process.env.REACT_APP_API_URL}/Project/${projectId}`,
+        `${process.env.REACT_APP_API_URL}/Project/${projectId}`
       );
       setProject(response.data);
     } catch (error) {
@@ -57,13 +57,13 @@ const ProjectView = () => {
 
   const handleNextPage = () => {
     setCurrentPage((prevPage) =>
-      Math.min(prevPage + 1, Math.ceil(purchaseOrders.length / itemsPerPage)),
+      Math.min(prevPage + 1, Math.ceil(purchaseOrders.length / itemsPerPage))
     );
   };
 
   const currentItems = purchaseOrders.slice(
     (currentPage - 1) * itemsPerPage,
-    currentPage * itemsPerPage,
+    currentPage * itemsPerPage
   );
 
   const backButton = () => {
@@ -86,7 +86,10 @@ const ProjectView = () => {
       <div>
         <div className="flex justify-between">
           <div>
-            <div className="flex text-2xl font-bold text-gray-500 ">
+            <div
+              className="flex text-2xl font-bold
+text-gray-500 "
+            >
               <h2 className="text-left text-cyan-500">PROJECT DETAILS</h2>
             </div>
             <div className="w-52 bg-cyan-500 h-0.5 mb-1"></div>
@@ -109,19 +112,28 @@ const ProjectView = () => {
             style={{ height: "fit-content" }}
           >
             <p className="text-gray-900 mb-3">
-              <span className="text-sm text-transform: uppercase font-bold">Name</span>: {projectData.name}
+              <span className="font-semibold text-sm text-transform: uppercase ">
+                Name
+              </span>
+              : {projectData.name}
             </p>
             <p className="text-gray-900 mb-3">
-              <span className="text-sm text-transform: uppercase font-bold">Project Head Name</span>:{" "}
-              {projectData.projectHeadName}
+              <span className="font-semibold text-sm text-transform: uppercase ">
+                Project Head Name
+              </span>
+              : {projectData.projectHeadName}
             </p>
             <p className="text-gray-900 mb-3">
-              <span className="text-sm text-transform: uppercase font-bold">Created On</span>:{" "}
-              {formatDateTime(projectData.createdOn)}
+              <span className="font-semibold text-sm text-transform: uppercase ">
+                Created On
+              </span>
+              : {formatDateTime(projectData.createdOn)}
             </p>
             <p className="text-gray-900">
-              <span className="text-sm text-transform: uppercase font-bold">Description</span>:{" "}
-              {projectData.description}
+              <span className="font-semibold text-sm text-transform: uppercase ">
+                Description
+              </span>
+              : {projectData.description}
             </p>
           </div>
         </div>
@@ -132,7 +144,7 @@ const ProjectView = () => {
         <br></br>
 
         {/* Purchase Order table code starts */}
-        <div className="flex text-2xl font-bold text-gray-500">
+        <div className="flex text-2xl  text-gray-500">
           <h2 className="text-left text-cyan-500">ALL PURCHASE ORDERS</h2>
         </div>
         <div className="w-1/5 bg-cyan-500 h-0.5 mb-1"></div>
@@ -141,27 +153,33 @@ const ProjectView = () => {
           <table className="table-auto w-full 0 bg-white">
             <thead>
               <tr className="text-gray-600">
-                <th className="text-sm text-transform: uppercase px-4 py-2 text-center ">
+                <th className="font-semibold text-sm text-transform: uppercase px-4 py-2 text-center ">
                   Sr.<p></p> No.
                 </th>
-                <th className="text-sm text-transform: uppercase px-4 py-2 text-center ">
+                <th className="font-semibold text-sm text-transform: uppercase px-4 py-2 text-center ">
                   Purchase <p></p>Order No.
                 </th>
-                <th className="text-sm text-transform: uppercase px-4 py-2 text-center ">
+                <th className="font-semibold text-sm text-transform: uppercase px-4 py-2 text-center ">
                   Vendor <p></p>Organization Name
                 </th>
-                <th className="text-sm text-transform: uppercase px-4 py-2 text-center ">
+                <th className="font-semibold text-sm text-transform: uppercase px-4 py-2 text-center ">
                   Release <p></p> On
                 </th>
-                <th className="text-sm text-transform: uppercase px-4 py-2 text-center ">
+                <th className="font-semibold text-sm text-transform: uppercase px-4 py-2 text-center ">
                   Accepted <p></p>On
                 </th>
-                <th className="text-sm text-transform: uppercase px-4 py-2 text-center ">
+                <th className="font-semibold text-sm text-transform: uppercase px-4 py-2 text-center ">
                   PO <p></p>Amount
                 </th>
-                <th className="text-sm text-transform: uppercase px-4 py-2 text-center ">Comments</th>
-                <th className="text-sm text-transform: uppercase px-4 py-2 text-center ">Status</th>
-                <th className="text-sm text-transform: uppercase px-4 py-2 text-center ">Actions</th>
+                <th className="font-semibold text-sm text-transform: uppercase px-4 py-2 text-center ">
+                  Comments
+                </th>
+                <th className="font-semibold text-sm text-transform: uppercase px-4 py-2 text-center ">
+                  Status
+                </th>
+                <th className="font-semibold text-sm text-transform: uppercase px-4 py-2 text-center ">
+                  Actions
+                </th>
               </tr>
               <tr className=" text-gray-600">
                 <td colSpan="9" className=" px-4 py-1">
@@ -200,16 +218,16 @@ const ProjectView = () => {
                           item.isAccepted === null
                             ? "bg-yellow-200 text-yellow-600"
                             : item.isAccepted
-                              ? "bg-green-200 text-green-700"
-                              : "bg-red-200 text-red-600"
+                            ? "bg-green-200 text-green-700"
+                            : "bg-red-200 text-red-600"
                         }`}
                         style={{ minWidth: "6rem" }}
                       >
                         {item.isAccepted === null
                           ? "Pending"
                           : item.isAccepted
-                            ? "Accepted"
-                            : "Rejected"}
+                          ? "Accepted"
+                          : "Rejected"}
                       </button>
                     </td>
 
@@ -239,7 +257,7 @@ const ProjectView = () => {
         <div className="flex justify-end mt-2 ml-2 mr-2">
           <button
             onClick={handlePrevPage}
-            className="pagination-button bg-cyan-500 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded-3xl"
+            className="pagination-button bg-cyan-500 hover:bg-cyan-700 text-white  py-2 px-4 rounded-3xl"
             disabled={currentPage === 1}
           >
             <FontAwesomeIcon icon={faArrowLeft} className="pagination-icon" />
@@ -247,7 +265,7 @@ const ProjectView = () => {
           </button>
           <button
             onClick={handleNextPage}
-            className="pagination-button bg-cyan-500 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded-3xl ml-2"
+            className="pagination-button bg-cyan-500 hover:bg-cyan-700 text-white  py-2 px-4 rounded-3xl ml-2"
             disabled={
               currentPage === Math.ceil(purchaseOrders.length / itemsPerPage)
             }

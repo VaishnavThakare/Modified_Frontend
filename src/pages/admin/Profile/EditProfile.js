@@ -69,6 +69,12 @@ export default function EditProfile() {
     e.preventDefault();
     try {
       console.log(profile);
+      if (description.length > 200) {
+        toast.error("Message should not be more than 200 chars", {
+          position: "top-right",
+        });
+        throw "Message should not be more than 200 chars";
+      }
       const formDataToSend = new FormData();
       formDataToSend.append("UserId", profile.userId);
       formDataToSend.append("Image", file);

@@ -130,22 +130,24 @@ const PoDetailsV = () => {
 
       {showDetails && !grnView && selectedPurchaseOrder && (
         <>
-        <div className="flex justify-between">
-          <div>
-          <div className="flex text-2xl font-bold text-gray-500">
-            <h2 className="text-left text-cyan-500">Purchase Order Details</h2>
-          </div>
-          <div className="w-64 bg-cyan-500 h-0.5 mb-1"></div>
-          <div className="w-72 bg-cyan-500 h-0.5 mb-5"></div>
-          </div>
-          <div>
-          <button
+          <div className="flex justify-between">
+            <div>
+              <div className="flex text-2xl font-bold text-gray-500">
+                <h2 className="text-left text-cyan-500">
+                  Purchase Order Details
+                </h2>
+              </div>
+              <div className="w-64 bg-cyan-500 h-0.5 mb-1"></div>
+              <div className="w-72 bg-cyan-500 h-0.5 mb-5"></div>
+            </div>
+            <div>
+              <button
                 onClick={handleCloseDetails}
                 className="bg-cyan-600 hover:bg-cyan-700 mr-4 text-white font-bold py-2 px-4 rounded"
               >
                 Back
               </button>
-          </div>
+            </div>
           </div>
 
           <div className="rounded-lg border-2 border-cyan-400 bg-white shadow-lg p-4  w-full mt-2">
@@ -153,17 +155,23 @@ const PoDetailsV = () => {
               <tbody>
                 <tr>
                   <td className="py-2">
-                    <span className="font-bold">Purchase Order No.:</span>
+                    <span className="text-gray-600 text-sm text-transform: uppercase font-semibold">
+                      Purchase Order No.:
+                    </span>
                   </td>
                   <td className="py-2">{selectedPurchaseOrder.orderNo}</td>
                   <td className="py-2">
-                    <span className="font-bold">Vendor Name.:</span>
+                    <span className="text-gray-500 text-sm text-transform: uppercase font-semibold">
+                      Vendor Name.:
+                    </span>
                   </td>
                   <td className="py-2">{selectedPurchaseOrder.vendorName}</td>
                 </tr>
                 <tr>
                   <td className="py-2">
-                    <span className="font-bold">Created On:</span>
+                    <span className="text-gray-500  text-sm text-transform: uppercase font-semibold">
+                      Created On:
+                    </span>
                   </td>
                   <td className="py-2">
                     {selectedPurchaseOrder.createdOn
@@ -171,7 +179,9 @@ const PoDetailsV = () => {
                       : "-"}
                   </td>
                   <td className="py-2">
-                    <span className="font-bold">Expected Delivery On:</span>
+                    <span className="text-gray-500 text-sm text-transform: uppercase font-semibold">
+                      Expected Delivery On:
+                    </span>
                   </td>
                   <td className="py-2">
                     {selectedPurchaseOrder.expectedDelivery
@@ -181,7 +191,9 @@ const PoDetailsV = () => {
                 </tr>
                 <tr>
                   <td className="py-2">
-                    <span className="font-bold">Sent On:</span>
+                    <span className="text-gray-500 text-sm text-transform: uppercase font-semibold">
+                      Sent On:
+                    </span>
                   </td>
                   <td className="py-2">
                     {selectedPurchaseOrder.releaseDate
@@ -189,19 +201,25 @@ const PoDetailsV = () => {
                       : "-"}
                   </td>
                   <td className="py-2">
-                    <span className="font-bold">Po Amount:</span>
+                    <span className="text-gray-500 text-sm text-transform: uppercase font-semibold">
+                      Po Amount:
+                    </span>
                   </td>
                   <td className="py-2">{selectedPurchaseOrder.orderAmount}</td>
                 </tr>
                 <tr>
                   <td className="py-2">
-                    <span className="font-bold">Status:</span>
+                    <span className=" text-gray-500 text-sm text-transform: uppercase font-semibold">
+                      Status:
+                    </span>
                   </td>
                   <td className="py-2">
                     {selectedPurchaseOrder.isAccepted ? "Accepted" : "Rejected"}
                   </td>
                   <td className="py-2">
-                    <span className="font-bold">Comments:</span>
+                    <span className="text-gray-500 text-sm text-transform: uppercase font-semibold">
+                      Comments:
+                    </span>
                   </td>
                   <td className="py-2">{selectedPurchaseOrder.comment}</td>
                 </tr>
@@ -209,7 +227,6 @@ const PoDetailsV = () => {
             </table>
 
             <div className="mt-4 flex justify-end">
-              
               {selectedPurchaseOrder.documentPath && (
                 <button
                   className="bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded"
@@ -236,15 +253,31 @@ const PoDetailsV = () => {
               <table className="min-w-full p-4 mb-5">
                 <thead>
                   <tr className="text-gray-600">
-                    <th className="px-4 py-2 text-center">GRN No.</th>
-                    <th className="px-4 py-2 text-center">PO No.</th>
-                    <th className="px-4 py-2 text-center">SENT ON (DATE)</th>
-                    <th className="px-4 py-2 text-center">SHIPMENT TYPE</th>
-                    <th className="px-4 py-2 text-center">COMMENT</th>
-                    
-                    <th className="px-4 py-2 text-center">View/Download</th>
-                    <th className="px-4 py-2 text-center">STATUS</th>
-                    <th className="px-4 py-2 text-center">Action</th>
+                    <th className="font-semibold text-sm text-transform: uppercase px-4 py-2 text-center">
+                      GRN No.
+                    </th>
+                    <th className="font-semibold text-sm text-transform: uppercase px-4 py-2 text-center">
+                      PO No.
+                    </th>
+                    <th className="font-semibold text-sm text-transform: uppercase px-4 py-2 text-center">
+                      SENT ON (DATE)
+                    </th>
+                    <th className="font-semibold text-sm text-transform: uppercase px-4 py-2 text-center">
+                      SHIPMENT TYPE
+                    </th>
+                    <th className="font-semibold text-sm text-transform: uppercase px-4 py-2 text-center">
+                      COMMENT
+                    </th>
+
+                    <th className="font-semibold text-sm text-transform: uppercase px-4 py-2 text-center">
+                      View/Download
+                    </th>
+                    <th className="font-semibold text-sm text-transform: uppercase px-4 py-2 text-center">
+                      STATUS
+                    </th>
+                    <th className="font-semibold text-sm text-transform: uppercase px-4 py-2 text-center">
+                      Action
+                    </th>
                     {/* <th className="px-4 py-2 text-left">ACTION</th> */}
                   </tr>
                   <tr className="text-gray-600">
@@ -276,7 +309,7 @@ const PoDetailsV = () => {
                         <td className="px-6 py-4 whitespace-no-wrap text-center">
                           {grn.comment}
                         </td>
-                        
+
                         <td className="px-6 py-4 whitespace-no-wrap text-center">
                           <a
                             href={grn.documentPath}
@@ -341,23 +374,27 @@ const PoDetailsV = () => {
               <table className="table-auto w-full rounded-lg  bg-white">
                 <thead>
                   <tr className="bg-white text-gray-600">
-                    <th className="px-4 py-2 text-left">
+                    <th className="font-semibold text-sm text-transform: uppercase px-4 py-2 text-left">
                       Sr.<p></p> No.
                     </th>
-                    <th className="px-4 py-2 text-left">
+                    <th className="font-semibold text-sm text-transform: uppercase px-4 py-2 text-left">
                       Purchase <p></p>Order No.
                     </th>
-                    <th className="px-4 py-2 text-left">
+                    <th className="font-semibold text-sm text-transform: uppercase px-4 py-2 text-left">
                       Vendor<p></p>Name
                     </th>
-                    <th className="px-4 py-2 text-left">
+                    <th className="font-semibold text-sm text-transform: uppercase px-4 py-2 text-left">
                       Sent<p></p> On
                     </th>
-                    <th className="px-4 py-2 text-left">
+                    <th className="font-semibold text-sm text-transform: uppercase px-4 py-2 text-left">
                       PO <p></p>Amount
                     </th>
-                    <th className="px-4 py-2 text-left">Status</th>
-                    <th className="px-4 py-2 text-left">Actions</th>
+                    <th className="font-semibold text-sm text-transform: uppercase px-4 py-2 text-left">
+                      Status
+                    </th>
+                    <th className="font-semibold text-sm text-transform: uppercase px-4 py-2 text-left">
+                      Actions
+                    </th>
                   </tr>
                   <tr className="bg-white text-gray-600">
                     <td colSpan="7" className=" px-4 py-1">
@@ -489,20 +526,34 @@ const PoDetailsV = () => {
               <table border="1px" className="w-full">
                 <tbody>
                   <tr>
-                    <th className="text-left">GRN No</th>
-                    <td className="text-left">{GRN.grnNo}</td>
+                    <th className="text-sm text-transform: uppercase text-left">
+                      GRN No
+                    </th>
+                    <td className="text-sm text-transform: uppercase text-left">
+                      {GRN.grnNo}
+                    </td>
                   </tr>
                   <tr>
-                    <th className="text-left">PurchaseOrder No</th>
-                    <td className="text-left">{GRN.grnNo}</td>
+                    <th className="text-sm text-transform: uppercase text-left">
+                      PurchaseOrder No
+                    </th>
+                    <td className="text-sm text-transform: uppercase text-left">
+                      {GRN.grnNo}
+                    </td>
                   </tr>
                   <tr>
-                    <th className="text-left">Sent On</th>
-                    <td className="text-left">{formatDateTime(GRN.sendOn)}</td>
+                    <th className="text-sm text-transform: uppercase text-left">
+                      Sent On
+                    </th>
+                    <td className="text-sm text-transform: uppercase text-left">
+                      {formatDateTime(GRN.sendOn)}
+                    </td>
                   </tr>
                   <tr>
-                    <th className="text-left">Shipment Type</th>
-                    <td className="text-left">
+                    <th className="text-sm text-transform: uppercase text-left">
+                      Shipment Type
+                    </th>
+                    <td className="text-sm text-transform: uppercase text-left">
                       {GRN.shipmentStatus ? (
                         <span className="text-green-500">Complete</span>
                       ) : (
@@ -511,11 +562,17 @@ const PoDetailsV = () => {
                     </td>
                   </tr>
                   <tr>
-                    <th className="text-left">Comment</th>
-                    <td className="text-left">{GRN.comment}</td>
+                    <th className="text-sm text-transform: uppercase text-left">
+                      Comment
+                    </th>
+                    <td className="text-sm text-transform: uppercase text-left">
+                      {GRN.comment}
+                    </td>
                   </tr>
                   <tr>
-                    <th className="text-left">Status</th>
+                    <th className="text-sm text-transform: uppercase text-left">
+                      Status
+                    </th>
                     <td className="text-left">
                       <button
                         className={`py-1 px-2 rounded ${

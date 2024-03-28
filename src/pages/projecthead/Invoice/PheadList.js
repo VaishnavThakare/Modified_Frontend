@@ -83,13 +83,27 @@ const PheadList = () => {
             <table className="table-auto w-full rounded-lg  bg-white">
               <thead>
                 <tr className="text-gray-600">
-                  <th className="px-4 py-2 text-left">SR. NO.</th>
-                  <th className="px-4 py-2 text-left">Invoice No.</th>
-                  <th className="px-4 py-2 text-left">Amount</th>
-                  <th className="px-4 py-2 text-left">SENT ON (date)</th>
-                  <th className="px-4 py-2 text-left">PAYMENT STATUS</th>
-                  <th className="px-4 py-2 text-left">Accept/Reject</th>
-                  <th className="px-4 py-2 text-left">ACTIONS</th>
+                  <th className="text-sm text-transform: uppercase px-4 py-2 text-left">
+                    SR. NO.
+                  </th>
+                  <th className="text-sm text-transform: uppercase px-4 py-2 text-left">
+                    Invoice No.
+                  </th>
+                  <th className="text-sm text-transform: uppercase px-4 py-2 text-left">
+                    Amount
+                  </th>
+                  <th className="text-sm text-transform: uppercase px-4 py-2 text-left">
+                    SENT ON (date)
+                  </th>
+                  <th className="text-sm text-transform: uppercase px-4 py-2 text-left">
+                    PAYMENT STATUS
+                  </th>
+                  <th className="text-sm text-transform: uppercase px-4 py-2 text-left">
+                    Accept/Reject
+                  </th>
+                  <th className="text-sm text-transform: uppercase px-4 py-2 text-left">
+                    ACTIONS
+                  </th>
                 </tr>
                 <tr className="text-gray-600">
                   <td colSpan="9" className="px-4 py-1">
@@ -131,34 +145,33 @@ const PheadList = () => {
                         </button>
                       </td>
                       <td className="px-4 py-2">
-                          {item.isAccepted === true && (
-                            <button
-                              className="py-1 px-2 rounded bg-green-200 text-green-700"
-                              style={{ minWidth: "6rem" }}
-                            >
-                              Accepted
-                            </button>
-                          )}
-                          {item.isAccepted === false && (
-                            <button
-                              className="py-1 px-2 rounded bg-red-200 text-red-600"
-                              style={{ minWidth: "6rem" }}
-                            >
-                              Rejected
-                            </button>
-                          )}
-                          {item.isAccepted === null && (
-                            <button
-                              className="py-1 px-2 rounded bg-yellow-200 text-yellow-700"
-                              style={{ minWidth: "6rem" }}
-                            >
-                              Pending
-                            </button>
-                          )}
-                        </td>
+                        {item.isAccepted === true && (
+                          <button
+                            className="py-1 px-2 rounded bg-green-200 text-green-700"
+                            style={{ minWidth: "6rem" }}
+                          >
+                            Accepted
+                          </button>
+                        )}
+                        {item.isAccepted === false && (
+                          <button
+                            className="py-1 px-2 rounded bg-red-200 text-red-600"
+                            style={{ minWidth: "6rem" }}
+                          >
+                            Rejected
+                          </button>
+                        )}
+                        {item.isAccepted === null && (
+                          <button
+                            className="py-1 px-2 rounded bg-yellow-200 text-yellow-700"
+                            style={{ minWidth: "6rem" }}
+                          >
+                            Pending
+                          </button>
+                        )}
+                      </td>
                       <td className="px-4 py-2 bg-white">
-                      {item.isAccepted == false ||
-                              item.isAccepted == null ? (
+                        {item.isAccepted == false || item.isAccepted == null ? (
                           <button
                             onClick={() => handleEdit(item.id)}
                             className={`mr-2`}

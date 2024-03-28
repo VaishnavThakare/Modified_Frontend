@@ -109,43 +109,43 @@ const PoDetails = () => {
         >
           <div className="relative">
             <p className="text-gray-900">
-              <span className="text-sm text-transform: uppercase font-bold">
+              <span className="text-sm text-transform: uppercase font-semibold">
                 Purchase Order No.:
               </span>
               : {selectedPurchaseOrder?.orderNo}
             </p>
             <p className="text-gray-900">
-              <span className="text-sm text-transform: uppercase font-bold">
+              <span className="text-sm text-transform: uppercase font-semibold">
                 Vendor Name.:
               </span>
               : {selectedPurchaseOrder?.vendorName}
             </p>
             <p className="text-gray-900">
-              <span className="text-sm text-transform: uppercase font-bold">
+              <span className="text-sm text-transform: uppercase font-semibold">
                 Created On:{" "}
               </span>
               : {formatDateTime(selectedPurchaseOrder?.createdOn)}
             </p>
             <p className="text-gray-900">
-              <span className="text-sm text-transform: uppercase font-bold">
+              <span className="text-sm text-transform: uppercase font-semibold">
                 Expected Delivery On:
               </span>
               : {formatDateTime(selectedPurchaseOrder?.expectedDelivery)}
             </p>
             <p className="text-gray-900">
-              <span className="text-sm text-transform: uppercase font-bold">
+              <span className="text-sm text-transform: uppercase font-semibold">
                 Sent On:
               </span>
               : {formatDateTime(selectedPurchaseOrder?.releaseDate)}
             </p>
             <p className="text-gray-900">
-              <span className="text-sm text-transform: uppercase font-bold">
+              <span className="text-sm text-transform: uppercase font-semibold">
                 Po Amount:
               </span>
               : {selectedPurchaseOrder?.orderAmount}
             </p>
             <p className="text-gray-900">
-              <span className="text-sm text-transform: uppercase font-bold">
+              <span className="text-sm text-transform: uppercase font-semibold">
                 Comments:
               </span>
               : {selectedPurchaseOrder?.comment}
@@ -176,25 +176,25 @@ const PoDetails = () => {
         <table className="table-auto w-full rounded-lg bg-white ">
           <thead>
             <tr className="text-gray-600">
-              <th className="text-sm text-transform: uppercase px-4 py-2 text-center">
+              <th className="font-semibold text-sm text-transform: uppercase px-4 py-2 text-center">
                 GRN NO.
               </th>
-              <th className="text-sm text-transform: uppercase px-4 py-2 text-center">
+              <th className="font-semibold text-sm text-transform: uppercase px-4 py-2 text-center">
                 PO Amount
               </th>
-              <th className="text-sm text-transform: uppercase px-4 py-2 text-center">
+              <th className="font-semibold text-sm text-transform: uppercase px-4 py-2 text-center">
                 Send On
               </th>
-              <th className="text-sm text-transform: uppercase px-4 py-2 text-center">
+              <th className="font-semibold text-sm text-transform: uppercase px-4 py-2 text-center">
                 Comments
               </th>
-              <th className="text-sm text-transform: uppercase px-4 py-2 text-center">
+              <th className="font-semibold text-sm text-transform: uppercase px-4 py-2 text-center">
                 Acceptance
               </th>
-              <th className="text-sm text-transform: uppercase px-4 py-2 text-center">
+              <th className="font-semibold text-sm text-transform: uppercase px-4 py-2 text-center">
                 Payment Status
               </th>
-              <th className="text-sm text-transform: uppercase px-4 py-2 text-center">
+              <th className="font-semibold text-sm text-transform: uppercase px-4 py-2 text-center">
                 Actions
               </th>
             </tr>

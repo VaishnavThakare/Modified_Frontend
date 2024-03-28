@@ -84,27 +84,33 @@ const PoDetailsPHead = () => {
             <table className="table-auto w-full rounded-lg bg-white">
               <thead>
                 <tr className="text-gray-600">
-                  <th className="px-4 py-2 text-left ">
+                  <th className="text-sm text-transform: uppercase px-4 py-2 text-left ">
                     Sr.<p></p> No.
                   </th>
-                  <th className="px-4 py-2 text-left ">
+                  <th className="text-sm text-transform: uppercase px-4 py-2 text-left ">
                     Purchase <p></p>Order No.
                   </th>
-                  <th className="px-4 py-2 text-left ">
+                  <th className="text-sm text-transform: uppercase px-4 py-2 text-left ">
                     Vendor <p></p>Name
                   </th>
-                  <th className="px-4 py-2 text-left ">
+                  <th className="text-sm text-transform: uppercase px-4 py-2 text-left ">
                     Release <p></p> On
                   </th>
-                  <th className="px-4 py-2 text-left ">
+                  <th className="text-sm text-transform: uppercase px-4 py-2 text-left ">
                     Accepted <p></p>On
                   </th>
-                  <th className="px-4 py-2 text-left ">
+                  <th className="text-sm text-transform: uppercase px-4 py-2 text-left ">
                     PO <p></p>Amount
                   </th>
-                  <th className="px-4 py-2 text-left ">Status</th>
-                  <th className="px-4 py-2 text-left ">Comments</th>
-                  <th className="px-4 py-2 text-left ">Actions</th>
+                  <th className="text-sm text-transform: uppercase px-4 py-2 text-left ">
+                    Status
+                  </th>
+                  <th className="text-sm text-transform: uppercase px-4 py-2 text-left ">
+                    Comments
+                  </th>
+                  <th className="text-sm text-transform: uppercase px-4 py-2 text-left ">
+                    Actions
+                  </th>
                 </tr>
                 <tr className=" text-gray-600">
                   <td colSpan="9" className=" px-4 py-1">

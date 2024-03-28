@@ -36,19 +36,19 @@ export default function AssignedProject() {
               <table className="min-w-full bg-white">
                 <thead>
                   <tr>
-                    <th className="px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-500 tracking-wider">
+                    <th className="text-sm text-transform: uppercase px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-500 tracking-wider">
                       Name
                     </th>
-                    <th className="px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-500 tracking-wider">
+                    <th className="text-sm text-transform: uppercase px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-500 tracking-wider">
                       Project Head Name
                     </th>
-                    <th className="px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-500 tracking-wider">
+                    <th className="text-sm text-transform: uppercase px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-500 tracking-wider">
                       Project Status
                     </th>
-                    <th className="px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-500 tracking-wider">
+                    <th className="text-sm text-transform: uppercase px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-500 tracking-wider">
                       Description
                     </th>
-                    <th className="px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-500 tracking-wider">
+                    <th className="text-sm text-transform: uppercase px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-500 tracking-wider">
                       Created On
                     </th>
                   </tr>
