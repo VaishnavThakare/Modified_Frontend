@@ -100,6 +100,7 @@ import RFPView from "./pages/admin/RFPView.js";
 import PoDetails from "./pages/Purchase Orders/PoDetails.js";
 import PoGrnView from "./pages/Purchase Orders/PoGrnView.js";
 import EditEvent from "./pages/admin/Event/EditEvent.js";
+import EditProfile from "./pages/admin/Profile/EditProfile.js";
 
 const App = () => {
   const [userRole, setuserRole] = useState(sessionStorage.getItem("roles"));
@@ -167,6 +168,11 @@ const App = () => {
 
           <Route path="addProfile" element={<AddProfile />}></Route>
           <Route path="allProfile" element={<AllProfile />}></Route>
+          <Route
+            path="editProfile/:profileId"
+            element={<EditProfile />}
+          ></Route>
+
           <Route path="all-application" element={<Application />}></Route>
           <Route
             path="purchase-OrderForm"

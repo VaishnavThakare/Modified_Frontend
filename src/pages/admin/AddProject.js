@@ -65,8 +65,8 @@ export default function AddProject() {
         
         <form onSubmit={handleSubmit} className="max-w-lg margin-left mt-8 appform bg-white">
   
-          <div className="flex text-2xl font-bold text-gray-500 mb-5 justify-center">
-            <h2>Create Project</h2>
+          <div className="flex text-2xl font-bold text-gray-500 mb-2 justify-center">
+          <h2 className="page-heading">Create Project</h2>
           </div>
           
           <div className="mb-6 relative">
@@ -89,17 +89,13 @@ export default function AddProject() {
           </div>
 
           <div className="mb-6 relative">
-  <label
-    htmlFor="projectHeadId"
-    className="block mb-2 text-sm font-medium text-gray-900"
-  >
-    Select an option
-  </label>
+  
   <select
     id="projectHeadId"
     name="projectHeadId"
     value={projectData.projectHeadId}
     onChange={handleChange}
+    required
     className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
   >
     <option value="" disabled>

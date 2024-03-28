@@ -4,8 +4,10 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
+import { useParams } from "react-router-dom";
 
-export default function AddProfile() {
+export default function EditProfile() {
+  const { profileId } = useParams();
   const [profile, setProfile] = useState({
     userId: "",
     position: "",
@@ -41,8 +43,26 @@ export default function AddProfile() {
     }
   };
 
+  const getProfile = async (Id) => {
+    try {
+      let res = await axios.get(
+        `${process.env.REACT_APP_API_URL}/ProfileCard/${Id}`
+      );
+      let data;
+      if (res.status == 200 && res.data != null) {
+        data = res.data;
+      }
+
+      setProfile(data);
+      setDescription(data.description);
+    } catch (error) {
+      console.error("Error fetching Profile data:", error);
+    }
+  };
+
   useEffect(() => {
     fetchUsers();
+    getProfile(profileId);
   }, []);
 
   const handleSubmit = async (e) => {
@@ -57,25 +77,19 @@ export default function AddProfile() {
       formDataToSend.append("IsActive", profile.isActive);
       console.log(formDataToSend);
 
-      const response = await axios.post(
-        `${process.env.REACT_APP_API_URL}/ProfileCard/Add`,
+      const response = await axios.put(
+        `${process.env.REACT_APP_API_URL}/ProfileCard/${profileId}`,
         formDataToSend
       );
       if (response.status === 200) {
-        toast.success("Profile Added", {
+        toast.success("Profile Updated", {
           position: "top-right",
         });
       }
 
-      setProfile({
-        userId: "",
-        position: "",
-        isActive: "",
-      });
-      setDescription("");
-      setFile([]);
+      getProfile(profileId);
     } catch (error) {
-      console.error("Error adding Profile:", error.message);
+      console.error("Error updating Profile:", error.message);
     }
   };
   return (
@@ -121,7 +135,6 @@ export default function AddProfile() {
               name="image"
               onChange={handleFile}
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-              required
             />
           </div>
 
@@ -180,7 +193,7 @@ export default function AddProfile() {
               type="submit"
               className="bg-cyan-500 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded"
             >
-              Add Profile
+              Update Profile
             </button>
           </div>
         </form>

@@ -2,19 +2,14 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from "react-router-dom";
 
 export default function AllProfile() {
+  const navigate = useNavigate();
   const [profile, setProfile] = useState([]);
-  const [modal, setModal] = useState();
+
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(3);
-
-  const [file, setFile] = useState();
-  const [showEditModal, setShowEditModal] = useState(false);
-
-  const toggleEditModal = () => {
-    setShowEditModal(!showEditModal);
-  };
 
   const getAllProfile = async () => {
     try {
@@ -25,19 +20,12 @@ export default function AllProfile() {
       let data = [];
       if (res.status == 200 && res.data != null) {
         data = res.data;
-        toast.success("All Profile Loaded", {
-          position: "top-right",
-        });
       }
 
       setProfile(data);
     } catch (error) {
       console.error("Error fetching Profile data:", error);
     }
-  };
-
-  const handleFile = (event) => {
-    setFile(event.target.files[0]);
   };
 
   const handleDelete = async (id, index) => {
@@ -49,42 +37,6 @@ export default function AllProfile() {
       getAllProfile();
     } catch (error) {
       console.error("Error deleting item:", error);
-    }
-  };
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setModal((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-  };
-
-  const handleEdit = async (e) => {
-    e.preventDefault();
-    try {
-      const formDataToSend = new FormData();
-      formDataToSend.append("Description", modal.description);
-      formDataToSend.append("Image", file);
-      formDataToSend.append("IsActive", modal.isActive);
-      // formDataToSend.append("UserId", modal.id);
-      formDataToSend.append("Position", modal.position);
-      const response = await axios.put(
-        `${process.env.REACT_APP_API_URL}/ProfileCard/${modal.id}`,
-        formDataToSend
-      );
-      if (response.status === 200) {
-        toast.success("Profile Updated", {
-          position: "top-right",
-        });
-      }
-
-      toggleEditModal();
-      getAllProfile();
-      setFile();
-      document.getElementById("file").value = "";
-    } catch (error) {
-      console.error("Error update Profile:", error.message);
     }
   };
 
@@ -124,9 +76,12 @@ export default function AllProfile() {
                   {profileItem.name + " (" + profileItem.position + ")"}
                 </h3>
                 <div className="line-clamp-4">
-                  <p className="md:text-sm text-gray-500 text-sm">
-                    {profileItem.description}
-                  </p>
+                  <p
+                    className="md:text-sm text-gray-500 text-sm"
+                    dangerouslySetInnerHTML={{
+                      __html: profileItem.description,
+                    }}
+                  />
                 </div>
                 <div>
                   <button
@@ -152,8 +107,7 @@ export default function AllProfile() {
                   </button>
                   <button
                     onClick={() => {
-                      toggleEditModal();
-                      setModal(profileItem);
+                      navigate(`/admin/editProfile/${profileItem.id}`);
                     }}
                     className="bg-cyan-500 hover:bg-cyan-700 text-white font-bold rounded ml-4 p-1"
                   >
@@ -196,106 +150,6 @@ export default function AllProfile() {
         )}
       </div>
 
-      {showEditModal && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-          <div className="bg-white p-2 max-w-md rounded-lg shadow-md appform">
-            <form onSubmit={handleEdit}>
-              <div className="flex text-2xl font-bold text-gray-500 mb-2">
-                <h2>Update Profile</h2>
-              </div>
-
-              <div className="mb-6">
-                <label
-                  htmlFor="title"
-                  className="block mb-2 text-sm font-medium text-gray-900"
-                >
-                  Position
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  name="position"
-                  value={modal.position}
-                  onChange={handleChange}
-                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                  required
-                />
-              </div>
-
-              <div className="mb-6">
-                <label
-                  htmlFor="content"
-                  className="block mb-2 text-sm font-medium text-gray-900"
-                >
-                  Description
-                </label>
-                <textarea
-                  type="text"
-                  id="name"
-                  name="description"
-                  value={modal.description}
-                  onChange={handleChange}
-                  className="resize-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                  rows="4"
-                  placeholder="Enter your text here..."
-                  required
-                />
-              </div>
-
-              <div className="mb-6">
-                <label
-                  htmlFor="isActive"
-                  className="block mb-2 text-sm font-medium text-gray-900"
-                >
-                  IsActive
-                </label>
-                <select
-                  id="isActive"
-                  name="isActive"
-                  value={modal.isActive}
-                  onChange={handleChange}
-                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                >
-                  <option value="" disabled>
-                    Choose Status
-                  </option>
-                  <option value={true}> True </option>
-                  <option value={false}> False </option>
-                </select>
-              </div>
-
-              <div className="mb-6">
-                <label
-                  htmlFor="file"
-                  className="block mb-2 text-sm font-medium text-gray-900"
-                >
-                  News Image
-                </label>
-                <input
-                  type="file"
-                  id="file"
-                  name="Image"
-                  onChange={handleFile}
-                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                />
-              </div>
-
-              <button
-                type="submit"
-                className="bg-cyan-500 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded"
-              >
-                Update Profile
-              </button>
-              <button
-                onClick={toggleEditModal}
-                className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded ml-2"
-              >
-                Close
-              </button>
-            </form>
-          </div>
-        </div>
-      )}
       <ToastContainer />
     </>
   );
