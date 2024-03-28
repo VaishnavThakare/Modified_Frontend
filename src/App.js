@@ -99,6 +99,7 @@ import RFPEdit from "./pages/admin/RFPEdit.js";
 import RFPView from "./pages/admin/RFPView.js";
 import PoDetails from "./pages/Purchase Orders/PoDetails.js";
 import PoGrnView from "./pages/Purchase Orders/PoGrnView.js";
+import EditEvent from "./pages/admin/Event/EditEvent.js";
 
 const App = () => {
   const [userRole, setuserRole] = useState(sessionStorage.getItem("roles"));
@@ -159,6 +160,8 @@ const App = () => {
 
           <Route path="allEvents" element={<AllEvent />}></Route>
           <Route path="addEvent" element={<AddEvent />}></Route>
+          <Route path="editEvent/:eventId" element={<EditEvent />}></Route>
+
           <Route path="addDocument" element={<AddPolicyDocument />}></Route>
           <Route path="allDocuments" element={<AllPolicyDocuments />}></Route>
 

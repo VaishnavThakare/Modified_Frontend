@@ -86,12 +86,6 @@ export default function EditNews() {
           </div>
 
           <div className="mb-6 relative">
-            <label
-              htmlFor="title"
-              className="ml-1 absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"
-            >
-              Title
-            </label>
             <input
               type="text"
               id="title"
@@ -102,21 +96,27 @@ export default function EditNews() {
               placeholder=" "
               required
             />
+            <label
+              htmlFor="title"
+              className="ml-1 absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"
+            >
+              Title
+            </label>
           </div>
 
           <div class="mb-6 relative">
-            <label
-              for="content"
-              class="ml-1 absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"
-            >
-              Content
-            </label>
             <ReactQuill
               id="content"
               theme="snow"
               value={content}
               onChange={setContent}
             />
+            <label
+              for="content"
+              class="ml-1 absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"
+            >
+              Content
+            </label>
           </div>
 
           <div class="mb-6">
@@ -135,7 +135,7 @@ export default function EditNews() {
             </select>
           </div>
 
-          <div class="mb-6">
+          <div class="mb-6 relative">
             <label
               for="image"
               class="block mb-2 text-sm font-medium text-gray-900"
@@ -148,8 +148,10 @@ export default function EditNews() {
               name="image"
               onChange={handleFile}
               class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+              required
             />
           </div>
+
           <div className="flex justify-center">
             <button
               type="submit"
