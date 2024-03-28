@@ -2,8 +2,51 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import FileInput from "../FileInput";
+import ImageCropper from "./ImageCropper";
 
 export default function AddBanner() {
+
+  const [image,setImage] = useState("");
+  const [imgAfterCrop,setImgAfterCrop] = useState("");
+  const [currentPage,setCurrentPage] = useState("choose-img");
+  const onImageSelected = (selectedImg)=>{
+    setImage(selectedImg);
+    setCurrentPage("crop-img");
+  }
+
+  const onCropDone = (imgCroppedArea)=>{
+    const canvasEle = document.createElement("canvas");
+    canvasEle.width = imgCroppedArea.width;
+    canvasEle.height = imgCroppedArea.height;
+    const context = canvasEle.getContext("2d");
+
+    let imageObj1 = new Image();
+    imageObj1.src=image;
+    imageObj1.onload = function(){ 
+      context.drawImage(
+        imageObj1,
+        imgCroppedArea.x,
+        imgCroppedArea.y,
+        imgCroppedArea.width,
+        imgCroppedArea.height,
+        0,
+        0,
+        imgCroppedArea.width,
+        imgCroppedArea.height
+      );
+      const dataURL= canvasEle.toDataURL("image/Jpeg");
+      console.log(imageObj1.src);
+      setImgAfterCrop(dataURL);
+      setCurrentPage("img-cropped");
+    }
+  }
+  const onCropCancel = ()=>{
+    setCurrentPage("choose-img");
+    setImage("");
+  }
+
+
   const [banner, setbanner] = useState({
     Title: "",
     Image: "",
@@ -32,9 +75,9 @@ export default function AddBanner() {
     e.preventDefault();
     try {
       console.log(banner);
-      const formDataToSend = new FormData();
+      const formDataToSend = new FormData(); 
       formDataToSend.append("Title", banner.Title);
-      formDataToSend.append("Image", file);
+      formDataToSend.append("Image", imgAfterCrop);
       formDataToSend.append("IsActive", banner.IsActive);
       console.log(formDataToSend);
 
@@ -105,7 +148,7 @@ export default function AddBanner() {
           </div>
 
           <div class="mb-6">
-            <label
+            {/* <label
               for="description"
               class="block mb-2 text-sm font-medium text-gray-900"
             >
@@ -118,7 +161,20 @@ export default function AddBanner() {
               onChange={handleFile}
               class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
               required
-            />
+            />    */}
+            <button type="button" className="w-full bg-cyan-400 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded">
+              <FileInput onImageSelected={onImageSelected}></FileInput>
+            </button>           
+            {
+              currentPage === "crop-img" ?
+                <ImageCropper
+                  image={image}
+                  onCropDone={onCropDone}
+                  onCropCancel={onCropCancel}
+                />
+                :
+                <div></div>
+            }
           </div>
           <div className="flex justify-center">
           <button
@@ -130,6 +186,12 @@ export default function AddBanner() {
           </div>
         </form>
       </div>
+      {
+        imgAfterCrop === ""?
+        <></>
+        :
+        <img src={imgAfterCrop} className="w-[150px] h-[150px]"></img>
+      }
       <ToastContainer/>
     </>
   );
