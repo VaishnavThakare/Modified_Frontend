@@ -26,9 +26,8 @@ const ProjectEdit = () => {
       }
     };
 
-    if (projectId) {
-      fetchProjectById();
-    }
+    fetchProjectById();
+    
   }, [projectId]);
 
   const handleInputChange = (event) => {
@@ -46,7 +45,7 @@ const ProjectEdit = () => {
       );
       if (response.status === 200) {
         toast.success(`Project Updated successfully!`);
-        navigate(`/admin/projects`); // Redirect to projects list after successful update
+        navigate(-1); 
       } else {
         toast.error("Failed to update project");
       }
