@@ -127,7 +127,7 @@ const VendorList = () => {
                     <td class="px-6 py-4 whitespace-no-wrap">
                       <div class="text-sm text-center leading-5">
                         {`${vendor.address}, ${vendor.city}, ${vendor.state}`}
-                        {`${vendor.address}, ${vendor.city}, ${vendor.state}`}
+                        
                       </div>
                     </td>
                     <td class="px-6 py-4 whitespace-no-wrap">

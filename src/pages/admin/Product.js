@@ -118,9 +118,7 @@ export default function Products() {
                     <th className="font-semibold text-sm text-transform: uppercase px-6 py-3 border-b-2 border-gray-300 text-center leading-4 tracking-wider">
                       Short Description
                     </th>
-                    <th className="font-semibold text-sm text-transform: uppercase px-6 py-3 border-b-2 border-gray-300 text-center leading-4 tracking-wider">
-                      Long Description
-                    </th>
+                    
                     <th className="font-semibold text-sm text-transform: uppercase px-6 py-3 border-b-2 border-gray-300 text-center leading-4 tracking-wider">
                       Unit Type
                     </th>
@@ -133,9 +131,7 @@ export default function Products() {
                     <th className="font-semibold text-sm text-transform: uppercase px-6 py-3 border-b-2 border-gray-300 text-center leading-4 tracking-wider">
                       Product Category
                     </th>
-                    <th className="font-semibold text-sm text-transform: uppercase px-6 py-3 border-b-2 border-gray-300 text-center leading-4 tracking-wider">
-                      Product Sub-category
-                    </th>
+                    
                     <th className="font-semibold text-sm text-transform: uppercase px-6 py-3 border-b-2 border-gray-300 text-center leading-4 tracking-wider">
                       Actions
                     </th>
