@@ -3,17 +3,7 @@ import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import axios from "axios";
-import { useParams, useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faEye,
-  faEdit,
-  faArrowLeft,
-  faArrowRight,
-} from "@fortawesome/free-solid-svg-icons";
 import {
   faEye,
   faEdit,
@@ -41,7 +31,6 @@ const ProjectHeadView = () => {
     }
   };
 
-
   const fetchProjectHead = async () => {
     try {
       const response = await axios.get(
@@ -54,15 +43,10 @@ const ProjectHeadView = () => {
     }
   };
 
-
   useEffect(() => {
     fetchProjectHead();
     fetchProjects();
   }, [projectHeadId]);
-
-  const indexOfFirstItem = (currentPage - 1) * itemsPerPage;
-  const indexOfLastItem = currentPage * itemsPerPage;
-  const currentItems = projects.slice(indexOfFirstItem, indexOfLastItem);
 
   const handlePEditDetails = (projectId) => {
     navigate(`/admin/projects/${projectId}`);
@@ -102,7 +86,6 @@ const ProjectHeadView = () => {
     return formattedDateTime;
   };
 
-
   return (
     <>
       <div>
@@ -119,58 +102,7 @@ const ProjectHeadView = () => {
               <button
                 className=" bg-cyan-500 text-white px-4 py-2 rounded"
                 onClick={backButton}
-    <>
-      <div>
-        <div className="flex justify-between">
-          <div>
-            <div className="flex text-2xl font-bold text-gray-500 ">
-              <h2 className="text-left text-cyan-500">PROJECT HEAD DETAILS</h2>
-            </div>
-            <div className="w-52 bg-cyan-400 h-0.5 mb-1"></div>
-            <div className="w-96 bg-cyan-400 h-0.5 mb-5"></div>
-          </div>
-          <div>
-            <div className="flex justify-center">
-              <button
-                className=" bg-cyan-500 text-white px-4 py-2 rounded"
-                onClick={backButton}
               >
-                Back
-              </button>
-            </div>
-          </div>
-        </div>
-        <div className="min-w-full border-2 border-cyan-500 rounded-lg mb-5 bg-white">
-          <div
-            className="bg-white p-6 rounded-md shadow-md"
-            style={{ height: "fit-content" }}
-          >
-            <p className="text-gray-900">
-              <span className="font-bold text-transform: uppercase text-sm">
-                SR.NO:
-              </span>{" "}
-              {projectHeadData.id}
-            </p>
-            <p className="text-gray-900">
-              <span className="font-bold text-transform: uppercase text-sm">
-                Name:
-              </span>{" "}
-              {projectHeadData.name}
-            </p>
-            <p className="text-gray-900">
-              <span className="font-bold text-transform: uppercase text-sm">
-                Email:
-              </span>{" "}
-              {projectHeadData.email}
-            </p>
-            <p className="text-gray-900">
-              <span className="font-bold text-transform: uppercase text-sm">
-                Phone Number:
-              </span>{" "}
-              {projectHeadData.phoneNumber}
-            </p>
-          </div>
-        </div>
                 Back
               </button>
             </div>
@@ -206,95 +138,12 @@ const ProjectHeadView = () => {
           <table className="table-auto w-full rounded-lg  bg-white ">
             <thead>
               <tr className="text-gray-600">
-                <th className="text-sm text-transform: uppercase px-4 py-2 text-center">
-                  Project Name
-                </th>
-                <th className="text-sm text-transform: uppercase px-4 py-2 text-center">
-                  Project Head Name
-                </th>
-                <th className="text-sm text-transform: uppercase px-4 py-2 text-center">
-                  Created On
-                </th>
-                <th className="text-sm text-transform: uppercase px-4 py-2 text-center">
-                  Comment
-                </th>
-                <th className="text-sm text-transform: uppercase px-4 py-2 text-center">
-                  Status
-                </th>
-                <th className="text-sm text-transform: uppercase px-4 py-2 text-center">
-                  Action
-                </th>
-              </tr>
-              <tr className="text-gray-600">
-                <td colSpan="6" className="px-4 py-1">
-                  <div style={{ borderTop: "2px solid gray" }}></div>
-                </td>
-              </tr>
-            </thead>
-            <tbody>
-              {projects.map((project) => (
-                <tr key={project.id} className="bg-white">
-                  <td className="px-4 py-2 text-center">{project.name}</td>
-                  <td className="px-4 py-2 text-center">
-                    {project.projectHeadName}
-                  </td>
-                  <td className="px-4 py-2 text-center">
-                    {formatDateTime(project.createdOn)}
-                  </td>
-                  <td className="px-4 py-2 text-center">
-                    {project.description}
-                  </td>
-                  <td className="px-4 py-2 text-center">
-                    {project.projectStatus}
-                  </td>
-                  <td className="px-4 py-2 flex flex-row justify-center ">
-                    <button
-                      className="mr-2"
-                      onClick={() => handlePEditDetails(project.id)}
-                    >
-                      <FontAwesomeIcon
-                        icon={faEdit}
-                        className="text-cyan-600 text-xl"
-                      />
-                    </button>
-                    <button
-                      className="mr-2"
-                      onClick={() => handlePViewDetails(project.id)}
-                    >
-                      <FontAwesomeIcon
-                        icon={faEye}
-                        className="text-cyan-600 text-xl"
-                      />
-                    </button>
-                  </td>
-                </tr>
-              ))}
-              {projects.length === 0 && (
-                <tr>
-                  <td colSpan="6" className="px-4 py-2 text-center bg-white">
-                    No Projects found.
-                  </td>
-                </tr>
-              )}
-            </tbody>
-          </table>
-        </div>
-        <div className="flex justify-end mt-2 ml-2 mr-2">
-        <div className="flex text-2xl font-bold text-gray-500 mt-14">
-          <h2 className="text-left text-cyan-500 ">PROJECT LIST</h2>
-        </div>
-        <div className="w-1/5 bg-cyan-400 h-0.5 mb-1"></div>
-        <div className="w-1/3 bg-cyan-400 h-0.5 mb-5"></div>
-        <div className="overflow-x-auto mt-8 ml-2 mr-2 border-2 border-cyan-500 p-0.5 rounded-lg shadow-lg">
-          <table className="table-auto w-full rounded-lg  bg-white ">
-            <thead>
-              <tr className="text-gray-600">
-                <th className="px-4 py-2 text-center uppercase">Sr. No.</th>
-                <th className="px-4 py-2 text-center uppercase">Project Name</th>
-                <th className="px-4 py-2 text-center uppercase">Project Head Name</th>
-                <th className="px-4 py-2 text-center uppercase">Created On</th>
-                <th className="px-4 py-2 text-center uppercase">Status</th>
-                <th className="px-4 py-2 text-center uppercase">Action</th>
+                <th className="px-4 py-2 text-center ">Sr. No.</th>
+                <th className="px-4 py-2 text-center">Project Name</th>
+                <th className="px-4 py-2 text-center">Project Head Name</th>
+                <th className="px-4 py-2 text-center">Created On</th>
+                <th className="px-4 py-2 text-center">Status</th>
+                <th className="px-4 py-2 text-center">Action</th>
               </tr>
               <tr className="text-gray-600">
                 <td colSpan="6" className="px-4 py-1">
@@ -386,8 +235,6 @@ const ProjectHeadView = () => {
             <FontAwesomeIcon icon={faArrowRight} className="pagination-icon" />
           </button>
         </div>
-      </div>
-    </>
       </div>
     </>
   );
