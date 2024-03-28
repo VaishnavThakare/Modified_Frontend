@@ -40,19 +40,19 @@ const ProjectHeadList = () => {
             <table className="table-auto w-full rounded-lg bg-white shadow-lg">
               <thead>
                 <tr className="text-gray-600">
-                  <th className="text-sm text-transform: uppercase px-4 py-2 text-center">
+                  <th className="font-semibold text-sm text-transform: uppercase px-4 py-2 text-center">
                     SR.NO
                   </th>
-                  <th className="text-sm text-transform: uppercase px-4 py-2 text-center">
+                  <th className="font-semibold text-sm text-transform: uppercase px-4 py-2 text-center">
                     Name
                   </th>
-                  <th className="text-sm text-transform: uppercase px-4 py-2 text-center">
+                  <th className="font-semibold text-sm text-transform: uppercase px-4 py-2 text-center">
                     Email
                   </th>
-                  <th className="text-sm text-transform: uppercase px-4 py-2 text-center">
+                  <th className="font-semibold text-sm text-transform: uppercase px-4 py-2 text-center">
                     Phone Number
                   </th>
-                  <th className="text-sm text-transform: uppercase px-4 py-2 text-center">
+                  <th className="font-semibold text-sm text-transform: uppercase px-4 py-2 text-center">
                     Actions<p></p>(View)
                   </th>
                 </tr>

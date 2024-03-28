@@ -110,31 +110,31 @@ const DocumentDetails = () => {
             <div className="w-80 bg-cyan-500 h-0.5 "></div>
             <div className="bg-white mt-3 border-2 border-cyan-500 p-4 w-1/2 rounded-lg shadow-lg">
               <p>
-                <strong className="text-sm text-transform: uppercase">
+                <strong className="font-semibold text-sm text-transform: uppercase">
                   Vendor ID:
                 </strong>{" "}
                 {vendorDetails.id}
               </p>
               <p>
-                <strong className="text-sm text-transform: uppercase ">
+                <strong className="font-semibold text-sm text-transform: uppercase ">
                   Organization Name:
                 </strong>{" "}
                 {vendorDetails.organizationName}
               </p>
               <p>
-                <strong className="text-sm text-transform: uppercase">
+                <strong className="font-semibold text-sm text-transform: uppercase">
                   Name:
                 </strong>{" "}
                 {vendorDetails.name}
               </p>
               <p>
-                <strong className="text-sm text-transform: uppercase">
+                <strong className="font-semibold text-sm text-transform: uppercase">
                   Email:
                 </strong>{" "}
                 {vendorDetails.email}
               </p>
               <p>
-                <strong className="text-sm text-transform: uppercase">
+                <strong className="font-semibold text-sm text-transform: uppercase">
                   Phone Number:
                 </strong>{" "}
                 {vendorDetails.phoneNumber}
@@ -145,7 +145,9 @@ const DocumentDetails = () => {
             <br />
             <br />
             <div className="mt-4 flex text-2xl font-bold text-gray-500">
-              <h2 className="text-left text-cyan-500">DOCUMENT DETAILS</h2>
+              <h2 className="font-semibold text-left text-cyan-500">
+                DOCUMENT DETAILS
+              </h2>
             </div>
             <div className="w-72 bg-cyan-500 h-0.5 mb-1"></div>
             <div className="w-80 bg-cyan-500 h-0.5 mb-3"></div>
@@ -155,16 +157,16 @@ const DocumentDetails = () => {
                 <table className="min-w-full p-4 mb-5 text-gray-600">
                   <thead>
                     <tr>
-                      <th className="text-sm text-transform: uppercase px-6 py-3 border-b-2 border-gray-300 text-center leading-4 tracking-wider">
+                      <th className=" font-semibold text-sm text-transform: uppercase px-6 py-3 border-b-2 border-gray-300 text-center leading-4 tracking-wider">
                         Document
                       </th>
-                      <th className="text-sm text-transform: uppercase px-6 py-3 border-b-2 border-gray-300 text-center leading-4 tracking-wider">
+                      <th className="font-semibold text-sm text-transform: uppercase px-6 py-3 border-b-2 border-gray-300 text-center leading-4 tracking-wider">
                         View
                       </th>
-                      <th className="text-sm text-transform: uppercase px-6 py-3 border-b-2 border-gray-300 text-center leading-4 tracking-wider">
+                      <th className="font-semibold text-sm text-transform: uppercase px-6 py-3 border-b-2 border-gray-300 text-center leading-4 tracking-wider">
                         Status
                       </th>
-                      <th className="text-sm text-transform: uppercase px-6 py-3 border-b-2 border-gray-300 text-center leading-4 tracking-wider">
+                      <th className="font-semibold text-sm text-transform: uppercase px-6 py-3 border-b-2 border-gray-300 text-center leading-4 tracking-wider">
                         Action
                       </th>
                     </tr>

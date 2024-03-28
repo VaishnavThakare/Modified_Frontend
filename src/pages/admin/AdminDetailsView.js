@@ -46,13 +46,13 @@ const AdminDetailsView = () => {
         <table className="w-[100%] bg-white">
           <tbody>
             <tr>
-              <th className="text-sm text-transform: uppercase text-left px-6 py-3  leading-4 text-gray-600 tracking-wider">
+              <th className="font-semibold text-sm text-transform: uppercase text-left px-6 py-3  leading-4 text-gray-600 tracking-wider">
                 Invoice No
               </th>
-              <td className="text-sm text-transform: uppercase text-left px-6 py-4 whitespace-no-wrap text-sm">
+              <td className="font-semibold text-sm text-transform: uppercase text-left px-6 py-4 whitespace-no-wrap text-sm">
                 {invoice.invoiceNo}
               </td>
-              <th className="text-sm text-transform: uppercase text-left px-6 py-3  leading-4 text-gray-600 tracking-wider">
+              <th className="font-semibold text-sm text-transform: uppercase text-left px-6 py-3  leading-4 text-gray-600 tracking-wider">
                 Date Sent On
               </th>
               <td className="px-6 py-4 whitespace-no-wrap text-left  text-sm">
@@ -60,13 +60,13 @@ const AdminDetailsView = () => {
               </td>
             </tr>
             <tr>
-              <th className="text-sm text-transform: uppercase text-left px-6 py-3  leading-4 text-gray-600 tracking-wider">
+              <th className="font-semibold text-sm text-transform: uppercase text-left px-6 py-3  leading-4 text-gray-600 tracking-wider">
                 Amount
               </th>
               <td className="px-6 py-4 whitespace-no-wrap text-left  text-sm">
                 {invoice.amount}
               </td>
-              <th className="text-sm text-transform: uppercase text-left px-6 py-3  leading-4 text-gray-600 tracking-wider">
+              <th className="font-semibold text-sm text-transform: uppercase text-left px-6 py-3  leading-4 text-gray-600 tracking-wider">
                 GRN Number
               </th>
               <td className="px-6 py-4 whitespace-no-wrap text-left  text-sm">
@@ -74,16 +74,16 @@ const AdminDetailsView = () => {
               </td>
             </tr>
             <tr>
-              <th className="text-sm text-transform: uppercase text-left px-6 py-3  leading-4 text-gray-600 tracking-wider">
+              <th className="font-semibold text-sm text-transform: uppercase text-left px-6 py-3  leading-4 text-gray-600 tracking-wider">
                 PO Number
               </th>
               <td className="px-6 py-4 whitespace-no-wrap text-left  text-sm">
                 {invoice.grn.purchaseOrder.orderNo}
               </td>
-              <th className="text-sm text-transform: uppercase text-left px-6 py-3  leading-4 text-gray-600 tracking-wider">
+              <th className="font-semibold text-sm text-transform: uppercase text-left px-6 py-3  leading-4 text-gray-600 tracking-wider">
                 Status
               </th>
-              <td className="text-sm text-transform: uppercase px-6 py-4 whitespace-no-wrap text-left  text-sm">
+              <td className="font-semibold text-sm text-transform: uppercase px-6 py-4 whitespace-no-wrap text-left  text-sm">
                 {invoice.isAccepted ? (
                   <span className="bg-green-400 py-1 px-3 rounded text-green-700">
                     Approved
@@ -96,7 +96,7 @@ const AdminDetailsView = () => {
               </td>
             </tr>
             <tr>
-              <th className="text-sm text-transform: uppercase text-left px-6 py-3   leading-4 text-gray-600 tracking-wider">
+              <th className="font-semibold text-sm text-transform: uppercase text-left px-6 py-3   leading-4 text-gray-600 tracking-wider">
                 Payment Status
               </th>
               <td className="px-6 py-4 whitespace-no-wrap text-left  text-sm">
@@ -110,7 +110,7 @@ const AdminDetailsView = () => {
                   </span>
                 )}
               </td>
-              <th className="text-sm text-transform: uppercase text-left px-6 py-3   leading-4 text-gray-600 tracking-wider">
+              <th className="font-semibold text-sm text-transform: uppercase text-left px-6 py-3   leading-4 text-gray-600 tracking-wider">
                 Due Date
               </th>
               <td className="px-6 py-4 whitespace-no-wrap text-left  text-sm">
@@ -118,7 +118,7 @@ const AdminDetailsView = () => {
               </td>
             </tr>
             <tr>
-              <th className="text-sm text-transform: uppercase px-6 py-3 text-left leading-4 text-gray-600 tracking-wider">
+              <th className="font-semibold text-sm text-transform: uppercase px-6 py-3 text-left leading-4 text-gray-600 tracking-wider">
                 View
               </th>
               <td className="px-6 py-2 text-left  whitespace-no-wrap text-sm">
@@ -133,7 +133,7 @@ const AdminDetailsView = () => {
                   />
                 </a>
               </td>
-              <th className="text-sm text-transform: uppercase px-6 py-3 text-left leading-4 text-gray-600 tracking-wider">
+              <th className="font-semibold text-sm text-transform: uppercase px-6 py-3 text-left leading-4 text-gray-600 tracking-wider">
                 Comment
               </th>
               <td className="px-6 py-2 text-left  whitespace-no-wrap text-sm">

@@ -174,19 +174,19 @@ export default function Project() {
             style={{ height: "fit-content" }}
           >
             <p className="text-gray-900 mb-3">
-              <span className="text-sm text-transform: uppercase font-bold">
+              <span className="text-sm text-transform: uppercase font-semibold">
                 Name
               </span>
               : {grnDetails.name}
             </p>
             <p className="text-gray-900 mb-3">
-              <span className="text-sm text-transform: uppercase font-bold">
+              <span className="text-sm text-transform: uppercase font-semibold">
                 Project Head Name
               </span>
               : {grnDetails.projectHeadName}
             </p>
             <p className="text-gray-900 mb-3">
-              <span className="text-sm text-transform: uppercase font-bold">
+              <span className="text-sm text-transform: uppercase font-semibold">
                 Created On
               </span>
               : {formatDateTime(grnDetails.createdOn)}
@@ -224,7 +224,7 @@ export default function Project() {
               </td>
             </p> */}
             <p className="text-gray-900">
-              <span className="font-bold">Description</span>:{" "}
+              <span className="font-semibold">Description</span>:{" "}
               {grnDetails.description}
             </p>
           </div>
@@ -245,31 +245,31 @@ export default function Project() {
           <table className="table-auto w-full 0 bg-white">
             <thead>
               <tr className="text-gray-600">
-                <th className="text-sm text-transform: uppercase px-4 py-2 text-center ">
+                <th className="font-semibold text-sm text-transform: uppercase px-4 py-2 text-center ">
                   Sr.<p></p> No.
                 </th>
-                <th className="text-sm text-transform: uppercase px-4 py-2 text-center ">
+                <th className="font-semibold text-sm text-transform: uppercase px-4 py-2 text-center ">
                   Purchase <p></p>Order No.
                 </th>
-                <th className="text-sm text-transform: uppercase px-4 py-2 text-center ">
+                <th className="font-semibold text-sm text-transform: uppercase px-4 py-2 text-center ">
                   Vendor <p></p>Name
                 </th>
-                <th className="text-sm text-transform: uppercase px-4 py-2 text-center ">
+                <th className="font-semibold text-sm text-transform: uppercase px-4 py-2 text-center ">
                   Release <p></p> On
                 </th>
-                <th className="text-sm text-transform: uppercase px-4 py-2 text-center ">
+                <th className="font-semibold text-sm text-transform: uppercase px-4 py-2 text-center ">
                   Accepted <p></p>On
                 </th>
-                <th className="text-sm text-transform: uppercase px-4 py-2 text-center ">
+                <th className="font-semibold text-sm text-transform: uppercase px-4 py-2 text-center ">
                   PO <p></p>Amount
                 </th>
-                <th className="text-sm text-transform: uppercase px-4 py-2 text-center ">
+                <th className="font-semibold text-sm text-transform: uppercase px-4 py-2 text-center ">
                   Status
                 </th>
-                <th className="text-sm text-transform: uppercase px-4 py-2 text-center ">
+                <th className="font-semibold text-sm text-transform: uppercase px-4 py-2 text-center ">
                   Comments
                 </th>
-                <th className="text-sm text-transform: uppercase px-4 py-2 text-center ">
+                <th className="font-semibold text-sm text-transform: uppercase px-4 py-2 text-center ">
                   Actions
                 </th>
               </tr>
@@ -395,25 +395,25 @@ export default function Project() {
                 <table className="min-w-full  bg-white">
                   <thead>
                     <tr>
-                      <th className="text-sm text-transform: uppercase px-6 py-3 text-center leading-4 text-gray-600 tracking-wider">
+                      <th className="font-semibold text-sm text-transform: uppercase px-6 py-3 text-center leading-4 text-gray-600 tracking-wider">
                         Sr.No
                       </th>
-                      <th className="text-sm text-transform: uppercase px-6 py-3 text-center leading-4 text-gray-600 tracking-wider">
+                      <th className="font-semibold text-sm text-transform: uppercase px-6 py-3 text-center leading-4 text-gray-600 tracking-wider">
                         Name
                       </th>
-                      <th className="text-sm text-transform: uppercase px-6 py-3 text-center  leading-4 text-gray-600 tracking-wider">
+                      <th className="font-semibold text-sm text-transform: uppercase px-6 py-3 text-center  leading-4 text-gray-600 tracking-wider">
                         Project Head Name
                       </th>
-                      <th className="text-sm text-transform: uppercase px-6 py-3 text-center leading-4 text-gray-600 tracking-wider">
+                      <th className="font-semibold text-sm text-transform: uppercase px-6 py-3 text-center leading-4 text-gray-600 tracking-wider">
                         Project Status
                       </th>
-                      <th className="text-sm text-transform: uppercase px-6 py-3 text-center leading-4 text-gray-600 tracking-wider">
+                      <th className="font-semibold text-sm text-transform: uppercase px-6 py-3 text-center leading-4 text-gray-600 tracking-wider">
                         Description
                       </th>
-                      <th className="text-sm text-transform: uppercase px-6 py-3 text-center leading-4 text-gray-600 tracking-wider">
+                      <th className="font-semibold text-sm text-transform: uppercase px-6 py-3 text-center leading-4 text-gray-600 tracking-wider">
                         Created On
                       </th>
-                      <th className="text-sm text-transform: uppercase px-4 py-2 text-center leading-4 text-gray-600 tracking-wider">
+                      <th className="font-semibold text-sm text-transform: uppercase px-4 py-2 text-center leading-4 text-gray-600 tracking-wider">
                         ACTION
                       </th>
                     </tr>

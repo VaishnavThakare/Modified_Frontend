@@ -61,35 +61,35 @@ const VendorList = () => {
             <table className="min-w-full rounded-lg bg-white">
               <thead>
                 <tr>
-                  <th className="px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-600 tracking-wider">
+                  <th className="font-semibold px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-600 tracking-wider">
                     Sr. No.
                   </th>
-                  <th className="px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-600 tracking-wider">
+                  <th className="font-semibold px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-600 tracking-wider">
                     Name
                   </th>
-                  <th className="px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-600 tracking-wider">
+                  <th className="font-semibold px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-600 tracking-wider">
                     Organization Name
                   </th>
-                  <th className="px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-600 tracking-wider">
+                  <th className="font-semibold px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-600 tracking-wider">
                     Email
                   </th>
-                  <th className="px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-600 tracking-wider">
+                  <th className="font-semibold px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-600 tracking-wider">
                     Phone Number
                   </th>
-                  
-                  <th className="px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-600 tracking-wider">
+
+                  <th className="font-semibold px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-600 tracking-wider">
                     Address
                   </th>
-                  <th className="px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-600 tracking-wider">
+                  <th className="font-semibold px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-600 tracking-wider">
                     Pincode
                   </th>
-                  <th className="px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-600 tracking-wider">
+                  <th className="font-semibold px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-600 tracking-wider">
                     Category
                   </th>
-                  <th className="px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-600 tracking-wider">
+                  <th className="font-semibold px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-600 tracking-wider">
                     Document List
                   </th>
-                  <th className="px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-600 tracking-wider">
+                  <th className="font-semibold px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-600 tracking-wider">
                     Actions
                   </th>
                 </tr>
@@ -122,10 +122,10 @@ const VendorList = () => {
                         {vendor.phoneNumber}
                       </div>
                     </td>
-                    
+
                     <td class="px-6 py-4 whitespace-no-wrap">
                       <div class="text-sm text-center leading-5">
-                      {`${vendor.address}, ${vendor.city}, ${vendor.state}`}
+                        {`${vendor.address}, ${vendor.city}, ${vendor.state}`}
                       </div>
                     </td>
                     <td class="px-6 py-4 whitespace-no-wrap">

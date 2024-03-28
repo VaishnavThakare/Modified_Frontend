@@ -93,39 +93,39 @@ const GrnDetails = () => {
           style={{ height: "fit-content" }}
         >
           <div className="relative">
-            <p className="text-gray-900">
-              <span className="text-sm text-transform: uppercase font-bold">
+            <p className="text-gray-600">
+              <span className="text-sm text-transform: uppercase font-semibold">
                 GRN No.
               </span>
               : {grn.grnNo}
             </p>
-            <p className="text-gray-900">
-              <span className="text-sm text-transform: uppercase font-bold">
+            <p className="text-gray-600">
+              <span className="text-sm text-transform: uppercase font-semibold">
                 PO No.
               </span>
               : {grn.purchaseOrder.orderNo}
             </p>
-            <p className="text-gray-900">
-              <span className="text-sm text-transform: uppercase font-bold">
+            <p className="text-gray-600">
+              <span className="text-sm text-transform: uppercase font-semibold">
                 Sent on (date)
               </span>
               : {grn.sendOn}
             </p>
-            <p className="text-gray-900">
-              <span className="text-sm text-transform: uppercase font-bold">
+            <p className="text-gray-600">
+              <span className="font-semibold text-sm text-transform: uppercase font-bold">
                 Shipment Type
               </span>
               : {grn.shipmentStatus ? "Complete Shipment" : "Partial Shipment"}
             </p>
-            <p className="text-gray-900">
-              <span className="text-sm text-transform: uppercase font-bold">
+            <p className="text-gray-600">
+              <span className="text-sm text-transform: uppercase font-semibold">
                 Status
               </span>
               : {grn.isAccepted ? "Accepted" : "Rejected"}
             </p>
 
-            <p className="text-gray-900">
-              <span className="text-sm text-transform: uppercase font-bold">
+            <p className="text-gray-600">
+              <span className="text-sm text-transform: uppercase font-semibold">
                 Comment
               </span>
               : {grn.comment}
@@ -143,26 +143,26 @@ const GrnDetails = () => {
         <table className="table-auto w-full rounded-lg  bg-white ">
           <thead>
             <tr className="text-gray-600">
-              <th className="text-sm text-transform: uppercase px-4 py-2 text-center">
+              <th className="font-semibold text-sm text-transform: uppercase px-4 py-2 text-center">
                 INVOICE NO.
               </th>
-              <th className="text-sm text-transform: uppercase px-4 py-2 text-center">
+              <th className="font-semibold text-sm text-transform: uppercase px-4 py-2 text-center">
                 AMOUNT
               </th>
-              <th className="text-sm text-transform: uppercase px-4 py-2 text-center">
+              <th className="font-semibold text-sm text-transform: uppercase px-4 py-2 text-center">
                 SENT ON (DATE)
               </th>
-              <th className="text-sm text-transform: uppercase px-4 py-2 text-center">
+              <th className="font-semibold text-sm text-transform: uppercase px-4 py-2 text-center">
                 COMMENT
               </th>
-              <th className="text-sm text-transform: uppercase px-4 py-2 text-center">
+              <th className="font-semibold text-sm text-transform: uppercase px-4 py-2 text-center">
                 STATUS
               </th>
-              <th className="text-sm text-transform: uppercase px-4 py-2 text-center">
+              <th className="font-semibold text-sm text-transform: uppercase px-4 py-2 text-center">
                 PAYMENT STATUS
               </th>
 
-              <th className="px-4 py-2 text-center">ACTIONS</th>
+              <th className="font-semibold text-sm text-transform: uppercase px-4 py-2 text-center">ACTIONS</th>
             </tr>
             <tr className="text-gray-600">
               <td colSpan="8" className="px-4 py-1">
@@ -238,19 +238,19 @@ const GrnDetails = () => {
                   {/* Table Header */}
                   <thead>
                     <tr className="text-gray-600">
-                      <th className="text-sm text-transform: uppercase px-4 py-2 text-center">
+                      <th className="font-semibold text-sm text-transform: uppercase px-4 py-2 text-center">
                         GRN NO.
                       </th>
-                      <th className="text-sm text-transform: uppercase px-4 py-2 text-center">
+                      <th className="font-semibold text-sm text-transform: uppercase px-4 py-2 text-center">
                         PO NO.
                       </th>
-                      <th className="text-sm text-transform: uppercase px-4 py-2 text-center">
+                      <th className="font-semibold text-sm text-transform: uppercase px-4 py-2 text-center">
                         SHIPMENT TYPE
                       </th>
-                      <th className="text-sm text-transform: uppercase px-4 py-2 text-center">
+                      <th className="font-semibold text-sm text-transform: uppercase px-4 py-2 text-center">
                         STATUS
                       </th>
-                      <th className="text-sm text-transform: uppercase px-4 py-2 text-center">
+                      <th className="font-semibold text-sm text-transform: uppercase px-4 py-2 text-center">
                         VIEW
                       </th>
                     </tr>

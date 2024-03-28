@@ -89,3 +89,8 @@ fieldset {
   .page-heading{
     font-size: 18px;
   }
+
+  th {
+    font-weight: font-semibold;
+  }
+  

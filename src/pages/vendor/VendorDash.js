@@ -86,7 +86,7 @@ export default function VendorDash() {
               <div class="flex items-center mb-1">
                 <div class="text-2xl font-semibold">{rfpCat}</div>
               </div>
-              <div class="text-sm font-medium text-gray-400">
+              <div class="text-sm font-semibold font-medium text-gray-400">
                 RFP for Your Category
               </div>
             </div>

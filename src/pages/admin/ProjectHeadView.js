@@ -22,7 +22,7 @@ const ProjectHeadView = () => {
   const fetchProjects = async () => {
     try {
       const response = await axios.get(
-        `${process.env.REACT_APP_API_URL}/Project/ProjectHead/${projectHeadId}`,
+        `${process.env.REACT_APP_API_URL}/Project/ProjectHead/${projectHeadId}`
       );
       setProjects(response.data);
     } catch (error) {
@@ -34,7 +34,7 @@ const ProjectHeadView = () => {
   const fetchProjectHead = async () => {
     try {
       const response = await axios.get(
-        `${process.env.REACT_APP_API_URL}/ProjectHead/${projectHeadId}`,
+        `${process.env.REACT_APP_API_URL}/ProjectHead/${projectHeadId}`
       );
       setProjectHead(response.data);
     } catch (error) {
@@ -62,13 +62,13 @@ const ProjectHeadView = () => {
 
   const handleNextPage = () => {
     setCurrentPage((prevPage) =>
-      Math.min(prevPage + 1, Math.ceil(projects.length / itemsPerPage)),
+      Math.min(prevPage + 1, Math.ceil(projects.length / itemsPerPage))
     );
   };
 
   const currentItems = projects.slice(
     (currentPage - 1) * itemsPerPage,
-    currentPage * itemsPerPage,
+    currentPage * itemsPerPage
   );
 
   const backButton = () => {
@@ -114,16 +114,27 @@ const ProjectHeadView = () => {
             style={{ height: "fit-content" }}
           >
             <p className="text-gray-900">
-              <span className="font-bold">SR.NO:</span> {projectHeadData.id}
+              <span className="font-semibold text-sm text-transform: uppercase ">
+                SR.NO:
+              </span>{" "}
+              {projectHeadData.id}
             </p>
             <p className="text-gray-900">
-              <span className="font-bold">Name:</span> {projectHeadData.name}
+              <span className="font-semibold text-sm text-transform: uppercase ">
+                Name:
+              </span>{" "}
+              {projectHeadData.name}
             </p>
             <p className="text-gray-900">
-              <span className="font-bold">Email:</span> {projectHeadData.email}
+              <span className="font-semibold text-sm text-transform: uppercase ">
+                Email:
+              </span>{" "}
+              {projectHeadData.email}
             </p>
             <p className="text-gray-900">
-              <span className="font-bold">Phone Number:</span>{" "}
+              <span className="font-semibold text-sm text-transform: uppercase ">
+                Phone Number:
+              </span>{" "}
               {projectHeadData.phoneNumber}
             </p>
           </div>
@@ -138,12 +149,24 @@ const ProjectHeadView = () => {
           <table className="table-auto w-full rounded-lg  bg-white ">
             <thead>
               <tr className="text-gray-600">
-                <th className="px-4 py-2 text-center ">Sr. No.</th>
-                <th className="px-4 py-2 text-center">Project Name</th>
-                <th className="px-4 py-2 text-center">Project Head Name</th>
-                <th className="px-4 py-2 text-center">Created On</th>
-                <th className="px-4 py-2 text-center">Status</th>
-                <th className="px-4 py-2 text-center">Action</th>
+                <th className="font-semibold text-sm text-transform: uppercase  px-4 py-2 text-center ">
+                  Sr. No.
+                </th>
+                <th className="font-semibold text-sm text-transform: uppercase  px-4 py-2 text-center">
+                  Project Name
+                </th>
+                <th className="font-semibold text-sm text-transform: uppercase  px-4 py-2 text-center">
+                  Project Head Name
+                </th>
+                <th className="font-semibold text-sm text-transform: uppercase  px-4 py-2 text-center">
+                  Created On
+                </th>
+                <th className="font-semibold text-sm text-transform: uppercase  px-4 py-2 text-center">
+                  Status
+                </th>
+                <th className="font-semibold text-sm text-transform: uppercase  px-4 py-2 text-center">
+                  Action
+                </th>
               </tr>
               <tr className="text-gray-600">
                 <td colSpan="6" className="px-4 py-1">
@@ -173,16 +196,16 @@ const ProjectHeadView = () => {
                           item.projectStatus === "Active"
                             ? "bg-red-200 text-red-600"
                             : item.projectStatus === "Ongoing"
-                              ? "bg-red-200 text-red-600"
-                              : "bg-green-200 text-green-700"
+                            ? "bg-red-200 text-red-600"
+                            : "bg-green-200 text-green-700"
                         }`}
                         style={{ minWidth: "6rem" }}
                       >
                         {item.projectStatus === "Active"
                           ? "Active"
                           : item.projectStatus === "Ongoing"
-                            ? "Ongoing"
-                            : "Done"}
+                          ? "Ongoing"
+                          : "Done"}
                       </button>
                     </td>
                     <td className="px-4 py-2 flex flex-row justify-center ">
