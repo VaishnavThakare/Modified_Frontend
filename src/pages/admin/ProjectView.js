@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from "react";
-import axios from 'axios';
-import { useParams, useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import axios from "axios";
+import { useParams, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {faEye, faArrowLeft, faArrowRight} from "@fortawesome/free-solid-svg-icons";
+import {
+  faEye,
+  faArrowLeft,
+  faArrowRight,
+} from "@fortawesome/free-solid-svg-icons";
 
 const ProjectView = () => {
   const { projectId } = useParams();
@@ -17,7 +21,7 @@ const ProjectView = () => {
   const fetchPurchaseOrders = async () => {
     try {
       const response = await axios.get(
-        `${process.env.REACT_APP_API_URL}/PurchaseOrder/Project/${projectId}`
+        `${process.env.REACT_APP_API_URL}/PurchaseOrder/Project/${projectId}`,
       );
       setPurchaseOrders(response.data);
     } catch (error) {
@@ -29,28 +33,23 @@ const ProjectView = () => {
   const fetchProject = async () => {
     try {
       const response = await axios.get(
-        `${process.env.REACT_APP_API_URL}/Project/${projectId}`
+        `${process.env.REACT_APP_API_URL}/Project/${projectId}`,
       );
       setProject(response.data);
-      console.log(response);
     } catch (error) {
       console.error("Error fetching project:", error.message);
       toast.error("Failed to fetch Project");
     }
   };
-  
+
   useEffect(() => {
     fetchProject();
     fetchPurchaseOrders();
   }, [projectId]);
 
-  
-  const indexOfFirstItem = (currentPage - 1) * itemsPerPage;
-  const indexOfLastItem = currentPage * itemsPerPage;
-  const currentItems = purchaseOrders.slice(
-    indexOfFirstItem,
-    indexOfLastItem
-  );
+  const handleViewDetails = (Id) => {
+    navigate(`/admin/purchase-orders/${Id}`);
+  };
 
   const handlePrevPage = () => {
     setCurrentPage((prevPage) => Math.max(prevPage - 1, 1));
@@ -58,9 +57,15 @@ const ProjectView = () => {
 
   const handleNextPage = () => {
     setCurrentPage((prevPage) =>
-      Math.min(prevPage + 1, Math.ceil(purchaseOrders.length / itemsPerPage))
+      Math.min(prevPage + 1, Math.ceil(purchaseOrders.length / itemsPerPage)),
     );
   };
+
+  const currentItems = purchaseOrders.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage,
+  );
+
   const backButton = () => {
     navigate(-1);
   };
@@ -75,9 +80,9 @@ const ProjectView = () => {
     });
     return formattedDateTime;
   };
-  
+
   return (
-<>
+    <>
       <div>
         <div className="flex justify-between">
           <div>
@@ -88,15 +93,15 @@ const ProjectView = () => {
             <div className="w-96 bg-cyan-500 h-0.5 mb-5"></div>
           </div>
           <div>
-          <div className="flex justify-center">
-            <button
-              className=" bg-cyan-500 text-white px-4 py-2 rounded"
-              onClick={backButton}
+            <div className="flex justify-center">
+              <button
+                className=" bg-cyan-500 text-white px-4 py-2 rounded"
+                onClick={backButton}
               >
-              Back
-            </button>
+                Back
+              </button>
+            </div>
           </div>
-        </div>
         </div>
         <div className="min-w-full border-2 border-cyan-500 rounded-lg mb-5 bg-white">
           <div
@@ -165,57 +170,69 @@ const ProjectView = () => {
               </tr>
             </thead>
             <tbody>
-              {currentItems.map((item, index) => (
-                <tr key={item.orderNo} className="bg-white">
-                  <td className="px-4 py-2 text-center text-sm">
-                    {indexOfFirstItem + index + 1}
-                  </td>
-                  <td className="px-4 py-2">{item.orderNo}</td>
-                  <td className="px-4 py-2 text-center text-sm">
-                    {item.organizationName}
-                  </td>
-                  <td className="px-4 py-2 text-center text-sm">
-                    {item.releaseDate}
-                  </td>
-                  <td className="px-4 py-2 text-center text-sm">
-                    {item.project.createdOn}
-                  </td>
-                  <td className="px-4 py-2 text-center text-sm">
-                    {item.orderAmount}
-                  </td>
-                  <td className="px-4 py-2 text-center text-sm">
-                    {item.comment}
-                  </td>
-                  <td className="px-4 py-2 text-center text-sm">
-                    <button
-                      className={`py-1 px-2 text-center text-sm rounded ${
-                        item.isAccepted
-                          ? "bg-green-200 text-green-700"
-                          : "bg-red-200 text-red-600"
-                      }`}
-                      style={{ minWidth: "6rem" }}
-                    >
-                      {item.isAccepted == null ? "Pending": item.isAccepted ? "Accepted" : "Rejected"}
-                    </button>
-                  </td>
+              {currentItems.length > 0 ? (
+                currentItems.map((item, index) => (
+                  <tr key={item.id} className="bg-white">
+                    <td className="px-4 py-2 text-center text-sm">
+                      {(currentPage - 1) * itemsPerPage + index + 1}
+                    </td>
+                    <td className="px-4 py-2 text-center text-sm">
+                      {item.orderNo}
+                    </td>
+                    <td className="px-4 py-2 text-center text-sm">
+                      {item.vendorName}
+                    </td>
+                    <td className="px-4 py-2 text-center text-sm">
+                      {formatDateTime(item.releaseDate)}
+                    </td>
+                    <td className="px-4 py-2 text-center text-sm">
+                      {item.acceptedOn ? formatDateTime(item.acceptedOn) : "-"}
+                    </td>
+                    <td className="px-4 py-2 text-center text-sm">
+                      {item.orderAmount}
+                    </td>
+                    <td className="px-4 py-2 text-center text-sm">
+                      {item.comment}
+                    </td>
+                    <td className="px-4 py-2">
+                      <button
+                        className={`py-1 px-2 text-center text-sm rounded ${
+                          item.isAccepted === null
+                            ? "bg-yellow-200 text-yellow-600"
+                            : item.isAccepted
+                              ? "bg-green-200 text-green-700"
+                              : "bg-red-200 text-red-600"
+                        }`}
+                        style={{ minWidth: "6rem" }}
+                      >
+                        {item.isAccepted === null
+                          ? "Pending"
+                          : item.isAccepted
+                            ? "Accepted"
+                            : "Rejected"}
+                      </button>
+                    </td>
 
-                  <td className="px-4 py-2 text-center text-sm bg-zinc-50">
-                    <button className={`mr-2`}>
-                      <FontAwesomeIcon
-                        icon={faEye}
-                        className={`text-cyan-600 text-xl`}
-                      />
-                    </button>
+                    <td className="px-4 py-2 text-center bg-white">
+                      <button
+                        onClick={() => handleViewDetails(item.id)}
+                        className={`mr-2`}
+                      >
+                        <FontAwesomeIcon
+                          icon={faEye}
+                          className={`text-cyan-600 text-xl`}
+                        />
+                      </button>
+                    </td>
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <td colSpan="9" className="px-4 py-2 text-center bg-white">
+                    No purchase orders found.
                   </td>
                 </tr>
-              ))}
-              {purchaseOrders.length === 0 && (
-              <tr>
-                <td colSpan="6" className="px-4 py-2 text-center bg-white">
-                  No Purchase Orders found.
-                </td>
-              </tr>
-            )}
+              )}
             </tbody>
           </table>
         </div>
@@ -231,16 +248,17 @@ const ProjectView = () => {
           <button
             onClick={handleNextPage}
             className="pagination-button bg-cyan-500 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded-3xl ml-2"
-            disabled={currentPage === Math.ceil(purchaseOrders.length / itemsPerPage)}
+            disabled={
+              currentPage === Math.ceil(purchaseOrders.length / itemsPerPage)
+            }
           >
             Next
             <FontAwesomeIcon icon={faArrowRight} className="pagination-icon" />
           </button>
         </div>
       </div>
-</>
+    </>
   );
 };
 
 export default ProjectView;
-

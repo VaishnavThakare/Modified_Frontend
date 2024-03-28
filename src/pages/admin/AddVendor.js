@@ -73,9 +73,12 @@ export default function AddVendor() {
     <>
       <div className="align-middle flex min-w-96  overflow-hidden bg-zinc-50  px-8 py-3 pb-8 rounded-bl-lg rounded-br-lg">
         
-        <form onSubmit={handleSubmit} className="max-w-lg margin-left mt-8 appform bg-white grid grid-cols-2 gap-6">
+        <form onSubmit={handleSubmit} className="max-w-lg margin-left mt-8 appform bg-white grid grid-cols-2 gap-3">
         <div className="col-span-2">
-    <h1 className="text-center text-2xl text-gray-500 font-bold mb-4">Create Vendor</h1>
+
+    <div className="flex text-2xl font-bold text-gray-500 mb-2 justify-center">
+            <h2 className="page-heading">Create Vendor</h2>
+          </div>
   </div>
           <div className="col-span-1">
             <div className="mb-6 relative">
@@ -235,13 +238,7 @@ export default function AddVendor() {
 
           {/* Vendor Category Field */}
           <div className="col-span-2">
-            <div className="mb-6 relative">
-              <label
-                htmlFor="vendorCategoryId"
-                className="block mb-2 text-sm font-medium text-gray-900"
-              >
-                Select an option
-              </label>
+            <div className="mb-3 relative">
               <select
                 id="vendorCategoryId"
                 name="vendorCategoryId"
