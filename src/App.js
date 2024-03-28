@@ -101,6 +101,7 @@ import PoDetails from "./pages/Purchase Orders/PoDetails.js";
 import PoGrnView from "./pages/Purchase Orders/PoGrnView.js";
 import EditEvent from "./pages/admin/Event/EditEvent.js";
 import EditProfile from "./pages/admin/Profile/EditProfile.js";
+import NewsDetail from "./pages/admin/News/NewsDetail.js";
 
 const App = () => {
   const [userRole, setuserRole] = useState(sessionStorage.getItem("roles"));
@@ -158,6 +159,7 @@ const App = () => {
           <Route path="allNews" element={<AllNews />}></Route>
           <Route path="addNews" element={<AddNews />}></Route>
           <Route path="editNews/:newsId" element={<EditNews />}></Route>
+          <Route path="news/view/:id" element={<NewsDetail />}></Route>
 
           <Route path="allEvents" element={<AllEvent />}></Route>
           <Route path="addEvent" element={<AddEvent />}></Route>
