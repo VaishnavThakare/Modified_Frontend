@@ -8,7 +8,7 @@ const ProductDetailsView = () => {
   console.log(productId);
   const fetchProduct = async () => {
     try {
-      const response = await axios.get(`https://localhost:7254/api/Product/${productId}`);
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/Product/${productId}`);
       setProduct(response.data);
       console.log(response.data);
     } catch (error) {

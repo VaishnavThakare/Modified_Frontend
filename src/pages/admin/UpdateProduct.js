@@ -1,255 +1,290 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { ToastContainer, toast } from "react-toastify";
+import { useParams, useNavigate } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-function UpdateProduct({ productId }) {
-  const [formData, setFormData] = useState({});
-  const [category, setCategory] = useState([]);
-  const [subcategory, setSubcategory] = useState([]);
-  const [file, setFile] = useState(null);
+const ProductEdit = () => {
+  const { productId } = useParams();
+  const [productData, setProductData] = useState({
+    name: "",
+    shortDescription: "",
+    longDescription: "",
+    unitType: "",
+    size: "",
+    specification: "",
+    productCategoryId: "", // Changed from productCategory
+    subCategoryId: "", // Changed from subCategory
+  });
 
-  const getProductDetails = async () => {
-    console.log(productId);
-    try {
-      const res = await axios.get(
-        `https://localhost:7254/api/Product/08DC4E24-67EE-4105-8E07-B28AE598D49C`
-      );
-      console.log(res.data);
-      const productData = res.data;
-      setFormData({
-        Name: productData.name,
-        ShortDescription: productData.shortDescription,
-        LongDescription: productData.longDescription,
-        UnitType: productData.unitType,
-        Size: productData.size,
-        Specification: productData.specification,
-        ProductCategory: productData.category,
-        SubCategory: productData.subCategory,
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const getAllCategories = async () => {
-    try {
-      const res = await axios.get(
-        "https://localhost:7254/api/ProductCategory/All"
-      );
-      setCategory(res.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  const [categories, setCategories] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    getProductDetails();
-    getAllCategories();
-  }, []);
+    const fetchProductById = async () => {
+      try {
+        const response = await axios.get(
+          `${process.env.REACT_APP_API_URL}/Product/${productId}`
+        );
+        setProductData(response.data);
+      } catch (error) {
+        console.error("Error fetching product details:", error);
+      }
+    };
 
-  const handleOnChange = (event) => {
+    const fetchCategories = async () => {
+      try {
+        const response = await axios.get(
+          "https://localhost:7254/api/ProductCategory/All"
+        );
+        setCategories(response.data);
+      } catch (error) {
+        console.error("Error fetching categories:", error);
+      }
+    };
+
+    if (productId) {
+      fetchProductById();
+    }
+
+    fetchCategories();
+  }, [productId]);
+
+  const handleInputChange = (event) => {
     const { name, value } = event.target;
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      [name]: value,
-    }));
+    setProductData({ ...productData, [name]: value });
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    
+
     try {
-    
-      toast.success("Product updated successfully");
+      const response = await axios.put(
+        `${process.env.REACT_APP_API_URL}/Product/${productId}`,
+        productData
+      );
+      if (response.status === 200) {
+        toast.success(`Product updated successfully!`);
+        navigate(`/admin/products`);
+      } else {
+        toast.error("Failed to update product");
+      }
     } catch (error) {
-      toast.error("Error updating product");
-      console.log(error);
+      toast.error("Failed to update product");
+      console.error("Error updating product:", error);
     }
   };
 
+  const back = () => {
+    navigate(`/admin/products`);
+  };
+
   return (
-    <>
-      <div className="align-middle inline-block min-w-full overflow-hidden bg-zinc-50 px-8 py-3 pb-8 rounded-bl-lg rounded-br-lg">
-        <form onSubmit={handleSubmit} className="max-w-sm mx-28 mt-8 appform bg-white">
-          <div className="flex text-2xl font-bold text-gray-500 mb-5">
-            <h2>Update Product</h2>
-          </div>
-
-          <div className="mb-6 relative">
-            <input
-              type="text"
-              id="Name"
-              name="Name"
-              value={formData.Name}
-              onChange={handleOnChange}
-              className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-              placeholder=" "
-              required
-            />
-            <label
-              htmlFor="Name"
-              className="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"
-            >
-              Product Name
-            </label>
-          </div>
-
-          <div className="mb-6 relative">
-            <textarea
-              id="ShortDescription"
-              name="ShortDescription"
-              value={formData.ShortDescription}
-              onChange={handleOnChange}
-              className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-              placeholder=" "
-              required
-            />
-            <label
-              htmlFor="ShortDescription"
-              className="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"
-            >
-              Short Description
-            </label>
-          </div>
-
-          <div className="mb-6 relative">
-            <input
-              type="file"
-              id="ImageFile"
-              name="ImageFile"
-              onChange={(e) => setFile(e.target.files[0])}
-              className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-500 peer"
-              required
-            />
-            <label
-              htmlFor="ImageFile"
-              className="block mb-2 text-sm font-medium text-gray-900"
-            >
-              Product Image
-            </label>
-          </div>
-
-          <div className="flex">
-            <div className="mb-6 relative">
-              <input
-                type="text"
-                id="UnitType"
-                name="UnitType"
-                value={formData.UnitType}
-                onChange={handleOnChange}
-                className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                placeholder=" "
-                required
-              />
-              <label
-                htmlFor="UnitType"
-                className="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"
-              >
-                Unit Type
-              </label>
-            </div>
-
-            <div className="mb-6 relative">
-              <input
-                type="text"
-                id="Size"
-                name="Size"
-                value={formData.Size}
-                onChange={handleOnChange}
-                className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                placeholder=" "
-                required
-              />
-              <label
-                htmlFor="Size"
-                className="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"
-              >
-                Size
-              </label>
-            </div>
-          </div>
-
-          <div className="mb-6 relative">
-            <textarea
-              id="Specification"
-              name="Specification"
-              value={formData.Specification || ""}
-              onChange={handleOnChange}
-              className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-              placeholder=" "
-              required
-            />
-            <label
-              htmlFor="Specification"
-              className="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"
-            >
-              Specification
-            </label>
-          </div>
-
-          <div className="mb-6 relative">
-            <select
-              id="ProductCategory"
-              name="ProductCategory"
-              value={formData.ProductCategory || ""}
-              onChange={handleOnChange}
-              className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-              required
-            >
-              <option value="">Select Category</option>
-              {category.map((cat) => (
-                <option key={cat.Id} value={cat.Id}>
-                  {cat.Name}
-                </option>
-              ))}
-            </select>
-            <label
-              htmlFor="ProductCategory"
-              className="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"
-            >
-              Product Category
-            </label>
-          </div>
-
-          <div className="mb-6 relative">
-            <select
-              id="SubCategory"
-              name="SubCategory"
-              value={formData.SubCategory || ""}
-              onChange={handleOnChange}
-              className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-              required
-            >
-              <option value="">Select Subcategory</option>
-              {subcategory.map((sub) => (
-                <option key={sub.Id} value={sub.Id}>
-                  {sub.Name}
-                </option>
-              ))}
-            </select>
-            <label
-              htmlFor="SubCategory"
-              className="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"
-            >
-              Subcategory
-            </label>
-          </div>
-
-          <div className="mt-8 text-center">
-            <button
-              type="submit"
-              className="w-full px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-100"
-            >
-              Update Product
-            </button>
-          </div>
-        </form>
+    <div className="bg-zinc-50">
+      <div className="flex text-2xl font-bold text-gray-500">
+        <h2 className="text-left text-cyan-500">EDIT PRODUCT</h2>
       </div>
-      <ToastContainer />
-    </>
+      <div className="w-1/5 bg-cyan-500 h-0.5 mb-1"></div>
+      <div className="w-1/3 bg-cyan-500 h-0.5 mb-5"></div>
+      <div className="py-10 margin-left items-center bg-zinc-50 font-poppins">
+        <div className="bg-white border-2 border-cyan-400 rounded-lg shadow-lg p-8 w-full max-w-lg ">
+          <form onSubmit={handleSubmit} className="p-1 px-10">
+            <div className="flex text-2xl font-bold text-gray-500 mb-7 justify-center items-center">
+              <h2>Edit Product Details</h2>
+            </div>
+            <div className="grid grid-cols-1 gap-4">
+              <div className="relative">
+                <input
+                  type="text"
+                  name="name"
+                  id="name"
+                  value={productData.name}
+                  onChange={handleInputChange}
+                  className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                  placeholder=" "
+                />
+                <label
+                  htmlFor="name"
+                  className="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:scale-75 peer-focus:-translate-y-4 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2"
+                >
+                  Name
+                </label>
+              </div>
+
+              <div className="mb-6 relative">
+                <label
+                  htmlFor="imageFile"
+                  className="block mb-2 text-sm font-medium text-gray-900"
+                >
+                  Product Image
+                </label>
+                <input
+                  type="file"
+                  id="imageFile"
+                  name="imageFile"
+                  onChange={handleInputChange}
+                  className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-500 peer"
+                  
+                />
+              </div>
+
+              <div className="relative">
+                <label
+                  htmlFor="shortDescription"
+                  className="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:scale-75 peer-focus:-translate-y-4 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2"
+                >
+                  Short Description
+                </label>
+                <input
+                  type="text"
+                  name="shortDescription"
+                  id="shortDescription"
+                  value={productData.shortDescription}
+                  onChange={handleInputChange}
+                  className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                  placeholder=" "
+                />
+              </div>
+              <div className="relative">
+                <label
+                  htmlFor="longDescription"
+                  className="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:scale-75 peer-focus:-translate-y-4 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2"
+                >
+                  Long Description
+                </label>
+                <textarea
+                  name="longDescription"
+                  id="longDescription"
+                  value={productData.longDescription}
+                  onChange={handleInputChange}
+                  className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                  placeholder=" "
+                />
+              </div>
+              <div className="relative">
+                <label
+                  htmlFor="unitType"
+                  className="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:scale-75 peer-focus:-translate-y-4 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2"
+                >
+                  Unit Type
+                </label>
+                <input
+                  type="text"
+                  name="unitType"
+                  id="unitType"
+                  value={productData.unitType}
+                  onChange={handleInputChange}
+                  className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                  placeholder=" "
+                />
+              </div>
+              <div className="relative">
+                <label
+                  htmlFor="size"
+                  className="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:scale-75 peer-focus:-translate-y-4 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2"
+                >
+                  Size
+                </label>
+                <input
+                  type="text"
+                  name="size"
+                  id="size"
+                  value={productData.size}
+                  onChange={handleInputChange}
+                  className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                  placeholder=" "
+                />
+              </div>
+              <div>
+                <label
+                  htmlFor="productCategory"
+                  className="block text-sm font-medium text-gray-700"
+                >
+                  Product Category
+                </label>
+                <select
+                  name="productCategoryId"
+                  id="productCategory"
+                  value={productData.productCategoryId}
+                  onChange={handleInputChange}
+                  className="block w-full pl-3 pr-10 py-2 text-base leading-6 border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm sm:leading-5 rounded-md"
+                >
+                  <option value="">Select Product Category</option>
+                  {categories &&
+                    categories.map((category) => (
+                      <option key={category.id} value={category.id}>
+                        {category.name}
+                      </option>
+                    ))}
+                </select>
+              </div>
+              <div>
+                <label
+                  htmlFor="subCategory"
+                  className="block text-sm font-medium text-gray-700"
+                >
+                  Subcategory
+                </label>
+                <select
+                  name="subCategoryId"
+                  id="subCategory"
+                  value={productData.subCategoryId}
+                  onChange={handleInputChange}
+                  className="block w-full pl-3 pr-10 py-2 text-base leading-6 border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm sm:leading-5 rounded-md"
+                >
+                  <option value="">Select Subcategory</option>
+                  {productData.productCategoryId &&
+                    categories
+                      .find(
+                        (category) =>
+                          category.id === productData.productCategoryId
+                      )
+                      ?.subcategories?.map((subcategory) => (
+                        <option key={subcategory.id} value={subcategory.id}>
+                          {subcategory.name}
+                        </option>
+                      ))}
+                </select>
+              </div>
+
+              <div className="relative">
+                <label
+                  htmlFor="specification"
+                  className="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:scale-75 peer-focus:-translate-y-4 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2"
+                >
+                  Specification
+                </label>
+                <textarea
+                  name="specification"
+                  id="specification"
+                  value={productData.specification}
+                  onChange={handleInputChange}
+                  className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                  placeholder=" "
+                />
+              </div>
+              <div className="flex justify-center mt-4">
+                <button
+                  type="submit"
+                  className="text-white px-4 py-2 rounded-md bg-cyan-500 hover:bg-cyan-700 focus:outline-none focus:bg-cyan-700"
+                >
+                  Submit
+                </button>
+                <button
+                  onClick={back}
+                  type="button"
+                  className="text-white px-4 py-2 ml-5 rounded-md bg-gray-500 hover:bg-gray-700 focus:outline-none focus:bg-cyan-700"
+                >
+                  Back
+                </button>
+              </div>
+            </div>
+          </form>
+          <ToastContainer />
+        </div>
+      </div>
+    </div>
   );
-}
+};
 
-export default UpdateProduct;
-
+export default ProductEdit;
