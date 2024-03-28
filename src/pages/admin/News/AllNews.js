@@ -2,14 +2,16 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
+import { useNavigate } from "react-router-dom";
 
 export default function AllNews() {
+  const navigate = useNavigate();
   const [news, setnews] = useState([]);
-  const [modal, setmodal] = useState();
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(3);
 
-  const [file, setFile] = useState();
   const [showEditModal, setShowEditModal] = useState(false);
 
   const toggleEditModal = () => {
@@ -27,11 +29,8 @@ export default function AllNews() {
 
       setnews(data);
     } catch (error) {
-      console.error("Error fetching Project data:", error);
+      console.error("Error fetching News data:", error);
     }
-  };
-  const handleFile = (event) => {
-    setFile(event.target.files[0]);
   };
 
   const handleDelete = async (id, index) => {
@@ -43,41 +42,6 @@ export default function AllNews() {
       getAllNews();
     } catch (error) {
       console.error("Error deleting item:", error);
-    }
-  };
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setmodal((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-  };
-
-  const handleEdit = async (e) => {
-    e.preventDefault();
-    try {
-      const formDataToSend = new FormData();
-      formDataToSend.append("Title", modal.title);
-      formDataToSend.append("Content", modal.content);
-      formDataToSend.append("Image", file);
-      formDataToSend.append("IsActive", modal.isActive);
-      const response = await axios.put(
-        `${process.env.REACT_APP_API_URL}/News/${modal.id}`,
-        formDataToSend
-      );
-      if (response.status === 200) {
-        toast.success("News Updated", {
-          position: "top-right",
-        });
-      }
-
-      toggleEditModal();
-      getAllNews();
-      setFile();
-      document.getElementById("file").value = "";
-    } catch (error) {
-      console.error("Error update Banner:", error.message);
     }
   };
 
@@ -115,7 +79,10 @@ export default function AllNews() {
                   <h5 className="mb-2 text-lg font-bold tracking-tight">
                     {news.title}
                   </h5>
-                  <p className="mb-2 truncate">{news.content}</p>
+                  <p
+                    className="mb-2 truncate"
+                    dangerouslySetInnerHTML={{ __html: news.content }}
+                  />
                   <p className="mb-2">
                     Status: {news.isActive ? "Active" : "Inactive"}
                   </p>
@@ -142,8 +109,7 @@ export default function AllNews() {
                   </button>
                   <button
                     onClick={() => {
-                      toggleEditModal();
-                      setmodal(news);
+                      navigate(`/admin/editNews/${news.id}`);
                     }}
                     className="bg-cyan-500 hover:bg-cyan-700 text-white font-bold rounded ml-4 p-1"
                   >
@@ -186,106 +152,6 @@ export default function AllNews() {
         )}
       </div>
 
-      {showEditModal && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-          <div className="bg-white p-2 max-w-md rounded-lg shadow-md appform">
-            <form onSubmit={handleEdit}>
-              <div className="flex text-2xl font-bold text-gray-500 mb-2">
-                <h2>Update News</h2>
-              </div>
-
-              <div class="mb-6">
-                <label
-                  for="title"
-                  class="block mb-2 text-sm font-medium text-gray-900"
-                >
-                  Title
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  name="title"
-                  value={modal.title}
-                  onChange={handleChange}
-                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                  required
-                />
-              </div>
-
-              <div class="mb-6">
-                <label
-                  for="content"
-                  class="block mb-2 text-sm font-medium text-gray-900"
-                >
-                  Content
-                </label>
-                <textarea
-                  type="text"
-                  id="name"
-                  name="content"
-                  value={modal.content}
-                  onChange={handleChange}
-                  class="resize-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                  rows="4"
-                  placeholder="Enter your text here..."
-                  required
-                />
-              </div>
-
-              <div class="mb-6">
-                <label
-                  for="isActive"
-                  class="block mb-2 text-sm font-medium text-gray-900"
-                >
-                  IsActive
-                </label>
-                <select
-                  id="isActive"
-                  name="isActive"
-                  value={modal.isActive}
-                  onChange={handleChange}
-                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                >
-                  <option value="" disabled>
-                    Choose Status
-                  </option>
-                  <option value={true}> True </option>
-                  <option value={false}> False </option>
-                </select>
-              </div>
-
-              <div class="mb-6">
-                <label
-                  for="file"
-                  class="block mb-2 text-sm font-medium text-gray-900"
-                >
-                  News Image
-                </label>
-                <input
-                  type="file"
-                  id="file"
-                  name="Image"
-                  onChange={handleFile}
-                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                />
-              </div>
-
-              <button
-                type="submit"
-                className="bg-cyan-500 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded"
-              >
-                Update News
-              </button>
-              <button
-                onClick={toggleEditModal}
-                className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded ml-2"
-              >
-                Close
-              </button>
-            </form>
-          </div>
-        </div>
-      )}
       <ToastContainer />
     </>
   );

@@ -4,10 +4,13 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
+import { useParams } from "react-router-dom";
 
-export default function AddNews() {
+export default function EditNews() {
+  const { newsId } = useParams();
   const [news, setnews] = useState({
     title: "",
+    imagePath: "",
     isActive: "",
   });
 
@@ -17,6 +20,25 @@ export default function AddNews() {
   const handleFile = (event) => {
     setFile(event.target.files[0]);
   };
+
+  const getNews = async (Id) => {
+    try {
+      let res = await axios.get(`${process.env.REACT_APP_API_URL}/News/${Id}`);
+      let data;
+      if (res.status == 200 && res.data != null) {
+        data = res.data;
+      }
+
+      setnews(data);
+      setContent(data.content);
+    } catch (error) {
+      console.error("Error fetching News data:", error);
+    }
+  };
+
+  useEffect(() => {
+    getNews(newsId);
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -37,24 +59,19 @@ export default function AddNews() {
       formDataToSend.append("Content", content);
       console.log(formDataToSend);
 
-      const response = await axios.post(
-        `${process.env.REACT_APP_API_URL}/News/Add`,
+      const response = await axios.put(
+        `${process.env.REACT_APP_API_URL}/News/${newsId}`,
         formDataToSend
       );
       if (response.status === 200) {
-        toast.success("News Added", {
+        toast.success("News Updated", {
           position: "top-right",
         });
       }
 
-      setnews({
-        title: "",
-        isActive: "",
-      });
-      setContent("");
-      setFile([]);
+      getNews(newsId);
     } catch (error) {
-      console.error("Error adding News:", error.message);
+      console.error("Error updating News:", error.message);
     }
   };
   return (
@@ -65,7 +82,7 @@ export default function AddNews() {
           className="max-w-lg margin-left mt-8 appform bg-white"
         >
           <div className="flex text-2xl font-bold text-gray-500 mb-2 justify-center">
-            <h2 className="page-heading">Add News</h2>
+            <h2 className="page-heading">Update News</h2>
           </div>
 
           <div className="mb-6 relative">
@@ -88,18 +105,18 @@ export default function AddNews() {
           </div>
 
           <div class="mb-6 relative">
-            <ReactQuill
-              id="content"
-              theme="snow"
-              value={content}
-              onChange={setContent}
-            />
             <label
               for="content"
               class="ml-1 absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"
             >
               Content
             </label>
+            <ReactQuill
+              id="content"
+              theme="snow"
+              value={content}
+              onChange={setContent}
+            />
           </div>
 
           <div class="mb-6">
@@ -131,7 +148,6 @@ export default function AddNews() {
               name="image"
               onChange={handleFile}
               class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-              required
             />
           </div>
           <div className="flex justify-center">
@@ -139,7 +155,7 @@ export default function AddNews() {
               type="submit"
               className="bg-cyan-500 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded"
             >
-              Add News
+              Update News
             </button>
           </div>
         </form>

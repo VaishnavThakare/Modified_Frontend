@@ -72,6 +72,7 @@ import AllBanner from "./pages/admin/Banner/AllBanner";
 import AddBanner from "./pages/admin/Banner/AddBanner";
 import AddNews from "./pages/admin/News/AddNews";
 import AllNews from "./pages/admin/News/AllNews";
+import EditNews from "./pages/admin/News/EditNews.js";
 import GrnList from "./pages/projecthead/GrnList";
 import InvoiceDetails from "./pages/projecthead/Invoice/InvoiceDetails.js";
 import AddEvent from "./pages/admin/Event/AddEvent";
@@ -154,6 +155,7 @@ const App = () => {
           <Route path="addBanner" element={<AddBanner />}></Route>
           <Route path="allNews" element={<AllNews />}></Route>
           <Route path="addNews" element={<AddNews />}></Route>
+          <Route path="editNews/:newsId" element={<EditNews />}></Route>
 
           <Route path="allEvents" element={<AllEvent />}></Route>
           <Route path="addEvent" element={<AddEvent />}></Route>
