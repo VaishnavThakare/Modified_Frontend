@@ -76,6 +76,7 @@ const VendorList = () => {
                   <th className="text-sm text-transform: uppercase px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-600 tracking-wider">
                     Phone Number
                   </th>
+<<<<<<< Updated upstream
                   <th className="text-sm text-transform: uppercase px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-600 tracking-wider">
                     State
                   </th>
@@ -83,6 +84,9 @@ const VendorList = () => {
                     City
                   </th>
                   <th className="text-sm text-transform: uppercase px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-600 tracking-wider">
+=======
+                  <th className="px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-600 tracking-wider">
+>>>>>>> Stashed changes
                     Address
                   </th>
                   <th className="text-sm text-transform: uppercase px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-600 tracking-wider">
@@ -127,20 +131,10 @@ const VendorList = () => {
                         {vendor.phoneNumber}
                       </div>
                     </td>
-                    <td class="px-6 py-4 whitespace-no-wrap">
-                      <div class="text-sm text-center leading-5">
-                        {vendor.state}
-                      </div>
-                    </td>
-                    <td class="px-6 py-4 whitespace-no-wrap">
-                      <div class="text-sm text-center leading-5">
-                        {vendor.city}
-                      </div>
-                    </td>
 
                     <td class="px-6 py-4 whitespace-no-wrap">
                       <div class="text-sm text-center leading-5">
-                        {vendor.address}
+                        {`${vendor.address}, ${vendor.city}, ${vendor.state}`}
                       </div>
                     </td>
                     <td class="px-6 py-4 whitespace-no-wrap">
