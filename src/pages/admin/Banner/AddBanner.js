@@ -7,25 +7,29 @@ import ImageCropper from "./ImageCropper";
 
 export default function AddBanner() {
 
-  const [image,setImage] = useState("");
-  const [imgAfterCrop,setImgAfterCrop] = useState("");
-  const [currentPage,setCurrentPage] = useState("choose-img");
-  const onImageSelected = (selectedImg)=>{
+  const [image, setImage] = useState("");
+  const [imgAfterCrop, setImgAfterCrop] = useState("");
+  const [currentPage, setCurrentPage] = useState("choose-img");
+  const [fName, setFName] = useState(null);
+  const [cropView,setCropView] = useState(false);
+
+  const onImageSelected = (selectedImg, fileName) => {
     setImage(selectedImg);
     setCurrentPage("crop-img");
     console.log(selectedImg);
-    //console.log(fileName);
+    console.log(fileName);
+    setFName(fileName);
   }
 
-  const onCropDone = (imgCroppedArea)=>{
+  const onCropDone = (imgCroppedArea) => {
     const canvasEle = document.createElement("canvas");
     canvasEle.width = imgCroppedArea.width;
     canvasEle.height = imgCroppedArea.height;
     const context = canvasEle.getContext("2d");
 
     let imageObj1 = new Image();
-    imageObj1.src=image;
-    imageObj1.onload = function(){ 
+    imageObj1.src = image;
+    imageObj1.onload = function () {
       context.drawImage(
         imageObj1,
         imgCroppedArea.x,
@@ -37,10 +41,11 @@ export default function AddBanner() {
         imgCroppedArea.width,
         imgCroppedArea.height
       );
-      const dataURL= canvasEle.toDataURL("image/Jpeg");
+      const dataURL = canvasEle.toDataURL("image/Jpeg");
       console.log(imageObj1.src);
       setImgAfterCrop(dataURL);
-      setCurrentPage("img-cropped");      
+      setCropView(true);
+      setCurrentPage("img-cropped");
 
       const binaryImageData = atob(dataURL.split(',')[1]);
 
@@ -50,14 +55,15 @@ export default function AddBanner() {
       }
       const byteArray = new Uint8Array(byteNumbers);
       const blob = new Blob([byteArray], { type: 'image/jpeg' });
-      const f = new File([blob], "banner.jpeg");
+      const f = new File([blob], fName);
 
       console.log(f);
       setFile(f);
-      banner.Image =f;
+      banner.Image = f;
     }
   }
-  const onCropCancel = ()=>{
+
+  const onCropCancel = () => {
     setCurrentPage("choose-img");
     setImage("");
   }
@@ -77,7 +83,7 @@ export default function AddBanner() {
     banner.Image = event.target.files[0];
   };
 
-  useEffect(() => {}, []);
+  useEffect(() => { }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -91,7 +97,7 @@ export default function AddBanner() {
     e.preventDefault();
     try {
       console.log(banner);
-      const formDataToSend = new FormData(); 
+      const formDataToSend = new FormData();
       formDataToSend.append("Title", banner.Title);
       formDataToSend.append("Image", file);
       formDataToSend.append("IsActive", banner.IsActive);
@@ -101,9 +107,9 @@ export default function AddBanner() {
         `${process.env.REACT_APP_API_URL}/Banner/Add`,
         formDataToSend
       );
-      if (response.status === 200){
-        toast.success("Banner is added",{
-          position:"top-right"
+      if (response.status === 200) {
+        toast.success("Banner is added", {
+          position: "top-right"
         });
       }
 
@@ -115,10 +121,10 @@ export default function AddBanner() {
 
     } catch (error) {
       console.error("Error adding Banner:", error);
-    }    
+    }
   };
 
-  const prevent = (e)=>{
+  const prevent = (e) => {
     e.preventDefault();
   }
 
@@ -131,23 +137,23 @@ export default function AddBanner() {
           </div>
 
           <div class="mb-6 relative">
-    <input
-        type="text"
-        id="name"
-        name="Title"
-        value={banner.Title}
-        onChange={handleChange}
-        class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-        placeholder=" "
-        required
-    />
-    <label
-        for="name"
-        class="ml-1 absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"
-    >
-        Title
-    </label>
-</div>
+            <input
+              type="text"
+              id="name"
+              name="Title"
+              value={banner.Title}
+              onChange={handleChange}
+              class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+              placeholder=" "
+              required
+            />
+            <label
+              for="name"
+              class="ml-1 absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"
+            >
+              Title
+            </label>
+          </div>
 
 
           <div class="mb-6">
@@ -168,9 +174,15 @@ export default function AddBanner() {
           </div>
 
           <div class="mb-6">
-            <button type="button" className="w-full bg-cyan-400 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded">
+            <button type="button" className="w-full text-left  text-gray-900 font-bold py-2 px-4 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 rounded">
               <FileInput onImageSelected={onImageSelected}></FileInput>
-            </button>           
+            </button>
+            {
+              fName == null ?
+                <h3 className="relative left-[75%] grid grid-cols-1 items-end italic">No File Selected</h3>
+                :
+                <h3 className="relative left-[80%] grid grid-cols-1 items-end italic">{fName}</h3>
+            }
             {
               currentPage === "crop-img" ?
                 <ImageCropper
@@ -183,22 +195,33 @@ export default function AddBanner() {
             }
           </div>
           <div className="flex justify-center">
-          <button
-            type="submit"
-            className="bg-cyan-500 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded"
-          >
-            Add Banner
-          </button>
+            <button
+              type="submit"
+              className="bg-cyan-500 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded"
+            >
+              Add Banner
+            </button>
           </div>
         </form>
       </div>
       {
-        imgAfterCrop === ""?
-        <></>
-        :
-        <img src={imgAfterCrop} className="w-[150px] h-[150px]"></img>
+        imgAfterCrop === "" ?
+          <></>
+          :
+          cropView ?
+            <>
+              <div className="relative -mt-[350px] left-[70%] border border-black p-1 h-64 w-64 bg-white rounded shadow-xl">
+                <div className="grid grid-cols-2 items-start">
+                  <p className="-mt-1 italic">Cropped Banner</p>
+                  <button type="button" onClick={()=>{setCropView(false);}} className="mr-0 place-self-end bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-4 rounded">Close</button>
+                </div>
+                <img src={imgAfterCrop} className="w-full h-[85%] my-[1%]"></img>
+              </div>
+            </>
+            :
+            <></>
       }
-      <ToastContainer/>
+      <ToastContainer />
     </>
   );
 }

@@ -6,11 +6,13 @@ const FileInput = ({onImageSelected})=>{
 
     const handleOnChange = (event)=>{
         if(event.target.files && event.target.files.length > 0){
+            const fileName = event.target.files[0].name;
+            console.log(fileName);
             const reader = new FileReader();
             reader.readAsDataURL(event.target.files[0]);
             
             reader.onload = function (e){
-                onImageSelected(reader.result);
+                onImageSelected(reader.result,fileName);
             }
         }
     }
@@ -20,7 +22,7 @@ const FileInput = ({onImageSelected})=>{
     }
 
     return (
-        <div className="w-full">
+        <div className="w-[30%] py-1 px-1 rounded bg-cyan-300 ">
             <input
                 type="file"
                 accept="image/*"
@@ -29,7 +31,7 @@ const FileInput = ({onImageSelected})=>{
                 style={{display:"none"}}
             />
 
-            <button type="button" classname="bg-green-300 px-2 py-1" onClick={onChooseImg}>
+            <button type="button" classname="w-full bg-green-300 px-2 py-1 text-left" onClick={onChooseImg}>
                 Choose Image
             </button>
        
