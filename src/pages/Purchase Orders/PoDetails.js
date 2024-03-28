@@ -66,8 +66,8 @@ const PoDetails = () => {
   };
 
   // Pagination Functions
-  const indexOfFirstItem = (currentPage - 1) * itemsPerPage;
   const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentGrns = grn.slice(indexOfFirstItem, indexOfLastItem);
 
   const handlePrevPage = () => {
