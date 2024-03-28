@@ -155,13 +155,13 @@ const PoDetailsV = () => {
               <tbody>
                 <tr>
                   <td className="py-2">
-                    <span className="text-sm text-transform: uppercase font-bold">
+                    <span className="text-gray-600 text-sm text-transform: uppercase font-semibold">
                       Purchase Order No.:
                     </span>
                   </td>
                   <td className="py-2">{selectedPurchaseOrder.orderNo}</td>
                   <td className="py-2">
-                    <span className="text-sm text-transform: uppercase font-bold">
+                    <span className="text-gray-500 text-sm text-transform: uppercase font-semibold">
                       Vendor Name.:
                     </span>
                   </td>
@@ -169,7 +169,7 @@ const PoDetailsV = () => {
                 </tr>
                 <tr>
                   <td className="py-2">
-                    <span className="text-sm text-transform: uppercase font-bold">
+                    <span className="text-gray-500  text-sm text-transform: uppercase font-semibold">
                       Created On:
                     </span>
                   </td>
@@ -179,7 +179,7 @@ const PoDetailsV = () => {
                       : "-"}
                   </td>
                   <td className="py-2">
-                    <span className="text-sm text-transform: uppercase font-bold">
+                    <span className="text-gray-500 text-sm text-transform: uppercase font-semibold">
                       Expected Delivery On:
                     </span>
                   </td>
@@ -191,7 +191,7 @@ const PoDetailsV = () => {
                 </tr>
                 <tr>
                   <td className="py-2">
-                    <span className="text-sm text-transform: uppercase font-bold">
+                    <span className="text-gray-500 text-sm text-transform: uppercase font-semibold">
                       Sent On:
                     </span>
                   </td>
@@ -201,7 +201,7 @@ const PoDetailsV = () => {
                       : "-"}
                   </td>
                   <td className="py-2">
-                    <span className="text-sm text-transform: uppercase font-bold">
+                    <span className="text-gray-500 text-sm text-transform: uppercase font-semibold">
                       Po Amount:
                     </span>
                   </td>
@@ -209,7 +209,7 @@ const PoDetailsV = () => {
                 </tr>
                 <tr>
                   <td className="py-2">
-                    <span className="text-sm text-transform: uppercase font-bold">
+                    <span className=" text-gray-500 text-sm text-transform: uppercase font-semibold">
                       Status:
                     </span>
                   </td>
@@ -217,7 +217,7 @@ const PoDetailsV = () => {
                     {selectedPurchaseOrder.isAccepted ? "Accepted" : "Rejected"}
                   </td>
                   <td className="py-2">
-                    <span className="text-sm text-transform: uppercase font-bold">
+                    <span className="text-gray-500 text-sm text-transform: uppercase font-semibold">
                       Comments:
                     </span>
                   </td>
@@ -253,29 +253,29 @@ const PoDetailsV = () => {
               <table className="min-w-full p-4 mb-5">
                 <thead>
                   <tr className="text-gray-600">
-                    <th className="text-sm text-transform: uppercase px-4 py-2 text-center">
+                    <th className="font-semibold text-sm text-transform: uppercase px-4 py-2 text-center">
                       GRN No.
                     </th>
-                    <th className="text-sm text-transform: uppercase px-4 py-2 text-center">
+                    <th className="font-semibold text-sm text-transform: uppercase px-4 py-2 text-center">
                       PO No.
                     </th>
-                    <th className="text-sm text-transform: uppercase px-4 py-2 text-center">
+                    <th className="font-semibold text-sm text-transform: uppercase px-4 py-2 text-center">
                       SENT ON (DATE)
                     </th>
-                    <th className="text-sm text-transform: uppercase px-4 py-2 text-center">
+                    <th className="font-semibold text-sm text-transform: uppercase px-4 py-2 text-center">
                       SHIPMENT TYPE
                     </th>
-                    <th className="text-sm text-transform: uppercase px-4 py-2 text-center">
+                    <th className="font-semibold text-sm text-transform: uppercase px-4 py-2 text-center">
                       COMMENT
                     </th>
 
-                    <th className="text-sm text-transform: uppercase px-4 py-2 text-center">
+                    <th className="font-semibold text-sm text-transform: uppercase px-4 py-2 text-center">
                       View/Download
                     </th>
-                    <th className="text-sm text-transform: uppercase px-4 py-2 text-center">
+                    <th className="font-semibold text-sm text-transform: uppercase px-4 py-2 text-center">
                       STATUS
                     </th>
-                    <th className="text-sm text-transform: uppercase px-4 py-2 text-center">
+                    <th className="font-semibold text-sm text-transform: uppercase px-4 py-2 text-center">
                       Action
                     </th>
                     {/* <th className="px-4 py-2 text-left">ACTION</th> */}
@@ -374,25 +374,25 @@ const PoDetailsV = () => {
               <table className="table-auto w-full rounded-lg  bg-white">
                 <thead>
                   <tr className="bg-white text-gray-600">
-                    <th className="text-sm text-transform: uppercase px-4 py-2 text-left">
+                    <th className="font-semibold text-sm text-transform: uppercase px-4 py-2 text-left">
                       Sr.<p></p> No.
                     </th>
-                    <th className="text-sm text-transform: uppercase px-4 py-2 text-left">
+                    <th className="font-semibold text-sm text-transform: uppercase px-4 py-2 text-left">
                       Purchase <p></p>Order No.
                     </th>
-                    <th className="text-sm text-transform: uppercase px-4 py-2 text-left">
+                    <th className="font-semibold text-sm text-transform: uppercase px-4 py-2 text-left">
                       Vendor<p></p>Name
                     </th>
-                    <th className="text-sm text-transform: uppercase px-4 py-2 text-left">
+                    <th className="font-semibold text-sm text-transform: uppercase px-4 py-2 text-left">
                       Sent<p></p> On
                     </th>
-                    <th className="text-sm text-transform: uppercase px-4 py-2 text-left">
+                    <th className="font-semibold text-sm text-transform: uppercase px-4 py-2 text-left">
                       PO <p></p>Amount
                     </th>
-                    <th className="text-sm text-transform: uppercase px-4 py-2 text-left">
+                    <th className="font-semibold text-sm text-transform: uppercase px-4 py-2 text-left">
                       Status
                     </th>
-                    <th className="text-sm text-transform: uppercase px-4 py-2 text-left">
+                    <th className="font-semibold text-sm text-transform: uppercase px-4 py-2 text-left">
                       Actions
                     </th>
                   </tr>

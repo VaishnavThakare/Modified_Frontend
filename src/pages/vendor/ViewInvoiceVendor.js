@@ -72,29 +72,29 @@ export default function ViewInvoiceVendor() {
                 <table className="min-w-full bg-white">
                   <thead>
                     <tr>
-                      <th className="text-sm text-transform: uppercase px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-600 tracking-wider">
+                      <th className="font-semibold text-sm text-transform: uppercase px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-600 tracking-wider">
                         Invoice No
                       </th>
-                      <th className="text-sm text-transform: uppercase px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-600 tracking-wider">
+                      <th className="font-semibold text-sm text-transform: uppercase px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-600 tracking-wider">
                         Amount
                       </th>
-                      <th className="text-sm text-transform: uppercase px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-600 tracking-wider">
+                      <th className="font-semibold text-sm text-transform: uppercase px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-600 tracking-wider">
                         PO Number
                       </th>
-                      <th className="text-sm text-transform: uppercase px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-600 tracking-wider">
+                      <th className="font-semibold text-sm text-transform: uppercase px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-600 tracking-wider">
                         Due Date
                       </th>
-                      <th className="text-sm text-transform: uppercase px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-600 tracking-wider">
+                      <th className="font-semibold text-sm text-transform: uppercase px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-600 tracking-wider">
                         View{" "}
                       </th>
 
-                      <th className="text-sm text-transform: uppercase px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-600 tracking-wider">
+                      <th className="font-semibold text-sm text-transform: uppercase px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-600 tracking-wider">
                         Payment Status
                       </th>
-                      <th className="text-sm text-transform: uppercase px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-600 tracking-wider">
+                      <th className="font-semibold text-sm text-transform: uppercase px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-600 tracking-wider">
                         Status
                       </th>
-                      <th className="text-sm text-transform: uppercase px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-600 tracking-wider">
+                      <th className="font-semibold text-sm text-transform: uppercase px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-600 tracking-wider">
                         Action
                       </th>
                     </tr>
@@ -219,13 +219,13 @@ export default function ViewInvoiceVendor() {
             <table className="w-[100%] bg-white">
               <tbody>
                 <tr>
-                  <th className="text-sm text-transform: uppercase text-left px-6 py-3  leading-4 text-gray-600 tracking-wider">
+                  <th className="font-semibold text-sm text-transform: uppercase text-left px-6 py-3  leading-4 text-gray-600 tracking-wider">
                     Invoice No
                   </th>
-                  <td className="text-sm text-transform: uppercase text-left px-6 py-4 whitespace-no-wrap text-sm">
+                  <td className="font-semibold text-sm text-transform: uppercase text-left px-6 py-4 whitespace-no-wrap text-sm">
                     {invoice.invoiceNo}
                   </td>
-                  <th className="text-sm text-transform: uppercase text-left px-6 py-3  leading-4 text-gray-600 tracking-wider">
+                  <th className="font-semibold text-sm text-transform: uppercase text-left px-6 py-3  leading-4 text-gray-600 tracking-wider">
                     Date Sent On
                   </th>
                   <td className="px-6 py-4 whitespace-no-wrap text-left  text-sm">
@@ -233,13 +233,13 @@ export default function ViewInvoiceVendor() {
                   </td>
                 </tr>
                 <tr>
-                  <th className="text-sm text-transform: uppercase text-left px-6 py-3  leading-4 text-gray-600 tracking-wider">
+                  <th className="font-semibold text-sm text-transform: uppercase text-left px-6 py-3  leading-4 text-gray-600 tracking-wider">
                     Amount
                   </th>
                   <td className="px-6 py-4 whitespace-no-wrap text-left  text-sm">
                     {invoice.amount}
                   </td>
-                  <th className="text-sm text-transform: uppercase text-left px-6 py-3  leading-4 text-gray-600 tracking-wider">
+                  <th className="font-semibold text-sm text-transform: uppercase text-left px-6 py-3  leading-4 text-gray-600 tracking-wider">
                     GRN Number
                   </th>
                   <td className="px-6 py-4 whitespace-no-wrap text-left  text-sm">
@@ -247,13 +247,13 @@ export default function ViewInvoiceVendor() {
                   </td>
                 </tr>
                 <tr>
-                  <th className="text-sm text-transform: uppercase text-left px-6 py-3  leading-4 text-gray-600 tracking-wider">
+                  <th className="font-semibold text-sm text-transform: uppercase text-left px-6 py-3  leading-4 text-gray-600 tracking-wider">
                     PO Number
                   </th>
                   <td className="px-6 py-4 whitespace-no-wrap text-left  text-sm">
                     {invoice.poNumber}
                   </td>
-                  <th className="text-sm text-transform: uppercase text-left px-6 py-3  leading-4 text-gray-600 tracking-wider">
+                  <th className="font-semibold text-sm text-transform: uppercase text-left px-6 py-3  leading-4 text-gray-600 tracking-wider">
                     Status
                   </th>
                   <td className="px-6 py-4 whitespace-no-wrap text-left  text-sm">
@@ -269,7 +269,7 @@ export default function ViewInvoiceVendor() {
                   </td>
                 </tr>
                 <tr>
-                  <th className="text-sm text-transform: uppercase text-left px-6 py-3   leading-4 text-gray-600 tracking-wider">
+                  <th className="font-semibold text-sm text-transform: uppercase text-left px-6 py-3   leading-4 text-gray-600 tracking-wider">
                     Payment Status
                   </th>
                   <td className="px-6 py-4 whitespace-no-wrap text-left  text-sm">
@@ -283,7 +283,7 @@ export default function ViewInvoiceVendor() {
                       </span>
                     )}
                   </td>
-                  <th className="text-sm text-transform: uppercase text-left px-6 py-3   leading-4 text-gray-600 tracking-wider">
+                  <th className="font-semibold text-sm text-transform: uppercase text-left px-6 py-3   leading-4 text-gray-600 tracking-wider">
                     Due Date
                   </th>
                   <td className="px-6 py-4 whitespace-no-wrap text-left  text-sm">
@@ -291,7 +291,7 @@ export default function ViewInvoiceVendor() {
                   </td>
                 </tr>
                 <tr>
-                  <th className=" text-sm text-transform: uppercase px-6 py-3 text-left leading-4 text-gray-600 tracking-wider">
+                  <th className="font-semibold  text-sm text-transform: uppercase px-6 py-3 text-left leading-4 text-gray-600 tracking-wider">
                     View
                   </th>
                   <td className="px-6 py-2 text-left  whitespace-no-wrap text-sm">
@@ -308,7 +308,7 @@ export default function ViewInvoiceVendor() {
                       View Doc
                     </a>
                   </td>
-                  <th className=" text-sm text-transform: uppercase px-6 py-3 text-left leading-4 text-gray-600 tracking-wider">
+                  <th className="font-semibold  text-sm text-transform: uppercase px-6 py-3 text-left leading-4 text-gray-600 tracking-wider">
                     Comment
                   </th>
                   <td className="px-6 py-2 text-left  whitespace-no-wrap text-sm">
