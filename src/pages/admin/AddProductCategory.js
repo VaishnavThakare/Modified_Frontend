@@ -48,8 +48,8 @@ export default function AddProductCategory() {
     <>
       <div className="align-middle inline-block min-w-full overflow-hidden bg-zinc-50 px-8 py-3 pb-8 rounded-bl-lg rounded-br-lg">
         <form onSubmit={handleSubmit} className="max-w-lg margin-left mt-8 appform bg-white">
-          <div className="flex text-2xl font-bold text-gray-500 mb-4 justify-center items-center">
-            <h2>Create Product Category</h2>
+          <div className="flex text-2xl font-bold text-gray-500 mb-2 justify-center items-center">
+            <h2 className="page-heading">Create Product Category</h2>
           </div>
           <div className="mb-6 relative">
   <input
@@ -97,7 +97,7 @@ export default function AddProductCategory() {
     onChange={handleChange}
     className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
     placeholder=" "
-    required
+    
   />
   <label
     htmlFor="parentCategory"
