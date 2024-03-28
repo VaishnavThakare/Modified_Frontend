@@ -3,7 +3,6 @@ import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-<<<<<<< HEAD
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faEye,
@@ -11,23 +10,19 @@ import {
   faArrowLeft,
   faArrowRight,
 } from "@fortawesome/free-solid-svg-icons";
-=======
-import { faEye, faEdit, faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
->>>>>>> f3a2a1556cb023d4439b1cb07a35da680cbbb9c0
 
 const ProjectHeadView = () => {
   const { projectHeadId } = useParams();
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 5;
   const [projects, setProjects] = useState([]);
-  const [projectHeadData, setProjectHead] = useState({});
+  const [projectHeadData, setProjectHead] = useState([]);
   const navigate = useNavigate();
 
   const fetchProjects = async () => {
     try {
       const response = await axios.get(
-        `${process.env.REACT_APP_API_URL}/Project/ProjectHead/${projectHeadId}`
+        `${process.env.REACT_APP_API_URL}/Project/ProjectHead/${projectHeadId}`,
       );
       setProjects(response.data);
     } catch (error) {
@@ -39,7 +34,7 @@ const ProjectHeadView = () => {
   const fetchProjectHead = async () => {
     try {
       const response = await axios.get(
-        `${process.env.REACT_APP_API_URL}/ProjectHead/${projectHeadId}`
+        `${process.env.REACT_APP_API_URL}/ProjectHead/${projectHeadId}`,
       );
       setProjectHead(response.data);
     } catch (error) {
@@ -67,10 +62,18 @@ const ProjectHeadView = () => {
 
   const handleNextPage = () => {
     setCurrentPage((prevPage) =>
-      Math.min(prevPage + 1, Math.ceil(projects.length / itemsPerPage))
+      Math.min(prevPage + 1, Math.ceil(projects.length / itemsPerPage)),
     );
   };
 
+  const currentItems = projects.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage,
+  );
+
+  const backButton = () => {
+    navigate(-1);
+  };
   const formatDateTime = (dateTime) => {
     const formattedDateTime = new Date(dateTime).toLocaleString("en-US", {
       year: "numeric",
@@ -83,23 +86,12 @@ const ProjectHeadView = () => {
     return formattedDateTime;
   };
 
-<<<<<<< HEAD
-=======
-  const backButton = () => {
-    navigate(-1);
-  };
-
-  const indexOfFirstItem = (currentPage - 1) * itemsPerPage;
-  const indexOfLastItem = currentPage * itemsPerPage;
-  const currentItems = projects.slice(indexOfFirstItem, indexOfLastItem);
-
->>>>>>> f3a2a1556cb023d4439b1cb07a35da680cbbb9c0
   return (
     <>
       <div>
         <div className="flex justify-between">
           <div>
-            <div className="flex text-2xl font-bold text-gray-500">
+            <div className="flex text-2xl font-bold text-gray-500 ">
               <h2 className="text-left text-cyan-500">PROJECT HEAD DETAILS</h2>
             </div>
             <div className="w-52 bg-cyan-400 h-0.5 mb-1"></div>
@@ -108,11 +100,7 @@ const ProjectHeadView = () => {
           <div>
             <div className="flex justify-center">
               <button
-<<<<<<< HEAD
                 className=" bg-cyan-500 text-white px-4 py-2 rounded"
-=======
-                className="bg-cyan-500 text-white px-4 py-2 rounded"
->>>>>>> f3a2a1556cb023d4439b1cb07a35da680cbbb9c0
                 onClick={backButton}
               >
                 Back
@@ -121,14 +109,10 @@ const ProjectHeadView = () => {
           </div>
         </div>
         <div className="min-w-full border-2 border-cyan-500 rounded-lg mb-5 bg-white">
-<<<<<<< HEAD
           <div
             className="bg-white p-6 rounded-md shadow-md"
             style={{ height: "fit-content" }}
           >
-=======
-          <div className="bg-white p-6 rounded-md shadow-md" style={{ height: "fit-content" }}>
->>>>>>> f3a2a1556cb023d4439b1cb07a35da680cbbb9c0
             <p className="text-gray-900">
               <span className="font-bold">SR.NO:</span> {projectHeadData.id}
             </p>
@@ -139,35 +123,27 @@ const ProjectHeadView = () => {
               <span className="font-bold">Email:</span> {projectHeadData.email}
             </p>
             <p className="text-gray-900">
-              <span className="font-bold">Phone Number:</span> {projectHeadData.phoneNumber}
+              <span className="font-bold">Phone Number:</span>{" "}
+              {projectHeadData.phoneNumber}
             </p>
           </div>
         </div>
 
         <div className="flex text-2xl font-bold text-gray-500 mt-14">
-          <h2 className="text-left text-cyan-500">PROJECT LIST</h2>
+          <h2 className="text-left text-cyan-500 ">PROJECT LIST</h2>
         </div>
         <div className="w-1/5 bg-cyan-400 h-0.5 mb-1"></div>
         <div className="w-1/3 bg-cyan-400 h-0.5 mb-5"></div>
         <div className="overflow-x-auto mt-8 ml-2 mr-2 border-2 border-cyan-500 p-0.5 rounded-lg shadow-lg">
-          <table className="table-auto w-full rounded-lg bg-white">
+          <table className="table-auto w-full rounded-lg  bg-white ">
             <thead>
               <tr className="text-gray-600">
-<<<<<<< HEAD
                 <th className="px-4 py-2 text-center ">Sr. No.</th>
                 <th className="px-4 py-2 text-center">Project Name</th>
                 <th className="px-4 py-2 text-center">Project Head Name</th>
                 <th className="px-4 py-2 text-center">Created On</th>
                 <th className="px-4 py-2 text-center">Status</th>
                 <th className="px-4 py-2 text-center">Action</th>
-=======
-                <th className="text-sm text-center uppercase px-4 py-2">Project Name</th>
-                <th className="text-sm text-center uppercase px-4 py-2">Project Head Name</th>
-                <th className="text-sm text-center uppercase px-4 py-2">Created On</th>
-                <th className="text-sm text-center uppercase px-4 py-2">Comment</th>
-                <th className="text-sm text-center uppercase px-4 py-2">Status</th>
-                <th className="text-sm text-center uppercase px-4 py-2">Action</th>
->>>>>>> f3a2a1556cb023d4439b1cb07a35da680cbbb9c0
               </tr>
               <tr className="text-gray-600">
                 <td colSpan="6" className="px-4 py-1">
@@ -176,7 +152,6 @@ const ProjectHeadView = () => {
               </tr>
             </thead>
             <tbody>
-<<<<<<< HEAD
               {currentItems.length > 0 ? (
                 currentItems.map((item, index) => (
                   <tr key={item.id} className="bg-white">
@@ -236,29 +211,6 @@ const ProjectHeadView = () => {
                 <tr>
                   <td colSpan="9" className="px-4 py-2 text-center bg-white">
                     No projects found.
-=======
-              {currentItems.map((project) => (
-                <tr key={project.id} className="bg-white">
-                  <td className="px-4 py-2 text-center">{project.name}</td>
-                  <td className="px-4 py-2 text-center">{project.projectHeadName}</td>
-                  <td className="px-4 py-2 text-center">{formatDateTime(project.createdOn)}</td>
-                  <td className="px-4 py-2 text-center">{project.description}</td>
-                  <td className="px-4 py-2 text-center">{project.projectStatus}</td>
-                  <td className="px-4 py-2 flex flex-row justify-center">
-                    <button className="mr-2" onClick={() => handlePEditDetails(project.id)}>
-                      <FontAwesomeIcon icon={faEdit} className="text-cyan-600 text-xl" />
-                    </button>
-                    <button className="mr-2" onClick={() => handlePViewDetails(project.id)}>
-                      <FontAwesomeIcon icon={faEye} className="text-cyan-600 text-xl" />
-                    </button>
-                  </td>
-                </tr>
-              ))}
-              {currentItems.length === 0 && (
-                <tr>
-                  <td colSpan="6" className="px-4 py-2 text-center bg-white">
-                    No Projects found.
->>>>>>> f3a2a1556cb023d4439b1cb07a35da680cbbb9c0
                   </td>
                 </tr>
               )}
