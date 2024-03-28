@@ -71,21 +71,21 @@ const GrnDetails = () => {
       <div className="flex justify-between">
         <div>
           <div className="flex text-2xl font-bold text-gray-500 ">
-             <h2 className="text-left text-cyan-500">GRN DETAILS</h2>
+            <h2 className="text-left text-cyan-500">GRN DETAILS</h2>
           </div>
           <div className="w-52 bg-cyan-400 h-0.5 mb-1"></div>
           <div className="w-96 bg-cyan-400 h-0.5 mb-5"></div>
-          </div>
-          <div>
+        </div>
+        <div>
           <div className="flex justify-center">
-      <button
+            <button
               className=" bg-cyan-500 text-white px-4 py-2 rounded"
               onClick={handleGoBack}
             >
               Back
             </button>
-            </div>
           </div>
+        </div>
       </div>
       <div className="min-w-full border-2 border-cyan-500 rounded-lg mb-5 bg-white">
         <div
@@ -93,8 +93,6 @@ const GrnDetails = () => {
           style={{ height: "fit-content" }}
         >
           <div className="relative">
-           
-
             <p className="text-gray-900">
               <span className="font-bold">GRN No.</span>: {grn.grnNo}
             </p>
@@ -113,16 +111,14 @@ const GrnDetails = () => {
               <span className="font-bold">Status</span>:{" "}
               {grn.isAccepted ? "Accepted" : "Rejected"}
             </p>
-            
+
             <p className="text-gray-900">
               <span className="font-bold">Comment</span>: {grn.comment}
             </p>
           </div>
-          
         </div>
-        
       </div>
-      
+
       <div className="flex text-2xl font-bold text-gray-500 mt-14">
         <h2 className="text-left text-cyan-500 ">ALL INVOICES</h2>
       </div>
@@ -138,7 +134,7 @@ const GrnDetails = () => {
               <th className="px-4 py-2 text-center">COMMENT</th>
               <th className="px-4 py-2 text-center">STATUS</th>
               <th className="px-4 py-2 text-center">PAYMENT STATUS</th>
-              
+
               <th className="px-4 py-2 text-center">ACTIONS</th>
             </tr>
             <tr className="text-gray-600">
@@ -150,7 +146,9 @@ const GrnDetails = () => {
           <tbody>
             {currentInv.map((inv) => (
               <tr key={inv.id} className="bg-white">
-                <td className="px-4 py-2 text-center text-sm">{inv.invoiceNo}</td>
+                <td className="px-4 py-2 text-center text-sm">
+                  {inv.invoiceNo}
+                </td>
                 <td className="px-4 py-2 text-center text-sm">{inv.amount}</td>
                 <td className="px-4 py-2 text-center text-sm">{inv.sendOn}</td>
                 <td className="px-4 py-2 text-center text-sm">{inv.comment}</td>
@@ -178,9 +176,9 @@ const GrnDetails = () => {
                     {inv.paymentStatus ? "Approved" : "Rejected"}
                   </button>
                 </td>
-                
+
                 <td className="px-4 py-2 bg-white text-center text-sm">
-                  <Link className={`mr-2`} to ={`/admin/details/${inv.id}`}>
+                  <Link className={`mr-2`} to={`/admin/details/${inv.id}`}>
                     <FontAwesomeIcon
                       icon={faEye}
                       className={`text-cyan-600 text-xl`}
@@ -230,8 +228,12 @@ const GrnDetails = () => {
                     {currentGrns.length > 0 ? (
                       currentGrns.map((grn) => (
                         <tr key={grn.grnNo} className="bg-white">
-                          <td className="px-4 py-2 text-center text-sm">{grn.grnNo}</td>
-                          <td className="px-4 py-2 text-center text-sm">{grn.purchaseOrder.orderNo}</td>
+                          <td className="px-4 py-2 text-center text-sm">
+                            {grn.grnNo}
+                          </td>
+                          <td className="px-4 py-2 text-center text-sm">
+                            {grn.purchaseOrder.orderNo}
+                          </td>
                           <td className="px-4 py-2 text-center text-sm">
                             <button
                               className={`py-1 px-2 rounded ${
@@ -288,7 +290,10 @@ const GrnDetails = () => {
                       ))
                     ) : (
                       <tr>
-                        <td colSpan="5" className="px-4 py-2 text-center bg-white">
+                        <td
+                          colSpan="5"
+                          className="px-4 py-2 text-center bg-white"
+                        >
                           No GRNs found.
                         </td>
                       </tr>
