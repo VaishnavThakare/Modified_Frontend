@@ -127,23 +127,34 @@ const GrnList = () => {
             style={{ height: "fit-content" }}
           >
             <p className="text-gray-900 mb-3">
-              <span className="text-sm text-transform: uppercase font-bold">GRN Nos.</span>: {grnDetails.grnNo}
+              <span className="text-gray-600 text-sm text-transform: uppercase font-semibold">
+                GRN Nos.
+              </span>
+              : {grnDetails.grnNo}
             </p>
             <p className="text-gray-900 mb-3">
-              <span className="text-sm text-transform: uppercase font-bold">PO No.</span>:{" "}
-              {grnDetails.purchaseOrder.orderNo}
+              <span className="text-gray-600 text-sm text-transform: uppercase font-semibold">
+                PO No.
+              </span>
+              : {grnDetails.purchaseOrder.orderNo}
             </p>
             <p className="text-gray-900 mb-3">
-              <span className="text-sm text-transform: uppercase font-bold">Sent on (date)</span>:{" "}
-              {formatDateTime(grnDetails.sendOn)}
+              <span className="text-gray-600 text-sm text-transform: uppercase font-semibold">
+                Sent on (date)
+              </span>
+              : {formatDateTime(grnDetails.sendOn)}
             </p>
             <p className="text-gray-900">
-              <span className="text-sm text-transform: uppercase font-bold">Status</span>:{" "}
-              {grnDetails.isAccepted ? "Accepted" : "Rejected"}
+              <span className="text-gray-600 text-sm text-transform: uppercase font-semibold">
+                Status
+              </span>
+              : {grnDetails.isAccepted ? "Accepted" : "Rejected"}
             </p>
             <p>
               <td className="py-2">
-                <span className="text-sm text-transform: uppercase font-bold">Shipment Status:</span>
+                <span className="text-gray-600 text-sm text-transform: uppercase font-semibold">
+                  Shipment Status:
+                </span>
               </td>
               <td className="py-2">
                 {grnDetails.shipmentStatus ? (
@@ -170,10 +181,15 @@ const GrnList = () => {
               </td>
             </p>
             <p className="text-gray-900">
-              <span className="text-sm text-transform: uppercase font-bold">Comment</span>: {grnDetails.comment}
+              <span className="text-gray-600 text-sm text-transform: uppercase font-semibold">
+                Comment
+              </span>
+              : {grnDetails.comment}
             </p>
             <div>
-              <span className="text-sm text-transform: uppercase font-bold">Document:</span>{" "}
+              <span className="text-gray-600 text-sm text-transform: uppercase font-semibold">
+                Document:
+              </span>{" "}
               {grnDetails.documentPath && (
                 <button
                   className="text-blue-500"
@@ -195,34 +211,40 @@ const GrnList = () => {
         <div className="flex text-2xl font-bold text-gray-500">
           <h2 className="text-left text-cyan-500">ALL INVOICES</h2>
         </div>
-        <div className="w-1/5 bg-cyan-500 h-0.5 mb-1"></div>
-        <div className="w-1/3 bg-cyan-500 h-0.5 mb-5"></div>
-        <div className="border-2 border-cyan-500 mb-5 shadow-lg rounded-lg p-0.5">
-          <table className="min-w-full  rounded-lg bg-white">
+        <div className="ml-4 w-36 bg-cyan-500 h-0.5 mb-1"></div>
+        <div className="ml-4 w-44 bg-cyan-500 h-0.5 mb-5"></div>
+        <div className="overflow-x-auto mt-8 ml-2 mr-2 border-2 border-cyan-400 rounded-lg shadow-lg ">
+          <table className="table-auto w-full rounded-lg  bg-white">
             <thead>
               <tr>
-                <th className="text-sm text-transform: uppercase px-6 py-3  text-center text-sm leading-4 text-gray-600 tracking-wider">
+                <th className="font-semibold text-sm text-transform: uppercase px-6 py-3  text-center text-sm leading-4 text-gray-600 tracking-wider">
                   Invoice No.
                 </th>
-                <th className="text-sm text-transform: uppercase px-6 py-3  text-center text-sm leading-4 text-gray-600 tracking-wider">
+                <th className="font-semibold text-sm text-transform: uppercase px-6 py-3  text-center text-sm leading-4 text-gray-600 tracking-wider">
                   Sent On.
                 </th>
 
-                <th className="text-sm text-transform: uppercase px-6 py-3  text-center text-sm leading-4 text-gray-600 tracking-wider">
+                <th className="font-semibold text-sm text-transform: uppercase px-6 py-3  text-center text-sm leading-4 text-gray-600 tracking-wider">
                   Amount
                 </th>
-                <th className="text-sm text-transform: uppercase px-6 py-3  text-center text-sm leading-4 text-gray-600 tracking-wider">
+                <th className="font-semibold text-sm text-transform: uppercase px-6 py-3  text-center text-sm leading-4 text-gray-600 tracking-wider">
                   Grn NO
                 </th>
-                <th className="text-sm text-transform: uppercase px-6 py-3  text-center text-sm leading-4 text-gray-600 tracking-wider">
+                <th className="font-semibold text-sm text-transform: uppercase px-6 py-3  text-center text-sm leading-4 text-gray-600 tracking-wider">
                   Payment Status.
                 </th>
-                <th className="text-sm text-transform: uppercase px-6 py-3  text-center text-sm leading-4 text-gray-600 tracking-wider">
+                <th className="font-semibold text-sm text-transform: uppercase px-6 py-3  text-center text-sm leading-4 text-gray-600 tracking-wider">
                   Status
                 </th>
-                <th className="text-sm text-transform: uppercase px-6 py-3  text-center text-sm leading-4 text-gray-600 tracking-wider">
+                <th className="font-semibold text-sm text-transform: uppercase px-6 py-3  text-center text-sm leading-4 text-gray-600 tracking-wider">
                   View Document
                 </th>
+              </tr>
+
+              <tr className=" text-gray-600">
+                <td colSpan="9" className=" px-4 py-1">
+                  <div style={{ borderTop: "2px solid gray" }}></div>
+                </td>
               </tr>
             </thead>
             <tbody>
@@ -293,13 +315,28 @@ const GrnList = () => {
         <table className="table-auto w-full rounded-lg  bg-white">
           <thead>
             <tr className="text-gray-600">
-              <th className="text-sm text-transform: uppercase px-4 py-2 text-left">SR. NO.</th>
-              <th className="text-sm text-transform: uppercase px-4 py-2 text-left">GRN No.</th>
-              <th className="text-sm text-transform: uppercase px-4 py-2 text-left">PO No.</th>
-              <th className="text-sm text-transform: uppercase px-4 py-2 text-left">SENT ON (date)</th>
-              <th className="text-sm text-transform: uppercase px-4 py-2 text-left">STATUS</th>
-              <th className="text-sm text-transform: uppercase px-4 py-2 text-left">SHIPMENT STATUS</th>
-              <th className="text-sm text-transform: uppercase px-4 py-2 text-left">ACTIONS</th>
+              <th className="font-semibold text-sm text-transform: uppercase px-4 py-2 text-left">
+                SR. NO.
+              </th>
+              <th className="font-semibold text-sm text-transform: uppercase px-4 py-2 text-left">
+                GRN No.
+              </th>
+              <th className="font-semibold text-sm text-transform: uppercase px-4 py-2 text-left">
+                PO No.
+              </th>
+              <th className="font-semibold text-sm text-transform: uppercase px-4 py-2 text-left">
+                SENT ON (date)
+              </th>
+
+              <th className="font-semibold text-sm text-transform: uppercase px-4 py-2 text-left">
+                SHIPMENT STATUS
+              </th>
+              <th className="font-semibold text-sm text-transform: uppercase px-4 py-2 text-left">
+                STATUS
+              </th>
+              <th className="font-semibold text-sm text-transform: uppercase px-4 py-2 text-left">
+                ACTIONS
+              </th>
             </tr>
             <tr className=" text-gray-600">
               <td colSpan="9" className=" px-4 py-1">
@@ -326,6 +363,14 @@ const GrnList = () => {
                   <td className="px-4 py-2">{item.grnNo}</td>
                   <td className="px-4 py-2">{item.purchaseOrder.orderNo}</td>
                   <td className="px-4 py-2">{formatDateTime(item.sendOn)}</td>
+
+                  <td className="px-4 py-2 bg-white">
+                    {item.shipmentStatus ? (
+                      <span className="text-green-500">Complete Shipment</span>
+                    ) : (
+                      <span className="text-red-500">Partial Shipment</span>
+                    )}
+                  </td>
                   <td className="px-4 py-2">
                     {item.isAccepted === true && (
                       <button
@@ -350,14 +395,6 @@ const GrnList = () => {
                       >
                         Pending
                       </button>
-                    )}
-                  </td>
-
-                  <td className="px-4 py-2 bg-white">
-                    {item.shipmentStatus ? (
-                      <span className="text-green-500">Complete Shipment</span>
-                    ) : (
-                      <span className="text-red-500">Partial Shipment</span>
                     )}
                   </td>
                   <td className="px-4 py-2 bg-white">
