@@ -24,19 +24,13 @@ const ImageCropper = ({ image, onCropDone, onCropCancel, state }) => {
         <>
             {
                 disable &&
-                <div style={{
-                    position: "absolute",
-                    width: "50%",
-                    height: "55%",
-                    backgroundColor: "#fff",
-                    zIndex: "100",
-                    opacity: "1",
-                    top: "150px",
-                    left: "28%",
-                    padding: "15px",
-                    border: "solid black 1px",
-                    borderRadius: "15px"
+                <div style={{position: "absolute",width: "50%",height: "55%",backgroundColor: "#fff",zIndex: "100",opacity: "1",top: "150px",left: "28%",padding: "15px",border: "solid black 1px",borderRadius: "15px"
                 }}>
+
+                <div style={{position: "absolute", top:"0",width: "100%", height: "5%", zIndex: "100", opacity: "1", padding: "15px", }}>
+                    <p className="text-center text-lg text-gray-700 font-sans"><b> CROP & UPLOAD </b></p>
+                </div>
+
                     <div>
                         <Cropper
                             image={image}
@@ -46,7 +40,8 @@ const ImageCropper = ({ image, onCropDone, onCropCancel, state }) => {
                             onCropChange={setCrop}
                             onZoomChange={setZoom}
                             onCropComplete={onCropComplete}
-                            style={{ containerStyle: { width: "98%", height: "70%", backgroundColor: "#fff", zIndex: "100", margin: "5px 1% 3px 1%", border: "solid white 1px", borderRadius: "3px", } }} />
+                            style={{ containerStyle: { width: "98%", height: "63%", backgroundColor: "#fff", zIndex: "100", margin: "5px 1% 3px 1%",top:"10%", border: "solid white 1px", borderRadius: "10px", } }}
+                         />
                     </div>
                     <div style={{position: "relative", width: "100%", height: "10%", zIndex: "100", opacity: "1", top: "75%", padding: "15px", }}>
                         <div className="flex">
