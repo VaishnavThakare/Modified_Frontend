@@ -6,8 +6,14 @@ import "react-toastify/dist/ReactToastify.css";
 
 const ProductEdit = () => {
   const { productId } = useParams();
+  const [file,setFile]= useState(null);
+  const handleFile=(e)=>{
+  setFile(e.target.files[0]);
+  productData.imageFile=e.target.files[0];
+  }
   const [productData, setProductData] = useState({
     name: "",
+    imageFile:"",
     shortDescription: "",
     longDescription: "",
     unitType: "",
@@ -59,9 +65,20 @@ const ProductEdit = () => {
     event.preventDefault();
 
     try {
+      const formDataToSend = new FormData();
+      formDataToSend.append("Name", productData.name);
+      formDataToSend.append("ImageFile",productData.imageFile);
+      formDataToSend.append("ShortDescription",productData.shortDescription);
+      formDataToSend.append("LongDescription",productData.longDescription);
+      formDataToSend.append("UnitType",productData.unitType);
+      formDataToSend.append("Size",productData.size);
+      formDataToSend.append("ProductCategoryId",productData.productCategoryId);
+      formDataToSend.append("SubCategoryId",productData.subCategoryId);
+      formDataToSend.append("Specification",productData.specification);
+
       const response = await axios.put(
         `${process.env.REACT_APP_API_URL}/Product/${productId}`,
-        productData
+        formDataToSend
       );
       if (response.status === 200) {
         toast.success(`Product updated successfully!`);
@@ -122,7 +139,7 @@ const ProductEdit = () => {
                   type="file"
                   id="imageFile"
                   name="imageFile"
-                  onChange={handleInputChange}
+                  onChange={handleFile}
                   className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-500 peer"
                   
                 />
@@ -195,10 +212,10 @@ const ProductEdit = () => {
                   placeholder=" "
                 />
               </div>
-              <div>
+              <div className="mb-6">
                 <label
                   htmlFor="productCategory"
-                  className="block text-sm font-medium text-gray-700"
+                  className="block text-sm font-medium text-gray-900"
                 >
                   Product Category
                 </label>
@@ -207,7 +224,7 @@ const ProductEdit = () => {
                   id="productCategory"
                   value={productData.productCategoryId}
                   onChange={handleInputChange}
-                  className="block w-full pl-3 pr-10 py-2 text-base leading-6 border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm sm:leading-5 rounded-md"
+                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 >
                   <option value="">Select Product Category</option>
                   {categories &&
@@ -218,10 +235,10 @@ const ProductEdit = () => {
                     ))}
                 </select>
               </div>
-              <div>
+              <div className="mb-6">
                 <label
                   htmlFor="subCategory"
-                  className="block text-sm font-medium text-gray-700"
+                  className="block text-sm font-medium text-gray-900"
                 >
                   Subcategory
                 </label>
@@ -230,20 +247,15 @@ const ProductEdit = () => {
                   id="subCategory"
                   value={productData.subCategoryId}
                   onChange={handleInputChange}
-                  className="block w-full pl-3 pr-10 py-2 text-base leading-6 border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm sm:leading-5 rounded-md"
+                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 >
-                  <option value="">Select Subcategory</option>
-                  {productData.productCategoryId &&
-                    categories
-                      .find(
-                        (category) =>
-                          category.id === productData.productCategoryId
-                      )
-                      ?.subcategories?.map((subcategory) => (
-                        <option key={subcategory.id} value={subcategory.id}>
-                          {subcategory.name}
-                        </option>
-                      ))}
+                  <option value="">Select Product SubCategory</option>
+                  {categories &&
+                    categories.map((category) => (
+                      <option key={category.id} value={category.id}>
+                        {category.name}
+                      </option>
+                    ))}
                 </select>
               </div>
 
