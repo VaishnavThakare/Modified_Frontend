@@ -16,6 +16,15 @@ const GrnDetails = () => {
   const itemsPerPage = 5;
   const [selectedGrn, setSelectedGrn] = useState(null);
 
+  const formatDateTime = (dateTime) => {
+    const formattedDateTime = new Date(dateTime).toLocaleString("en-US", {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+    });
+    return formattedDateTime;
+  };
+
   useEffect(() => {
     // Simulated fetchGrns function, replace with actual API call
     const fetchGrns = async () => {
@@ -162,7 +171,9 @@ const GrnDetails = () => {
                 PAYMENT STATUS
               </th>
 
-              <th className="font-semibold text-sm text-transform: uppercase px-4 py-2 text-center">ACTIONS</th>
+              <th className="font-semibold text-sm text-transform: uppercase px-4 py-2 text-center">
+                ACTIONS
+              </th>
             </tr>
             <tr className="text-gray-600">
               <td colSpan="8" className="px-4 py-1">
@@ -200,7 +211,7 @@ const GrnDetails = () => {
                     }`}
                     style={{ minWidth: "6rem" }}
                   >
-                    {inv.paymentStatus ? "Approved" : "Rejected"}
+                    {inv.paymentStatus ? "Paid" : "Unpaid"}
                   </button>
                 </td>
 
@@ -239,10 +250,16 @@ const GrnDetails = () => {
                   <thead>
                     <tr className="text-gray-600">
                       <th className="font-semibold text-sm text-transform: uppercase px-4 py-2 text-center">
-                        GRN NO.
+                        Sr. No
                       </th>
                       <th className="font-semibold text-sm text-transform: uppercase px-4 py-2 text-center">
-                        PO NO.
+                        GRN Number
+                      </th>
+                      <th className="font-semibold text-sm text-transform: uppercase px-4 py-2 text-center">
+                        DATE
+                      </th>
+                      <th className="font-semibold text-sm text-transform: uppercase px-4 py-2 text-center">
+                        PO Number
                       </th>
                       <th className="font-semibold text-sm text-transform: uppercase px-4 py-2 text-center">
                         SHIPMENT TYPE
@@ -260,13 +277,19 @@ const GrnDetails = () => {
                       </td>
                     </tr>
                   </thead>
-                  {/* Table Body */}
+                  {/* Table BodysendOn */}
                   <tbody>
                     {currentGrns.length > 0 ? (
-                      currentGrns.map((grn) => (
+                      currentGrns.map((grn, index) => (
                         <tr key={grn.grnNo} className="bg-white">
                           <td className="px-4 py-2 text-center text-sm">
+                            {(currentPage - 1) * itemsPerPage + index + 1}
+                          </td>
+                          <td className="px-4 py-2 text-center text-sm">
                             {grn.grnNo}
+                          </td>
+                          <td className="px-4 py-2 text-center text-sm">
+                            {formatDateTime(grn.sendOn)}
                           </td>
                           <td className="px-4 py-2 text-center text-sm">
                             {grn.purchaseOrder.orderNo}

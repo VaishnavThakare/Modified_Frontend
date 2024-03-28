@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEye } from "@fortawesome/free-solid-svg-icons";
+import { faEye , faExternalLinkAlt} from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 
 const PoGrnView = () => {
@@ -44,6 +44,12 @@ const PoGrnView = () => {
   const handleCloseDetails = () => {
     navigate(-1);
   };
+
+  
+  const openDocument = (url) => {
+    window.open(url, "_blank");
+  };
+
 
   const formatDateTime = (dateTime) => {
     const formattedDateTime = new Date(dateTime).toLocaleString("en-US", {
@@ -129,14 +135,15 @@ const PoGrnView = () => {
               {grnDetails.invoiceStatus ? "Invoiced" : "Not Invoiced"}
             </p>
             <div className="mt-4">
-              <a
-                href={grnDetails.documentPath}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-sm text-transform: uppercase text-blue-500 hover:underline"
-              >
-                View GRN Document
-              </a>
+            <button
+                  className="bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded"
+                  onClick={() =>
+                    openDocument(grnDetails?.documentPath)
+                  }
+                >
+                  <FontAwesomeIcon icon={faExternalLinkAlt} className="mr-2" />
+                  View Document
+                </button>
             </div>
           </div>
         </div>

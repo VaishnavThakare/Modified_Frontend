@@ -156,7 +156,7 @@ const PoDetailsV = () => {
                 <tr>
                   <td className="py-2">
                     <span className="text-gray-600 text-sm text-transform: uppercase font-semibold">
-                      Purchase Order No.:
+                      PO Number.:
                     </span>
                   </td>
                   <td className="py-2">{selectedPurchaseOrder.orderNo}</td>
@@ -257,7 +257,7 @@ const PoDetailsV = () => {
                       GRN No.
                     </th>
                     <th className="font-semibold text-sm text-transform: uppercase px-4 py-2 text-center">
-                      PO No.
+                      PO Number.
                     </th>
                     <th className="font-semibold text-sm text-transform: uppercase px-4 py-2 text-center">
                       SENT ON (DATE)
@@ -378,13 +378,13 @@ const PoDetailsV = () => {
                       Sr.<p></p> No.
                     </th>
                     <th className="font-semibold text-sm text-transform: uppercase px-4 py-2 text-left">
-                      Purchase <p></p>Order No.
+                      PO NUMBER
                     </th>
                     <th className="font-semibold text-sm text-transform: uppercase px-4 py-2 text-left">
                       Vendor<p></p>Name
                     </th>
-                    <th className="font-semibold text-sm text-transform: uppercase px-4 py-2 text-left">
-                      Sent<p></p> On
+                    <th className="font-semibold text-sm text-transform: uppercase px-4 py-2 text-center">
+                      DATE
                     </th>
                     <th className="font-semibold text-sm text-transform: uppercase px-4 py-2 text-left">
                       PO <p></p>Amount

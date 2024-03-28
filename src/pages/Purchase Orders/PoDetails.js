@@ -46,9 +46,6 @@ const PoDetails = () => {
       year: "numeric",
       month: "2-digit",
       day: "2-digit",
-      hour: "2-digit",
-      minute: "2-digit",
-      second: "2-digit",
     });
     return formattedDateTime;
   };
@@ -189,7 +186,7 @@ const PoDetails = () => {
                 Comments
               </th>
               <th className="font-semibold text-sm text-transform: uppercase px-4 py-2 text-center">
-                Acceptance
+                Status <p></p>(Accepted/Rejected)
               </th>
               <th className="font-semibold text-sm text-transform: uppercase px-4 py-2 text-center">
                 Payment Status
@@ -236,7 +233,7 @@ const PoDetails = () => {
                     }`}
                     style={{ minWidth: "6rem" }}
                   >
-                    {grnItem.paymentStatus ? "Approved" : "Rejected"}
+                    {grnItem.paymentStatus ? "Paid" : "Unpaid"}
                   </button>
                 </td>
                 <td className="px-4 py-2 text-center">

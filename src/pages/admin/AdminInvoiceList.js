@@ -12,6 +12,14 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Link } from "react-router-dom";
 
+const formatDateTime = (dateTime) => {
+  const formattedDateTime = new Date(dateTime).toLocaleString("en-US", {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  });
+  return formattedDateTime;
+};
 const AdminInvoiceList = () => {
   const [invoices, setInvoices] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -62,23 +70,24 @@ const AdminInvoiceList = () => {
             <thead>
               <tr className="text-gray-600 bg-white">
                 <th className="font-semibold text-sm text-transform: uppercase px-4 py-2 text-center">
-                  Sr.<p></p> No.
+                  Sr.<p></p> No
                 </th>
                 <th className="font-semibold text-sm text-transform: uppercase px-4 py-2 text-center">
-                  Invoice<p></p> No.
+                  Invoice<p></p> Number
                 </th>
-                <th className="font-semibold text-sm text-transform: uppercase px-4 py-2 text-center">
-                  GRN<p></p> No.
-                </th>
-                <th className="font-semibold text-sm text-transform: uppercase px-4 py-2 text-center">
-                  PO<p></p> No.
-                </th>
+
                 <th className="font-semibold text-sm text-transform: uppercase px-4 py-2 text-center">
                   Release<p></p> Date
                 </th>
                 <th className="font-semibold text-sm text-transform: uppercase px-4 py-2 text-center">
-                  Due<p></p> Date
+                  GRN<p></p> No
                 </th>
+                <th className="font-semibold text-sm text-transform: uppercase px-4 py-2 text-center">
+                  PO<p></p> No
+                </th>
+                {/* <th className="font-semibold text-sm text-transform: uppercase px-4 py-2 text-center">
+                  Due<p></p> Date
+                </th> */}
                 <th className="font-semibold text-sm text-transform: uppercase px-4 py-2 text-center">
                   Amount
                 </th>
@@ -114,18 +123,19 @@ const AdminInvoiceList = () => {
                     <td className="px-4 py-2 text-center text-sm">
                       {invoice.invoiceNo}
                     </td>
+
+                    <td className="px-4 py-2 text-center text-sm">
+                      {formatDateTime(invoice.createdOn)}
+                    </td>
                     <td className="px-4 py-2 text-center text-sm">
                       {invoice.grn.grnNo}
                     </td>
                     <td className="px-4 py-2 text-center text-sm">
                       {invoice.grn.purchaseOrder.orderNo}
                     </td>
-                    <td className="px-4 py-2 text-center text-sm">
-                      {invoice.createdOn}
-                    </td>
-                    <td className="px-4 py-2 text-center text-sm">
-                      {invoice.dueDate}
-                    </td>
+                    {/* <td className="px-4 py-2 text-center text-sm">
+                      {formatDateTime(invoice.dueDate)}
+                    </td> */}
                     <td className="px-4 py-2 text-center text-sm">
                       {invoice.amount}
                     </td>
