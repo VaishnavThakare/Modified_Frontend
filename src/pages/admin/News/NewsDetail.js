@@ -54,11 +54,14 @@ export default function DetailNews() {
       </div>
       <div className="w-3/4 border-2 border-cyan-500 rounded-lg mb-5 bg-white justify-center ml-28">
         <div className="p-6">
-        <img
-                  className="rounded-t-lg w-3/4 mb-7 h-3/4" style={{marginLeft:"12%"}}
+        <div className="" style={{
+          height:"60vh",
+          width:"60vw"
+        }}><img
+                  className="rounded-t-lg w-3/4 mb-7 h-3/4" style={{marginLeft:"9%"}}
                   src={news.imagePath}
                   alt={news.title}
-                />
+                /></div>
           <p className="text-gray-900 ">
             <span className="text-m text-transform: uppercase font-bold">
             NEWS TITLE
