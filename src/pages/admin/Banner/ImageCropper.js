@@ -75,10 +75,10 @@ const ImageCropper = ({ image, onCropDone, onCropCancel ,state}) => {
                 <input className="ml-3" type="radio" value={5 / 3} name="ratio" onChange={onAspectRatioChange} /> 5:3
                 <input className="ml-3" type="radio" value={16 / 9} name="ratio" onChange={onAspectRatioChange} /> 16:9
                 <input className="ml-3" type="radio" value={3 / 1} name="ratio" onChange={onAspectRatioChange} /> 3:1
-                <button onClick={() => { setDisable(false) }} className="bg-red-300 px-3 py-1 rounded">
+                <button type="button" onClick={() => { setDisable(false) }} className="bg-red-300 px-3 py-1 rounded">
                     Cancel
                 </button>
-                <button onClick={() => { onCropDone(croppedArea); }} className="bg-cyan-300 px-3 py-1 ml-3 rounded">
+                <button type="button" onClick={() => { onCropDone(croppedArea); }} className="bg-cyan-300 px-3 py-1 ml-3 rounded">
                     Crop & Apply
                 </button>
             </div>

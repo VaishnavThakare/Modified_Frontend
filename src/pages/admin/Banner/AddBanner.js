@@ -13,6 +13,8 @@ export default function AddBanner() {
   const onImageSelected = (selectedImg)=>{
     setImage(selectedImg);
     setCurrentPage("crop-img");
+    console.log(selectedImg);
+    //console.log(fileName);
   }
 
   const onCropDone = (imgCroppedArea)=>{
@@ -38,7 +40,21 @@ export default function AddBanner() {
       const dataURL= canvasEle.toDataURL("image/Jpeg");
       console.log(imageObj1.src);
       setImgAfterCrop(dataURL);
-      setCurrentPage("img-cropped");
+      setCurrentPage("img-cropped");      
+
+      const binaryImageData = atob(dataURL.split(',')[1]);
+
+      const byteNumbers = new Array(binaryImageData.length);
+      for (let i = 0; i < binaryImageData.length; i++) {
+        byteNumbers[i] = binaryImageData.charCodeAt(i);
+      }
+      const byteArray = new Uint8Array(byteNumbers);
+      const blob = new Blob([byteArray], { type: 'image/jpeg' });
+      const f = new File([blob], "banner.jpeg");
+
+      console.log(f);
+      setFile(f);
+      banner.Image =f;
     }
   }
   const onCropCancel = ()=>{
@@ -77,7 +93,7 @@ export default function AddBanner() {
       console.log(banner);
       const formDataToSend = new FormData(); 
       formDataToSend.append("Title", banner.Title);
-      formDataToSend.append("Image", imgAfterCrop);
+      formDataToSend.append("Image", file);
       formDataToSend.append("IsActive", banner.IsActive);
       console.log(formDataToSend);
 
@@ -97,11 +113,15 @@ export default function AddBanner() {
         IsActive: "",
       });
 
-      document.getElementById("file").value = "";
     } catch (error) {
-      console.error("Error adding Banner:", error.message);
-    }
+      console.error("Error adding Banner:", error);
+    }    
   };
+
+  const prevent = (e)=>{
+    e.preventDefault();
+  }
+
   return (
     <>
       <div class="align-middle inline-block min-w-full  overflow-hidden bg-zinc-50 px-8 py-3 pb-8 rounded-bl-lg rounded-br-lg">
@@ -148,20 +168,6 @@ export default function AddBanner() {
           </div>
 
           <div class="mb-6">
-            {/* <label
-              for="description"
-              class="block mb-2 text-sm font-medium text-gray-900"
-            >
-              Banner Image
-            </label>
-            <input
-              type="file"
-              id="file"
-              name="Image"
-              onChange={handleFile}
-              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-              required
-            />    */}
             <button type="button" className="w-full bg-cyan-400 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded">
               <FileInput onImageSelected={onImageSelected}></FileInput>
             </button>           
