@@ -69,7 +69,8 @@ export default function AllNews() {
                 className="max-w-sm bg-white border border-gray-200 rounded-lg shadow my-6"
               >
                 <img
-                  className="rounded-t-lg"
+                  className="rounded-t-lg mt-5 p-2"
+                  style={{height:"50%",}}
                   src={newsItem.imagePath}
                   alt={newsItem.title}
                 />
@@ -77,10 +78,7 @@ export default function AllNews() {
                   <h5 className="mb-2 text-lg font-bold tracking-tight">
                     {newsItem.title}
                   </h5>
-                  <p
-                    className="mb-2 truncate"
-                    dangerouslySetInnerHTML={{ __html: newsItem.content }}
-                  />
+                  
                   <p className="mb-2">
                     Status: {newsItem.isActive ? "Active" : "Inactive"}
                   </p>
