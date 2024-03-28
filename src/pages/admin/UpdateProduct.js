@@ -6,14 +6,14 @@ import "react-toastify/dist/ReactToastify.css";
 
 const ProductEdit = () => {
   const { productId } = useParams();
-  const [file,setFile]= useState(null);
-  const handleFile=(e)=>{
-  setFile(e.target.files[0]);
-  productData.imageFile=e.target.files[0];
-  }
+  const [file, setFile] = useState(null);
+  const handleFile = (e) => {
+    setFile(e.target.files[0]);
+    productData.imageFile = e.target.files[0];
+  };
   const [productData, setProductData] = useState({
     name: "",
-    imageFile:"",
+    imageFile: "",
     shortDescription: "",
     longDescription: "",
     unitType: "",
@@ -67,14 +67,14 @@ const ProductEdit = () => {
     try {
       const formDataToSend = new FormData();
       formDataToSend.append("Name", productData.name);
-      formDataToSend.append("ImageFile",productData.imageFile);
-      formDataToSend.append("ShortDescription",productData.shortDescription);
-      formDataToSend.append("LongDescription",productData.longDescription);
-      formDataToSend.append("UnitType",productData.unitType);
-      formDataToSend.append("Size",productData.size);
-      formDataToSend.append("ProductCategoryId",productData.productCategoryId);
-      formDataToSend.append("SubCategoryId",productData.subCategoryId);
-      formDataToSend.append("Specification",productData.specification);
+      formDataToSend.append("ImageFile", productData.imageFile);
+      formDataToSend.append("ShortDescription", productData.shortDescription);
+      formDataToSend.append("LongDescription", productData.longDescription);
+      formDataToSend.append("UnitType", productData.unitType);
+      formDataToSend.append("Size", productData.size);
+      formDataToSend.append("ProductCategoryId", productData.productCategoryId);
+      formDataToSend.append("SubCategoryId", productData.subCategoryId);
+      formDataToSend.append("Specification", productData.specification);
 
       const response = await axios.put(
         `${process.env.REACT_APP_API_URL}/Product/${productId}`,
@@ -141,7 +141,6 @@ const ProductEdit = () => {
                   name="imageFile"
                   onChange={handleFile}
                   className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-500 peer"
-                  
                 />
               </div>
 
