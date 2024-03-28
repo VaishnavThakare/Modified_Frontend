@@ -83,25 +83,25 @@ const PheadList = () => {
             <table className="table-auto w-full rounded-lg  bg-white">
               <thead>
                 <tr className="text-gray-600">
-                  <th className="text-sm text-transform: uppercase px-4 py-2 text-left">
+                  <th className="font-semibold text-sm text-transform: uppercase px-4 py-2 text-left">
                     SR. NO.
                   </th>
-                  <th className="text-sm text-transform: uppercase px-4 py-2 text-left">
+                  <th className="font-semibold text-sm text-transform: uppercase px-4 py-2 text-left">
                     Invoice No.
                   </th>
-                  <th className="text-sm text-transform: uppercase px-4 py-2 text-left">
+                  <th className="font-semibold text-sm text-transform: uppercase px-4 py-2 text-left">
                     Amount
                   </th>
-                  <th className="text-sm text-transform: uppercase px-4 py-2 text-left">
+                  <th className="font-semibold text-sm text-transform: uppercase px-4 py-2 text-left">
                     SENT ON (date)
                   </th>
-                  <th className="text-sm text-transform: uppercase px-4 py-2 text-left">
+                  <th className="font-semibold text-sm text-transform: uppercase px-4 py-2 text-left">
                     PAYMENT STATUS
                   </th>
-                  <th className="text-sm text-transform: uppercase px-4 py-2 text-left">
+                  <th className="font-semibold text-sm text-transform: uppercase px-4 py-2 text-left">
                     Accept/Reject
                   </th>
-                  <th className="text-sm text-transform: uppercase px-4 py-2 text-left">
+                  <th className="font-semibold text-sm text-transform: uppercase px-4 py-2 text-left">
                     ACTIONS
                   </th>
                 </tr>
