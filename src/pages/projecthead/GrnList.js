@@ -127,23 +127,23 @@ const GrnList = () => {
             style={{ height: "fit-content" }}
           >
             <p className="text-gray-900 mb-3">
-              <span className="font-bold">GRN Nos.</span>: {grnDetails.grnNo}
+              <span className="text-sm text-transform: uppercase font-bold">GRN Nos.</span>: {grnDetails.grnNo}
             </p>
             <p className="text-gray-900 mb-3">
-              <span className="font-bold">PO No.</span>:{" "}
+              <span className="text-sm text-transform: uppercase font-bold">PO No.</span>:{" "}
               {grnDetails.purchaseOrder.orderNo}
             </p>
             <p className="text-gray-900 mb-3">
-              <span className="font-bold">Sent on (date)</span>:{" "}
+              <span className="text-sm text-transform: uppercase font-bold">Sent on (date)</span>:{" "}
               {formatDateTime(grnDetails.sendOn)}
             </p>
             <p className="text-gray-900">
-              <span className="font-bold">Status</span>:{" "}
+              <span className="text-sm text-transform: uppercase font-bold">Status</span>:{" "}
               {grnDetails.isAccepted ? "Accepted" : "Rejected"}
             </p>
             <p>
               <td className="py-2">
-                <span className="font-bold">Shipment Status:</span>
+                <span className="text-sm text-transform: uppercase font-bold">Shipment Status:</span>
               </td>
               <td className="py-2">
                 {grnDetails.shipmentStatus ? (
@@ -170,10 +170,10 @@ const GrnList = () => {
               </td>
             </p>
             <p className="text-gray-900">
-              <span className="font-bold">Comment</span>: {grnDetails.comment}
+              <span className="text-sm text-transform: uppercase font-bold">Comment</span>: {grnDetails.comment}
             </p>
             <div>
-              <span className="font-bold">Document:</span>{" "}
+              <span className="text-sm text-transform: uppercase font-bold">Document:</span>{" "}
               {grnDetails.documentPath && (
                 <button
                   className="text-blue-500"
@@ -201,26 +201,26 @@ const GrnList = () => {
           <table className="min-w-full  rounded-lg bg-white">
             <thead>
               <tr>
-                <th className="px-6 py-3  text-center text-sm leading-4 text-gray-600 tracking-wider">
+                <th className="text-sm text-transform: uppercase px-6 py-3  text-center text-sm leading-4 text-gray-600 tracking-wider">
                   Invoice No.
                 </th>
-                <th className="px-6 py-3  text-center text-sm leading-4 text-gray-600 tracking-wider">
+                <th className="text-sm text-transform: uppercase px-6 py-3  text-center text-sm leading-4 text-gray-600 tracking-wider">
                   Sent On.
                 </th>
 
-                <th className="px-6 py-3  text-center text-sm leading-4 text-gray-600 tracking-wider">
+                <th className="text-sm text-transform: uppercase px-6 py-3  text-center text-sm leading-4 text-gray-600 tracking-wider">
                   Amount
                 </th>
-                <th className="px-6 py-3  text-center text-sm leading-4 text-gray-600 tracking-wider">
+                <th className="text-sm text-transform: uppercase px-6 py-3  text-center text-sm leading-4 text-gray-600 tracking-wider">
                   Grn NO
                 </th>
-                <th className="px-6 py-3  text-center text-sm leading-4 text-gray-600 tracking-wider">
+                <th className="text-sm text-transform: uppercase px-6 py-3  text-center text-sm leading-4 text-gray-600 tracking-wider">
                   Payment Status.
                 </th>
-                <th className="px-6 py-3  text-center text-sm leading-4 text-gray-600 tracking-wider">
+                <th className="text-sm text-transform: uppercase px-6 py-3  text-center text-sm leading-4 text-gray-600 tracking-wider">
                   Status
                 </th>
-                <th className="px-6 py-3  text-center text-sm leading-4 text-gray-600 tracking-wider">
+                <th className="text-sm text-transform: uppercase px-6 py-3  text-center text-sm leading-4 text-gray-600 tracking-wider">
                   View Document
                 </th>
               </tr>
@@ -293,13 +293,13 @@ const GrnList = () => {
         <table className="table-auto w-full rounded-lg  bg-white">
           <thead>
             <tr className="text-gray-600">
-              <th className="px-4 py-2 text-left">SR. NO.</th>
-              <th className="px-4 py-2 text-left">GRN No.</th>
-              <th className="px-4 py-2 text-left">PO No.</th>
-              <th className="px-4 py-2 text-left">SENT ON (date)</th>
-              <th className="px-4 py-2 text-left">STATUS</th>
-              <th className="px-4 py-2 text-left">SHIPMENT STATUS</th>
-              <th className="px-4 py-2 text-left">ACTIONS</th>
+              <th className="text-sm text-transform: uppercase px-4 py-2 text-left">SR. NO.</th>
+              <th className="text-sm text-transform: uppercase px-4 py-2 text-left">GRN No.</th>
+              <th className="text-sm text-transform: uppercase px-4 py-2 text-left">PO No.</th>
+              <th className="text-sm text-transform: uppercase px-4 py-2 text-left">SENT ON (date)</th>
+              <th className="text-sm text-transform: uppercase px-4 py-2 text-left">STATUS</th>
+              <th className="text-sm text-transform: uppercase px-4 py-2 text-left">SHIPMENT STATUS</th>
+              <th className="text-sm text-transform: uppercase px-4 py-2 text-left">ACTIONS</th>
             </tr>
             <tr className=" text-gray-600">
               <td colSpan="9" className=" px-4 py-1">
