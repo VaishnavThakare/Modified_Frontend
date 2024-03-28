@@ -65,7 +65,7 @@ const PoDetailsA = () => {
 
   return (
     <div className="overflow-x-auto mt-8 ml-2 mr-2 rounded">
-      <div className="flex text-2xl font-bold text-gray-500">
+      <div className="flex text-xl font-bold text-gray-500">
         <h2 className="text-left text-cyan-500">Purchase Orders List</h2>
       </div>
       <div className="w-64 bg-cyan-500 h-0.5 mb-1"></div>

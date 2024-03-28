@@ -104,7 +104,7 @@ const EditVGrnDetails = () => {
     <div className="py-10 flex justify-center items-center bg-zinc-50 font-poppins">
       
       <div className="bg-white border-2 border-cyan-400 rounded-lg shadow-lg p-8 w-full max-w-lg mt">
-      <div className="flex text-2xl font-bold text-gray-500 mb-5 justify-center">
+      <div className="flex text-xl font-bold text-gray-500 mb-5 justify-center">
           <h2>Edit Grn Details</h2>
         </div>
         <form onSubmit={handleSubmit} className="p-10">

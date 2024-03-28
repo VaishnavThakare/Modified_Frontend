@@ -92,7 +92,7 @@ export default function RFP() {
   return (
     <>
       <div className="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 pr-10 lg:px-8 mb-8">
-        <div className="flex text-2xl font-bold text-gray-500">
+        <div className="flex text-xl font-bold text-gray-500">
           <h2 className="text-left text-cyan-500">REQUEST FOR PROPOSAL</h2>
         </div>
         <div className="w-72 bg-cyan-500 h-0.5 mb-1"></div>
@@ -183,7 +183,7 @@ export default function RFP() {
           <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
             <div className="bg-white p-2 max-w-md rounded-lg">
               <form onSubmit={applyRFP} className="appform">
-                <div className="flex text-2xl justify-center mb-7 font-bold text-gray-500 ">
+                <div className="flex text-xl justify-center mb-7 font-bold text-gray-500 ">
                   <h2>Apply for RFP</h2>
                 </div>
 

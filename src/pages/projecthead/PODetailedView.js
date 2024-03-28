@@ -37,7 +37,7 @@ const PODetailedView = () => {
     <div className="ml-96 items-center justify-center h-screen">
       <div className="rounded-lg border-2 border-cyan-400 bg-white shadow-lg p-4 max-w-lg w-full mt-2">
         <div className="flex justify-center">
-          <h3 className="text-gray-600 text-2xl  font-bold mb-2">PO Details</h3>
+          <h3 className="text-gray-600 text-xl  font-bold mb-2">PO Details</h3>
         </div>
         {poDetails ? (
           <div className="space-y-4">

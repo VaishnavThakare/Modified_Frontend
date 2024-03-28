@@ -132,7 +132,7 @@ const PoDetailsV = () => {
         <>
           <div className="flex justify-between">
             <div>
-              <div className="flex text-2xl font-bold text-gray-500">
+              <div className="flex text-xl font-bold text-gray-500">
                 <h2 className="text-left text-cyan-500">
                   Purchase Order Details
                 </h2>
@@ -242,7 +242,7 @@ const PoDetailsV = () => {
           </div>
 
           {/*  */}
-          <div className="mt-4 flex text-2xl font-bold text-gray-500">
+          <div className="mt-4 flex text-xl font-bold text-gray-500">
             <h2 className="text-left text-cyan-500">GRNS</h2>
           </div>
           <div className="w-72 bg-cyan-500 h-0.5 mb-1"></div>
@@ -364,7 +364,7 @@ const PoDetailsV = () => {
 
       {!showDetails && !grnView && (
         <div className="overflow-x-auto mt-8 ml-2 mr-2 rounded">
-          <div className="flex text-2xl font-bold text-gray-500">
+          <div className="flex text-xl font-bold text-gray-500">
             <h2 className="text-left text-cyan-500">Purchase Orders List</h2>
           </div>
           <div className="w-64 bg-cyan-500 h-0.5 mb-1"></div>
@@ -517,7 +517,7 @@ const PoDetailsV = () => {
       {grnView && (
         <>
           <div className="w-full max-w-2xl mx-auto p-8 ">
-            <h1 className="text-cyan-500 text-2xl font-bold mb-4 ">
+            <h1 className="text-cyan-500 text-xl font-bold mb-4 ">
               <span className="border-b-2 border-cyan-500 inline-block">
                 GRN DETAILS
               </span>

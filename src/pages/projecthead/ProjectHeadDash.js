@@ -28,7 +28,7 @@ export default function ProjectHeadDash() {
           <div class="flex justify-between mb-6">
             <div>
               <div class="flex items-center mb-1">
-                <div class="text-2xl font-semibold">{project}</div>
+                <div class="text-xl font-semibold">{project}</div>
               </div>
               <div class="text-sm font-medium text-gray-400">
                 Assigned Project

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import pdf from './pdf.png';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import pdf from "./pdf.png";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function AllPolicyDocuments() {
   const [documents, setdocuments] = useState([]);
@@ -16,12 +16,14 @@ export default function AllPolicyDocuments() {
     id: "",
     name: "",
     image: "",
-    isActive: ""
+    isActive: "",
   });
 
   const getAllDocuments = async () => {
     try {
-      let res = await axios.get(`${process.env.REACT_APP_API_URL}/PolicyDocument/All`);
+      let res = await axios.get(
+        `${process.env.REACT_APP_API_URL}/PolicyDocument/All`
+      );
       console.log(res.data);
       let data = [];
       if (res.status == 200 && res.data != null) {
@@ -50,9 +52,11 @@ export default function AllPolicyDocuments() {
   const handleDelete = async (id, index) => {
     try {
       if (window.confirm("Do you want to delete this document ? ")) {
-        const response = await axios.delete(`${process.env.REACT_APP_API_URL}/PolicyDocument/${id}`);
+        const response = await axios.delete(
+          `${process.env.REACT_APP_API_URL}/PolicyDocument/${id}`
+        );
         toast.success("Document Deleted", {
-          position: "top-right"
+          position: "top-right",
         });
       }
       getAllDocuments();
@@ -71,22 +75,25 @@ export default function AllPolicyDocuments() {
       formDataToSend.append("IsActive", pdocument.isActive);
       console.log(formDataToSend);
 
-      const response = await axios.put(`${process.env.REACT_APP_API_URL}/PolicyDocument/${pdocument.id}`, formDataToSend);
+      const response = await axios.put(
+        `${process.env.REACT_APP_API_URL}/PolicyDocument/${pdocument.id}`,
+        formDataToSend
+      );
       if (response.status === 200)
         toast.success("Document Updated", {
-          position: "top-right"
+          position: "top-right",
         });
       getAllDocuments();
       setdocument({
         id: "",
         name: "",
         image: "",
-        isActive: ""
+        isActive: "",
       });
 
       toggleEditModal();
       setFile();
-      document.getElementById('file').value = "";
+      document.getElementById("file").value = "";
     } catch (error) {
       console.error("Error :", error.message);
     }
@@ -110,7 +117,7 @@ export default function AllPolicyDocuments() {
   return (
     <>
       <div className="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 pr-10 lg:px-8 mb-8">
-        <div className="mt-4 flex text-2xl font-bold text-gray-500">
+        <div className="mt-4 flex text-xl font-bold text-gray-500">
           <h2 className="text-left text-cyan-500">ALL POLICY DOCUMENTS</h2>
         </div>
         <div className="w-72 bg-cyan-500 h-0.5 mb-1"></div>
@@ -122,7 +129,9 @@ export default function AllPolicyDocuments() {
                 <div className="relative flex flex-col md:flex-row md:space-x-5 space-y-3 md:space-y-0 rounded-xl shadow-lg p-3 border-2 border-cyan-500 bg-white">
                   <div className="w-full md:w-1/3 grid place-items-center">
                     <img src={pdf} alt={document.name} className="rounded-xl" />
-                    <a href={document.documentPath} target="_blank">{document.name}</a>
+                    <a href={document.documentPath} target="_blank">
+                      {document.name}
+                    </a>
                   </div>
                   <div className="w-full md:w-2/3 flex flex-col space-y-2 p-3">
                     <div className="flex justify-between item-center">
@@ -130,8 +139,12 @@ export default function AllPolicyDocuments() {
                         {document.isActive ? "Active" : "Inactive"}
                       </div>
                     </div>
-                    <h3 className="font-black text-gray-800 md:text-lg text-lg">{document.name}</h3>
-                    <h3 className="font-black text-gray-800 md:text-sm text-md">{document.createdOn}</h3>
+                    <h3 className="font-black text-gray-800 md:text-lg text-lg">
+                      {document.name}
+                    </h3>
+                    <h3 className="font-black text-gray-800 md:text-sm text-md">
+                      {document.createdOn}
+                    </h3>
                     <div>
                       <button
                         onClick={() => handleDelete(document.id, index)}
@@ -162,8 +175,11 @@ export default function AllPolicyDocuments() {
           (_, index) => (
             <button
               key={index}
-              className={`mx-1 px-4 py-2 ${currentPage === index + 1 ? "bg-blue-500 text-white" : "bg-gray-300"
-                }`}
+              className={`mx-1 px-4 py-2 ${
+                currentPage === index + 1
+                  ? "bg-blue-500 text-white"
+                  : "bg-gray-300"
+              }`}
               onClick={() => paginate(index + 1)}
             >
               {index + 1}
@@ -181,23 +197,23 @@ export default function AllPolicyDocuments() {
               </div>
 
               <div class="mb-6 relative">
-            <input
-              type="text"
-              id="title"
-              name="title"
-              value={pdocument.name}
-              onChange={handleChange}
-              class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-              placeholder=" "
-              required
-            />
-            <label
-              for="title"
-              class="ml-1 absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"
-            >
-              Name
-            </label>
-          </div>
+                <input
+                  type="text"
+                  id="title"
+                  name="title"
+                  value={pdocument.name}
+                  onChange={handleChange}
+                  class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                  placeholder=" "
+                  required
+                />
+                <label
+                  for="title"
+                  class="ml-1 absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"
+                >
+                  Name
+                </label>
+              </div>
 
               <div className="mb-6">
                 <select
@@ -251,4 +267,3 @@ export default function AllPolicyDocuments() {
     </>
   );
 }
-

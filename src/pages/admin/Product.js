@@ -72,7 +72,7 @@ export default function Products() {
   return (
     <>
       <div className="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 pr-10 lg:px-8 mb-8">
-        <div className="flex text-2xl font-bold text-gray-500">
+        <div className="flex text-xl font-bold text-gray-500">
           <h2 className="text-left text-cyan-500">PRODUCTS LIST</h2>
         </div>
         <div className="w-64 bg-cyan-500 h-0.5 mb-1"></div>
@@ -118,7 +118,7 @@ export default function Products() {
                     <th className="font-semibold text-sm text-transform: uppercase px-6 py-3 border-b-2 border-gray-300 text-center leading-4 tracking-wider">
                       Short Description
                     </th>
-                    
+
                     <th className="font-semibold text-sm text-transform: uppercase px-6 py-3 border-b-2 border-gray-300 text-center leading-4 tracking-wider">
                       Unit Type
                     </th>
@@ -131,7 +131,7 @@ export default function Products() {
                     <th className="font-semibold text-sm text-transform: uppercase px-6 py-3 border-b-2 border-gray-300 text-center leading-4 tracking-wider">
                       Product Category
                     </th>
-                    
+
                     <th className="font-semibold text-sm text-transform: uppercase px-6 py-3 border-b-2 border-gray-300 text-center leading-4 tracking-wider">
                       Actions
                     </th>

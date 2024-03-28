@@ -61,7 +61,7 @@ export default function ViewInvoiceVendor() {
     <>
       {isView && (
         <div className="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 pr-10 lg:px-8 mb-8">
-          <div className="flex text-2xl font-bold text-gray-500 ">
+          <div className="flex text-xl font-bold text-gray-500 ">
             <h2 className="text-left text-cyan-500">INVOICE LIST</h2>
           </div>
           <div className="w-52 bg-cyan-500 h-0.5 mb-1"></div>
@@ -202,7 +202,7 @@ export default function ViewInvoiceVendor() {
       )}
       {!isView && (
         <>
-          <div className="grid grid-cols-2 mt-4 text-2xl font-bold text-gray-500">
+          <div className="grid grid-cols-2 mt-4 text-xl font-bold text-gray-500">
             <h2 className="text-left text-cyan-500">Invoice Details</h2>
             <button
               className="items-right mr-1 bg-cyan-500 text-white text-sm px-4 py-[1px] rounded block mx-auto h-8"

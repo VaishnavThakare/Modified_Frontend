@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function AllBanner() {
   const [banners, setbanners] = useState([]);
@@ -21,14 +21,13 @@ export default function AllBanner() {
       let res = await axios.get(`${process.env.REACT_APP_API_URL}/Banner/All`);
       let data = [];
       if (res.status == 200 && res.data != null) {
-        data = res.data; 
+        data = res.data;
       }
-      setbanners(data); 
-     
+      setbanners(data);
     } catch (error) {
-      toast.error("Error to load Banners",{
-        position:"top-right"
-      }); 
+      toast.error("Error to load Banners", {
+        position: "top-right",
+      });
       console.error("Error fetching Banner data:", error);
     }
   };
@@ -39,10 +38,12 @@ export default function AllBanner() {
 
   const handleDelete = async (id, index) => {
     try {
-      if(window.confirm("Are you sure, that you want to delete this Banner ? ")){
+      if (
+        window.confirm("Are you sure, that you want to delete this Banner ? ")
+      ) {
         await axios.delete(`${process.env.REACT_APP_API_URL}/Banner/${id}`);
-        toast.success("Banner is Deleted",{
-          position:"top-right"
+        toast.success("Banner is Deleted", {
+          position: "top-right",
         });
         getAllBanners();
       }
@@ -71,8 +72,8 @@ export default function AllBanner() {
         formDataToSend
       );
       if (response.status === 200) {
-        toast.success("Banner is updated",{
-          position:"top-right"
+        toast.success("Banner is updated", {
+          position: "top-right",
         });
       }
       toggleEditModal();
@@ -96,13 +97,12 @@ export default function AllBanner() {
   return (
     <>
       <div className="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 pr-10 lg:px-8 mb-8">
-      <div className="mt-4 flex text-2xl font-bold text-gray-500">
-            <h2 className="text-left text-cyan-500">ALL BANNERS</h2>
-          </div>
-          <div className="w-72 bg-cyan-500 h-0.5 mb-1"></div>
-          <div className="w-80 bg-cyan-500 h-0.5 "></div>
+        <div className="mt-4 flex text-xl font-bold text-gray-500">
+          <h2 className="text-left text-cyan-500">ALL BANNERS</h2>
+        </div>
+        <div className="w-72 bg-cyan-500 h-0.5 mb-1"></div>
+        <div className="w-80 bg-cyan-500 h-0.5 "></div>
         <div className="align-middle inline-block min-w-full overflow-hidden bg-zinc-50 px-8 pt-3 rounded-bl-lg rounded-br-lg ">
-          
           <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4   ">
             {currentItems.map((banner, index) => (
               <div
@@ -193,23 +193,23 @@ export default function AllBanner() {
               </div>
 
               <div class="mb-6 relative">
-            <input
-              type="text"
-              id="title"
-              name="title"
-              value={modal.title}
-              onChange={handleChange}
-              class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-              placeholder=" "
-              required
-            />
-            <label
-              for="title"
-              class="ml-1 absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"
-            >
-              Title
-            </label>
-          </div>
+                <input
+                  type="text"
+                  id="title"
+                  name="title"
+                  value={modal.title}
+                  onChange={handleChange}
+                  class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                  placeholder=" "
+                  required
+                />
+                <label
+                  for="title"
+                  class="ml-1 absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"
+                >
+                  Title
+                </label>
+              </div>
 
               <div class="mb-6">
                 <select
@@ -259,7 +259,7 @@ export default function AllBanner() {
           </div>
         </div>
       )}
-      <ToastContainer/>
+      <ToastContainer />
     </>
   );
 }

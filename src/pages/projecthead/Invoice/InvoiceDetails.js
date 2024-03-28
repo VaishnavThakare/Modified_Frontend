@@ -29,7 +29,7 @@ const InvoiceDetails = () => {
 
   return (
     <>
-      <div className="grid grid-cols-2 mt-4 text-2xl font-bold text-gray-500">
+      <div className="grid grid-cols-2 mt-4 text-xl font-bold text-gray-500">
         <h2 className="text-left text-cyan-500">Invoice Details</h2>
         <button
           className="items-right mr-1 bg-cyan-500 text-white text-sm px-4 py-[1px] rounded block mx-auto h-8"

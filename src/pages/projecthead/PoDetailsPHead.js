@@ -70,7 +70,7 @@ const PoDetailsPHead = () => {
     <div className="relative">
       <ToastContainer />
       <div className="overflow-x-auto mt-8 ml-2 mr-2 rounded">
-        <div className="flex text-2xl font-bold text-gray-500 ">
+        <div className="flex text-xl font-bold text-gray-500 ">
           <h2 className="text-left text-cyan-500">PURCHASE ORDERS</h2>
         </div>
         <div className="w-1/5 bg-cyan-400 h-0.5 mb-1"></div>

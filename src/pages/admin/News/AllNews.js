@@ -6,8 +6,6 @@ import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
 
-
-
 export default function AllNews() {
   const navigate = useNavigate();
   const [news, setNews] = useState([]);
@@ -58,7 +56,7 @@ export default function AllNews() {
   return (
     <>
       <div className="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 pr-10 lg:px-8 mb-8">
-        <div className="mt-4 flex text-2xl font-bold text-gray-500">
+        <div className="mt-4 flex text-xl font-bold text-gray-500">
           <h2 className="text-left text-cyan-500">ALL NEWS</h2>
         </div>
         <div className="bg-cyan-500 w-32 h-0.5 mb-1"></div>
@@ -130,7 +128,9 @@ export default function AllNews() {
                       </svg>
                     </button>
                     <button
-                      onClick={() => navigate(`/admin/news/view/${newsItem.id}`)}
+                      onClick={() =>
+                        navigate(`/admin/news/view/${newsItem.id}`)
+                      }
                       className="bg-cyan-500 hover:bg-cyan-700 text-white font-bold rounded p-1"
                     >
                       <FontAwesomeIcon
@@ -145,7 +145,6 @@ export default function AllNews() {
           </div>
         </div>
       </div>
-
 
       <div className="flex justify-center mt-4">
         {Array.from({ length: Math.ceil(news.length / itemsPerPage) }).map(

@@ -79,7 +79,7 @@ const GrnDetails = () => {
     <div>
       <div className="flex justify-between">
         <div>
-          <div className="flex text-2xl font-bold text-gray-500 ">
+          <div className="flex text-xl font-bold text-gray-500 ">
             <h2 className="text-left text-cyan-500">GRN DETAILS</h2>
           </div>
           <div className="w-52 bg-cyan-400 h-0.5 mb-1"></div>
@@ -143,7 +143,7 @@ const GrnDetails = () => {
         </div>
       </div>
 
-      <div className="flex text-2xl font-bold text-gray-500 mt-14">
+      <div className="flex text-xl font-bold text-gray-500 mt-14">
         <h2 className="text-left text-cyan-500 ">ALL INVOICES</h2>
       </div>
       <div className="w-1/5 bg-cyan-400 h-0.5 mb-1"></div>
@@ -239,7 +239,7 @@ const GrnDetails = () => {
             <DetailsView grn={grns.find((grn) => grn.grnNo === selectedGrn)} />
           ) : (
             <>
-              <div className="flex text-2xl font-bold text-gray-500 ">
+              <div className="flex text-xl font-bold text-gray-500 ">
                 <h2 className="text-left text-cyan-500">GRN LIST</h2>
               </div>
               <div className="w-1/5 bg-cyan-400 h-0.5 mb-1"></div>

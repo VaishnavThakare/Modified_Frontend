@@ -49,7 +49,7 @@ export default function VendorCategory() {
     <>
       <div className="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 pr-10 lg:px-8 mb-8">
         <div className="align-middle inline-block min-w-full  overflow-hidden bg-zinc-50  px-8 pt-3 rounded-bl-lg rounded-br-lg ">
-          <div className="flex text-2xl font-bold text-gray-500">
+          <div className="flex text-xl font-bold text-gray-500">
             <h2 className="text-left text-cyan-500">Vendor Category</h2>
           </div>
           <div className="w-64 bg-cyan-500 h-0.5 mb-1"></div>

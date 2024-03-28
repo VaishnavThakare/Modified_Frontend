@@ -87,7 +87,7 @@ const ProjectView = () => {
         <div className="flex justify-between">
           <div>
             <div
-              className="flex text-2xl font-bold
+              className="flex text-xl font-bold
 text-gray-500 "
             >
               <h2 className="text-left text-cyan-500">PROJECT DETAILS</h2>
@@ -144,7 +144,7 @@ text-gray-500 "
         <br></br>
 
         {/* Purchase Order table code starts */}
-        <div className="flex text-2xl  text-gray-500">
+        <div className="flex text-xl font-bold  text-gray-500">
           <h2 className="text-left text-cyan-500">ALL PURCHASE ORDERS</h2>
         </div>
         <div className="w-1/5 bg-cyan-500 h-0.5 mb-1"></div>

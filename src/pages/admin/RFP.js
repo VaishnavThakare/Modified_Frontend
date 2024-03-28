@@ -69,7 +69,7 @@ export default function RFPA() {
   return (
     <>
       <div className="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 pr-10 lg:px-8 mb-8">
-        <div className="mt-4 flex text-2xl font-bold text-gray-500">
+        <div className="mt-4 flex text-xl font-bold text-gray-500">
           <h2 className="text-left text-cyan-500">REQUEST FOR PROPOSAL</h2>
         </div>
         <div className="w-72 bg-cyan-500 h-0.5 mb-1"></div>
