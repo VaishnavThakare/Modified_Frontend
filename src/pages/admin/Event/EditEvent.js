@@ -4,10 +4,11 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 export default function EditEvent() {
   const { eventId } = useParams();
+  const navigate = useNavigate();
   const [event, setevent] = useState({
     title: "",
     isActive: "",
@@ -74,6 +75,8 @@ export default function EditEvent() {
       console.error("Error updating Event:", error.message);
     }
   };
+
+
   return (
     <>
       <div class="align-middle inline-block min-w-full overflow-hidden bg-zinc-50 px-8 py-3 pb-8 rounded-bl-lg rounded-br-lg">
@@ -81,8 +84,8 @@ export default function EditEvent() {
           onSubmit={handleSubmit}
           className="max-w-lg margin-left mt-8 appform bg-white"
         >
-          <div className="flex text-2xl font-bold text-gray-500 mb-5 justify-center">
-            <h2 className="page-heading">Create Event</h2>
+          <div className="flex text-2xl font-bold text-gray-500 mb-2 justify-center">
+            <h2 className="page-heading">Edit Event</h2>
           </div>
 
           <div class="mb-6 relative">
@@ -177,6 +180,12 @@ export default function EditEvent() {
             >
               Update Event
             </button>
+            <button
+                onClick={()=>{navigate(-1)}}
+                className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded ml-2"
+              >
+                Close
+              </button>
           </div>
         </form>
       </div>

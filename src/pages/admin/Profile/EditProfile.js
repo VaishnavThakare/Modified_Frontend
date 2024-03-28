@@ -4,10 +4,11 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 export default function EditProfile() {
   const { profileId } = useParams();
+  const navigate = useNavigate();
   const [profile, setProfile] = useState({
     userId: "",
     position: "",
@@ -201,6 +202,12 @@ export default function EditProfile() {
             >
               Update Profile
             </button>
+            <button
+                onClick={()=>{navigate(-1)}}
+                className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded ml-2"
+              >
+                Close
+              </button>
           </div>
         </form>
       </div>

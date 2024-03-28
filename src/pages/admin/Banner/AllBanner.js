@@ -188,35 +188,30 @@ export default function AllBanner() {
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
           <div className="bg-white p-2 max-w-md rounded-lg shadow-md">
             <form className="appform" onSubmit={handleEdit}>
-              <div className="flex text-2xl font-bold text-gray-500 mb-2">
-                <h2>Update Banner</h2>
+              <div className="flex text-2xl font-bold text-gray-500 mb-2 justify-center">
+                <h2 className="page-heading">Update Banner</h2>
               </div>
 
-              <div class="mb-6">
-                <label
-                  for="name"
-                  class="block mb-2 text-sm font-medium text-gray-900"
-                >
-                  Title
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  name="title"
-                  value={modal.title}
-                  onChange={handleChange}
-                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                  required
-                />
-              </div>
+              <div class="mb-6 relative">
+            <input
+              type="text"
+              id="title"
+              name="title"
+              value={modal.title}
+              onChange={handleChange}
+              class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+              placeholder=" "
+              required
+            />
+            <label
+              for="title"
+              class="ml-1 absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"
+            >
+              Title
+            </label>
+          </div>
 
               <div class="mb-6">
-                <label
-                  for="isActive"
-                  class="block mb-2 text-sm font-medium text-gray-900"
-                >
-                  IsActive
-                </label>
                 <select
                   id="isActive"
                   name="isActive"
@@ -227,8 +222,8 @@ export default function AllBanner() {
                   <option value="" disabled>
                     Choose Status
                   </option>
-                  <option value={true}> True </option>
-                  <option value={false}> False </option>
+                  <option value={true}> Active </option>
+                  <option value={false}> InActive </option>
                 </select>
               </div>
 
