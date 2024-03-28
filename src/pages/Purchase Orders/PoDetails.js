@@ -109,32 +109,46 @@ const PoDetails = () => {
         >
           <div className="relative">
             <p className="text-gray-900">
-              <span className="font-bold">Purchase Order No.:</span>:{" "}
-              {selectedPurchaseOrder?.orderNo}
+              <span className="text-sm text-transform: uppercase font-bold">
+                Purchase Order No.:
+              </span>
+              : {selectedPurchaseOrder?.orderNo}
             </p>
             <p className="text-gray-900">
-              <span className="font-bold">Vendor Name.:</span>:{" "}
-              {selectedPurchaseOrder?.vendorName}
+              <span className="text-sm text-transform: uppercase font-bold">
+                Vendor Name.:
+              </span>
+              : {selectedPurchaseOrder?.vendorName}
             </p>
             <p className="text-gray-900">
-              <span className="font-bold">Created On: </span>:{" "}
-              {formatDateTime(selectedPurchaseOrder?.createdOn)}
+              <span className="text-sm text-transform: uppercase font-bold">
+                Created On:{" "}
+              </span>
+              : {formatDateTime(selectedPurchaseOrder?.createdOn)}
             </p>
             <p className="text-gray-900">
-              <span className="font-bold">Expected Delivery On:</span>:{" "}
-              {formatDateTime(selectedPurchaseOrder?.expectedDelivery)}
+              <span className="text-sm text-transform: uppercase font-bold">
+                Expected Delivery On:
+              </span>
+              : {formatDateTime(selectedPurchaseOrder?.expectedDelivery)}
             </p>
             <p className="text-gray-900">
-              <span className="font-bold">Sent On:</span>:{" "}
-              {formatDateTime(selectedPurchaseOrder?.releaseDate)}
+              <span className="text-sm text-transform: uppercase font-bold">
+                Sent On:
+              </span>
+              : {formatDateTime(selectedPurchaseOrder?.releaseDate)}
             </p>
             <p className="text-gray-900">
-              <span className="font-bold">Po Amount:</span>:{" "}
-              {selectedPurchaseOrder?.orderAmount}
+              <span className="text-sm text-transform: uppercase font-bold">
+                Po Amount:
+              </span>
+              : {selectedPurchaseOrder?.orderAmount}
             </p>
             <p className="text-gray-900">
-              <span className="font-bold">Comments:</span>:{" "}
-              {selectedPurchaseOrder?.comment}
+              <span className="text-sm text-transform: uppercase font-bold">
+                Comments:
+              </span>
+              : {selectedPurchaseOrder?.comment}
             </p>
             <p className="text-gray-900">
               {selectedPurchaseOrder?.documentPath && (
@@ -162,13 +176,27 @@ const PoDetails = () => {
         <table className="table-auto w-full rounded-lg bg-white ">
           <thead>
             <tr className="text-gray-600">
-              <th className="px-4 py-2 text-center">GRN NO.</th>
-              <th className="px-4 py-2 text-center">PO Amount</th>
-              <th className="px-4 py-2 text-center">Send On</th>
-              <th className="px-4 py-2 text-center">Comments</th>
-              <th className="px-4 py-2 text-center">Acceptance</th>
-              <th className="px-4 py-2 text-center">Payment Status</th>
-              <th className="px-4 py-2 text-center">Actions</th>
+              <th className="text-sm text-transform: uppercase px-4 py-2 text-center">
+                GRN NO.
+              </th>
+              <th className="text-sm text-transform: uppercase px-4 py-2 text-center">
+                PO Amount
+              </th>
+              <th className="text-sm text-transform: uppercase px-4 py-2 text-center">
+                Send On
+              </th>
+              <th className="text-sm text-transform: uppercase px-4 py-2 text-center">
+                Comments
+              </th>
+              <th className="text-sm text-transform: uppercase px-4 py-2 text-center">
+                Acceptance
+              </th>
+              <th className="text-sm text-transform: uppercase px-4 py-2 text-center">
+                Payment Status
+              </th>
+              <th className="text-sm text-transform: uppercase px-4 py-2 text-center">
+                Actions
+              </th>
             </tr>
             <tr className="text-gray-600">
               <td colSpan="7" className="px-4 py-1">

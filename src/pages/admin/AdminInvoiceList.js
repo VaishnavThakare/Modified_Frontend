@@ -61,32 +61,32 @@ const AdminInvoiceList = () => {
           <table className="table-auto w-full rounded-lg">
             <thead>
               <tr className="text-gray-600 bg-white">
-                <th className="px-4 py-2 text-center">
+                <th className="text-sm text-transform: uppercase px-4 py-2 text-center">
                   Sr.<p></p> No.
                 </th>
-                <th className="px-4 py-2 text-center">
+                <th className="text-sm text-transform: uppercase px-4 py-2 text-center">
                   Invoice<p></p> No.
                 </th>
-                <th className="px-4 py-2 text-center">
+                <th className="text-sm text-transform: uppercase px-4 py-2 text-center">
                   GRN<p></p> No.
                 </th>
-                <th className="px-4 py-2 text-center">
+                <th className="text-sm text-transform: uppercase px-4 py-2 text-center">
                   PO<p></p> No.
                 </th>
-                <th className="px-4 py-2 text-center">
+                <th className="text-sm text-transform: uppercase px-4 py-2 text-center">
                   Release<p></p> Date
                 </th>
-                <th className="px-4 py-2 text-center">
+                <th className="text-sm text-transform: uppercase px-4 py-2 text-center">
                   Due<p></p> Date
                 </th>
-                <th className="px-4 py-2 text-center">Amount</th>
-                <th className="px-4 py-2 text-center">Comment</th>
-                <th className="px-4 py-2 text-center">
+                <th className="text-sm text-transform: uppercase px-4 py-2 text-center">Amount</th>
+                <th className="text-sm text-transform: uppercase px-4 py-2 text-center">Comment</th>
+                <th className="text-sm text-transform: uppercase px-4 py-2 text-center">
                   View/Download Documents
                 </th>
-                <th className="px-4 py-2 text-center">Payment Status</th>
-                <th className="px-4 py-2 text-center">Status</th>
-                <th className="px-4 py-2 text-center">Actions</th>
+                <th className="text-sm text-transform: uppercase px-4 py-2 text-center">Payment Status</th>
+                <th className="text-sm text-transform: uppercase px-4 py-2 text-center">Status</th>
+                <th className="text-sm text-transform: uppercase px-4 py-2 text-center">Actions</th>
               </tr>
               <tr className=" text-gray-600 bg-white">
                 <td colSpan="12" className="px-4 py-1">

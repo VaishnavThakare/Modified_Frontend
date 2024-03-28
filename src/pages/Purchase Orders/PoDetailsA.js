@@ -79,15 +79,33 @@ const PoDetailsA = () => {
             {/* Table Header */}
             <thead>
               <tr className="text-gray-600">
-                <th className="px-4 py-2 text-center">Sr. No.</th>
-                <th className="px-4 py-2 text-center">Purchase Order No.</th>
-                <th className="px-4 py-2 text-center">Vendor Name</th>
-                <th className="px-4 py-2 text-center">Release On</th>
-                <th className="px-4 py-2 text-center">Accepted On</th>
-                <th className="px-4 py-2 text-center">PO Amount</th>
-                <th className="px-4 py-2 text-center">Comments</th>
-                <th className="px-4 py-2 text-center">Status</th>
-                <th className="px-4 py-2 text-center">Actions</th>
+                <th className="text-sm text-transform: uppercase px-4 py-2 text-center">
+                  Sr. No.
+                </th>
+                <th className="text-sm text-transform: uppercase px-4 py-2 text-center">
+                  Purchase Order No.
+                </th>
+                <th className="text-sm text-transform: uppercase px-4 py-2 text-center">
+                  Vendor Name
+                </th>
+                <th className="text-sm text-transform: uppercase px-4 py-2 text-center">
+                  Release On
+                </th>
+                <th className="text-sm text-transform: uppercase px-4 py-2 text-center">
+                  Accepted On
+                </th>
+                <th className="text-sm text-transform: uppercase px-4 py-2 text-center">
+                  PO Amount
+                </th>
+                <th className="text-sm text-transform: uppercase px-4 py-2 text-center">
+                  Comments
+                </th>
+                <th className="text-sm text-transform: uppercase px-4 py-2 text-center">
+                  Status
+                </th>
+                <th className="text-sm text-transform: uppercase px-4 py-2 text-center">
+                  Actions
+                </th>
               </tr>
               <tr className="text-gray-600">
                 <td colSpan="9" className="px-4 py-1">

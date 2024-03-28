@@ -69,16 +69,16 @@ export default function VendorCategory() {
               <table className="min-w-full rounded-lg bg-white">
                 <thead>
                   <tr>
-                    <th className="px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-600 tracking-wider">
+                    <th className="text-sm text-transform: uppercase px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-600 tracking-wider">
                       Sr.No
                     </th>
-                    <th className="px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-600 tracking-wider">
+                    <th className="text-sm text-transform: uppercase px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-600 tracking-wider">
                       Name
                     </th>
-                    <th className="px-6 py-3 border-b-2 border-gray-300 text-center text-sm leading-4 text-gray-600 tracking-wider">
+                    <th className="text-sm text-transform: uppercase px-6 py-3 border-b-2 border-gray-300 text-center text-sm leading-4 text-gray-600 tracking-wider">
                       Description
                     </th>
-                    <th className="px-6 py-3 border-b-2 border-gray-300 text-center text-sm leading-4 text-gray-600 tracking-wider">
+                    <th className="text-sm text-transform: uppercase px-6 py-3 border-b-2 border-gray-300 text-center text-sm leading-4 text-gray-600 tracking-wider">
                       Document List
                     </th>
                   </tr>

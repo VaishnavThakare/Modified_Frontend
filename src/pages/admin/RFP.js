@@ -15,7 +15,7 @@ export default function RFPA() {
   const [filterOption, setFilterOption] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
   const [vendorCategories, setVendorCategories] = useState([]);
-  const [isShow,SetIsShow] = useState(false);
+  const [isShow, SetIsShow] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -110,25 +110,25 @@ export default function RFPA() {
               <table className="min-w-full rounded-lg bg-white">
                 <thead>
                   <tr>
-                    <th className="px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-600 tracking-wider">
+                    <th className="text-sm text-transform: uppercase px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-600 tracking-wider">
                       Sr.No
                     </th>
-                    <th className="px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-600 tracking-wider">
+                    <th className="text-sm text-transform: uppercase px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-600 tracking-wider">
                       Title
                     </th>
-                    <th className="px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-600 tracking-wider">
+                    <th className="text-sm text-transform: uppercase px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-600 tracking-wider">
                       Project Name
                     </th>
-                    <th className="px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-600 tracking-wider">
+                    <th className="text-sm text-transform: uppercase px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-600 tracking-wider">
                       Vendor Category
                     </th>
-                    <th className="px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-600 tracking-wider">
+                    <th className="text-sm text-transform: uppercase px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-600 tracking-wider">
                       End On
                     </th>
-                    <th className="px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-600 tracking-wider">
+                    <th className="text-sm text-transform: uppercase px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-600 tracking-wider">
                       Document
                     </th>
-                    <th className="px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-600 tracking-wider">
+                    <th className="text-sm text-transform: uppercase px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-600 tracking-wider">
                       Action
                     </th>
                   </tr>
@@ -170,8 +170,7 @@ export default function RFPA() {
                           </div>
                         </td>
                         <td className="px-6 py-4 whitespace-no-wrap text-center">
-                          <button
-                          >
+                          <button>
                             <a href={rfp.documentPath} target="_blank">
                               <FontAwesomeIcon
                                 icon={faFileDownload}
@@ -181,20 +180,22 @@ export default function RFPA() {
                           </button>
                         </td>
                         <td className="flex items-center px-6 py-4 whitespace-no-wrap text-center">
-                        <button 
-                          >
+                          <button>
                             <FontAwesomeIcon
                               icon={faEdit}
                               className="text-cyan-600 text-xl"
-                              onClick={() => {navigate(`/admin/rfp/${rfp.id}`); }}
+                              onClick={() => {
+                                navigate(`/admin/rfp/${rfp.id}`);
+                              }}
                             />
                           </button>
-                          <button className="ml-2"
-                          >
+                          <button className="ml-2">
                             <FontAwesomeIcon
                               icon={faEye}
                               className="text-cyan-600 text-xl"
-                              onClick={() => { navigate(`/admin/rfp/view/${rfp.id}`); }}
+                              onClick={() => {
+                                navigate(`/admin/rfp/view/${rfp.id}`);
+                              }}
                             />
                           </button>
                         </td>
@@ -212,10 +213,11 @@ export default function RFPA() {
           (_, index) => (
             <button
               key={index}
-              className={`mx-1 px-4 py-2 ${currentPage === index + 1
+              className={`mx-1 px-4 py-2 ${
+                currentPage === index + 1
                   ? "bg-cyan-500 text-white"
                   : "bg-gray-300"
-                }`}
+              }`}
               onClick={() => paginate(index + 1)}
             >
               {index + 1}
@@ -224,6 +226,5 @@ export default function RFPA() {
         )}
       </div>
     </>
-
   );
 }

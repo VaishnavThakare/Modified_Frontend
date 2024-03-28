@@ -104,18 +104,18 @@ const ProjectView = () => {
             style={{ height: "fit-content" }}
           >
             <p className="text-gray-900 mb-3">
-              <span className="font-bold">Name</span>: {projectData.name}
+              <span className="text-sm text-transform: uppercase font-bold">Name</span>: {projectData.name}
             </p>
             <p className="text-gray-900 mb-3">
-              <span className="font-bold">Project Head Name</span>:{" "}
+              <span className="text-sm text-transform: uppercase font-bold">Project Head Name</span>:{" "}
               {projectData.projectHeadName}
             </p>
             <p className="text-gray-900 mb-3">
-              <span className="font-bold">Created On</span>:{" "}
+              <span className="text-sm text-transform: uppercase font-bold">Created On</span>:{" "}
               {formatDateTime(projectData.createdOn)}
             </p>
             <p className="text-gray-900">
-              <span className="font-bold">Description</span>:{" "}
+              <span className="text-sm text-transform: uppercase font-bold">Description</span>:{" "}
               {projectData.description}
             </p>
           </div>
@@ -136,27 +136,27 @@ const ProjectView = () => {
           <table className="table-auto w-full 0 bg-white">
             <thead>
               <tr className="text-gray-600">
-                <th className="px-4 py-2 text-center ">
+                <th className="text-sm text-transform: uppercase px-4 py-2 text-center ">
                   Sr.<p></p> No.
                 </th>
-                <th className="px-4 py-2 text-center ">
+                <th className="text-sm text-transform: uppercase px-4 py-2 text-center ">
                   Purchase <p></p>Order No.
                 </th>
-                <th className="px-4 py-2 text-center ">
+                <th className="text-sm text-transform: uppercase px-4 py-2 text-center ">
                   Vendor <p></p>Organization Name
                 </th>
-                <th className="px-4 py-2 text-center ">
+                <th className="text-sm text-transform: uppercase px-4 py-2 text-center ">
                   Release <p></p> On
                 </th>
-                <th className="px-4 py-2 text-center ">
+                <th className="text-sm text-transform: uppercase px-4 py-2 text-center ">
                   Accepted <p></p>On
                 </th>
-                <th className="px-4 py-2 text-center ">
+                <th className="text-sm text-transform: uppercase px-4 py-2 text-center ">
                   PO <p></p>Amount
                 </th>
-                <th className="px-4 py-2 text-center ">Comments</th>
-                <th className="px-4 py-2 text-center ">Status</th>
-                <th className="px-4 py-2 text-center ">Actions</th>
+                <th className="text-sm text-transform: uppercase px-4 py-2 text-center ">Comments</th>
+                <th className="text-sm text-transform: uppercase px-4 py-2 text-center ">Status</th>
+                <th className="text-sm text-transform: uppercase px-4 py-2 text-center ">Actions</th>
               </tr>
               <tr className=" text-gray-600">
                 <td colSpan="9" className=" px-4 py-1">

@@ -37,7 +37,8 @@ export default function Users() {
     fetchProjectHeadData();
   }, []);
 
-  const renderSerialNumber = (index) => (currentPage - 1) * itemsPerPage + index + 1;
+  const renderSerialNumber = (index) =>
+    (currentPage - 1) * itemsPerPage + index + 1;
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
@@ -75,193 +76,192 @@ export default function Users() {
 
   const indexOfLastProjectHead = currentPage * itemsPerPage;
   const indexOfFirstProjectHead = indexOfLastProjectHead - itemsPerPage;
-  const currentProjectHeads = projectHeads.slice(indexOfFirstProjectHead, indexOfLastProjectHead);
+  const currentProjectHeads = projectHeads.slice(
+    indexOfFirstProjectHead,
+    indexOfLastProjectHead
+  );
 
   return (
     <>
       <div className="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 pr-10 lg:px-8 mb-8">
         <div className="align-middle inline-block min-w-full  overflow-hidden bg-zinc-50 shadow-dashboard px-8 pt-3 rounded-bl-lg rounded-br-lg ">
-        <div className="flex text-2xl font-bold text-gray-500">
+          <div className="flex text-2xl font-bold text-gray-500">
             <h2 className="text-left text-cyan-500">Vendors</h2>
           </div>
           <div className="w-64 bg-cyan-500 h-0.5 mb-1"></div>
           <div className="w-72 bg-cyan-500 h-0.5 mb-5"></div>
           <div className="shadow-lg">
-          <div className="rounded-lg border-2 border-cyan-500 p-0.5 shadow-xl">
-          <table className="min-w-full rounded-lg bg-white">
-          <thead>
-              <tr>
-                <th className="px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-600 tracking-wider">
-                  Sr. No.
-                </th>
-                <th className="px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-600 tracking-wider">
-                  Name
-                </th>
-                <th className="px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-600 tracking-wider">
-                  Organization Name
-                </th>
-                <th className="px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-600 tracking-wider">
-                  Email
-                </th>
-                <th className="px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-600 tracking-wider">
-                  Phone Number
-                </th>
-                <th className="px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-600 tracking-wider">
-                  State
-                </th>
-                <th className="px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-600 tracking-wider">
-                  City
-                </th>
-                <th className="px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-600 tracking-wider">
-                  Address
-                </th>
-                <th className="px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-600 tracking-wider">
-                  Pincode
-                </th>
-                <th className="px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-600 tracking-wider">
-                  Category
-                </th>
-                <th className="px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-600 tracking-wider">
-                  Document List
-                </th>
-              </tr>
-            </thead>
-            <tbody className="bg-white">
-              {currentVendors.map((vendor, index) => (
-                <tr key={vendor.id}>
-                  <td className="px-6 py-4 whitespace-no-wrap">
-                <div className="text-sm text-center leading-5">
-                  {renderSerialNumber(index)}
-                </div>
-              </td>
-              <td class="px-6 py-4 whitespace-no-wrap">
-                    <div class="text-sm text-center leading-5">
-                      {vendor.name}
-                    </div>
-                  </td>
-              <td class="px-6 py-4 whitespace-no-wrap">
-                    <div class="text-sm text-center leading-5">
-                      {vendor.organizationName}
-                    </div>
-                  </td>
-                  <td class="px-6 py-4 whitespace-no-wrap">
-                    <div class="text-sm text-center leading-5">
-                      {vendor.email}
-                    </div>
-                  </td>
-                  <td class="px-6 py-4 whitespace-no-wrap">
-                    <div class="text-sm text-center leading-5">
-                      {vendor.phoneNumber}
-                    </div>
-                  </td>
-                  <td class="px-6 py-4 whitespace-no-wrap">
-                    <div class="text-sm text-center leading-5">
-                      {vendor.state}
-                    </div>
-                  </td>
-                  <td class="px-6 py-4 whitespace-no-wrap">
-                    <div class="text-sm text-center leading-5">
-                      {vendor.city}
-                    </div>
-                  </td>
+            <div className="rounded-lg border-2 border-cyan-500 p-0.5 shadow-xl">
+              <table className="min-w-full rounded-lg bg-white">
+                <thead>
+                  <tr>
+                    <th className="text-sm px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-600 tracking-wider">
+                      Sr. No.
+                    </th>
+                    <th className="text-sm px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-600 tracking-wider">
+                      Name
+                    </th>
+                    <th className="text-sm px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-600 tracking-wider">
+                      Organization Name
+                    </th>
+                    <th className="text-sm px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-600 tracking-wider">
+                      Email
+                    </th>
+                    <th className="text-sm px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-600 tracking-wider">
+                      Phone Number
+                    </th>
+                    <th className="text-sm px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-600 tracking-wider">
+                      State
+                    </th>
+                    <th className="text-sm px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-600 tracking-wider">
+                      City
+                    </th>
+                    <th className="text-sm px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-600 tracking-wider">
+                      Address
+                    </th>
+                    <th className="text-sm px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-600 tracking-wider">
+                      Pincode
+                    </th>
+                    <th className="text-sm px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-600 tracking-wider">
+                      Category
+                    </th>
+                    <th className="text-sm px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-600 tracking-wider">
+                      Document List
+                    </th>
+                  </tr>
+                </thead>
+                <tbody className="bg-white">
+                  {currentVendors.map((vendor, index) => (
+                    <tr key={vendor.id}>
+                      <td className="px-6 py-4 whitespace-no-wrap">
+                        <div className="text-sm text-center leading-5">
+                          {renderSerialNumber(index)}
+                        </div>
+                      </td>
+                      <td class="px-6 py-4 whitespace-no-wrap">
+                        <div class="text-sm text-center leading-5">
+                          {vendor.name}
+                        </div>
+                      </td>
+                      <td class="px-6 py-4 whitespace-no-wrap">
+                        <div class="text-sm text-center leading-5">
+                          {vendor.organizationName}
+                        </div>
+                      </td>
+                      <td class="px-6 py-4 whitespace-no-wrap">
+                        <div class="text-sm text-center leading-5">
+                          {vendor.email}
+                        </div>
+                      </td>
+                      <td class="px-6 py-4 whitespace-no-wrap">
+                        <div class="text-sm text-center leading-5">
+                          {vendor.phoneNumber}
+                        </div>
+                      </td>
+                      <td class="px-6 py-4 whitespace-no-wrap">
+                        <div class="text-sm text-center leading-5">
+                          {vendor.state}
+                        </div>
+                      </td>
+                      <td class="px-6 py-4 whitespace-no-wrap">
+                        <div class="text-sm text-center leading-5">
+                          {vendor.city}
+                        </div>
+                      </td>
 
-                  <td class="px-6 py-4 whitespace-no-wrap">
-                    <div class="text-sm text-center leading-5">
-                      {vendor.address}
-                    </div>
-                  </td>
-                  <td class="px-6 py-4 whitespace-no-wrap">
-                    <div class="text-sm text-center leading-5">
-                      {vendor.pincode}
-                    </div>
-                  </td>
-                  <td class="px-6 py-4 whitespace-no-wrap">
-                    <div class="text-sm text-center leading-5">
-                      {vendor.vendorCategory.name}
-                    </div>
-                  </td>
-                  <td class="px-6 py-4 whitespace-no-wrap">
-                    <div class="text-sm text-center leading-5">
-                      {vendor.documentsUploadList
-                        .map((item, index) =>
-                            <p key={index}>
-                              {item.documentName}
-                            </p>
-                        )}
-                    </div>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-          </div>
+                      <td class="px-6 py-4 whitespace-no-wrap">
+                        <div class="text-sm text-center leading-5">
+                          {vendor.address}
+                        </div>
+                      </td>
+                      <td class="px-6 py-4 whitespace-no-wrap">
+                        <div class="text-sm text-center leading-5">
+                          {vendor.pincode}
+                        </div>
+                      </td>
+                      <td class="px-6 py-4 whitespace-no-wrap">
+                        <div class="text-sm text-center leading-5">
+                          {vendor.vendorCategory.name}
+                        </div>
+                      </td>
+                      <td class="px-6 py-4 whitespace-no-wrap">
+                        <div class="text-sm text-center leading-5">
+                          {vendor.documentsUploadList.map((item, index) => (
+                            <p key={index}>{item.documentName}</p>
+                          ))}
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
         <div className="flex justify-center mt-4">
-          {generatePaginationButtonsVendor(Math.ceil(vendors.length / itemsPerPage))}
+          {generatePaginationButtonsVendor(
+            Math.ceil(vendors.length / itemsPerPage)
+          )}
         </div>
       </div>
 
-     
       <div className="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 pr-10 lg:px-8 mb-8">
         <div className="align-middle inline-block min-w-full overflow-hidden bg-zinc-50  px-8 pt-3 rounded-bl-lg rounded-br-lg ">
-        <div className="flex text-2xl font-bold text-gray-500">
+          <div className="flex text-2xl font-bold text-gray-500">
             <h2 className="text-left text-cyan-500">Project Head</h2>
           </div>
           <div className="w-64 bg-cyan-500 h-0.5 mb-1"></div>
           <div className="w-72 bg-cyan-500 h-0.5 mb-5"></div>
           <div className="shadow-lg">
-          <div className="rounded-lg shadow-xl border-2 p-0.5 border-cyan-500">
-          <table className="min-w-full  bg-white ">
-          <thead>
-              <tr>
-              <th className="px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-600 tracking-wider">
-                  Sr. No.
-                </th>
-                <th className="px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-600 tracking-wider">
-                  Name
-                </th>
-                <th className="px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-600 tracking-wider">
-                  Email
-                </th>
-                <th className="px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-600 tracking-wider">
-                  Phone Number
-                </th>
-              </tr>
-            </thead>
-            <tbody className="bg-white">
-              {currentProjectHeads.map((head, index) => (
-                <tr key={head.id}>
-                  <td className="px-6 py-4 text-center whitespace-no-wrap">
-                <div className="text-sm leading-5 ">
-                  {renderSerialNumber(index)}
-                </div>
-              </td>
-              <td className="px-6 py-4 text-center whitespace-no-wrap">
-                    <div className="text-sm leading-5 ">
-                      {head.name}
-                    </div>
-                  </td>
-              
-                  <td className="px-6 py-4 text-center whitespace-no-wrap">
-                    <div className="text-sm leading-5 ">
-                      {head.email}
-                    </div>
-                  </td>
-                  <td className="px-6 py-4 text-center whitespace-no-wrap">
-                    <div className="text-sm leading-5 ">
-                      {head.phoneNumber}
-                    </div>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-          </div>
+            <div className="rounded-lg shadow-xl border-2 p-0.5 border-cyan-500">
+              <table className="min-w-full  bg-white ">
+                <thead>
+                  <tr>
+                    <th className="text-sm px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-600 tracking-wider">
+                      Sr. No.
+                    </th>
+                    <th className="text-sm px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-600 tracking-wider">
+                      Name
+                    </th>
+                    <th className="text-sm px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-600 tracking-wider">
+                      Email
+                    </th>
+                    <th className="text-sm px-6 py-3 border-b-2 border-gray-300 text-center leading-4 text-gray-600 tracking-wider">
+                      Phone Number
+                    </th>
+                  </tr>
+                </thead>
+                <tbody className="bg-white">
+                  {currentProjectHeads.map((head, index) => (
+                    <tr key={head.id}>
+                      <td className="px-6 py-4 text-center whitespace-no-wrap">
+                        <div className="text-sm leading-5 ">
+                          {renderSerialNumber(index)}
+                        </div>
+                      </td>
+                      <td className="px-6 py-4 text-center whitespace-no-wrap">
+                        <div className="text-sm leading-5 ">{head.name}</div>
+                      </td>
+
+                      <td className="px-6 py-4 text-center whitespace-no-wrap">
+                        <div className="text-sm leading-5 ">{head.email}</div>
+                      </td>
+                      <td className="px-6 py-4 text-center whitespace-no-wrap">
+                        <div className="text-sm leading-5 ">
+                          {head.phoneNumber}
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
         <div className="flex justify-center mt-4">
-          {generatePaginationButtonsProjectHead(Math.ceil(projectHeads.length / itemsPerPage))}
+          {generatePaginationButtonsProjectHead(
+            Math.ceil(projectHeads.length / itemsPerPage)
+          )}
         </div>
       </div>
     </>

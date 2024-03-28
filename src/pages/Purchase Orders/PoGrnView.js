@@ -93,25 +93,39 @@ const PoGrnView = () => {
         <div className="bg-white p-6 rounded-md shadow-md">
           <div className="relative">
             <p className="text-gray-900">
-              <span className="font-bold">GRN No.:</span> {grnDetails.grnNo}
+              <span className="text-sm text-transform: uppercase font-bold">
+                GRN No.:
+              </span>{" "}
+              {grnDetails.grnNo}
             </p>
             <p className="text-gray-900">
-              <span className="font-bold">PO Amount:</span>{" "}
+              <span className="text-sm text-transform: uppercase font-bold">
+                PO Amount:
+              </span>{" "}
               {grnDetails.purchaseOrder.orderAmount}
             </p>
             <p className="text-gray-900">
-              <span className="font-bold">Send On:</span>{" "}
+              <span className="text-sm text-transform: uppercase font-bold">
+                Send On:
+              </span>{" "}
               {formatDateTime(grnDetails.sendOn)}
             </p>
             <p className="text-gray-900">
-              <span className="font-bold">Comment:</span> {grnDetails.comment}
+              <span className="text-sm text-transform: uppercase font-bold">
+                Comment:
+              </span>{" "}
+              {grnDetails.comment}
             </p>
             <p className="text-gray-900">
-              <span className="font-bold">Shipment Status:</span>{" "}
+              <span className="text-sm text-transform: uppercase font-bold">
+                Shipment Status:
+              </span>{" "}
               {grnDetails.shipmentStatus ? "Shipped" : "Not Shipped"}
             </p>
             <p className="text-gray-900">
-              <span className="font-bold">Invoice Status:</span>{" "}
+              <span className="text-sm text-transform: uppercase font-bold">
+                Invoice Status:
+              </span>{" "}
               {grnDetails.invoiceStatus ? "Invoiced" : "Not Invoiced"}
             </p>
             <div className="mt-4">
@@ -119,7 +133,7 @@ const PoGrnView = () => {
                 href={grnDetails.documentPath}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-blue-500 hover:underline"
+                className="text-sm text-transform: uppercase text-blue-500 hover:underline"
               >
                 View GRN Document
               </a>
@@ -137,13 +151,27 @@ const PoGrnView = () => {
         <table className="table-auto w-full rounded-lg  bg-white ">
           <thead>
             <tr className="text-gray-600">
-              <th className="px-4 py-2 text-center">INVOICE NO.</th>
-              <th className="px-4 py-2 text-center">AMOUNT</th>
-              <th className="px-4 py-2 text-center">SENT ON (DATE)</th>
-              <th className="px-4 py-2 text-center">COMMENT</th>
-              <th className="px-4 py-2 text-center">STATUS</th>
-              <th className="px-4 py-2 text-center">PAYMENT STATUS</th>
-              <th className="px-4 py-2 text-center">ACTIONS</th>
+              <th className="text-sm text-transform: uppercase px-4 py-2 text-center">
+                INVOICE NO.
+              </th>
+              <th className="text-sm text-transform: uppercase px-4 py-2 text-center">
+                AMOUNT
+              </th>
+              <th className="text-sm text-transform: uppercase px-4 py-2 text-center">
+                SENT ON (DATE)
+              </th>
+              <th className="text-sm text-transform: uppercase px-4 py-2 text-center">
+                COMMENT
+              </th>
+              <th className="text-sm text-transform: uppercase px-4 py-2 text-center">
+                STATUS
+              </th>
+              <th className="text-sm text-transform: uppercase px-4 py-2 text-center">
+                PAYMENT STATUS
+              </th>
+              <th className="text-sm text-transform: uppercase px-4 py-2 text-center">
+                ACTIONS
+              </th>
             </tr>
             <tr className="text-gray-600">
               <td colSpan="8" className="px-4 py-1">

@@ -1,13 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faEye,
-  faEdit
-  
-} from "@fortawesome/free-solid-svg-icons";
+import { faEye, faEdit } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-
 
 export default function Products() {
   const [products, setProducts] = useState([]);
@@ -15,17 +10,15 @@ export default function Products() {
   const [filterVal, setFilterVal] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(3);
-  
+
   const navigate = useNavigate();
   const handlePEditDetails = (productId) => {
-    
     navigate(`/admin/update-products/${productId}`);
-        };
-
+  };
 
   const handlePViewDetails = (productId) => {
-          navigate(`/admin/view-products/${productId}`);
-              };
+    navigate(`/admin/view-products/${productId}`);
+  };
 
   const getData = async () => {
     try {
@@ -110,40 +103,40 @@ export default function Products() {
 
           <div className="shadow-xl">
             <div className="border-2 border-cyan-500 rounded-lg shadow-xl p-0.5">
-              <table className="min-w-full bg-white">
+              <table className="min-w-full bg-white text-gray-600">
                 <thead>
                   <tr>
-                    <th className="px-6 py-3 border-b-2 border-gray-3center leading-4 tracking-wider">
+                    <th className="text-sm text-transform: uppercase px-6 py-3 border-b-2 border-gray-3center leading-4 tracking-wider">
                       Sr.No
                     </th>
-                    <th className="px-6 py-3 border-b-2 border-gray-3center leading-4 tracking-wider">
+                    <th className="text-sm text-transform: uppercase px-6 py-3 border-b-2 border-gray-3center leading-4 tracking-wider">
                       Name
                     </th>
-                    <th className="px-6 py-3 border-b-2 border-gray-300 text-center leading-4 tracking-wider">
+                    <th className="text-sm text-transform: uppercase px-6 py-3 border-b-2 border-gray-300 text-center leading-4 tracking-wider">
                       Image
                     </th>
-                    <th className="px-6 py-3 border-b-2 border-gray-300 text-center leading-4 tracking-wider">
+                    <th className="text-sm text-transform: uppercase px-6 py-3 border-b-2 border-gray-300 text-center leading-4 tracking-wider">
                       Short Description
                     </th>
-                    <th className="px-6 py-3 border-b-2 border-gray-300 text-center leading-4 tracking-wider">
+                    <th className="text-sm text-transform: uppercase px-6 py-3 border-b-2 border-gray-300 text-center leading-4 tracking-wider">
                       Long Description
                     </th>
-                    <th className="px-6 py-3 border-b-2 border-gray-300 text-center leading-4 tracking-wider">
+                    <th className="text-sm text-transform: uppercase px-6 py-3 border-b-2 border-gray-300 text-center leading-4 tracking-wider">
                       Unit Type
                     </th>
-                    <th className="px-6 py-3 border-b-2 border-gray-300 text-center leading-4 tracking-wider">
+                    <th className="text-sm text-transform: uppercase px-6 py-3 border-b-2 border-gray-300 text-center leading-4 tracking-wider">
                       Size
                     </th>
-                    <th className="px-6 py-3 border-b-2 border-gray-300 text-center leading-4 tracking-wider">
+                    <th className="text-sm text-transform: uppercase px-6 py-3 border-b-2 border-gray-300 text-center leading-4 tracking-wider">
                       Specification
                     </th>
-                    <th className="px-6 py-3 border-b-2 border-gray-300 text-center leading-4 tracking-wider">
+                    <th className="text-sm text-transform: uppercase px-6 py-3 border-b-2 border-gray-300 text-center leading-4 tracking-wider">
                       Product Category
                     </th>
-                    <th className="px-6 py-3 border-b-2 border-gray-300 text-center leading-4 tracking-wider">
+                    <th className="text-sm text-transform: uppercase px-6 py-3 border-b-2 border-gray-300 text-center leading-4 tracking-wider">
                       Product Sub-category
                     </th>
-                    <th className="px-6 py-3 border-b-2 border-gray-300 text-center leading-4 tracking-wider">
+                    <th className="text-sm text-transform: uppercase px-6 py-3 border-b-2 border-gray-300 text-center leading-4 tracking-wider">
                       Actions
                     </th>
                   </tr>
@@ -212,25 +205,25 @@ export default function Products() {
                           </div>
                         </td>
                         <td className="px-4 py-2 text-left flex flex-row ">
-                        <button
-                          className="mr-2"
-                          onClick={() => handlePEditDetails(product.id)}
-                        >
-                          <FontAwesomeIcon
-                            icon={faEdit}
-                            className="text-cyan-600 text-xl"
-                          />
-                        </button>
-                        <button
-                          className="mr-2"
-                          onClick={() => handlePViewDetails(product.id)}
-                        >
-                          <FontAwesomeIcon
-                            icon={faEye}
-                            className="text-cyan-600 text-xl"
-                          />
-                        </button>
-                      </td>
+                          <button
+                            className="mr-2"
+                            onClick={() => handlePEditDetails(product.id)}
+                          >
+                            <FontAwesomeIcon
+                              icon={faEdit}
+                              className="text-cyan-600 text-xl"
+                            />
+                          </button>
+                          <button
+                            className="mr-2"
+                            onClick={() => handlePViewDetails(product.id)}
+                          >
+                            <FontAwesomeIcon
+                              icon={faEye}
+                              className="text-cyan-600 text-xl"
+                            />
+                          </button>
+                        </td>
                       </tr>
                     ))
                   )}
