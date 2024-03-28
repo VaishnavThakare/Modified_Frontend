@@ -109,7 +109,7 @@ export default function AllBanner() {
                 key={banner.id}
                 className="max-w-sm bg-white border border-gray-200 rounded-lg shadow my-6"
               >
-                <img className="rounded-t-lg" src={banner.imagePath} alt="" />
+                <img className="rounded-t-lg h-44 w-full" src={banner.imagePath} alt="" />
                 <div className="p-5">
                   <h5 className="mb-2 text-lg font-bold tracking-tight">
                     {banner.title}
