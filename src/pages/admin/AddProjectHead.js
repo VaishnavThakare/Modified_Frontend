@@ -46,8 +46,8 @@ export default function AddProjectHead() {
     <>
       <div className="align-middle inline-block min-w-full overflow-hidden bg-zinc-50 px-8 py-3 pb-8 rounded-bl-lg rounded-br-lg">
         <form onSubmit={handleSubmit} className="max-w-lg margin-left mt-8 appform bg-white">
-          <div className="flex text-2xl font-bold text-gray-500 mb-5 justify-center">
-            <h2>Create Project Head</h2>
+          <div className="flex text-2xl font-bold text-gray-500 mb-2 justify-center">
+          <h2 className="page-heading">Create Project Head</h2>
           </div>
 
           <div className="mb-6 relative">

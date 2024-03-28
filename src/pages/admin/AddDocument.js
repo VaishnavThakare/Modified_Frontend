@@ -42,8 +42,8 @@ export default function AddDocument() {
     <>
       <div className="align-middle inline-block min-w-full overflow-hidden bg-zinc-50px-8 py-3 pb-8 rounded-bl-lg rounded-br-lg">
         <form onSubmit={handleSubmit} className=" margin-left max-w-lg  mt-8 appform bg-white">
-          <div className="flex text-2xl font-bold text-gray-500 mb-4 justify-center items-center">
-            <h2>Add Document</h2>
+          <div className="flex text-2xl font-bold text-gray-500 mb-2 justify-center items-center">
+          <h2 className="page-heading">Add Document</h2>
           </div>
           <div className="mb-6 relative">
   <input

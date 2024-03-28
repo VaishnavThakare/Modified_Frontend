@@ -138,12 +138,12 @@ const ProjectHeadView = () => {
           <table className="table-auto w-full rounded-lg  bg-white ">
             <thead>
               <tr className="text-gray-600">
-                <th className="px-4 py-2 text-center ">Sr. No.</th>
-                <th className="px-4 py-2 text-center">Project Name</th>
-                <th className="px-4 py-2 text-center">Project Head Name</th>
-                <th className="px-4 py-2 text-center">Created On</th>
-                <th className="px-4 py-2 text-center">Status</th>
-                <th className="px-4 py-2 text-center">Action</th>
+                <th className="px-4 py-2 text-center uppercase">Sr. No.</th>
+                <th className="px-4 py-2 text-center uppercase">Project Name</th>
+                <th className="px-4 py-2 text-center uppercase">Project Head Name</th>
+                <th className="px-4 py-2 text-center uppercase">Created On</th>
+                <th className="px-4 py-2 text-center uppercase">Status</th>
+                <th className="px-4 py-2 text-center uppercase">Action</th>
               </tr>
               <tr className="text-gray-600">
                 <td colSpan="6" className="px-4 py-1">

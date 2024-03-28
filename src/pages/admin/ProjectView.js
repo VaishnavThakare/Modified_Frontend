@@ -141,27 +141,27 @@ const ProjectView = () => {
           <table className="table-auto w-full 0 bg-white">
             <thead>
               <tr className="text-gray-600">
-                <th className="px-4 py-2 text-center ">
+                <th className="px-4 py-2 text-center uppercase">
                   Sr.<p></p> No.
                 </th>
-                <th className="px-4 py-2 text-center ">
+                <th className="px-4 py-2 text-center uppercase">
                   Purchase <p></p>Order No.
                 </th>
-                <th className="px-4 py-2 text-center ">
+                <th className="px-4 py-2 text-center uppercase">
                   Vendor <p></p>Organization Name
                 </th>
-                <th className="px-4 py-2 text-center ">
+                <th className="px-4 py-2 text-center uppercase">
                   Release <p></p> On
                 </th>
-                <th className="px-4 py-2 text-center ">
+                <th className="px-4 py-2 text-center uppercase">
                   Accepted <p></p>On
                 </th>
                 <th className="px-4 py-2 text-center ">
                   PO <p></p>Amount
                 </th>
-                <th className="px-4 py-2 text-center ">Comments</th>
-                <th className="px-4 py-2 text-center ">Status</th>
-                <th className="px-4 py-2 text-center ">Actions</th>
+                <th className="px-4 py-2 text-center uppercase">Comments</th>
+                <th className="px-4 py-2 text-center uppercase">Status</th>
+                <th className="px-4 py-2 text-center uppercase">Actions</th>
               </tr>
               <tr className=" text-gray-600">
                 <td colSpan="9" className=" px-4 py-1">

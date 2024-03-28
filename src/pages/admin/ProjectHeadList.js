@@ -40,12 +40,12 @@ const ProjectHeadList = () => {
                 <table className="table-auto w-full rounded-lg bg-white shadow-lg">
                   <thead>
                     <tr className="text-gray-600">
-                      <th className="px-4 py-2 text-center">SR.NO</th>
-                      <th className="px-4 py-2 text-center">Name</th>
-                      <th className="px-4 py-2 text-center">Email</th>
-                      <th className="px-4 py-2 text-center">Phone Number</th>
-                      <th className="px-4 py-2 text-center">
-                        Actions<p></p>(View)
+                      <th className="px-4 py-2 text-center uppercase">SR.NO</th>
+                      <th className="px-4 py-2 text-center uppercase">Name</th>
+                      <th className="px-4 py-2 text-center uppercase">Email</th>
+                      <th className="px-4 py-2 text-center uppercase">Phone Number</th>
+                      <th className="px-4 py-2 text-center uppercase">
+                        Actions
                       </th>
                     </tr>
                     <tr className="text-gray-600">
