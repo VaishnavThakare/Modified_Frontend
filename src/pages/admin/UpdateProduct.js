@@ -7,13 +7,13 @@ import "react-toastify/dist/ReactToastify.css";
 const ProductEdit = () => {
   const { productId } = useParams();
   const [productData, setProductData] = useState({
-    ImageFile: null,
-    Name: "",
-    ShortDescription: "",
-    LongDescription: "",
-    UnitType: "",
-    Size: "",
-    Specification: "",
+    imageFile: null,
+    name: "",
+    shortDescription: "",
+    longDescription: "",
+    unitType: "",
+    size: "",
+    specification: "",
   });
 
   const navigate = useNavigate();
@@ -35,7 +35,7 @@ const ProductEdit = () => {
   const handleFile = (event) => {
     setProductData({
       ...productData,
-      ImageFile: event.target.files[0],
+      imageFile: event.target.files[0],
     });
   };
 
@@ -49,13 +49,13 @@ const ProductEdit = () => {
 
     try {
       const formDataToSend = new FormData();
-      formDataToSend.append("Name", productData.Name);
-      formDataToSend.append("ImageFile", productData.ImageFile);
-      formDataToSend.append("ShortDescription", productData.ShortDescription);
-      formDataToSend.append("LongDescription", productData.LongDescription);
-      formDataToSend.append("UnitType", productData.UnitType);
-      formDataToSend.append("Size", productData.Size);
-      formDataToSend.append("Specification", productData.Specification);
+      formDataToSend.append("Name", productData.name);
+      formDataToSend.append("ImageFile", productData.imageFile);
+      formDataToSend.append("ShortDescription", productData.ihortDescription);
+      formDataToSend.append("LongDescription", productData.longDescription);
+      formDataToSend.append("UnitType", productData.unitType);
+      formDataToSend.append("Size", productData.size);
+      formDataToSend.append("Specification", productData.specification);
 
       const response = await axios.put(
         `${process.env.REACT_APP_API_URL}/Product/${productId}`,
@@ -91,16 +91,16 @@ const ProductEdit = () => {
           <div className="mb-6 relative">
             <input
               type="text"
-              id="Name"
-              name="Name"
-              value={productData.Name}
+              id="name"
+              name="name"
+              value={productData.name}
               onChange={handleChange}
               className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
               placeholder=" "
               required
             />
             <label
-              htmlFor="Name"
+              htmlFor="name"
               className="ml-1 absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"
             >
               Name
@@ -114,26 +114,26 @@ const ProductEdit = () => {
             <input
               type="file"
               id="image"
-              name="ImageFile"
+              name="imageFile"
               onChange={handleFile}
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-              required
+          
             />
           </div>
 
           <div className="mb-6 relative">
             <input
               type="text"
-              id="ShortDescription"
-              name="ShortDescription"
-              value={productData.ShortDescription}
+              id="shortDescription"
+              name="shortDescription"
+              value={productData.shortDescription}
               onChange={handleChange}
               className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
               placeholder=" "
               required
             />
             <label
-              htmlFor="ShortDescription"
+              htmlFor="shortDescription"
               className="ml-1 absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"
             >
               Short Description
@@ -143,8 +143,8 @@ const ProductEdit = () => {
           <div className="mb-6 relative">
             <textarea
               id="longDescription"
-              name="LongDescription"
-              value={productData.LongDescription}
+              name="longDescription"
+              value={productData.longDescription}
               onChange={handleChange}
               className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer h-20"
               placeholder=" "
@@ -163,8 +163,8 @@ const ProductEdit = () => {
               <input
                 type="text"
                 id="unitType"
-                name="UnitType"
-                value={productData.UnitType}
+                name="unitType"
+                value={productData.unitType}
                 onChange={handleChange}
                 className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                 placeholder=" "
@@ -182,8 +182,8 @@ const ProductEdit = () => {
               <input
                 type="text"
                 id="size"
-                name="Size"
-                value={productData.Size}
+                name="size"
+                value={productData.size}
                 onChange={handleChange}
                 className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                 placeholder=" "
@@ -202,8 +202,8 @@ const ProductEdit = () => {
             <input
               type="text"
               id="specification"
-              name="Specification"
-              value={productData.Specification}
+              name="specification"
+              value={productData.specification}
               onChange={handleChange}
               className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
               placeholder=" "

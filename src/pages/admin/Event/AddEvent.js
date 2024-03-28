@@ -67,7 +67,7 @@ export default function AddEvent() {
           onSubmit={handleSubmit}
           className="max-w-lg margin-left mt-8 appform bg-white"
         >
-          <div className="flex text-2xl font-bold text-gray-500 mb-5 justify-center">
+          <div className="flex text-2xl font-bold text-gray-500 mb-2 justify-center">
             <h2 className="page-heading">Create Event</h2>
           </div>
 

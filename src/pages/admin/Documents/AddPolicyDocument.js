@@ -63,8 +63,8 @@ export default function AddPolicyDocument() {
         
         <form onSubmit={handleSubmit} className="max-w-lg margin-left mt-8 appform bg-white">
   
-          <div className="flex text-2xl font-bold text-gray-500 mb-5 justify-center">
-            <h2>Create Document</h2>
+          <div className="flex text-2xl font-bold text-gray-500 mb-2 justify-center">
+            <h2 className="page-heading">Create Document</h2>
           </div>
           <div class="mb-6 relative">
   <input
@@ -87,16 +87,10 @@ export default function AddPolicyDocument() {
 
 
           <div class="mb-6">
-            <label
-              for="projectHeadId"
-              class="block mb-2 text-sm font-medium text-gray-900"
-            >
-              IsActive
-            </label>
             <select  id="projectHeadId"   name="IsActive" value={document.IsActive}   onChange={handleChange} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"   >
                 <option value="" disabled> Choose Status </option>
-                <option  value={true}> True </option>
-                <option  value={false}> False </option>                
+                <option  value={true}> Active </option>
+                <option  value={false}> Inactive </option>                
             </select>
           </div>
 

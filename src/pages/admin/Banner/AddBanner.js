@@ -63,8 +63,8 @@ export default function AddBanner() {
     <>
       <div class="align-middle inline-block min-w-full  overflow-hidden bg-zinc-50 px-8 py-3 pb-8 rounded-bl-lg rounded-br-lg">
         <form onSubmit={handleSubmit} className="max-w-lg margin-left mt-8 appform bg-white">
-          <div className="flex text-2xl font-bold text-gray-500 mb-5 justify-center">
-            <h2>Create Banner</h2>
+          <div className="flex text-2xl font-bold text-gray-500 mb-2 justify-center">
+            <h2 className="page-heading">Create Banner</h2>
           </div>
 
           <div class="mb-6 relative">
@@ -88,12 +88,6 @@ export default function AddBanner() {
 
 
           <div class="mb-6">
-            <label
-              for="projectHeadId"
-              class="block mb-2 text-sm font-medium text-gray-900"
-            >
-              IsActive
-            </label>
             <select
               id="projectHeadId"
               name="IsActive"
@@ -105,8 +99,8 @@ export default function AddBanner() {
                 {" "}
                 Choose Status{" "}
               </option>
-              <option value={true}> True </option>
-              <option value={false}> False </option>
+              <option value={true}> Active </option>
+              <option value={false}> Inactive </option>
             </select>
           </div>
 
