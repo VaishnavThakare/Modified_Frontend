@@ -172,23 +172,14 @@ const App = () => {
           <Route path="purchase-order-Grn/:grnId" element={<PoGrnView />} />
 
           <Route path="edit/:orderNo" element={<EditPurchaseOrderPage />} />
-          <Route path="view-invoice" element={<AdminInvoiceList />}></Route>
-          <Route
-            path="details/:invoiceNo"
-            element={<AdminDetailsView />}
-          ></Route>
-          <Route
-            path="vendor-detailsadm/:id"
-            element={<VendorDetailsAdm />}
-          ></Route>
+          <Route path="view-invoice" element={<AdminInvoiceList />} />
+          <Route path="details/:invoiceNo" element={<AdminDetailsView />} />
+          <Route path="vendor-detailsadm/:id" element={<VendorDetailsAdm />} />
           <Route
             path="update-products/:productId"
             element={<UpdateProduct />}
-          ></Route>
-          <Route
-            path="view-products/:productId"
-            element={<ViewProduct />}
-          ></Route>
+          />
+          <Route path="view-products/:productId" element={<ViewProduct />} />
         </Route>
 
         <Route path="/vendor" element={<VendorDashboard />}>

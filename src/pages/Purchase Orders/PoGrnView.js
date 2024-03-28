@@ -46,7 +46,7 @@ const PoGrnView = () => {
   }
 
   const handleCloseDetails = () => {
-    navigate("/admin/purchase-order-list");
+    navigate(-1);
   };
 
   return (
